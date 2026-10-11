@@ -1,0 +1,43 @@
+# monotorgb
+
+- Label: Mono to RGB
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 19 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/monotorgb.html
+- Summary (EN): Converts a mono layer, VDB or attribute to RGB by passing its values through a colour ramp. It can apply input and output scaling and controls how values outside the input range are handled.
+- Résumé (FR) : Fait passer une valeur mono par une rampe de couleurs pour obtenir du RGB, avec mise à l'échelle d'entrée et de sortie et gestion des valeurs hors plage par pincement ou répétition.
+
+- Inputs meaning: ["source: the mono layer, VDB or attribute to convert", "ramp (optional): an RGB layer sampled along a horizontal line through the centre of the image; use it instead of the Ramp parameter"]
+
+- Key parameters: ["Signature: the layer type the source accepts", "Compute Range: sets Input Min and Input Max to the source minimum and maximum", "Input Min / Input Max: source values mapped to the start and end of the ramp", "Output Min / Output Max: shift and scale the ramp's black and white points before it is applied", "Scale by Value: multiplies the ramp colour by the normalised input value, so output can keep brightening outside the ramped range", "Outside Range: Clamp at End pins out-of-range values to the ramp ends; Repeat cycles the ramp colours", "Ramp: the RGB ramp; the left side corresponds to Input Min and the right side to Input Max"]
+
+- Caveats: ["The page includes no explicit warning.", "The page suggests that if no ramping or clamping is needed, a mono layer can be wired directly into the destination node for an implicit RGB conversion."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `computerange` | Compute Range | Button |  |  |  |
+| `inputmin` | Input Min | Float | [0.0] | 0.0 .. 1.0 |  |
+| `inputmax` | Input Max | Float | [1.0] | 0.0 .. 1.0 |  |
+| `outputmin` | Output Min | Float | [0.0] | 0.0 .. 1.0 |  |
+| `outputmax` | Output Max | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scalebyvalue` | Scale by Value | Toggle | false |  |  |
+| `method` | Outside Range | Menu | 0 |  | clamp, repeat |
+| `ramp` | Ramp | Ramp | 2 |  |  |
+| `ramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `ramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `ramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `ramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

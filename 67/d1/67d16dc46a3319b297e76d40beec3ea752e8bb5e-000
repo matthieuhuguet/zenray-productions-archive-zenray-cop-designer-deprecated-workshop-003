@@ -1,0 +1,59 @@
+# grunge_wipetrails
+
+- Label: Grunge Wipe Trails
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 35 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_wipetrails.html
+- Summary (EN): Grunge Wipe Trails generates layered noise that imitates the trails left by circular wipes. Its output can serve as a mask or as a base for more detailed textures, such as faded, round distress marks.
+- Résumé (FR) : Grunge Wipe Trails imite les traces laissées par des essuyages circulaires, utilisable en masque ou comme base pour des marques d'usure arrondies.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata"]
+
+- Key parameters: ["Range: Amplitude scales values before Center; Center offsets them; Mask Contrast adjusts contrast", "Pattern: Element Size, Offset, Tile Size as repeat interval", "Primary Mask and Secondary Mask: visibility of the foreground and background wipe layers", "Density: how many wipes appear", "Shape Width: thickness of the wipes", "Shape Detail: how broken up the curves are", "Mixing and Mixing Scale: how much the foreground and background wipes blend and distort each other", "Seed: changes the randomized result while keeping the same look", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Values can fall outside 0 to 1, including negatives and values above 1; use the Clamp options", "Fold has no visible effect when all values are positive", "Complement assumes values from 0 to 1", "Post-processing Contrast is separate from Noise Contrast", "Tile Size should match the aspect ratio of non-square images"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `primarymask` | Primary Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `secondarymask` | Secondary Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `density` | Density | Float | [1.0] | 0.0 .. 1.0 |  |
+| `wipewidth` | Shape Width | Float | [0.6] | 0.0 .. 1.0 |  |
+| `shapedetail` | Shape Detail | Float | [0.7] | 0.001 .. 1.0 |  |
+| `mixing` | Mixing | Float | [0.2] | 0.0 .. 1.0 |  |
+| `mixingscale` | Mixing Scale | Float | [0.002] | 0.0 .. 0.05 |  |
+| `seed` | Seed | Int | [0] | 0 .. 100 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

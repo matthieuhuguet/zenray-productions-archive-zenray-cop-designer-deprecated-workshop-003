@@ -1,0 +1,32 @@
+# layerproperties
+
+- Label: Layer Properties
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerproperties.html
+- Summary (EN): The Layer Properties node changes a layer basic storage and sampling metadata, such as precision, fixed point storage, border behaviour and type info. It takes one source layer and outputs that same layer with the revised properties.
+- Résumé (FR) : Modifie les métadonnées de stockage et d'échantillonnage d'une couche (précision, bord, type d'information) sans changer son contenu.
+
+- Inputs meaning: ["source: the original layer whose properties are set"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Precision: per-channel storage size (8, 16 or 32 bits), trading memory against integer range or float accuracy", "Use Fixed Point Storage: stores 8-bit unsigned and 16-bit signed values as fixed point", "Border: sampling behaviour outside the layer boundaries, defaulting to the layer own border property", "Type Info: how the layer is visualised in the 3D viewport"]
+
+- Caveats: ["Fixed point storage limits 8-bit values to 0 to 1 and 16-bit values to -1 to 1, and applies only to non-ID layers", "Storage types propagate through the network, so downstream nodes often inherit them", "Higher precision allows larger or more accurate values but uses more memory", "The storage type can be inspected in the node info window, opened by holding the middle mouse button on the node"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `setprecision` | Precision | Toggle | false |  |  |
+| `precision` | Precision | Menu | 1 |  | b8, b16, b32 |
+| `usefixedpoint` | Use Fixed Point Storage | Toggle | false |  |  |
+| `setborder` | Border | Toggle | false |  |  |
+| `border` | Border | Menu | 3 |  | constant, clamp, mirror, wrap |
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |

@@ -1,0 +1,120 @@
+# bakegeometrytextures
+
+- Label: Bake Geometry Textures
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 5
+- Parameters: 96 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bakegeometrytextures.html
+- Summary (EN): Transfers surface detail from a high-resolution mesh into texture maps on a low-resolution mesh, working as a near real-time baker. The resulting maps and AOVs can be used in later Copernicus processing. This page documents version 1; the page does not mention version 2.0, which has its own page (bakegeometrytextures-2.0.html).
+- Résumé (FR) : Transfère le détail d'un maillage haute résolution vers des cartes de texture d'un maillage basse résolution, en quasi temps réel, et c'est la version 1 seulement.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and metadata", "low: low-resolution mesh that fires rays and receives the baked maps, rasterized by its UVs", "high: high-resolution mesh to bake", "cage (optional): cage mesh, used when Tracing Mode is Cage Mesh", "skew: input map for skew correction"]
+
+- Key parameters: ["Tracer and Tracing Mode: Surface Normal, Cage Mesh or Single Mesh (low); the tracer menu depends on hardware", "Face Visibility Culling: Backface or No Culling for secondary rays", "Sample Multiplier: global quality control scaling all sample counts", "Auto Generate Cage with Cage Offset and Soften Cage", "Setup Normals and Tangents: error, warning or silent generation when missing", "Advanced: UV Attribute and Ray Bias", "Match Pieces by Name with Piece Attribute, Include Pieces and Exclude Pieces", "Enable UV Boundary Filling with Exterior, Edge Padding, Edge Offset and Exclude Alpha from UV Fill", "Texture Maps: Tangent Normal, Rounded Edge Normal, World Normal, Position, Ambient Occlusion, Curvature, Edge, Cavity, Thickness, Height, Alpha, Custom Attributes"]
+
+- Caveats: ["The cage mesh must have the same topology as the low-res mesh and fully enclose both meshes without intersecting the wrong surfaces", "Cage meshes are used only when Tracing Mode is Cage Mesh", "OptiX is available only on NVIDIA hardware", "UV Boundary Filling can be slow; best enabled for final bakes", "Turning on Match Pieces by Name triggers a rebake and changes results", "Low-res normals and tangents should be set before baking; triangulate first if the target application triangulates on import", "Height output often looks nearly black unless Custom height space is used", "Not the same as the Karma Texture Baker, which handles lighting, material and shader baking"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder_tracer` |  | FolderSet |  |  |  |
+| `tracer` | Tracer | String | [""] |  |  |
+| `tracingmode` | Tracing Mode | Menu | 1 |  | surfacenormal, cagemesh, singlemesh |
+| `overrideudim` | UDIM Override | Toggle | false |  |  |
+| `udim` | UDIM Override | Int | [1001] | 1001 .. 1100 (strict) |  |
+| `samplemultiplier` | Sample Multiplier | Float | [1.0] | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `faceculling` | Face Culling | Menu | 0 |  | noculling, backface, frontface |
+| `visibilityculling` | Visibility Culling | Menu | 1 |  | noculling, backface, frontface |
+| `folder1` |  | FolderSet |  |  |  |
+| `raystartattrib` | Ray Start (Point) | String | ["P"] |  |  |
+| `raydirattrib` | Ray Direction (Vertex) | String | ["N"] |  |  |
+| `raylengthattrib` | Ray Length (Point) | String | ["raylength"] |  |  |
+| `raylengthmissing` | If Ray Length Missing: | Menu | 0 |  | endless, custom |
+| `raylength` | Custom Ray Length | Float | [1.0] | 0.0 .. 5.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `raybias` | Ray Bias | Float | [0.001] | 0.0 .. 1.0 |  |
+| `folder_setup` |  | FolderSet |  |  |  |
+| `normals` | Normals | Menu | 0 |  | error, warning, create |
+| `tangents` | Tangents | Menu | 0 |  | mikkt, tex, none |
+| `uvattribute` | UV Attribute | String | ["uv"] |  |  |
+| `removeuvz` | Remove UV Z values | Toggle | true |  |  |
+| `enablematchpieces` | Match Pieces | Toggle | false |  |  |
+| `folder_matchpieces` |  | FolderSet |  |  |  |
+| `pieceattrib` | Piece Attribute | String | ["name"] |  |  |
+| `includeset` | Include Pieces | String | ["*"] |  |  |
+| `excludeset` | Exclude Pieces | String | [""] |  |  |
+| `enableuvfilling` | Enable UV Boundary Filling | Toggle | false |  |  |
+| `folder_uvfilling` |  | FolderSet |  |  |  |
+| `exterior` | Exterior | Menu | 2 |  | none, zero, diffuse |
+| `edgepadding` | Edge Padding | Float | [0.0] | 0.0 .. 0.5 |  |
+| `edgeoffset` | Edge Offset | Float | [0.0] | -0.01 .. 0.01 |  |
+| `excludealphafromuvfill` | Exclude Alpha from UV Fill | Toggle | true |  |  |
+| `folder_generate` |  | FolderSet |  |  |  |
+| `folder_tangentspace` |  | FolderSet |  |  |  |
+| `folder_tangentalignment` |  | FolderSet |  |  |  |
+| `flipN` | Normal Y Direction | Menu | 0 |  | down, up |
+| `folder_normal` |  | FolderSet |  |  |  |
+| `bakenormal` | Normal Map | Toggle | true |  |  |
+| `normaltype` | Normal Space | Menu | 1 |  | signed, offset |
+| `folder_roundednormal` |  | FolderSet |  |  |  |
+| `bakeroundednormal` | Rounded Normal Map | Toggle | false |  |  |
+| `roundednormaltype` | Rounded Normal Space | Menu | 1 |  | signed, offset |
+| `roundednormalsamples` | Rounded Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `roundednormalmode` | Mode | Menu | 0 |  | both, concave, convex |
+| `roundednormalradius` | Radius | Float | [0.02] | 0.0 .. 1.0 (strict) |  |
+| `roundednormalcuspangle` | Cusp Angle | Float | [20.0] | 0.0 .. 90.0 |  |
+| `folder_worldspace` |  | FolderSet |  |  |  |
+| `folder_worldalignment` |  | FolderSet |  |  |  |
+| `worldspace` | World Space | Menu | 0 |  | righty, rightz, lefty, leftz |
+| `folder_worldnormal` |  | FolderSet |  |  |  |
+| `bakeworldnormal` | World Normal Map | Toggle | false |  |  |
+| `worldnormaltype` | World Normal Space | Menu | 0 |  | signed, offset |
+| `folder_position` |  | FolderSet |  |  |  |
+| `bakeposition` | Position Map | Toggle | false |  |  |
+| `positiontype` | Position Space | Menu | 1 |  | absolute, relative |
+| `bounds` | Bounding Box | Menu | 0 |  | maxaxis, equalsize |
+| `folder_geometry` |  | FolderSet |  |  |  |
+| `folder_ao` |  | FolderSet |  |  |  |
+| `bakeocclusion` | AO Map | Toggle | true |  |  |
+| `occlusionsamples` | Occlusion Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `useocclusionmaxdist` | Use Max Distance | Toggle | false |  |  |
+| `occlusionmaxdist` | Max Distance | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `folder_curvature` |  | FolderSet |  |  |  |
+| `bakecurvature` | Curvature Map | Toggle | false |  |  |
+| `curvaturesamples` | Curvature Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `curvaturescale` | Curvature Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `curvaturemaxdist` | Max Distance | Float | [0.025] | 0.0 .. 1.0 |  |
+| `curvaturebias` | Bias | Float | [0.75] | 0.0 .. 1.0 (strict) |  |
+| `folder_edge` |  | FolderSet |  |  |  |
+| `bakeedge` | Edge Map | Toggle | false |  |  |
+| `edgesamples` | Edge Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `edgemode` | Mode | Menu | 0 |  | both, concave, convex |
+| `edgeradius` | Radius | Float | [0.01] | 0.0 .. 1.0 (strict) |  |
+| `edgecuspangle` | Cusp Angle | Float | [30.0] | 0.0 .. 90.0 |  |
+| `folder_cavity` |  | FolderSet |  |  |  |
+| `bakecavity` | Cavity Map | Toggle | false |  |  |
+| `cavitysamples` | Cavity Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `usecavitymaxdist` | Max Distance | Toggle | true |  |  |
+| `cavitymaxdist` | Max Distance | Float | [0.05] | 0.0 .. 1.0 |  |
+| `cavitybias` | Bias | Float | [0.0] | 0.0 .. 1.0 |  |
+| `folder_thickness` |  | FolderSet |  |  |  |
+| `bakethickness` | Thickness Map | Toggle | false |  |  |
+| `thicknesssamples` | Thickness Samples | Int | [64] | 1 .. 256 (strict) |  |
+| `thicknessinvert` | Invert Thickness Map | Toggle | true |  |  |
+| `folder_height` |  | FolderSet |  |  |  |
+| `bakeheight` | Height Map | Toggle | false |  |  |
+| `heighttype` | Height Space | Menu | 0 |  | real, custom |
+| `heightinnerdistance` | Inner Distance | Float | [-0.01] | -1.0 .. 1.0 |  |
+| `heightouterdistance` | Outer Distance | Float | [0.01] | -1.0 .. 1.0 |  |
+| `folder_alpha` |  | FolderSet |  |  |  |
+| `bakealpha` | Alpha Map | Toggle | true |  |  |
+| `maskhighres` | Mask Out High Resolution Mesh | Toggle | true |  |  |
+| `folder_custom` |  | FolderSet |  |  |  |
+| `quicksetup` |  | Menu | 0 |  | menu, cd, pieceid, name |
+| `attribs` | Custom Attributes | Folder | 0 |  |  |

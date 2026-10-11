@@ -1,0 +1,75 @@
+# fractalnoise
+
+- Label: Fractal Noise
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 5
+- Parameters: 51 (exact, read from Houdini by hython)
+- Used by the height graph: yes
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fractalnoise.html
+- Summary (EN): Fractal Noise creates a fractal noise pattern by layering the same underlying noise at increasing frequencies. It suits cloudy, smoky, or TV-static looks.
+- Résumé (FR) : Le nœud Fractal Noise superpose le même bruit à fréquences croissantes pour obtenir des motifs de nuage, de fumée ou de neige TV.
+
+- Inputs meaning: ["size_ref: sets the output image size and metadata", "pos (optional): UV layer used in place of pixel image coordinates", "time: supplies the time value for each pixel", "octaves (optional): amount multiplied by Max Octaves", "roughness (optional): amount multiplied by Roughness"]
+
+- Key parameters: ["Range: Amplitude scales the noise, Center offsets it, and Noise Contrast adjusts contrast before those two apply", "Pattern, Noise Type: base function such as Torus, Perlin, Worley or Sparse Convolution", "Pattern, Element Size: feature scale; Tile Size: repeat period", "3D Noise, Animate: adds time as a third dimension; Time Scale, Time Offset and Loop Length control speed and looping", "Fractal Type: None, Sharp, Dampened, Terrain or Hybrid Terrain", "Max Octaves: layer count; Lacunarity: frequency scaling; Roughness: amplitude falloff per layer", "Post Processing, applied in listed order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Layers can store negative values and values above 1, so the output can go out of bounds; the Clamp options fix this", "Complement assumes values in the 0 to 1 range, so other ranges give unexpected results", "For world-space coordinates instead of image coordinates, the page recommends the Fractal Noise 3D node", "With Loop Length and periodic noise types, parameters such as Element Size and Lacunarity are rounded or clamped to keep the output tileable"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["default"] |  |  |
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Noise Contrast | Float | [0.0] | -1.0 .. 1.0 (strict) |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `noisetype` | Noise Type | Menu | 0 |  | torus, perlin, worleyA, worleyB, white, alligator, sparse |
+| `percomp` | Per Component | Toggle | true |  |  |
+| `metric` | Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `jitter` | Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Tile Size | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `use3d` | 3D Noise | Toggle | false |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `animate` | Animate | Toggle | false |  |  |
+| `pulselength` | Pulse Length | Float | [1.0] | 0.0 .. 1.0 |  |
+| `timeoffset` | Time Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `timescale` | Time Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `doloop` | Loop Length (sec) | Toggle | false |  |  |
+| `looplen` | Loop Length (sec) | Float | [10.0] | 0.0 .. 10.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `fractaltype` | Fractal Type | Menu | 1 |  | none, sharp, dampened, terrain, hybrid |
+| `oct` | Max Octaves | Float | [8.0] | 0.0 .. 8.0 |  |
+| `lac` | Lacunarity | Float | [2.01234] | 1.0 .. 3.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `octaveoffsetx` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `octaveoffsety` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maximum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

@@ -1,0 +1,35 @@
+# histogram
+
+- Label: Histogram
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 2
+- Parameters: 11 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/histogram.html
+- Summary (EN): Builds a histogram of how a layer's pixel values are distributed across a set number of buckets. The result is a visual graph or raw bucket counts.
+- Résumé (FR) : Calcule l'histogramme de répartition des valeurs d'une couche, sous forme de graphe visuel ou de comptages bruts par intervalle.
+
+- Inputs meaning: ["source: the layer or VDB to analyze", "active: optional layer or VDB; only pixels where it is at least 0.5 contribute"]
+
+- Key parameters: [{"name": "Mode", "meaning": "Colored Bars, Separate Bars or Graph, which sets how the histogram is drawn"}, {"name": "Buckets", "meaning": "number of intervals; more buckets give a more accurate graph"}, {"name": "Minimum / Maximum", "meaning": "value range to histogram, typically 0 and 1"}, {"name": "Outside Values", "meaning": "Discard ignores out-of-range values; Clamp counts them in the first or last bucket"}, {"name": "Scale", "meaning": "boosts bar height or intensity for legibility"}, {"name": "Channel Scope", "meaning": "toggles which of R, G, B and A are affected"}]
+
+- Caveats: ["If the source has alpha, bars take alpha coloring and may clip.", "With Discard, channel totals can differ because clipping is applied per channel."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mode` | Mode | Menu | 2 |  | colorbar, separatebar, graph |
+| `buckets` | Buckets | Float | [100.0] | 1.0 .. 1000.0 |  |
+| `min` | Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `max` | Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `outside` | Outside Values | Menu | 0 |  | discard, clamp |
+| `scale` | Scale | Float | [10.0] | 0.0 .. 50.0 |  |
+| `channelscope` | Channel Scope | Int | [15] | 0 .. 10 |  |
+| `setres` | VDB Resolution | Toggle | false |  |  |
+| `resx` | VDB Resolution | Float | 1024.0 | -1.0 .. 1.0 |  |
+| `resy` | VDB Resolution | Float | 1024.0 | -1.0 .. 1.0 |  |

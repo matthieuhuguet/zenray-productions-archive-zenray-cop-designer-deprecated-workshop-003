@@ -1,0 +1,33 @@
+# feather
+
+- Label: Feather
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/feather.html
+- Summary (EN): The Feather node reduces abrupt contrast changes by capping how quickly values can change from one pixel to the next. This gives height fields a beveled appearance, and it can extend masks outward or inward without blurring them the way the Blur COP does.
+- Résumé (FR) : Le nœud Feather limite la vitesse de variation d'une valeur d'un pixel à l'autre, ce qui biseaute un champ de hauteur sans le flouter.
+
+- Inputs meaning: ["source: original layer to feather", "mask: optional per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: how much of the new value is mixed with the original; default 1 uses only the new value", "Feather from High to Low: when on, bright pixels stay and darker neighbors are raised; when off, dark pixels stay and bright pixels are lowered", "Include Border: samples initial pixel values from outside the image bounds, which can create an edge mask from constant borders", "Feather Direction: Diamond, Square, Octagon, Custom (uses Sweep Directions), or Circle", "Sweep Directions: Custom only; selects which of the eight directions apply, allowing one-sided ramp-like feathers", "Feather Method: Distance for Unit Change (distance over which a value of 1 changes to 0) or Change per Distance; the two are inverses"]
+
+- Caveats: ["To create a tiling texture, turn on Include Border, and the feather may need to be repeated twice"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `outside` | Feather from High to Low | Toggle | false |  |  |
+| `includeborder` | Include Border | Toggle | false |  |  |
+| `direction` | Feather Direction | Menu | 0 |  | diamond, square, oct, custom, circle |
+| `sweepdir` | Sweep Directions | Menu | 0 |  | mx, px, my, py, mxmy, mxpy, pxmy, pxpy |
+| `decaymode` | Feather Method | Menu | 0 |  | unitdist, decay |
+| `unitdist` | Distance for Unit Change | Float | [0.05] | 0.0 .. 1.0 |  |
+| `decay` | Change per Distance | Float | [5.0] | 0.0 .. 10.0 |  |

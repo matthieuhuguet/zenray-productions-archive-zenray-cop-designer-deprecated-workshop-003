@@ -1,0 +1,36 @@
+# maskfromcurves
+
+- Label: Mask from Curves
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 12 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/maskfromcurves.html
+- Summary (EN): The Mask from Curves node closes 2D curves and renders them into a black-and-white mask. It can also output a signed distance field (SDF) storing each pixel distance to the curves.
+- Résumé (FR) : Ferme des courbes 2D et les rend en masque noir et blanc, ou en champ de distance signée qui indique la distance de chaque pixel aux courbes.
+
+- Inputs meaning: ["size_ref: layer onto which the curves are rendered; if the curves are not on this layer they are projected through its camera", "curves: geometry containing the curves to rasterise; open curves are closed first"]
+
+- Key parameters: ["Output Type: Mask (white inside, black outside) or SDF", "Invert: reverses inside and outside in the mask or SDF output, without changing id values", "Blur: postprocess blur softening the mask edges", "Units: blur Size in image space or absolute pixels", "Conversion Quality: smoothness of NURBS and Bezier conversion to polygons, at the cost of processing time", "Resample / Segment Length: resamples incoming polygons to equal-spaced points using the given world-space segment length", "Treat Polygons As: Straight Edges, Subdivision Curves or Interpolating Curves when resampling"]
+
+- Caveats: ["Polygon, Bezier and NURBS curves are accepted; non-polygon curves are converted automatically", "The id output stores the contributing curve number per pixel, with -1 where no curve contributed", "With Blur enabled, the mask can be non-zero in pixels that have no id", "Interpolating Curves preserve size but can introduce overshoots and oscillations", "Documented as available since version 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder1` |  | FolderSet |  |  |  |
+| `output` | Output Type | Menu | 0 |  | mask, sdf |
+| `doinvert` | Invert | Toggle | false |  |  |
+| `doblur` | Blur | Toggle | false |  |  |
+| `blurunits` | Units | Menu | 0 |  | image, pixels |
+| `blursize` | Size | Float | [0.005] | 0.0 .. 0.05 (strict) |  |
+| `blursize_pixel` | Size | Float | [3.0] | 0.0 .. 25.0 (strict) |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `quality` | Conversion Quality | Float | [0.5] | 0.001 .. 5.0 (strict) |  |
+| `doresample` | Resample | Toggle | false |  |  |
+| `resample_length` | Segment Length | Float | [0.1] | 0.0 .. 0.2 (strict) |  |
+| `treatpolysas` | Treat Polygons As | Menu | 1 |  | straight, subd, interp |

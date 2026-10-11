@@ -1,0 +1,40 @@
+# heightfield_slump
+
+- Label: HeightField Slump
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 16 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_slump.html
+- Summary (EN): HeightField Slump simulates loose material moving down slopes and collecting at the base of terrain. It runs a set number of spread iterations on a debris layer with a chosen transport method, and can also generate flow fields.
+- Résumé (FR) : HeightField Slump simule la chute de matériaux meubles le long des pentes jusqu'au pied du relief, selon trois modes de transport.
+
+- Inputs meaning: ["height: height layer the debris slumps across", "debris: optional layer setting the initial debris depth, scaled by Debris Scale; if unwired, a constant debris depth equal to Debris Scale is used"]
+
+- Key parameters: ["Slump Mode: Smooth (liquid-like diffusion), Granular (chunky, randomized flow) or Rainfall (hydraulic erosion through streams)", "Debris Scale: scales the debris layer, or sets the constant depth when no debris input is connected", "Spread Iterations: number of material transport iterations", "Repose Angle: steepest slope, in degrees from horizontal, where material stays put", "Spread Rate: how quickly material spreads in each iteration", "Random Seed: seeds the randomization of the slumping process", "Rainfall-only controls: Flow Force, Rainfall Coverage, Slope Influence, Erosion Rate, Deposition Rate, Removal Rate, Evaporation Rate", "Remove Debris from Input Height and Add Debris to Output Height: control whether debris is subtracted before and added back after the simulation"]
+
+- Caveats: ["Rainfall-specific parameters have no effect in Smooth or Granular modes", "For flow fields, use Rainfall or Smooth; with Smooth, set Repose Angle to 0 and raise Spread Iterations", "Available since Houdini 22.0, so older versions do not have it", "The page gives no performance costs, parameter ranges or detailed output behaviour"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `slumpmode` | Slump Mode | Menu | 1 |  | smooth, granular, rainfall |
+| `debrisscale` | Debris Scale | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `spreaditers` | Spread Iterations | Int | [200] | 0 .. 1000 (strict) |  |
+| `reposeangle` | Repose Angle | Float | [35.0] | 0.0 .. 90.0 (strict) |  |
+| `spreadrate` | Spread Rate | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `seed` | Random Seed | Float | [0.0] | 0.0 .. 10.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `flow` | Flow Force | Float | [5.0] | 0.0 .. 10.0 (strict) |  |
+| `coverage` | Rainfall Coverage | Float | [0.2] | 0.0 .. 1.0 (strict) |  |
+| `slopeinfluence` | Slope Influence | Float | [0.8] | 0.0 .. 1.0 (strict) |  |
+| `erosion` | Erosion Rate | Float | [0.3] | 0.0 .. 1.0 (strict) |  |
+| `deposition` | Deposition Rate | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `removal` | Removal Rate | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `evaporation` | Evaporation Rate | Float | [0.05] | 0.0 .. 1.0 (strict) |  |
+| `removeinputdebris` | Remove Debris from Input Height | Toggle | false |  |  |
+| `addoutputdebris` | Add Debris to Output Height | Toggle | true |  |  |

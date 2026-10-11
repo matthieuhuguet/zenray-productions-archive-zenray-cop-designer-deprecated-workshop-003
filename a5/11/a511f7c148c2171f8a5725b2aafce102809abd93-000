@@ -1,0 +1,34 @@
+# clamp
+
+- Label: Clamp
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 10 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/clamp.html
+- Summary (EN): The Clamp node restricts the values of a layer, VDB or attribute to an optional lower and upper range. Values outside the range are replaced by the exceeded limit or by zero, or softly transitioned with Soft Clip.
+- Résumé (FR) : Le nœud Clamp borne les valeurs d'une couche entre une limite basse et une limite haute, avec remplacement par la limite ou par zéro, ou transition douce par Soft Clip.
+
+- Inputs meaning: ["source: the layer, VDB or attribute to clamp", "lower (optional): per-pixel scale for the lower limit", "upper (optional): per-pixel scale for the upper limit (the page text says lower limit, which looks like a typo)", "mask (optional): per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much of the clamped result is mixed in, default 1", "Toggle RGB, Red, Green, Blue, Alpha: channels affected", "Compute Range: sets Lower and Upper Limit to the source min and max", "Lower Limit / Upper Limit: thresholds, with a dropper to pick values from the layer", "Clamped Values: Replace with Limit Value, or Replace with Black (0)", "Soft Clip: smooth transition instead of a hard cutoff", "Soft Clip Direction: transition inside or outside the range", "Soft Clip Range: width of the transition"]
+
+- Caveats: ["The Upper input description says lower limit; treated here as upper-limit scaling", "Soft Clip changes values near the limits, so a hard clamp and a soft clip give different results"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergba` | Channel Scope | Int | [15] | 0 .. 10 |  |
+| `computerange` | Compute Range | Button |  |  |  |
+| `dolowerlimit` | Lower Limit | Toggle | true |  |  |
+| `lowerlimit` | Lower Limit | Float | [0.0] | 0.0 .. 1.0 |  |
+| `doupperlimit` | Upper Limit | Toggle | true |  |  |
+| `upperlimit` | Upper Limit | Float | [1.0] | 0.0 .. 1.0 |  |
+| `method` | Clamped Values | Menu | 0 |  | clamp, black, soft |
+| `softclipdir` | Soft Clip Direction | Menu | 1 |  | inside, outside |
+| `softcliprange` | Soft Clip Range | Float | [0.1] | 0.0 .. 1.0 (strict) |  |

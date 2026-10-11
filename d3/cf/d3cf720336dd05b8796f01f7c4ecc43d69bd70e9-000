@@ -1,0 +1,69 @@
+# latticedeform
+
+- Label: Lattice Deform
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 45 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/latticedeform.html
+- Summary (EN): The Lattice Deform node applies grid-based deformation to a layer, where the grid points act as handles that reshape the image. It offers finer deformation than the Bend COP, which is better suited to quick simple warps.
+- Résumé (FR) : Déforme une couche à l'aide d'une grille de points de contrôle, avec plus de finesse que le nœud Bend pour des déformations simples.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and controls its metadata", "source: the source layer to deform"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Filter: method used to sample the image", "Mode: Linear (deformation follows the grid exactly) or Smooth (NURBS interpolation for fluid deformation)", "U / V: point density in each direction when NURBS curves convert to polygons", "Cells per Column / Columns: grid cell and column counts, always differing by one", "Row 0: number of grid points in a row, set through the row tabs", "Point 0_0: image-space position of a grid point, shown as a viewport handle"]
+
+- Caveats: ["Columns and Cells per Column are linked: changing one changes the other by one", "The Handles tool moves grid points directly in the viewport", "U and V affect the output only when Smooth mode converts NURBS to polygons", "For simple quick deformations the Bend COP is recommended", "Page targets Houdini 22.0 and notes availability since 21.0; the Filter options are described in the Copernicus glossary, not on this page"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `folder0` |  | FolderSet |  |  |  |
+| `mode` | Mode | Menu | 0 |  | linear, smooth |
+| `lodu` | U | Float | [1.0] | 0.001 .. 5.0 (strict) |  |
+| `lodv` | V | Float | [1.0] | 0.001 .. 5.0 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `cellspercolumn` | Cells per Column | Int | [3] | 1 .. 20 |  |
+| `columns` | Columns | Folder | 4 |  |  |
+| `row0` | Row 0 | Folder | 4 |  |  |
+| `point0_0x` | Point 0_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_0y` | Point 0_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_1x` | Point 0_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_1y` | Point 0_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_2x` | Point 0_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_2y` | Point 0_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_3x` | Point 0_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point0_3y` | Point 0_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `row1` | Row 1 | Folder | 4 |  |  |
+| `point1_0x` | Point 1_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_0y` | Point 1_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_1x` | Point 1_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_1y` | Point 1_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_2x` | Point 1_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_2y` | Point 1_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_3x` | Point 1_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point1_3y` | Point 1_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `row2` | Row 2 | Folder | 4 |  |  |
+| `point2_0x` | Point 2_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_0y` | Point 2_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_1x` | Point 2_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_1y` | Point 2_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_2x` | Point 2_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_2y` | Point 2_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_3x` | Point 2_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point2_3y` | Point 2_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `row3` | Row 3 | Folder | 4 |  |  |
+| `point3_0x` | Point 3_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_0y` | Point 3_0 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_1x` | Point 3_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_1y` | Point 3_1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_2x` | Point 3_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_2y` | Point 3_2 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_3x` | Point 3_3 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `point3_3y` | Point 3_3 | Float | 0.0 | -1.0 .. 1.0 |  |

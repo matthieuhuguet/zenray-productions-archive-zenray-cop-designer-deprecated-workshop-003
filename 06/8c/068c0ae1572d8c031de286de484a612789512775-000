@@ -1,0 +1,39 @@
+# lensdistort
+
+- Label: Lens Distort
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 12
+- Parameters: 15 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/lensdistort.html
+- Summary (EN): The Lens Distort node adds radial and tangential lens distortion to a layer using OpenCV intrinsic camera coefficients, for effects such as a wide zoom or an outward bulge. It also outputs a UV map representing the distortion.
+- Résumé (FR) : Applique une distorsion de lentille radiale et tangentielle (coefficients OpenCV) à une couche et sort la carte UV correspondante.
+
+- Inputs meaning: ["source: the original layer to distort", "k1, k2, k3, k4, k5, k6: optional per-pixel scaling of each radial coefficient", "p1, p2: optional per-pixel scaling of each tangential coefficient", "center: optional per-pixel addition to the Center parameter", "scale: optional per-pixel scaling of the Scale parameter", "mask: optional per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: amount of the distorted value mixed with the original; 1 uses only the new value", "Low Order Barrel (k1): positive gives barrel distortion, negative gives pincushion", "Mid Order Barrel (k2): mid-range radial term with the same sign behaviour as k1", "High Order Barrel (k3): high-order term, mainly affecting image edges", "Low Order Inverse (k4): second radial group; negative gives barrel, positive gives pincushion", "Mid Order Inverse (k5): mid-range term of the second group", "High Order Inverse (k6): high-order term of the second group, mainly affecting edges", "Vertical Tilt (p1): tangential distortion making the top or bottom of the image plane appear farther away", "Horizontal Tilt (p2): tangential distortion making the left or right side appear farther away", "Center: pivot point of the distortion, settable by clicking in the image", "Scale: distortion scaling along X and Y", "Aspect: width-to-height ratio of the lens, which should match the lens rather than the input layer"]
+
+- Caveats: ["Barrel distortion is not simply invertible, so k4 to k6 are not k1 to k3 moved to other slots to undo the effect", "Low-order coefficients act uniformly across the image, while high-order coefficients mainly affect the edges", "The center input is an additive offset to the Center parameter, not a scale factor", "The page does not give numeric ranges or defaults for the coefficients, Center, Scale or Aspect"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `k1` | Low Order Barrel (k1) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `k2` | Mid Order Barrel (k2) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `k3` | High Order Barrel (k3) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `k4` | Low Order Inverse (k4) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `k5` | Mid Order Inverse (k5) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `k6` | High Order Inverse (k6) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `p1` | Vertical Tilt (p1) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `p2` | Horizontal Tilt (p2) | Float | [0.0] | -0.5 .. 0.5 |  |
+| `centerx` | Center | Float | 0.0 | 0.0 .. 1.0 |  |
+| `centery` | Center | Float | 0.0 | 0.0 .. 1.0 |  |
+| `scalex` | Scale | Float | 1.0 | 0.0 .. 2.0 |  |
+| `scaley` | Scale | Float | 1.0 | 0.0 .. 2.0 |  |
+| `aspect` | Aspect | Float | [1.0] | 0.1 .. 3.0 |  |

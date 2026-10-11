@@ -1,0 +1,24 @@
+# layertogeo
+
+- Label: Layer to Geometry
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layertogeo.html
+- Summary (EN): The Layer to Geometry node converts an incoming layer into a 2D volume, producing geometry that SOPs can process. It is meant to pair with the Geometry to Layer COP for round-trip workflows.
+- Résumé (FR) : Convertit une couche en volume 2D exploitable dans les SOP, pour un aller-retour avec Geometry to Layer.
+
+- Inputs meaning: ["layer: the original layer to convert into a volume"]
+
+- Key parameters: ["Signature: layer type the node accepts for conversion", "Empty Geometry If Unwired: when the input is not connected, outputs empty geometry instead of raising an error"]
+
+- Caveats: ["The page states no version number; it is assumed to be the default version 1.0", "A separate Layer to Geometry 2.0 entry exists with a different description (it accepts a layer or VDB), see layertogeo::2.0", "Accepted layer types are described only in the Signatures glossary", "One output: geometry containing the 2D volume of the converted layer"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

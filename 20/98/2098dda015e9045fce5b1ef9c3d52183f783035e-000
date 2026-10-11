@@ -1,0 +1,87 @@
+# heightfield_strata
+
+- Label: HeightField Strata
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 63 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_strata.html
+- Summary (EN): HeightField Strata adds rock- or sediment-like layering to a heightfield. It can stack several strata layers with different tilts and rotations.
+- Résumé (FR) : HeightField Strata ajoute des strates de type roche ou sédiment à une hauteur, en empilant plusieurs couches inclinées et tournées.
+
+- Inputs meaning: ["height: heightfield that receives the strata", "baseheight: optional extra height that deforms the strata pattern", "mask: optional per-pixel mask, scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much strata noise mixes into the height input", "Blend Mode: Add, Subtract, Multiply, Difference, Maximum or Minimum", "Output Strata Only: outputs the strata layer without blending it with height", "Amplitude and Center: scale and offset the strata noise", "Noise Contrast: increases extremeness inside the noise before Amplitude and Center", "Noise Type: base noise function, such as Simplex, Perlin, Worley variants or Sparse Convolution", "Element Size and Offset: size and position of the base noise pattern", "Strata Size and Strata Offset: layer thickness and position", "Tilt and Rotate (with Origin): angle of the layers and their rotation centre", "Add Layers, Layers, Roughness, Tilt Variance, Rotate Variance, Seed: several strata layers with randomization", "Base Height Influence: how strongly baseheight affects the pattern", "Fractal Type, Max Octaves, Lacunarity, Octave Offset, Roughness: finer detail through successive noise octaves", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Worley Jitter values above 1 can produce artifacts, because points may jitter past the search radius", "Complement assumes values from 0 to 1; other values can become negative or out of range", "Fold has no effect when all values are positive", "Noise Contrast (inside the noise function) differs from the post-processing Contrast", "The page does not document performance characteristics or other limits"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `mode` | Blend Mode | Menu | 0 |  | add, subtract, multiply, diff, max, min |
+| `outputstrata` | Output Strata Only | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [5.0] | 0.0 .. 10.0 |  |
+| `center` | Center | Float | [0.0] | -100.0 .. 100.0 |  |
+| `contrast` | Noise Contrast | Float | [0.0] | -1.0 .. 1.0 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `noisetype` | Noise Type | Menu | 0 |  | simplex, perlin, worleyA, worleyB, white, alligator, sparse |
+| `metric` | Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `jitter` | Worley Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `units` | Units | Menu | 1 |  | image, local |
+| `elementsize` | Element Size | Float | [0.2] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementsize_local` | Element Size | Float | [200.0] | 1.0 .. 1000.0 |  |
+| `elementsizetype_local` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscale_localx` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscale_localy` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `off_localx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `off_localy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `stratasize` | Strata Size | Float | [5.0] | 0.0 .. 100.0 |  |
+| `strataoff` | Strata Offset | Float | [0.0] | -100.0 .. 100.0 |  |
+| `tilt` | Tilt | Float | [0.0] | 0.0 .. 90.0 (strict) |  |
+| `rotate` | Rotate | Float | [0.0] | -180.0 .. 180.0 |  |
+| `originx` | Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `originy` | Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `origin_localx` | Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `origin_localy` | Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `addlayers` | Add Layers | Toggle | false |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `layers` | Layers | Int | [3] | 1 .. 10 (strict) |  |
+| `layerrough` | Roughness | Float | [0.8] | 0.0 .. 1.0 |  |
+| `tiltvar` | Tilt Variance | Float | [10.0] | 0.0 .. 90.0 (strict) |  |
+| `rotatevar` | Rotate Variance | Float | [10.0] | -180.0 .. 180.0 |  |
+| `seed` | Seed | Int | [0] | 0 .. 100 |  |
+| `baseheightinfluence` | Base Height Influence | Float | [1.0] | 0.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `fractaltype` | Fractal Type | Menu | 4 |  | none, sharp, dampened, terrain, hybrid |
+| `oct` | Max Octaves | Float | [8.0] | 0.0 .. 8.0 |  |
+| `lac` | Lacunarity | Float | [2.01234] | 1.0 .. 3.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `octaveoffsetx` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `octaveoffsety` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `octaveoffsetz` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

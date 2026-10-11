@@ -1,0 +1,28 @@
+# layerpropertycopy
+
+- Label: Layer Property Copy
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerpropertycopy.html
+- Summary (EN): The Layer Property Copy node transfers properties from a source layer, VDB or attribute to a destination. The Transfer Properties list selects which properties copy, and toggles select border, type info and precision.
+- Résumé (FR) : Copie les propriétés (bord, type d'information, précision) d'une couche, d'un VDB ou d'un attribut source vers une destination.
+
+- Inputs meaning: ["destination: layer, VDB or attribute that receives the copied properties", "source: layer, VDB or attribute that supplies the properties"]
+
+- Key parameters: ["Transfer Properties: list of properties to copy; blank or * copies all, a leading caret excludes listed properties, a caret on the first name copies only unlisted ones", "Transfer Border: copies the border setting", "Transfer Type Info: copies the type info", "Transfer Precision: copies the per-channel storage precision"]
+
+- Caveats: ["Border and precision cannot be transferred between a VDB and a layer in either direction", "Attributes can only transfer their type info to other attributes", "Related nodes Layer Property Create and Layer Property Delete add or remove user-defined properties", "Available since Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `transfer` | Transfer Properties | String | [""] |  |  |
+| `doborder` | Transfer Border | Toggle | false |  |  |
+| `dotypeinfo` | Transfer Type Info | Toggle | false |  |  |
+| `doprecision` | Transfer Precision | Toggle | false |  |  |

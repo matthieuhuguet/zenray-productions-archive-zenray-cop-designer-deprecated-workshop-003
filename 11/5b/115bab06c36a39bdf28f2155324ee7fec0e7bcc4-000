@@ -1,0 +1,26 @@
+# monotoheightfield
+
+- Label: Mono to HeightField
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/monotoheightfield.html
+- Summary (EN): Turns a mono layer into a heightfield. It changes the layer's type info to height and rescales and shifts the incoming values.
+- Résumé (FR) : Transforme un calque mono en champ de hauteur en changeant son type d'information, puis en le remettant à l'échelle et en le décalant avec deux paramètres.
+
+- Inputs meaning: ["mono: the original mono layer to convert", "height: listed under Inputs on the page but described as the resulting heightfield, so it appears to be the output and the page is ambiguous"]
+
+- Key parameters: ["Height Scale: multiplies the height values so they convert to proper world-space locations", "Height Offset: adds a fixed amount to the height values"]
+
+- Caveats: ["The page gives no explicit warnings or limitations.", "The height connector is ambiguous on the page: it is listed as an input but described as the output."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `heightscale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `heightoffset` | Height Offset | Float | [0.0] | -100.0 .. 100.0 |  |

@@ -1,0 +1,31 @@
+# layerattribcreate
+
+- Label: Layer Property Create
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerattribcreate.html
+- Summary (EN): The Layer Property Create node adds or edits user-defined metadata on a layer. Its main use is setting the savepath property, which tells USD ROPs where to write EXR textures referenced through COP nodes.
+- Résumé (FR) : Ajoute ou modifie des propriétés personnalisées sur une couche, notamment le savepath qui indique aux ROP USD où écrire les textures EXR.
+
+- Inputs meaning: ["source: the original layer that receives the added or edited property"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Number of Properties: how many properties the node defines", "Name: property name; if blank, no property is created", "Type: data type of the property (string, float or integer)", "Value: property value, interpreted according to Type"]
+
+- Caveats: ["The current page is titled Layer Property Create; the Houdini 21 docs titled the same URL Layer Attribute Create. Same node, renamed in the docs", "To set a texture output path, set Name to savepath and Value to the file path, for example under $HIP/textures", "USD ROP and USD Render ROP read savepath only when they write files that reference a COP node", "When savepath collisions occur the file name is auto-incremented so each texture is unique", "Layer Property Delete is the related node that removes such properties"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `numattrib` | Number of Properties | Folder | 1 |  |  |
+| `name1` | Name 1 | String | [""] |  |  |
+| `type1` | Type | Menu | 0 |  | string, float, int |
+| `valf1` | Value 1 | Float | [0.0] | 0.0 .. 10.0 |  |
+| `vali1` | Value 1 | Int | [0] | 0 .. 10 |  |
+| `vals1` | Value 1 | String | [""] |  |  |

@@ -1,0 +1,34 @@
+# hextile
+
+- Label: Hex Tile
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 10
+- Parameters: 10 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/hextile.html
+- Summary (EN): Randomly tiles a texture across large areas using hexagonal cells with random offsets. Each cell is randomly scaled and rotated, which avoids visible seams and obvious repetition.
+- Résumé (FR) : Pave une texture de façon aléatoire sur de grandes surfaces grâce à des cellules hexagonales décalées, pivotées et mises à l'échelle au hasard.
+
+- Inputs meaning: ["direction: orients tiles, for example along curve tangents", "texcoord: custom texture coordinates for mapping", "textotile: the texture to tile", "size, scale, rot: per-tile size, scale and rotation multipliers", "contrast, contrast_falloff, weightexp: blend contrast, falloff and weight multipliers"]
+
+- Key parameters: [{"name": "Size", "meaning": "tile size in canvas XY coordinates"}, {"name": "Scale / Rotate", "meaning": "global scale and rotation of the tiles"}, {"name": "Scale Random / Rotate Random", "meaning": "random per-cell variation"}, {"name": "Random Seed", "meaning": "changes the random arrangement"}, {"name": "Contrast", "meaning": "contrast between blended cells"}, {"name": "Falloff", "meaning": "contrast falloff between cells; 0 gives a hard transition"}, {"name": "Weight Exp", "meaning": "exponential weighting of transition areas"}]
+
+- Caveats: ["By default the node uses canvas XY coordinates; supplying texcoord changes the mapping.", "Where a direction vector has zero length, the default orientation set by Rotate and Rotate Random is used."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `sizex` | Size | Float | 1.0 | 0.0 .. 2.0 |  |
+| `sizey` | Size | Float | 1.0 | 0.0 .. 2.0 |  |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scalerand` | Scale Random | Float | [0.0] | 0.0 .. 1.0 |  |
+| `rot` | Rotate | Float | [0.0] | -90.0 .. 90.0 |  |
+| `rotrand` | Rotate Random | Float | [0.0] | 0.0 .. 1.0 |  |
+| `seed` | Random Seed | Float | [0.0] | 0.0 .. 10.0 |  |
+| `contrast` | Contrast | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast_falloff` | Falloff | Float | [0.6] | 0.0 .. 1.0 |  |
+| `weightexp` | Weight Exp | Float | [7.0] | 0.0 .. 10.0 |  |

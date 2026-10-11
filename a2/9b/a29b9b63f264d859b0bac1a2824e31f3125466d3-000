@@ -1,0 +1,73 @@
+# ml_computervisioninference
+
+- Label: ML Computer Vision Inference
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 49 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/ml_computervisioninference.html
+- Summary (EN): Runs an ONNX model produced by the ML Train Computer Vision TOP on an input image, detecting and masking objects. The Detection Type must match the setting used when the model was trained.
+- Résumé (FR) : Exécute un modèle ONNX entraîné par le TOP ML Train Computer Vision pour détecter des objets et produire leurs masques dans une image, avec un seuil de confiance.
+
+- Inputs meaning: ["The page does not describe the input connectors or their order. It refers only to an input image or input volume in the Inference Resolution settings."]
+
+- Key parameters: ["Model File: the .onnx file to use; Reload Model forces a reload", "Detection Type: Objects (bounding boxes only), Masks (boxes plus segmentation masks) or Keypoints (boxes plus keypoints)", "Minimum Confidence: detections below this threshold are discarded", "Inference Resolution / Custom Resolution: native input resolution or a custom one, with the input resampled as needed", "Object Definitions: number of classes with each name and display colour, and keypoint count, names and colours", "Pre-Process: colour transform, None (Raw) or OCIO, with Pixel Mean and Pixel Deviation for converting input colours", "Bounding Boxes, Masks, Keypoints: options for writing class, name and score attributes, setting point colours, and for masks, using confidence as mask values or refining mask edges", "Advanced: Execution Provider (Automatic, CPU, CUDA, DirectML, CoreML) and Device ID for choosing a GPU"]
+
+- Caveats: ["Detection Type must match the training node's setting, or results will be wrong.", "CUDA requires CUDA and cuDNN installed from NVIDIA's packages.", "DirectML is Windows only, and CoreML is macOS only.", "Device ID has no effect with CPU inference.", "The page does not explain how to choose Pixel Mean and Pixel Deviation values."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `model` |  | FolderSet |  |  |  |
+| `modelfile` | Model File | String | ["$HIP/ml/model.onnx"] |  |  |
+| `reload` | Reload Model | Button |  |  |  |
+| `detectiontype` | Detection Type | Menu | 1 |  |  |
+| `confidence` | Minimum Confidence | Float | [0.9] | 0.0 .. 1.0 (strict) |  |
+| `resolution` | Inference Resolution | Menu | 0 |  | 0, 1 |
+| `customresolutionx` | Custom Resolution | Int | 800 | -1 .. 1 |  |
+| `customresolutiony` | Custom Resolution | Int | 800 | -1 .. 1 |  |
+| `objectclasses` |  | FolderSet |  |  |  |
+| `classes` | Classes | Folder | 1 |  |  |
+| `keypointtypes` | Keypoints | Folder | 0 |  |  |
+| `preprocess` |  | FolderSet |  |  |  |
+| `colortransform` | Color Transform | Menu | 0 |  | 0, 1 |
+| `sourcespace` | Original Space | String | ["scene_linear"] |  |  |
+| `tospace` | To Space | String | ["sRGB - Display"] |  |  |
+| `pixelmeanx` | Pixel Mean | Float | 123.675 | -1.0 .. 1.0 |  |
+| `pixelmeany` | Pixel Mean | Float | 116.28 | -1.0 .. 1.0 |  |
+| `pixelmeanz` | Pixel Mean | Float | 103.53 | -1.0 .. 1.0 |  |
+| `pixeldeviationx` | Pixel Deviation | Float | 58.395 | -1.0 .. 1.0 |  |
+| `pixeldeviationy` | Pixel Deviation | Float | 57.12 | -1.0 .. 1.0 |  |
+| `pixeldeviationz` | Pixel Deviation | Float | 57.375 | -1.0 .. 1.0 |  |
+| `boxes` |  | FolderSet |  |  |  |
+| `useclassattrib` | Use Class Attribute | Toggle | true |  |  |
+| `classattrib` | Class Attribute | String | ["class"] |  |  |
+| `usenameattrib` | Use Name Attribute | Toggle | true |  |  |
+| `nameattrib` | Name Attribute | String | ["name"] |  |  |
+| `usescoreattrib` | Use Score Attribute | Toggle | true |  |  |
+| `scoreattrib` | Score Attribute | String | ["score"] |  |  |
+| `setcolors` | Set Point Colors | Toggle | true |  |  |
+| `masks` |  | FolderSet |  |  |  |
+| `refinemasks` | Refine Masks | Toggle | false |  |  |
+| `thresh` | Threshold | Float | [0.5] | 0.0 .. 1.0 |  |
+| `step` | Step Size | Float | [5.0] | 0.001 .. 10.0 (strict) |  |
+| `error` | Fitting Error | Float | [2.0] | 0.1 .. 100.0 |  |
+| `keypoints` |  | FolderSet |  |  |  |
+| `usekpclassattrib` | Use Class Attribute | Toggle | true |  |  |
+| `kpclassattrib` | Class Attribute | String | ["class"] |  |  |
+| `usekpnameattrib` | Use Name Attribute | Toggle | true |  |  |
+| `kpnameattrib` | Name Attribute | String | ["name"] |  |  |
+| `usekpscoreattrib` | Use Score Attribute | Toggle | true |  |  |
+| `kpscoreattrib` | Score Attribute | String | ["score"] |  |  |
+| `setkpcolors` | Set Keypoint Colors | Toggle | true |  |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `provider` | Execution Provider | Menu | 0 |  |  |
+| `deviceid` | Device ID | Int | [0] | 0 .. 10 |  |
+| `classname1` | Class Name | String | ["Object"] |  |  |
+| `classcolor1r` | Class Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `classcolor1g` | Class Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `classcolor1b` | Class Color | Float | 1.0 | 0.0 .. 1.0 |  |

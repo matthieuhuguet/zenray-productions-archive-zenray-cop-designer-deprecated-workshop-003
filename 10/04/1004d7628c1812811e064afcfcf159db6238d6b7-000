@@ -1,0 +1,24 @@
+# lopnet
+
+- Label: LOP Network
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary
+
+NOT DOCUMENTED FROM THE WEB YET (status: missing). The parameter table below is still exact.
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `expansioneffect` | Expansion Effect | String | ["none"] |  | none, visibility, boundsdrawmode |
+| `modifiedprimcounttostartnewlayer` | Modified Prim Count to Start New Layer | Int | [0] | 0 .. 10000 (strict) |  |
+| `pinnedprims` | Favorite Primitives | String | [""] |  |  |
+| `resolvercontextassetpath` | Resolver Context Asset Path | String | [""] |  |  |
+| `resolvercontextstringcount` | Number of Resolver Context Strings | Folder | 0 |  |  |
+| `variantselectioncount` | Number of Variant Selection Fallback Rules | Folder | 0 |  |  |
+| `insertionpointdescriptor` | Insertion Point Descriptor | String | [""] |  |  |
+| `rendergallerysource` | Render Gallery Source | String | ["$HIP/galleries/$HIPNAME.$OS/rendergallery.db"] |  |  |

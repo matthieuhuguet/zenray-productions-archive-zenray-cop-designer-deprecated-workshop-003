@@ -1,0 +1,34 @@
+# hyperbolictile
+
+- Label: Hyperbolic Tile
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 10 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/hyperbolictile.html
+- Summary (EN): Generates tiles of hyperbolic regular polygons built in the Poincaré disk model, repeating the base polygon by reflection and inversion. Suits patterns such as ceramics or floor tiles.
+- Résumé (FR) : Génère des pavages de polygones hyperboliques réguliers dans le disque de Poincaré, utiles pour des motifs de carrelage.
+
+- Inputs meaning: ["size_ref: reference layer that sets the output image size and metadata"]
+
+- Key parameters: [{"name": "Iterations", "meaning": "how many times the base polygon pattern repeats inside the disk"}, {"name": "Polygons", "meaning": "number of sides on the base polygon"}, {"name": "Rectanglize", "meaning": "replaces the circular boundary with a square, using a chosen mapping type"}, {"name": "Flattening", "meaning": "pushes circular arcs toward the border; at 0 the polygon stays inside the disk"}, {"name": "Size", "meaning": "length of the base polygon straight lines; sets the disk radius when Flattening is 0"}, {"name": "Tile Fitting", "meaning": "how much the image fills each tile in the uv output"}, {"name": "Poincaré Disk Mask", "meaning": "shows only the pattern inside the disk; no effect when Rectanglize is on"}]
+
+- Caveats: ["Each square mapping distorts differently: Conformal shows artifacts near corners, Elliptic Grid stretches near corners, Squircle distorts diagonals more."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `iterations` | Iterations | Int | [10] | 1 .. 15 |  |
+| `polygon` | Polygons | Int | [4] | 3 .. 10 |  |
+| `rectanglize` | Rectanglize | Toggle | false |  |  |
+| `mappingtype` | Mapping Type | Menu | 0 |  | conformal, elliptic grid, squircle, equalarea |
+| `stretchtofit` | Stretch to Fit | Toggle | true |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `flattening` | Flattening | Float | [0.0] | 0.0 .. 1.0 |  |
+| `size` | Size | Float | [0.5] | 0.0 .. 1.0 |  |
+| `tilefitting` | Tile Fitting | Float | [1.0] | 0.0 .. 1.0 |  |
+| `diskmask` | Poincaré Disk Mask | Toggle | false |  |  |

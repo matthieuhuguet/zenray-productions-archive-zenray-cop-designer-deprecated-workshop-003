@@ -1,0 +1,69 @@
+# crystalnoise3d
+
+- Label: Crystal Noise 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 45 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/crystalnoise3d.html
+- Summary (EN): Produces crisp, faceted Worley-style noise sampled at each pixel's world-space position. It blends two randomly offset Worley noises for sharp angles, suited to rock patterns and chipping.
+- Résumé (FR) : Génère un bruit de Worley anguleux en coordonnées monde 3D, adapté aux roches et aux éclats.
+
+- Inputs meaning: ["size_ref: sets output image size and metadata", "pos: optional RGB layer replacing the pixel world coordinates as the noise source", "time: optional layer giving a per-pixel time value"]
+
+- Key parameters: ["Primary Metric: Euclidean, Manhattan or Chebyshev distance shaping the edges", "Jitter and Element Size: point displacement and cell size; Element Scale adjusts per axis", "Secondary: when on, primary settings drive the first noise and a second Metric, Jitter and Element Size set the second", "Flatten Faces: smooths faces so internal noise does not bulge", "Amplitude, Center, Noise Contrast: scale, offset and contrast before post-processing", "Offset: shifts the whole pattern in world space", "Post-processing (Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum): run in listed order"]
+
+- Caveats: ["Negative values or values above 1 can occur; a Clamp COP can enforce range.", "Jitter above 1 can cause artifacts because points move past the search radius.", "Complement assumes 0 to 1 values and gives out-of-range results otherwise.", "Post-processing order changes the result."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["default"] |  |  |
+| `settypeinfo` | Set Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Noise Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `metric` | Primary Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `jitter` | Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscalez` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `enablesecondary` | Secondary | Toggle | false |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `metric2` | Secondary Metric | Menu | 1 |  | euclidean, manhattan, chebyshev |
+| `sec_jitter` | Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `togglesecondaryelementsize` | Toggle Secondary Element Size | Toggle | true |  |  |
+| `sec_elementsize` | Element Size | Float | [0.125] | 0.001 .. 1.0 |  |
+| `sec_elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `sec_elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sec_elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sec_elementscalez` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offz` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `flattenfaces` | Flatten Faces | Toggle | true |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

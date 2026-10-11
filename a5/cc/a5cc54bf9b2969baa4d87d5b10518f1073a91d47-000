@@ -1,0 +1,30 @@
+# flow_projectnondivergentmultigrid
+
+- Label: Flow Project Non-Divergent Multigrid
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/flow_projectnondivergentmultigrid.html
+- Summary (EN): This node removes divergent components from a 2D vector field, producing a valid velocity field for incompressible flow. It is used inside a Flow block, and it makes distortion swirl around sources and sinks rather than pulling flow into them.
+- Résumé (FR) : Le nœud Flow Project Non-Divergent Multigrid retire les composantes divergentes d'un champ de vecteurs 2D pour obtenir un écoulement incompressible valide.
+
+- Inputs meaning: ["v: initial velocity field to correct", "goaldiv (optional): goal divergence field; positive areas create sources and negative areas create sinks", "collision (optional): mask where 1 marks the collider location", "collisionv (optional): velocity field for the collider; if omitted, the collider is treated as stationary"]
+
+- Key parameters: ["Collision Iterations: passes used to avoid the collider; more passes give better avoidance but longer execution times", "Multigrid Iterations: multigrid passes used to match the goal divergence; more passes give closer matching but longer execution times", "X Borders and Y Borders: edge behavior per axis; Open lets flow leave without resistance, Closed acts as a solid wall, Periodic wraps flow to the opposite side"]
+
+- Caveats: ["Flow requires DOP-level permissions; it is not available in Houdini Core, only in Houdini FX, Apprentice, Indie and Education", "Collision handling is soft; if the output does not match the collider well enough, the node may need to be iterated for better convergence"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `coliterations` | Collision Iterations | Int | [2] | 1 .. 10 |  |
+| `iterations` | Multigrid Iterations | Int | [1] | 1 .. 10 (strict) |  |
+| `borderxneg` | X Borders | Menu | 0 |  | open, closed, periodic |
+| `borderxpos` | X Borders | Menu | 0 |  | open, closed |
+| `borderyneg` | Y Borders | Menu | 0 |  | open, closed, periodic |
+| `borderypos` | Y Borders | Menu | 0 |  | open, closed |

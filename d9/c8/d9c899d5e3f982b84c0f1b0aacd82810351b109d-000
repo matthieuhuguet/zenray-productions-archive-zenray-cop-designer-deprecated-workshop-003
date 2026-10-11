@@ -1,0 +1,32 @@
+# illpixel
+
+- Label: Illegal Pixel
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/illpixel.html
+- Summary (EN): Detects illegal floating-point pixels (NaN and infinite values) in a layer, then fixes them by blending neighbors or zeroing, or flags them with a highlight for shader debugging.
+- Résumé (FR) : Détecte les pixels flottants illégaux (NaN et infinis) et les répare ou les signale pour le débogage des shaders.
+
+- Inputs meaning: ["source: the original layer that may contain bad values"]
+
+- Key parameters: [{"name": "Illegal Pixels", "meaning": "method: blend surrounding pixels, zero the pixel, show with highlight, or show by isolating"}, {"name": "Highlight Color", "meaning": "color for flagged pixels in highlight mode"}, {"name": "Detect", "meaning": "NaN values, infinite values, both, or a custom rule"}, {"name": "Rule", "meaning": "custom detection comparing pixels with Less Than, Greater Than, Equal and similar operators"}]
+
+- Caveats: ["Detection works only on 16 and 32 bit float data; integer formats cannot reveal bad pixels.", "Zeroing clears the whole pixel to avoid color shifts; repairing large blocks can produce blurry spots."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `method` | Illegal Pixels | Menu | 0 |  | fixblend, fixzero, highlight, isolate |
+| `highlightcolorr` | Highlight Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `highlightcolorg` | Highlight Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `highlightcolorb` | Highlight Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `highlightcolora` | Highlight Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `detect` | Detect | Menu | 2 |  | d_nan, d_inf, both, custom |
+| `rule` | Rule | Menu | 0 |  | less, lessequal, greater, greaterequal, equal |
+| `compval` | Value | Float | [0.0] | 0.0 .. 1.0 |  |

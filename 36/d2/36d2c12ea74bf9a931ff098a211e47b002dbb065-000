@@ -1,0 +1,29 @@
+# heighttonormal
+
+- Label: Height to Normal
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heighttonormal.html
+- Summary (EN): Converts a mono height layer into an RGB layer of surface normals. Heightmaps are rarely to scale, so an explicit scale is often needed to get the expected steepness.
+- Résumé (FR) : Convertit une hauteur mono en couche RGB de normales de surface, avec une mise à l'échelle explicite de la pente.
+
+- Inputs meaning: ["height: a mono layer representing a heightmap"]
+
+- Key parameters: [{"name": "Normal Type", "meaning": "Signed (-1 to 1) suits geometry attributes; Offset (0 to 1) suits normal maps"}, {"name": "Height Scale", "meaning": "globally scales height before normals are computed; higher gives steeper normals"}, {"name": "Read Pixels outside Image", "meaning": "lets boundary derivatives read past the image edge, useful for seamless wrap textures"}, {"name": "Kernel Size", "meaning": "pixel distance used for the derivative; can reduce stepping artifacts"}]
+
+- Caveats: ["Read Pixels outside Image can act like extrapolation with a clamp border; leave it off to avoid that.", "The output is a single normals layer."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `normaltype` | Normal Type | Menu | 1 |  | signed, offset |
+| `scale` | Height Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |
+| `kernel` | Kernel Size | Int | [1] | 1 .. 64 (strict) |  |

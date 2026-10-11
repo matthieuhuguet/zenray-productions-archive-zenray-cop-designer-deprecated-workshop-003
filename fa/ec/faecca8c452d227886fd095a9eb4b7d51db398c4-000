@@ -1,0 +1,59 @@
+# grunge_drips
+
+- Label: Grunge Drips
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 35 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_drips.html
+- Summary (EN): Grunge Drips generates a layered-noise pattern that imitates drips. It works as a mask or as a building block for more intricate textures, such as water marks on windows.
+- Résumé (FR) : Grunge Drips produit un motif de gouttes par bruits superposés, utilisable en masque pour des traces d'eau sur une vitre.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata"]
+
+- Key parameters: ["Output range: Amplitude scales values, Center offsets them, Mask Contrast adjusts contrast first", "Pattern: Element Size, Offset, Tile Size as repeat period", "Density: number of foreground drops", "Distortion: horizontal waver of the drops", "Primary Trailing and Secondary Trailing: stretch drops downward into streaks", "Secondary Mask, Tertiary Mask, Speckle Mask: visibility of background drops, smudges and specks", "Seed: changes the randomization while keeping the same look", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Output can be negative or above 1; use the Clamp options", "Complement works as intended only for values from 0 to 1", "Fold has no effect when all values are positive", "Post-processing Contrast is separate from Noise Contrast", "Tile Size should match the aspect ratio of non-square images", "Introduced in Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.05] | 0.01 .. 0.5 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `density` | Density | Float | [1.0] | 0.0 .. 1.0 |  |
+| `distortion` | Distortion | Float | [0.5] | 0.0 .. 1.0 |  |
+| `primarytrailing` | Primary Trailing | Float | [1.0] | 0.0 .. 2.0 |  |
+| `secondarymask` | Secondary Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `secondarytrailing` | Secondary Trailing | Float | [2.0] | 0.0 .. 3.0 |  |
+| `tertiarymask` | Tertiary Mask | Float | [0.1] | 0.0 .. 1.0 |  |
+| `specklemask` | Speckle Mask | Float | [0.2] | 0.0 .. 1.0 |  |
+| `seed` | Seed | Int | [1] | 0 .. 100 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

@@ -1,0 +1,43 @@
+# neural_cellularautomatacore
+
+- Label: Neural Cellular Automata Core
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 6
+- Parameters: 19 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/neural_cellularautomatacore.html
+- Summary (EN): Runs a learned neural network that acts as cellular automata rules on an input cell state. It evolves the state over a set number of iterations to build complex patterns and textures. It is designed to be paired with the Neural Cellular Automata Decode COP, which turns the cell state into a visible pattern.
+- Résumé (FR) : Fait évoluer un état de cellules par un réseau de neurones qui joue le rôle de règles d'automate cellulaire, pour construire des motifs et des textures, à coupler avec le décodeur NCA.
+
+- Inputs meaning: ["size_ref: a layer that sets the output size and metadata", "cells: the cell state to evolve", "updatemask (optional): controls which cells update each iteration", "rotation (optional): a per-cell rotation map", "scale (optional): a per-cell scale map", "adjacency (optional): directional and scale information for seamless texturing on geometry"]
+
+- Key parameters: ["Model / NCA Model File: selects a preset or ONNX model file; Reload Model forces a reload", "Initialize Cells: outputs a starting cell state without running the model", "Model Iterations: how many times the model is applied per cook; more converges further but takes longer", "Seed: controls the random update mask and can produce pattern variations", "Update Rate (0.1 to 0.9): fraction of cells updated each iteration", "Update Mask Type: Amplitude-Weighted gives smoother evolution; Probabilistic gives noisier evolution with stronger cell-based structure", "Cell Rotation / Cell Scale: adjust the perception kernel's rotation and scale; the final scale is clamped to 0.2 to 1", "World Space Direction: up vector used for adjacency-based rotation (default 0,1,0)", "Size Ref Scale: working resolution from 1/1 to 1/8; lower values reduce memory and compute time", "Execution Provider / Device ID: CPU, CUDA, DirectML (Windows only) or CoreML (macOS only)"]
+
+- Caveats: ["The node writes an ncaiteration layer property that offsets the seed so different cells update each step. The page warns not to remove it.", "For geometry with adjacency, the page recommends a low Model Iterations value and using block iterations or time simulation so the adjacency data is applied often.", "CUDA requires separately installed CUDA and cuDNN packages from NVIDIA.", "Cell Scale values above 1 are limited by the internal clamp and cannot push the scale past the valid range."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `model` | Model | Menu | 0 |  |  |
+| `initcells` | Initialize Cells | Toggle | false |  |  |
+| `modelfile` | NCA Model File | String | ["shfs:/houdini/nodes/cop/neural_cellularautomatacore/onnx/denim/v1/denim.onnx"] |  |  |
+| `reload` | Reload Model | Button |  |  |  |
+| `modeliterations` | Model Iterations | Int | [4] | 1 .. 250 (strict) |  |
+| `seed` | Seed | Float | [0.0] | 0.0 .. 10.0 |  |
+| `updaterate` | Update Rate | Float | [0.5] | 0.1 .. 0.9 (strict) |  |
+| `updatemasktype` | Update Mask Type | Int | [0] | 0 .. 10 | 0, 1 |
+| `rotation` | Cell Rotation | Float | [0.0] | -360.0 .. 360.0 |  |
+| `scalex` | Cell Scale | Float | 1.0 | 0.2 .. 1.0 |  |
+| `scaley` | Cell Scale | Float | 1.0 | 0.2 .. 1.0 |  |
+| `adjacency` |  | FolderSet |  |  |  |
+| `adjacencydir1` | World Space Direction | Float | 0.0 | 0.0 .. 10.0 |  |
+| `adjacencydir2` | World Space Direction | Float | 1.0 | 0.0 .. 10.0 |  |
+| `adjacencydir3` | World Space Direction | Float | 0.0 | 0.0 .. 10.0 |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `sizerefscale` | Size Ref Scale | Int | [8] | 0 .. 10 | 1, 2, 4, 8 |
+| `provider` | Execution Provider | Menu | 0 |  |  |
+| `deviceid` | Device ID | Int | [0] | 0 .. 10 |  |

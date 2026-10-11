@@ -1,0 +1,45 @@
+# geotolayer
+
+- Label: Geometry to Layer
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 21 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/geotolayer.html
+- Summary (EN): The Geometry to Layer node converts a 2D volume stored inside a geometry into a Copernicus layer. Its Signature parameter sets the output layer type, which must match the volume's type.
+- Résumé (FR) : Le nœud Geometry to Layer convertit un volume 2D contenu dans une géométrie en couche Copernicus, de même type que ce volume.
+
+- Inputs meaning: ["geometry: geometry containing the volume to convert; the volume must be the first primitive"]
+
+- Key parameters: ["Signature: layer type to output; must match the volume type or the conversion fails", "Precision: overrides the output precision, which usually matches the input volume; 8 (integer volumes and ID layers only), 16 or 32"]
+
+- Caveats: ["The 2D volume must be the first primitive in the geometry", "The Signature must match the volume type or the conversion fails", "Volume triples such as Cd.r, Cd.g and Cd.b are not combined by this node; use a Volume Vector Join SOP before collating them", "The page covers the Geometry to Layer node; a separate Geometry to Layer 2.0 version exists in the index and is not covered here"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setprecision` | Precision | Toggle | false |  |  |
+| `precision` | Precision | Menu | 1 |  | b8, b16, b32 |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap |
+| `slice` | Slice | Menu | 0 |  | xy, yz, zx |
+| `densifyvdb` | Densify VDBs | Toggle | false |  |  |
+| `addprims` | Set Imports from Geometry | Button |  |  |  |
+| `numprims` | Outputs | Folder | 1 |  |  |
+| `primitive1` | Primitive Name | String | [""] |  |  |
+| `outtype1` | outputtype | Menu | 1 |  | int, float, vector2, vector3, vector4, intvdb, floatvdb, vectorvdb, metadata |
+| `optional1` | Optional | Toggle | false |  |  |
+| `f1_def1` | Default Value | Float | [1.0] | 0.0 .. 10.0 |  |
+| `f2_def11` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f2_def12` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1r` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1g` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1b` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1r` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1g` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1b` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1a` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `i_def1` | Default Value | Int | [0] | 0 .. 10 |  |

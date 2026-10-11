@@ -1,0 +1,26 @@
+# blocktogeo
+
+- Label: Block to Geometry
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/blocktogeo.html
+- Summary (EN): Compiles a block into a geometry form of its program. The geometry can be used as a fast preview filter in a slap comp, or rendered directly with husk.
+- Résumé (FR) : Compile un bloc en géométrie de programme, utilisable comme filtre d'aperçu rapide en slap comp ou rendu directement avec husk.
+
+- Inputs meaning: ["The page documents no input ports; the node references the Block End COP through its Block End Node parameter"]
+
+- Key parameters: ["Block End Node: path to the Block End COP that closes the block to convert", "Input States: All Connected (assumes every block input exists) or Network (compiles the network as it is; only Block Begin ports with data plugged in count as connected)", "Output: program, a geometry representation of the compiled program"]
+
+- Caveats: ["Compiled COP networks do not support simulation", "Input state changes the compiled result: in Network mode unconnected block inputs are treated as absent"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `blockpath` | Block End Node | String | [""] |  |  |
+| `bindstates` | Input States | Menu | 0 |  | allbound, network |

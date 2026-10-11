@@ -1,0 +1,26 @@
+# cryptomatte
+
+- Label: Cryptomatte
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cryptomatte.html
+- Summary (EN): The Cryptomatte node builds a single mask from one or more Cryptomatte layers. It sums the coverage of the objects you select, giving a matte for those objects.
+- Résumé (FR) : Le nœud Cryptomatte produit un masque en additionnant la couverture des objets choisis dans une ou plusieurs couches Cryptomatte.
+
+- Inputs meaning: ["crypto1: a variable number of RGBA Cryptomatte layers; each is split into coverage and ID channels, and coverage is added wherever IDs match the selection"]
+
+- Key parameters: ["Populate Selection from Manifest: fills Selection from the Cryptomatte manifest metadata", "Select All: includes every ID", "Invert Mask: flips the output mask", "Selection: comma-separated object names, hashed with the standard murmur hash; accepts string patterns such as *wall* ^*left*; an eyedropper can sample it"]
+
+- Caveats: ["Name-based selection requires the standard hash and a valid manifest", "The viewer state needs the manifest as a layer property, so it does not work downstream of a Slap Comp Import COP, which has not yet written the manifest", "To enter the viewer state, press Enter while hovering over the Scene View", "Cryptomatte Decode and Cryptomatte Encode are documented on separate pages"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `selectall` | Select All | Toggle | false |  |  |
+| `selection` | Selection | String | [""] |  |  |

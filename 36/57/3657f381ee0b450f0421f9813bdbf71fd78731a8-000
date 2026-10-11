@@ -1,0 +1,39 @@
+# heightfield_terrace
+
+- Label: HeightField Terrace
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 15 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_terrace.html
+- Summary (EN): Turns the slopes of a heightfield into stepped plains by quantizing the input height into discrete steps and blending those terraces with the original height. Outputs height, mesa (terrace floors) and cliffs (terrace walls).
+- Résumé (FR) : Transforme les pentes d'un champ de hauteur en paliers par quantification en marches, avec sorties height, mesa et cliffs.
+
+- Inputs meaning: ["height: the height layer to add terraces to", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: [{"name": "Mask", "meaning": "how much of the terraces is mixed with the original height"}, {"name": "Min Height / Max Height (Compute Range)", "meaning": "height band where terraces are created"}, {"name": "Method", "meaning": "Step Size sets each step height directly; Number of Terraces divides the min-to-max range"}, {"name": "Offset", "meaning": "shifts where each step occurs"}, {"name": "Random Step", "meaning": "varies the height added to each level; 0 gives equal steps"}, {"name": "Add Layers / Layers / Seed", "meaning": "adds extra terrace layers with random offsets"}, {"name": "Global Seed", "meaning": "randomizes steps and layers"}]
+
+- Caveats: ["Random Step and Seed only matter when Random Step is non zero or Add Layers is enabled.", "The node outputs height, mesa and cliffs."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `computerange` | Compute Range | Button |  |  |  |
+| `minheight` | Min Height | Float | [10.0] | -100.0 .. 100.0 |  |
+| `maxheight` | Max Height | Float | [100.0] | -100.0 .. 100.0 |  |
+| `method` | Method | Menu | 0 |  | stepsize, numterraces |
+| `stepsize` | Step Size | Float | [10.0] | 0.0 .. 100.0 |  |
+| `terraces` | Terraces | Int | [20] | 0 .. 100 |  |
+| `offset` | Offset | Float | [0.0] | 0.0 .. 100.0 |  |
+| `randomstep` | Random Step | Float | [0.0] | -1.0 .. 1.0 (strict) |  |
+| `stepseed` | Step Seed | Float | [-0.5] | 0.0 .. 100.0 (strict) |  |
+| `addlayers` | Add Layers | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `layers` | Layers | Int | [5] | 0 .. 10 (strict) |  |
+| `layerseed` | Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |
+| `globalseed` | Global Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |

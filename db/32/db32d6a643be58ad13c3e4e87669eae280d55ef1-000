@@ -1,0 +1,81 @@
+# layerfromcurves
+
+- Label: Layer from Curves
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 57 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerfromcurves.html
+- Summary (EN): The Layer from Curves node renders curve geometry into a layer, with controls for width, profile and colour. It is a higher-level alternative to Rasterize Curves and gives more control over the look of the curves.
+- Résumé (FR) : Rend des courbes dans une couche avec largeur, profil et couleur contrôlables, plus finement que Rasterize Curves.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and metadata", "curves: source curve geometry to render"]
+
+- Key parameters: ["Width / Width along Curve: width in image space, optionally varied along the curve", "Profile: adjusts the profile across the curve width", "Color along Length / Color across Width: colour along the length and across the width", "UV Twist Rate: scrolls the U value along the curve for a twisted rope look", "Tile / Tile Size / Force Tilable V: replicates curves so the layer tiles, with tile size matching the aspect ratio", "Joints / Endpoints / Max Joint Scale: corner joins (Round or Sharp), end caps (Flat or Round), and spike limit on sharp corners", "Resample / Segment Length: resamples the input curves to smooth them", "Treat Polygons As: Straight, Subdivision, Interpolating or Resample by Polygon Edge"]
+
+- Caveats: ["size_ref must be connected, since it sets the output image size", "Subdivision smooths curves without passing through the original points; Interpolating passes through them but can oscillate", "UV outputs are intended for a Texture Sample COP, and the uvscale output helps UV Transform COP filter correctly", "The page describes this node as higher level than Rasterize Curves", "Documented as available since version 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `width` | Width | Float | [0.05] | 0.0 .. 0.2 (strict) |  |
+| `widthramp` | Width along Curve | Ramp | 3 |  |  |
+| `profileramp` | Profile | Ramp | 3 |  |  |
+| `coloralonglength` | Color along Length | Ramp | 2 |  |  |
+| `coloracrosswidth` | Color across Width | Ramp | 2 |  |  |
+| `twistrate` | UV Twist Rate | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `dotiled` | Tile | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `tilablev` | Force Tilable V | Toggle | false |  |  |
+| `joints` | Joints | Menu | 0 |  | round, sharp |
+| `endpoints` | Endpoints | Menu | 0 |  | flat, round |
+| `maxjointscale` | Max Joint Scale | Float | [2.0] | 0.0 .. 10.0 (strict) |  |
+| `doresample` | Resample | Toggle | true |  |  |
+| `maxseglen` | Segment Length | Float | [0.01] | 0.0 .. 1.0 (strict) |  |
+| `treatpolysas` | Treat Polygons As | Menu | 1 |  | straight, subd, interp |
+| `resamplebyedge` | Resample by Polygon Edge | Toggle | false |  |  |
+| `widthramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `widthramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `widthramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `widthramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `widthramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `widthramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `widthramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `widthramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `widthramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `profileramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `profileramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `profileramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `profileramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `profileramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `profileramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `profileramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `profileramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `profileramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `coloralonglength1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `coloralonglength1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `coloralonglength2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `coloralonglength2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloralonglength2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `coloracrosswidth1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `coloracrosswidth1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `coloracrosswidth2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `coloracrosswidth2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `coloracrosswidth2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

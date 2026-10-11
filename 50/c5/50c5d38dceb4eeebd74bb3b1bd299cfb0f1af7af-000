@@ -1,0 +1,31 @@
+# convolvefilter
+
+- Label: Convolve Filter
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/convolvefilter.html
+- Summary (EN): The Convolve Filter node filters an image by convolving it with a second image used as the kernel, so the filter pattern can be arbitrary. It computes the result in frequency space with an FFT, which keeps large or irregular filters practical. Available since Houdini 22.0.
+- Résumé (FR) : Le nœud Convolve Filter filtre une image en la convoluant avec une image-noyau, calculée par FFT, ce qui permet des motifs de filtre arbitraires.
+
+- Inputs meaning: ["input: the image to convolve", "kernel: the image defining the filter pattern"]
+
+- Key parameters: ["Signature: layer type used to interpret input and kernel", "Normalize Kernel: scales the kernel to sum to 1, so brightness is kept; turn off if the kernel is already normalised or its magnitude should scale the result", "Centered Kernel: uses the kernel centre as origin; when off, the origin is the corner and the output shifts by half the kernel size", "Padding: border added before the transform, as a fraction of image size; reduces wrap-around artifacts at higher transform cost", "Border: Unchanged, Constant (zeros), Clamp, Mirror, or Wrap"]
+
+- Caveats: ["The FFT convolution is cyclic, so the kernel wraps from one edge to the opposite edge and produces artifacts", "Enable Padding to push these artifacts outside the cropped output"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `normalize` | Normalize Kernel | Toggle | true |  |  |
+| `centered` | Centered Kernel | Toggle | true |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `padding` | Padding | Float | [0.2] | 0.0 .. 0.5 (strict) |  |
+| `border` | Border | Menu | 2 |  | unchanged, constant, clamp, mirror, wrap |
+| `dopadding` | Padding | Toggle | false |  |  |

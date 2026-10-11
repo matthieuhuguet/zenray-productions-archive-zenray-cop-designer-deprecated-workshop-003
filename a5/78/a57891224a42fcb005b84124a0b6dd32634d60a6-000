@@ -1,0 +1,44 @@
+# block_end
+
+- Label: Block End
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 20 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/block_end.html
+- Summary (EN): Closes a block and defines the outputs it exposes to the rest of the network. It controls how the block runs, including iterations and simulation feedback, and can register the block for viewport slap comp.
+- Résumé (FR) : Ferme un bloc, expose ses sorties et règle sa boucle (itérations, rétroaction de simulation, cache).
+
+- Inputs meaning: ["The page does not document the input ports or their order; it describes the outputs, set through the Block Outputs list"]
+
+- Key parameters: ["Simulate: feeds block outputs back into the inputs to create a feedback loop", "Reset Simulation: clears the simulation cache", "Live Simulation: non-deterministic simulation independent of the playbar", "Time Scale: speeds up or slows down time inside the block (1 is normal speed)", "Start Frame, Cache Simulation, Cached Frames, Checkpoint Rate: where the simulation starts and how it is cached; Checkpoint Rate 0 disables checkpointing", "Iterations: number of times the block runs per frame", "Iteration Variable, Total Iterations Variable, First Pass Variable: context option names exposing the current iteration, the total and the first-pass flag", "Enable Compiling: compiles the block for more efficient cooking", "Register as Slap Comp Block; Import Cameras with Slap Comp Inputs; Add AOVs from Last Render", "Rename Wires Using Output Labels", "Block Outputs, Output Name, Output Type"]
+
+- Caveats: ["With Live Simulation on, Start Frame, Cached Frames and Checkpoint Rate no longer apply", "Live Simulation does not save results, so a Stash COP is needed to keep them", "Compiled COP networks do not support simulation", "Enable Compiling is more efficient but does not save intermediate results within the block"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `simulate` | Simulate | Toggle | false |  |  |
+| `resimulate` | Reset Simulation | Button |  |  |  |
+| `continuouscook` | Live Simulation | Toggle | false |  |  |
+| `timescale` | Time Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `continuouscook_toggle` | Toggle Live Simulation | Button |  |  |  |
+| `continuouscook_tick` | Live Tick | Int | [0] | 0 .. 10 |  |
+| `startframe` | Start Frame | Int | [1] | 1 .. 1001 |  |
+| `cacheenabled` | Cache Simulation | Toggle | true |  |  |
+| `cachedframes` | Cached Frames | Int | [10] | 1 .. 1001 |  |
+| `checkpointframes` | Checkpoint Rate | Int | [24] | 0 .. 100 |  |
+| `iterations` | Iterations | Int | [1] | 0 .. 10 (strict) |  |
+| `iterationvar` | Iteration Variable | String | ["cop_iteration"] |  |  |
+| `totalitervar` | Total Iterations Variable | String | ["cop_itercount"] |  |  |
+| `firstpassvar` | First Pass Variable | String | ["cop_firstpass"] |  |  |
+| `docompile` | Enable Compiling | Toggle | false |  |  |
+| `slapcomp` | Register as Slap Comp Block | Toggle | false |  |  |
+| `slapcompcameraspace` | Import Cameras with Slap Comp Inputs | Toggle | true |  |  |
+| `slapcompaddaovs` | Add AOVs from Last Render | Button |  |  |  |
+| `cablerenamebylabel` | Rename Wires Using Output Labels | Toggle | false |  |  |
+| `ports` | Block Outputs | Folder | 0 |  |  |

@@ -1,0 +1,29 @@
+# channeljoin
+
+- Label: Channel Join
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/channeljoin.html
+- Summary (EN): Merges up to four single-channel inputs (red, green, blue, alpha) into one multichannel result named rgba; missing channels fall back to the Default Color.
+- Résumé (FR) : Le nœud channeljoin assemble jusqu'à quatre canaux simples en une seule couche multicanale, les canaux manquants prenant la Default Color.
+
+- Inputs meaning: ["red: first output channel (Mono layer, VDB or attribute)", "green: second output channel", "blue: third output channel", "alpha: fourth output channel"]
+
+- Key parameters: [{"name": "Signature", "meaning": "Sets the output type and therefore the channel count; inputs the signature does not need are ignored"}, {"name": "Default Color", "meaning": "Value used for any missing input channel; default 0, 0, 0, 1"}]
+
+- Caveats: ["Extra inputs are not used if the Signature does not require them", "Missing channels fall back to Default Color rather than causing an error", "The page does not explain the signature types itself"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["f4"] |  |  |
+| `colorr` | Default Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorg` | Default Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorb` | Default Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colora` | Default Color | Float | 1.0 | 0.0 .. 10.0 |  |

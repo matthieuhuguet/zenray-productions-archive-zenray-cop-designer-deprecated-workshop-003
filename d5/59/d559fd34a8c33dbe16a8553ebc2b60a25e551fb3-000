@@ -1,0 +1,36 @@
+# blend
+
+- Label: Blend
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 12 (exact, read from Houdini by hython)
+- Used by the height graph: yes
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/blend.html
+- Summary (EN): Combines two inputs, which can be layers, VDBs or attributes, into one result. By default it replaces the background with the foreground, and a mask can fade between the two images.
+- Résumé (FR) : Compose un premier plan sur un arrière-plan selon un mode de fusion, avec un masque optionnel pour un fondu entre les deux images.
+
+- Inputs meaning: ["bg: background that the foreground is blended onto", "fg: foreground, the top or source layer in the blend", "mask (optional): per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Space: Image, Texture, Pixel or World, controlling how foreground and background pixels are matched", "Border: defaults to the layer's own border property", "Filter: sampling method", "Mask: how much of the new value is mixed in (default 1, only the new value); also selects the RGBA channels affected", "Toggle RGB, Red, Green, Blue, Alpha: channels the node affects", "Mode: compositing operation such as Blend, Over, Add, Multiply, Screen, Difference, Overlay, Hue or Color", "Alpha Compositing: applies alpha rules to RGBA layers; monochrome layers are treated as opaque", "Swap FG and BG: matters only for non-commutative operators", "Compare Lengths: for Maximum and Minimum modes, picks the output by vector length", "Clip by Data Window and Crop to Content"]
+
+- Caveats: ["With Border Auto and a Constant border property on the input, the Clip border behavior is used", "RGBA inputs are assumed to be premultiplied for blending and alpha compositing", "Clip by Data Window produces a hard edge", "Swap FG and BG has no effect with commutative operators", "To blend normal maps, use the Combine Normals COP instead"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `space` | Space | Menu | 3 |  | image, texture, pixel, world |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap, clip |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergba` | Channel Scope | Int | [15] | 0 .. 10 |  |
+| `mode` | Mode | Menu | 0 |  | blend, over, under, add, subtract, multiply, divide, screen, hypot, diff, exclusion, sharpen, max, min, overlay, softlight, hardlight, dodge, burn, hue, sat, lum, color |
+| `alpha` | Alpha Compositing | Toggle | false |  |  |
+| `swap` | Swap FG and BG | Toggle | false |  |  |
+| `uselength` | Compare Lengths | Toggle | false |  |  |
+| `clipbydata` | Clip by Data Window | Toggle | false |  |  |
+| `crop` | Crop to Content | Toggle | false |  |  |

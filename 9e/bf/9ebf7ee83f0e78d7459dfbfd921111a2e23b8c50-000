@@ -1,0 +1,35 @@
+# normaltoheight
+
+- Label: Normal to Height
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 11 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/normaltoheight.html
+- Summary (EN): Reconstructs a height (displacement) layer from an RGB normal layer by integrating the slopes stored in the normals. It is the inverse of Height to Normal, useful when a normal map exists but no height channel does.
+- Résumé (FR) : Reconstruit un calque de hauteur à partir d'un calque de normales RGB, à l'inverse de Height to Normal, par une résolution FFT rapide ou Poisson itérative.
+
+- Inputs meaning: ["normal: an RGB layer of surface normals, in Signed or Offset format"]
+
+- Key parameters: ["Solver: FFT solves in the frequency domain in one fast pass; Poisson uses an iterative multigrid solver with border controls", "Normal Type: Signed (-1 to 1) for geometry-style normals, or Offset (0 to 1) for normal maps", "Height Scale: post-process multiplier; higher values make the result steeper", "Center: the mean value the height is shifted to, since the solve fixes height only up to a constant", "Iterations (Poisson only): number of multigrid V-cycles; more improves accuracy but takes longer", "Smoothing Method (Poisson only): Gauss-Seidel (in place, less memory) or Jacobi (avoids checkerboard residuals, needs an extra copy)", "X Borders / Y Borders: each side can be Open (height of 0), Closed (flattens toward the edge) or Periodic (wraps opposite sides together)"]
+
+- Caveats: ["The FFT solver always treats the layer as tiling, so its borders are periodic and it has no border controls.", "The Poisson solver may need more iterations to reach accuracy.", "Height is recovered only up to an additive constant, so the absolute level depends on Center.", "Smoothing Method is disabled when either border is set to Periodic.", "When a left or bottom border is Periodic, the opposite side's own setting is ignored."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `solver` | Solver | Menu | 0 |  | 0, 1 |
+| `normaltype` | Normal Type | Int | [1] | 0 .. 10 | 0, 1 |
+| `scale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `center` | Center | Float | [0.0] | -10.0 .. 10.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `iterations` | Iterations | Int | [2] | 1 .. 10 (strict) |  |
+| `smoothingmethod` | Smoothing Method | Menu | 0 |  | gs, jacobi |
+| `borderxneg` | X Borders | Menu | 0 |  | open, closed, periodic |
+| `borderxpos` | X Borders | Menu | 0 |  | open, closed |
+| `borderyneg` | Y Borders | Menu | 0 |  | open, closed, periodic |
+| `borderypos` | Y Borders | Menu | 0 |  | open, closed |

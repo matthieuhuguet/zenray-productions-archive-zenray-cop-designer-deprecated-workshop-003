@@ -1,0 +1,52 @@
+# heightfield_xform
+
+- Label: HeightField Transform 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 28 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_xform.html
+- Summary (EN): Applies a 3D transform (translate, rotate, scale, shear) to a height layer, with optional separate scale and offset of the height values.
+- Résumé (FR) : Applique une transformation 3D (translation, rotation, échelle, cisaillement) à une couche de hauteur, avec mise à l'échelle et décalage propres des valeurs de hauteur.
+
+- Inputs meaning: ["height: the height layer to transform"]
+
+- Key parameters: [{"name": "Transform Order / Rotate Order", "meaning": "sequence of transform and rotation operations"}, {"name": "Translate, Rotate, Scale, Shear, Uniform Scale", "meaning": "XYZ movement, rotation in degrees, non-uniform and overall scaling, shear"}, {"name": "Invert Transformation", "meaning": "applies the inverse, which undoes a matching transform"}, {"name": "Pivot Translate / Pivot Rotate", "meaning": "moves and rotates the local pivot used for transforms"}, {"name": "Apply Transform Scale to Height", "meaning": "scales height pixels with the 3D transform"}, {"name": "Grid Scale", "meaning": "stretches or contracts the layer horizontally"}, {"name": "Height Scale", "meaning": "stretches or contracts the height values vertically"}, {"name": "Height Offset", "meaning": "shifts the height values up or down"}]
+
+- Caveats: ["Height-specific scaling is separate from the 3D transform unless Apply Transform Scale to Height is enabled."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `xOrd` | Transform Order | Menu | 0 |  | srt, str, rst, rts, tsr, trs |
+| `rOrd` | Rotate Order | Menu | 0 |  | xyz, xzy, yxz, yzx, zxy, zyx |
+| `tx` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `ty` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tz` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rx` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `ry` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `rz` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `sx` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sy` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sz` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `shear1` | Shear | Float | 0.0 | 0.0 .. 10.0 |  |
+| `shear2` | Shear | Float | 0.0 | 0.0 .. 10.0 |  |
+| `shear3` | Shear | Float | 0.0 | 0.0 .. 10.0 |  |
+| `scale` | Uniform Scale | Float | [1.0] | 0.1 .. 10.0 |  |
+| `parmgroup_pivotxform` |  | FolderSet |  |  |  |
+| `px` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `py` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pz` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `prx` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `pry` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `prz` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `invertxform` | Invert Transformation | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `applyscale` | Apply Transform Scale to Height | Toggle | true |  |  |
+| `gridscale` | Grid Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `heightscale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `heightoffset` | Height Offset | Float | [0.0] | -100.0 .. 100.0 |  |

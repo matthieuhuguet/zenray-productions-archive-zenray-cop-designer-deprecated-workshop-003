@@ -1,0 +1,25 @@
+# cablesort
+
+- Label: Cable Sort
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cablesort.html
+- Summary (EN): Alphabetically orders the wires of a cable by name without changing their contents; output named sort. Available since version 21.0.
+- Résumé (FR) : Le nœud cablesort range les fils d'un câble par ordre alphabétique de leur nom, avec une option d'inversion.
+
+- Inputs meaning: ["cable: the cable to sort (only input)"]
+
+- Key parameters: [{"name": "Reverse", "meaning": "Reverses the sorted order"}]
+
+- Caveats: ["The page gives no further caveats"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `reverse` | Reverse | Toggle | false |  |  |

@@ -1,0 +1,44 @@
+# fillconnected
+
+- Label: Fill Connected
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 20 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fillconnected.html
+- Summary (EN): Fill Connected flood-fills a connected region of a layer, starting at a seed pixel and spreading to neighbors whose values stay within a set tolerance. It replaces the flooded area with a constant value taken from a parameter or from an input image.
+- Résumé (FR) : Le nœud Fill Connected remplit une région connexe d'une couche à partir d'un pixel germe, dans une tolérance de valeur donnée.
+
+- Inputs meaning: ["source: layer to flood", "fillvalue: optional layer supplying the fill color", "mask: optional per-pixel mask scaling the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Seed Location: image coordinate where the flood starts", "Tolerance: maximum pixel-value difference from the seed that the fill can spread across", "Fall Off: ramp adjusting the fill alpha according to how closely pixels match the seed value", "Mask: blend amount from 0 to 1; default 1 uses only the new value", "Source: Value (Color or ID), Image Location, First Pixel or Last Pixel of the fillvalue input, or Source Location setting the sampling point in that input"]
+
+- Caveats: ["Fall Off can reduce the fill intensity, but connectivity itself is binary: the fill is all or nothing when determining connectivity"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `seedlocx` | Seed Location | Float | 0.0 | -1.0 .. 1.0 |  |
+| `seedlocy` | Seed Location | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tol` | Tolerance | Float | [0.05] | 0.0 .. 1.0 |  |
+| `fallofframp` | Fall Off | Ramp | 2 |  |  |
+| `source` | Source | Menu | 0 |  | value, sample, first, last |
+| `colorr` | Color | Float | 0.7 | 0.0 .. 1.0 |  |
+| `colorg` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorb` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colora` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `id` | ID | Int | [0] | 0 .. 10 |  |
+| `sourcelocx` | Source Location | Float | 0.0 | -1.0 .. 1.0 |  |
+| `sourcelocy` | Source Location | Float | 0.0 | -1.0 .. 1.0 |  |
+| `fallofframp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `fallofframp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `fallofframp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `fallofframp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `fallofframp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `fallofframp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

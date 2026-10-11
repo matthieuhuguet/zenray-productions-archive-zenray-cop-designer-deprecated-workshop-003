@@ -1,0 +1,56 @@
+# grunge_moisture
+
+- Label: Grunge Moisture
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 32 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_moisture.html
+- Summary (EN): Grunge Moisture procedurally generates a spotted pattern resembling damp, sponge-like texture. It works well as a mask or as a building block for textures such as sponge-painted surfaces or condensation on glass.
+- Résumé (FR) : Grunge Moisture produit un motif de taches humides, proche d'une éponge, utilisable en masque pour une surface peinte à l'éponge ou de la condensation sur verre.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata"]
+
+- Key parameters: ["Range: Amplitude scales values before Center, Center offsets them, Mask Contrast adjusts contrast", "Pattern: Element Size, Offset, Tile Size", "Detail: visibility of the spots set by Density", "Distort: directional distortion, which can produce cellular looks", "Density: amount of spots, of various sizes at higher values", "Sharpen: sharpens or softens the spots", "Seed: changes the random result while keeping the same look", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Output can be negative or above 1; the page recommends the Clamp options", "Fold has no visible effect when all values are positive", "Complement assumes values in the 0 to 1 range", "Post-processing Contrast differs from Noise Contrast", "Tile Size should match the aspect ratio of non-square images"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder9` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.05] | 0.01 .. 0.5 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `detail` | Detail | Float | [5.0] | 1.0 .. 8.0 |  |
+| `distort` | Distort | Float | [0.0] | -0.05 .. 0.05 |  |
+| `density` | Density | Float | [1.0] | 0.0 .. 1.0 |  |
+| `sharpen` | Sharpen | Float | [0.001] | 0.0 .. 0.01 (strict) |  |
+| `seed` | Seed | Int | [0] | 0 .. 100 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.099] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.411] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [1.131] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.174] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.609] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

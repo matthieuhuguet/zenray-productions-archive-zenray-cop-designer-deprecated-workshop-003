@@ -1,0 +1,43 @@
+# curvature
+
+- Label: Curvature
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 19 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curvature.html
+- Summary (EN): Computes the curvature of an input layer, useful for edge detection and for separating convex and concave regions. Similar in purpose to the Derivative COP.
+- Résumé (FR) : Calcule la courbure d'une hauteur ou d'une normale pour détecter les bords et séparer zones convexes et concaves.
+
+- Inputs meaning: ["source: a mono height-field layer, or an RGB normal vector field derived from a height field"]
+
+- Key parameters: ["Signature / Space: layer type accepted and space used to measure curvature", "Method: Finite Difference (derivative-based, stable on smooth inputs) or Angle Deficit (polygon-vertex based, more robust on complex variations)", "Curvature Type: Gaussian, Mean, Principal (max) or Principal (min)", "Output Type: full curvature, convex regions only, or concave regions only", "Normal Type (pre-process): must match the Height to Normal node setting when the input is a normal field", "Read Pixels outside Image (pre-process): uses pixels beyond the edge at boundaries", "Kernel Size (pre-process): neighbourhood scale; larger gives smoother results", "Scale, Normalize, Minimum, Maximum (post-process): adjust, keep in 0 to 1, or clamp output"]
+
+- Caveats: ["Normal Type must match Height to Normal or the input is misread.", "With a constant border type, turn off Read Pixels outside Image to get correct edge values.", "Minor pixel-to-pixel variation can give unexpectedly high values; Normalize may be needed for display."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `space` | Space | Menu | 0 |  | image, pixel, local |
+| `method` | Method | Menu | 1 |  | 0, 1 |
+| `curvaturetype` | Curvature Type | Menu | 1 |  | gaussian, mean, principal_max, principal_min |
+| `outputtype` | Output Type | Menu | 0 |  | 0, 1, 2 |
+| `folder1` |  | FolderSet |  |  |  |
+| `normaltype` | Normal Type | Menu | 1 |  | signed, offset |
+| `prescale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |
+| `kernel` | Kernel Size | Int | [1] | 1 .. 64 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `postscale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `normalize` | Normalize | Toggle | true |  |  |
+| `min` | Minimum | Float | [-500.0] | -5000.0 .. 0.0 |  |
+| `min_pixel` | Minimum | Float | [-1.0] | -10.0 .. 0.0 |  |
+| `min_local` | Minimum | Float | [-500.0] | -5000.0 .. 0.0 |  |
+| `max` | Maximum | Float | [500.0] | 0.0 .. 5000.0 |  |
+| `max_pixel` | Maximum | Float | [1.0] | 0.0 .. 10.0 |  |
+| `max_local` | Maximum | Float | [500.0] | 0.0 .. 5000.0 |  |

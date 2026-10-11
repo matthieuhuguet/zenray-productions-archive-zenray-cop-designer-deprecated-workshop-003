@@ -1,0 +1,28 @@
+# flip
+
+- Label: Flip
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/flip.html
+- Summary (EN): The Flip node mirrors a layer across the horizontal, vertical, or diagonal axis of image space, and these transformations can be combined. Its Mask parameter controls how much of the flipped result replaces the original.
+- Résumé (FR) : Le nœud Flip retourne une couche horizontalement, verticalement ou en diagonale, avec un mélange réglable par masque.
+
+- Inputs meaning: ["source: original layer to flip", "mask (optional): per-pixel mask whose strength is scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much of the flipped value mixes with the original; default 1 uses only the flipped result", "Flip Horizontally: flips the layer about the y-axis", "Flip Vertically: flips the layer about the x-axis", "Flip Diagonally: flips diagonally and swaps the resolution, for example 1920x1080 becomes 1080x1920"]
+
+- Caveats: ["A diagonal flip changes the resolution and aspect ratio, so the width and height of a non-square layer are swapped"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `xflip` | Flip Horizontally | Toggle | false |  |  |
+| `yflip` | Flip Vertically | Toggle | true |  |  |
+| `flop` | Flip Diagonally | Toggle | false |  |  |

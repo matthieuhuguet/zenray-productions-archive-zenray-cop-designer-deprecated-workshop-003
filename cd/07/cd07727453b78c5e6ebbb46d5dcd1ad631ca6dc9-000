@@ -1,0 +1,378 @@
+# Copernicus node index (Houdini 22.0.368, generated 2026-10-11T01:16:13)
+
+Copernicus nodes (category Cop): 372. Parameters: 9837.
+
+| node | label | inputs | parameters | web summary | height graph |
+|---|---|---|---|---|---|
+| [adjacency_attribsample](adjacency_attribsample.md) | Attribute Sample with Adjacency | 0..2 | 4 | yes |  |
+| [adjacency_distort](adjacency_distort.md) | Distort with Adjacency | 0..4 | 20 | yes |  |
+| [adjacency_extrapolate](adjacency_extrapolate.md) | Extrapolate with Adjacency | 0..2 | 2 | yes |  |
+| [adjacency_spacetransform](adjacency_spacetransform.md) | Space Transform with Adjacency | 0..2 | 2 | yes |  |
+| [align](align.md) | Align | 0..2 | 34 | yes |  |
+| [alignpixels](alignpixels.md) | Align Pixels | 0..2 | 20 | yes |  |
+| [attribextract](attribextract.md) | Attribute Extract | 0..1 | 17 | yes |  |
+| [attribfromlayer](attribfromlayer.md) | Attribute from Layer | 0..1 | 2 | yes |  |
+| [attribinsert](attribinsert.md) | Attribute Insert | 0..2048 | 5 | yes |  |
+| [attribute](attribute.md) | Attribute | 0..1 | 18 | yes |  |
+| [autostereogram](autostereogram.md) | Auto Stereogram | 0..2 | 6 | yes |  |
+| [average](average.md) | Layer Merge | 0..2048 | 7 | yes |  |
+| [bakegeometrytextures](bakegeometrytextures.md) | Bake Geometry Textures | 0..5 | 96 | yes |  |
+| [bakegeometrytextures::2.0](bakegeometrytextures__2.0.md) | Bake Geometry Textures | 0..5 | 96 | yes |  |
+| [bakepreprocess](bakepreprocess.md) | Bake Pre-Process | 1..2 | 24 | yes |  |
+| [bend](bend.md) | Bend | 0..2 | 45 | yes |  |
+| [blend](blend.md) | Blend | 0..3 | 12 | yes | yes |
+| [block_begin](block_begin.md) | Block Begin | 0..2048 | 3 | yes |  |
+| [block_end](block_end.md) | Block End | 0..2048 | 20 | yes |  |
+| [blocktogeo](blocktogeo.md) | Block to Geometry | 0..0 | 2 | yes |  |
+| [blur](blur.md) | Blur | 0..2 | 9 | yes |  |
+| [bokeh](bokeh.md) | Bokeh | 1..4 | 9 | yes |  |
+| [boundrect](boundrect.md) | Bounding Rectangle | 1..1 | 5 | yes |  |
+| [bright](bright.md) | Bright | 0..4 | 12 | yes |  |
+| [bubblenoise](bubblenoise.md) | Bubble Noise | 0..2 | 46 | yes |  |
+| [cablefilter](cablefilter.md) | Cable Filter | 0..1 | 0 | yes |  |
+| [cablemerge](cablemerge.md) | Cable Merge | 2..2 | 1 | yes |  |
+| [cablepack](cablepack.md) | Cable Pack | 0..2048 | 2 | yes |  |
+| [cablerename](cablerename.md) | Cable Rename | 1..1 | 5 | yes |  |
+| [cablesort](cablesort.md) | Cable Sort | 0..1 | 1 | yes |  |
+| [cablesplit](cablesplit.md) | Cable Split | 0..1 | 19 | yes |  |
+| [cableswitch](cableswitch.md) | Cable Switch | 0..2 | 1 | yes |  |
+| [cableunpack](cableunpack.md) | Cable Unpack | 0..1 | 2 | yes |  |
+| [cache](cache.md) | Cache | 0..2048 | 5 | yes |  |
+| [camera](camera.md) | Camera | 0..1 | 77 | yes |  |
+| [camerablend](camerablend.md) | Camera Blend | 0..2 | 1 | yes |  |
+| [camerafrompoints](camerafrompoints.md) | Camera from Points | 0..2 | 21 | yes |  |
+| [cameraimport](cameraimport.md) | Camera Import | 0..0 | 5 | yes |  |
+| [cameraproperties](cameraproperties.md) | Camera Properties | 0..1 | 26 | yes |  |
+| [cellpattern](cellpattern.md) | Cell Pattern | 0..6 | 69 | yes |  |
+| [cellularnoise](cellularnoise.md) | Cellular Noise | 0..2 | 50 | yes |  |
+| [cellularnoise3d](cellularnoise3d.md) | Cellular Noise 3D | 0..2 | 49 | yes |  |
+| [channelextract](channelextract.md) | Channel Extract | 0..1 | 2 | yes |  |
+| [channeljoin](channeljoin.md) | Channel Join | 0..4 | 5 | yes |  |
+| [channelsplit](channelsplit.md) | Channel Split | 0..1 | 0 | yes |  |
+| [channelswap](channelswap.md) | Channel Swap | 0..3 | 14 | yes |  |
+| [checkerboard](checkerboard.md) | Checkerboard | 0..1 | 17 | yes |  |
+| [chladni](chladni.md) | Chladni Cymatic Patterns | 0..6 | 9 | yes |  |
+| [chromakey](chromakey.md) | Chroma Key | 1..1 | 26 | yes |  |
+| [chromaticaberration](chromaticaberration.md) | Chromatic Aberration | 1..3 | 46 | yes |  |
+| [clamp](clamp.md) | Clamp | 0..4 | 10 | yes |  |
+| [cloudnoise3d](cloudnoise3d.md) | Cloud Noise 3D | 0..2 | 45 | yes |  |
+| [colorcorrect](colorcorrect.md) | Color Correct | 0..2 | 60 | yes |  |
+| [combinenormals](combinenormals.md) | Combine Normals | 2..3 | 3 | yes |  |
+| [compare](compare.md) | Compare | 1..3 | 6 | yes |  |
+| [compareblend](compareblend.md) | Compare and Blend | 1..5 | 6 | yes |  |
+| [configurestamps](configurestamps.md) | Configure Stamps | 0..10 | 89 | yes |  |
+| [constant](constant.md) | Constant | 0..2 | 13 | yes | yes |
+| [contactsheet](contactsheet.md) | Contact Sheet | 0..2048 | 18 | yes |  |
+| [contrast](contrast.md) | Contrast | 1..3 | 18 | yes |  |
+| [convertdepth](convertdepth.md) | Convert Depth | 0..1 | 3 | yes |  |
+| [convertnormal](convertnormal.md) | Convert Normal | 1..1 | 8 | yes |  |
+| [convolve3](convolve3.md) | Convolve 3x3 | 1..2 | 33 | yes |  |
+| [convolvefilter](convolvefilter.md) | Convolve Filter | 0..2 | 7 | yes |  |
+| [copyxform](copyxform.md) | Copy and Transform | 0..3 | 80 | yes |  |
+| [cornerdetect](cornerdetect.md) | Corner Detect | 1..1 | 5 | yes |  |
+| [cornerpin](cornerpin.md) | Corner Pin | 0..2 | 38 | yes |  |
+| [crop](crop.md) | Crop | 0..3 | 42 | yes |  |
+| [cross](cross.md) | Cross Product | 1..2 | 1 | yes |  |
+| [cryptomatte](cryptomatte.md) | Cryptomatte | 0..2048 | 2 | yes |  |
+| [cryptomattedecode](cryptomattedecode.md) | Cryptomatte Decode | 1..1 | 0 | yes |  |
+| [cryptomatteencode](cryptomatteencode.md) | Cryptomatte Encode | 0..4 | 0 | yes |  |
+| [crystalnoise](crystalnoise.md) | Crystal Noise | 0..3 | 53 | yes |  |
+| [crystalnoise3d](crystalnoise3d.md) | Crystal Noise 3D | 0..3 | 45 | yes |  |
+| [curl](curl.md) | Curl | 0..1 | 5 | yes |  |
+| [curlnoise](curlnoise.md) | Curl Noise | 0..5 | 28 | yes |  |
+| [curlnoise3d](curlnoise3d.md) | Curl Noise 3D | 0..4 | 20 | yes |  |
+| [curvature](curvature.md) | Curvature | 0..1 | 19 | yes |  |
+| [curve3d](curve3d.md) | Curve 3D | 0..0 | 113 | yes |  |
+| [curveanimate3d](curveanimate3d.md) | Curve Animate 3D | 0..0 | 45 | yes |  |
+| [curvescatter](curvescatter.md) | Scatter on Curves | 0..12 | 195 | yes |  |
+| [defocus](defocus.md) | Defocus | 2..4 | 34 | yes |  |
+| [denoiseai](denoiseai.md) | Denoise AI | 0..5 | 4 | yes |  |
+| [denoisetvd](denoisetvd.md) | Denoise TVD | 1..3 | 4 | yes |  |
+| [derivative](derivative.md) | Derivative | 0..1 | 8 | yes |  |
+| [despill](despill.md) | Despill | 1..3 | 7 | yes |  |
+| [dilateerode](dilateerode.md) | Dilate Erode | 0..3 | 9 | yes |  |
+| [distort](distort.md) | Distort | 0..4 | 23 | yes |  |
+| [dot](dot.md) | Dot Product | 0..2 | 1 | yes |  |
+| [dropshadow](dropshadow.md) | Drop Shadow | 0..2 | 38 | yes |  |
+| [edgedetect](edgedetect.md) | Edge Detect | 0..1 | 7 | yes |  |
+| [edgedetectcontour](edgedetectcontour.md) | Edge Detect by Contour | 0..2 | 6 | yes |  |
+| [edgedetectdepth](edgedetectdepth.md) | Edge Detect by Depth | 0..2 | 5 | yes |  |
+| [edgedetectnormal](edgedetectnormal.md) | Edge Detect by Normal | 0..2 | 5 | yes |  |
+| [eikonal](eikonal.md) | Eikonal | 0..2 | 3 | yes |  |
+| [equalize](equalize.md) | Equalize | 1..3 | 9 | yes |  |
+| [error](error.md) | Error | 0..1 | 4 | yes |  |
+| [extrapolateboundaries](extrapolateboundaries.md) | Extrapolate Boundaries | 2..3 | 8 | yes |  |
+| [feather](feather.md) | Feather | 0..2 | 9 | yes |  |
+| [fetch](fetch.md) | Fetch | 0..0 | 6 | yes |  |
+| [fft](fft.md) | Fast Fourier Transform | 0..2 | 5 | yes |  |
+| [file](file.md) | File | 0..1 | 26 | yes |  |
+| [fill](fill.md) | Fill | 1..3 | 10 | yes |  |
+| [fillconnected](fillconnected.md) | Fill Connected | 0..3 | 20 | yes |  |
+| [filterfrequencies](filterfrequencies.md) | Filter Frequencies | 0..2 | 11 | yes |  |
+| [flip](flip.md) | Flip | 0..2 | 4 | yes |  |
+| [flow_block_begin](flow_block_begin.md) | Flow Block Begin | 1..5 | 6 | yes |  |
+| [flow_block_end](flow_block_end.md) | Flow Block End | 3..7 | 18 | yes |  |
+| [flow_projectnondivergentmultigrid](flow_projectnondivergentmultigrid.md) | Flow Project Non-Divergent Multigrid | 1..4 | 6 | yes |  |
+| [font](font.md) | Font | 0..1 | 21 | yes |  |
+| [fractalnoise](fractalnoise.md) | Fractal Noise | 0..5 | 51 | yes | yes |
+| [fractalnoise3d](fractalnoise3d.md) | Fractal Noise 3D | 0..4 | 43 | yes |  |
+| [fractalsample](fractalsample.md) | Fractal Sample | 0..5 | 35 | yes |  |
+| [function](function.md) | Function | 0..2 | 12 | yes |  |
+| [gamma](gamma.md) | Gamma | 1..3 | 6 | yes |  |
+| [geoattribfromlayer](geoattribfromlayer.md) | Geometry Attribute from Layer | 0..2048 | 8 | yes |  |
+| [geotoadjacency](geotoadjacency.md) | Geometry to Adjacency | 0..2 | 1 | yes |  |
+| [geotolayer](geotolayer.md) | Geometry to Layer | 0..1 | 21 | yes |  |
+| [geotolayer::2.0](geotolayer__2.0.md) | Geometry to Layer | 0..3 | 21 | yes |  |
+| [glow](glow.md) | Glow | 0..2 | 16 | yes |  |
+| [grunge_aurora](grunge_aurora.md) | Grunge Aurora | 0..1 | 43 | yes |  |
+| [grunge_barkstrips](grunge_barkstrips.md) | Grunge Bark Strips | 0..1 | 34 | yes |  |
+| [grunge_birchbark](grunge_birchbark.md) | Grunge Birch Bark | 0..1 | 36 | yes |  |
+| [grunge_drips](grunge_drips.md) | Grunge Drips | 0..1 | 35 | yes |  |
+| [grunge_galvanizedsteel](grunge_galvanizedsteel.md) | Grunge Galvanized Steel | 0..1 | 36 | yes |  |
+| [grunge_layerednoise](grunge_layerednoise.md) | Grunge Layered Noise | 0..1 | 50 | yes |  |
+| [grunge_leakingstreaks](grunge_leakingstreaks.md) | Grunge Leaking Streaks | 0..1 | 35 | yes |  |
+| [grunge_moisture](grunge_moisture.md) | Grunge Moisture | 0..1 | 32 | yes |  |
+| [grunge_moldspots](grunge_moldspots.md) | Grunge Mold Spots | 0..1 | 38 | yes |  |
+| [grunge_pinebark](grunge_pinebark.md) | Grunge Pine Bark | 0..1 | 33 | yes |  |
+| [grunge_rust](grunge_rust.md) | Grunge Rust | 0..1 | 34 | yes |  |
+| [grunge_rustysurface](grunge_rustysurface.md) | Grunge Rusty Surface | 0..1 | 33 | yes |  |
+| [grunge_sheets](grunge_sheets.md) | Grunge Sheets | 0..1 | 34 | yes |  |
+| [grunge_wipetrails](grunge_wipetrails.md) | Grunge Wipe Trails | 0..1 | 35 | yes |  |
+| [heatdistort](heatdistort.md) | Heat Distort | 0..3 | 47 | yes |  |
+| [heatdistortbylayer](heatdistortbylayer.md) | Heat Distort by Layer | 2..5 | 26 | yes |  |
+| [heightfield_clip](heightfield_clip.md) | HeightField Clip | 1..4 | 9 | yes |  |
+| [heightfield_erode](heightfield_erode.md) | HeightField Erode | 1..6 | 35 | yes |  |
+| [heightfield_maskbyfeature](heightfield_maskbyfeature.md) | HeightField Mask by Feature | 1..1 | 89 | yes |  |
+| [heightfield_project](heightfield_project.md) | HeightField Project | 2..3 | 5 | yes |  |
+| [heightfield_slump](heightfield_slump.md) | HeightField Slump | 0..2 | 16 | yes |  |
+| [heightfield_strata](heightfield_strata.md) | HeightField Strata | 1..3 | 63 | yes |  |
+| [heightfield_terrace](heightfield_terrace.md) | HeightField Terrace | 0..2 | 15 | yes |  |
+| [heightfield_visualize](heightfield_visualize.md) | HeightField Visualize | 1..4 | 34 | yes |  |
+| [heightfield_xform](heightfield_xform.md) | HeightField Transform 3D | 1..1 | 28 | yes |  |
+| [heightfield_xform2d](heightfield_xform2d.md) | HeightField Transform 2D | 1..1 | 29 | yes |  |
+| [heightfieldtomono](heightfieldtomono.md) | HeightField to Mono | 1..1 | 6 | yes |  |
+| [heighttoambientocclusion](heighttoambientocclusion.md) | Height to Ambient Occlusion | 1..1 | 17 | yes |  |
+| [heighttocaustics](heighttocaustics.md) | Height to Caustics | 0..2 | 47 | yes |  |
+| [heighttonormal](heighttonormal.md) | Height to Normal | 1..1 | 5 | yes |  |
+| [heighttoshadow](heighttoshadow.md) | Height to Shadow | 1..1 | 33 | yes |  |
+| [hextile](hextile.md) | Hex Tile | 0..10 | 10 | yes |  |
+| [histogram](histogram.md) | Histogram | 1..2 | 11 | yes |  |
+| [hsv](hsv.md) | HSV Adjust | 0..5 | 14 | yes |  |
+| [hyperbolictile](hyperbolictile.md) | Hyperbolic Tile | 0..1 | 10 | yes |  |
+| [idtomask](idtomask.md) | ID to Mask | 1..2 | 26 | yes |  |
+| [idtomono](idtomono.md) | ID to Mono | 1..1 | 2 | yes |  |
+| [idtorgb](idtorgb.md) | ID to RGB | 0..1 | 1 | yes |  |
+| [idtosdf](idtosdf.md) | ID to SDF | 0..1 | 3 | yes |  |
+| [illpixel](illpixel.md) | Illegal Pixel | 0..1 | 8 | yes |  |
+| [input](input.md) | Input | 0..0 | 0 | yes |  |
+| [integratevolume](integratevolume.md) | Integrate Volume | 0..6 | 23 | yes |  |
+| [invert](invert.md) | Invert | 0..2 | 3 | yes |  |
+| [invokeblock](invokeblock.md) | Invoke Block | 0..2048 | 7 | yes |  |
+| [invokegeo](invokegeo.md) | Invoke Geometry | 0..2048 | 4 | yes |  |
+| [julia](julia.md) | Julia Fractal | 0..1 | 7 | yes |  |
+| [knit](knit.md) | Knit | 0..9 | 78 | yes |  |
+| [kuwaharafilter](kuwaharafilter.md) | Kuwahara Filter | 1..3 | 8 | yes |  |
+| [labs::uv_grid_texture::1.0](labs__uv_grid_texture__1.0.md) | Labs UV Grid Texture | 0..0 | 94 | yes |  |
+| [laplacian](laplacian.md) | Laplacian | 0..1 | 5 | yes |  |
+| [latticedeform](latticedeform.md) | Lattice Deform | 0..2 | 45 | yes |  |
+| [layer](layer.md) | Layer | 0..1 | 34 | yes |  |
+| [layerattribcreate](layerattribcreate.md) | Layer Property Create | 0..1 | 7 | yes |  |
+| [layerattribdelete](layerattribdelete.md) | Layer Property Delete | 0..1 | 3 | yes |  |
+| [layerfromattrib](layerfromattrib.md) | Layer from Attribute | 0..3 | 4 | yes |  |
+| [layerfromcurves](layerfromcurves.md) | Layer from Curves | 0..2 | 57 | yes |  |
+| [layerfromvdb](layerfromvdb.md) | Layer from VDB | 0..3 | 1 | yes |  |
+| [layerproperties](layerproperties.md) | Layer Properties | 0..1 | 8 | yes |  |
+| [layerpropertycopy](layerpropertycopy.md) | Layer Property Copy | 0..2 | 4 | yes |  |
+| [layertogeo](layertogeo.md) | Layer to Geometry | 0..1 | 0 | yes |  |
+| [layertogeo::2.0](layertogeo__2.0.md) | Layer to Geometry | 0..2048 | 0 | yes |  |
+| [layertopoints](layertopoints.md) | Layer to Points | 0..1 | 6 | yes |  |
+| [layertovdbleafpoints](layertovdbleafpoints.md) | Layer to VDB Leaf Points | 1..4 | 2 | yes |  |
+| [lensdistort](lensdistort.md) | Lens Distort | 1..12 | 15 | yes |  |
+| [light](light.md) | Light | 2..8 | 30 | yes |  |
+| [livevideo](livevideo.md) | Live Video | 0..0 | 6 | yes |  |
+| [logic](logic.md) | Logic | 0..3 | 13 | yes |  |
+| [maskcombine](maskcombine.md) | Mask Combine | 0..1 | 29 | yes |  |
+| [maskfromcurves](maskfromcurves.md) | Mask from Curves | 0..2 | 12 | yes |  |
+| [matchcamera](matchcamera.md) | Match Camera | 0..2 | 1 | yes |  |
+| [matchudim](matchudim.md) | Match UDIM | 0..1 | 4 | yes |  |
+| [median](median.md) | Median | 0..2 | 3 | yes |  |
+| [mirror](mirror.md) | Mirror | 1..1 | 10 | yes |  |
+| [ml_computervisioninference](ml_computervisioninference.md) | ML Computer Vision Inference | 0..1 | 49 | yes |  |
+| [mono](mono.md) | Mono | 0..1 | 7 | yes |  |
+| [monotoheightfield](monotoheightfield.md) | Mono to HeightField | 1..1 | 2 | yes |  |
+| [monotoid](monotoid.md) | Mono to ID | 1..1 | 2 | yes |  |
+| [monotorgb](monotorgb.md) | Mono to RGB | 0..2 | 19 | yes |  |
+| [monotorgba](monotorgba.md) | Mono to RGBA | 0..2 | 2 | yes |  |
+| [monotosdf](monotosdf.md) | Mono to SDF | 0..1 | 4 | yes |  |
+| [neural_cellularautomatacore](neural_cellularautomatacore.md) | Neural Cellular Automata Core | 1..6 | 19 | yes |  |
+| [neural_cellularautomatadecode](neural_cellularautomatadecode.md) | Neural Cellular Automata Decode | 0..1 | 12 | yes |  |
+| [neural_layertodepth_moge2](neural_layertodepth_moge2.md) | Neural Layer to Depth (MoGe-2) | 0..1 | 32 | yes |  |
+| [neural_layertomask_sam2](neural_layertomask_sam2.md) | Neural Layer to Mask (SAM2) | 1..4 | 47 | yes |  |
+| [normaltoheight](normaltoheight.md) | Normal to Height | 0..1 | 11 | yes |  |
+| [null](null.md) | Null | 0..2048 | 1 | yes |  |
+| [oceanevaluate](oceanevaluate.md) | Ocean Evaluate | 0..3 | 5 | yes |  |
+| [oceanspectrum](oceanspectrum.md) | Ocean Spectrum | 0..1 | 19 | yes |  |
+| [ociotransform](ociotransform.md) | OCIO Transform | 1..1 | 8 | yes |  |
+| [onnx](onnx.md) | ONNX Inference | 0..2048 | 78 | yes |  |
+| [opencl](opencl.md) | OpenCL | 0..2048 | 40 | yes |  |
+| [output](output.md) | Output | 0..2048 | 0 | yes |  |
+| [paint](paint.md) | Paint 3D | 0..2 | 249 | yes |  |
+| [phasornoise](phasornoise.md) | Phasor Noise | 0..6 | 60 | yes |  |
+| [pixelate](pixelate.md) | Pixelate | 0..4 | 25 | yes |  |
+| [planarinflate](planarinflate.md) | Planar Inflate | 0..1 | 21 | yes |  |
+| [pointdelete](pointdelete.md) | Point Delete | 0..2 | 1 | yes |  |
+| [pointgenerate](pointgenerate.md) | Point Generate | 0..3 | 7 | yes |  |
+| [pointmerge](pointmerge.md) | Point Merge | 0..2048 | 0 | yes |  |
+| [pointsfromblobs](pointsfromblobs.md) | Points from Blobs | 0..1 | 3 | yes |  |
+| [polartouv](polartouv.md) | Polar to UV | 0..2 | 4 | yes |  |
+| [posmap](posmap.md) | Position Map | 0..1 | 11 | yes |  |
+| [possample](possample.md) | Position Sample | 0..2 | 1 | yes |  |
+| [prefixsum](prefixsum.md) | Prefix Sum | 1..2 | 4 | yes |  |
+| [prefixsumcore](prefixsumcore.md) | Prefix Sum Core | 0..1 | 3 | yes |  |
+| [premult](premult.md) | Premultiply | 0..2 | 2 | yes |  |
+| [previewmaterial](previewmaterial.md) | Preview Material | 0..22 | 110 | yes |  |
+| [projectonlayer](projectonlayer.md) | Project on Layer | 0..2 | 4 | yes |  |
+| [pyro_activate](pyro_activate.md) | Pyro Activate | 1..3 | 22 | yes |  |
+| [pyro_activate::2.0](pyro_activate__2.0.md) | Pyro Activate | 1..5 | 22 | yes |  |
+| [pyro_advect](pyro_advect.md) | Pyro Advect | 0..2 | 21 | yes |  |
+| [pyro_advect::2.0](pyro_advect__2.0.md) | Pyro Advect | 0..2 | 21 | yes |  |
+| [pyro_advectbymap](pyro_advectbymap.md) | Pyro Advect by Map | 2..3 | 3 | yes |  |
+| [pyro_axisforce](pyro_axisforce.md) | Pyro Axis Force | 1..2 | 83 | yes |  |
+| [pyro_block_begin](pyro_block_begin.md) | Pyro Block Begin | 0..6 | 2 | yes |  |
+| [pyro_block_begin::2.0](pyro_block_begin__2.0.md) | Pyro Block Begin | 0..13 | 2 | yes |  |
+| [pyro_block_end](pyro_block_end.md) | Pyro Block End | 0..7 | 566 | yes |  |
+| [pyro_block_end::2.0](pyro_block_end__2.0.md) | Pyro Block End | 0..9 | 566 | yes |  |
+| [pyro_buildadvectionmap](pyro_buildadvectionmap.md) | Pyro Build Advection Map | 1..1 | 13 | yes |  |
+| [pyro_buildadvectionmap::2.0](pyro_buildadvectionmap__2.0.md) | Pyro Build Advection Map | 1..1 | 13 | yes |  |
+| [pyro_buoyancy](pyro_buoyancy.md) | Pyro Buoyancy | 0..5 | 73 | yes |  |
+| [pyro_buoyancy::2.0](pyro_buoyancy__2.0.md) | Pyro Buoyancy | 0..7 | 73 | yes |  |
+| [pyro_collisionfromshape](pyro_collisionfromshape.md) | Pyro Collision from Shape | 0..3 | 0 | yes |  |
+| [pyro_collisionshape](pyro_collisionshape.md) | Pyro Collision Shape | 0..1 | 37 | yes |  |
+| [pyro_configure](pyro_configure.md) | Pyro Configure | 0..1 | 9 | yes |  |
+| [pyro_configure::2.0](pyro_configure__2.0.md) | Pyro Configure | 0..3 | 9 | yes |  |
+| [pyro_dissipate](pyro_dissipate.md) | Pyro Dissipate | 1..2 | 44 | yes |  |
+| [pyro_disturbance](pyro_disturbance.md) | Pyro Disturbance Force | 0..5 | 67 | yes |  |
+| [pyro_emitfromflame](pyro_emitfromflame.md) | Pyro Emit from Flame | 1..8 | 122 | yes |  |
+| [pyro_lightambient](pyro_lightambient.md) | Pyro Light Ambient | 1..4 | 16 | yes |  |
+| [pyro_lightfrompoints](pyro_lightfrompoints.md) | Pyro Light from Points | 1..4 | 19 | yes |  |
+| [pyro_lightscatter](pyro_lightscatter.md) | Pyro Light Scatter | 2..3 | 17 | yes |  |
+| [pyro_packedmipmap](pyro_packedmipmap.md) | Pyro Packed MipMap | 1..1 | 2 | yes |  |
+| [pyro_projectnondivergentelectrostatic](pyro_projectnondivergentelectrostatic.md) | Pyro Project Non-Divergent Electro Static | 2..5 | 13 | yes |  |
+| [pyro_sourcefromlayer](pyro_sourcefromlayer.md) | Pyro Source from Layer | 2..4 | 37 | yes |  |
+| [pyro_sourcefromlayer::2.0](pyro_sourcefromlayer__2.0.md) | Pyro Source from Layer | 2..4 | 37 | yes |  |
+| [pyro_sourcefrompoints](pyro_sourcefrompoints.md) | Pyro Source from Points | 1..2 | 41 | yes |  |
+| [pyro_sourcefromshape](pyro_sourcefromshape.md) | Pyro Source from Shape | 0..6 | 0 | yes |  |
+| [pyro_sourcefromvolume](pyro_sourcefromvolume.md) | Pyro Source from Volume | 0..3 | 23 | yes |  |
+| [pyro_sourceshape](pyro_sourceshape.md) | Pyro Source Shape | 0..1 | 148 | yes |  |
+| [pyro_turbulence](pyro_turbulence.md) | Pyro Turbulence Force | 0..5 | 76 | yes |  |
+| [pyro_uniformforce](pyro_uniformforce.md) | Pyro Uniform Force | 1..5 | 72 | yes |  |
+| [pyro_velocityscale](pyro_velocityscale.md) | Pyro Velocity Scale Force | 1..4 | 59 | yes |  |
+| [pyro_vortexconfinement](pyro_vortexconfinement.md) | Pyro Vortex Confinement Force | 0..4 | 72 | yes |  |
+| [pythonsnippet](pythonsnippet.md) | Python Snippet | 0..2048 | 6 | yes |  |
+| [quantize](quantize.md) | Quantize | 0..2 | 13 | yes |  |
+| [ramp](ramp.md) | Ramp | 0..3 | 31 | yes | yes |
+| [randommono](randommono.md) | Random Mono | 0..5 | 23 | yes |  |
+| [randomrgb](randomrgb.md) | Random RGB | 0..5 | 65 | yes |  |
+| [rasterizecurves](rasterizecurves.md) | Rasterize Curves | 0..2 | 32 | yes |  |
+| [rasterizegeo](rasterizegeo.md) | Rasterize Geometry | 0..2 | 21 | yes |  |
+| [rasterizegsplats](rasterizegsplats.md) | Rasterize GSplats | 0..4 | 19 | yes |  |
+| [rasterizeimplicitsurface](rasterizeimplicitsurface.md) | Rasterize Implicit Surface | 0..6 | 5 | yes |  |
+| [rasterizelayer](rasterizelayer.md) | Rasterize Layer | 0..2 | 6 | yes |  |
+| [rasterizesetup](rasterizesetup.md) | Rasterize Setup | 1..1 | 25 | yes |  |
+| [rasterizevolume](rasterizevolume.md) | Rasterize Volume | 0..9 | 75 | yes |  |
+| [raytrace](raytrace.md) | Ray Trace | 0..5 | 42 | yes |  |
+| [reactiondiffusion_block_begin](reactiondiffusion_block_begin.md) | Reaction-Diffusion Block Begin | 0..10 | 3 | yes |  |
+| [reactiondiffusion_block_end](reactiondiffusion_block_end.md) | Reaction-Diffusion Block End | 1..2 | 50 | yes |  |
+| [refractfromheight](refractfromheight.md) | Refract from Height | 0..5 | 39 | yes |  |
+| [remap](remap.md) | Remap | 0..7 | 21 | yes | yes |
+| [resample](resample.md) | Resample | 0..2 | 21 | yes |  |
+| [rgbatorgb](rgbatorgb.md) | RGBA to RGB | 0..1 | 1 | yes |  |
+| [rgbatouv](rgbatouv.md) | RGBA to UV | 1..1 | 1 | yes |  |
+| [rgbtorgba](rgbtorgba.md) | RGB to RGBA | 0..2 | 1 | yes |  |
+| [rgbtouv](rgbtouv.md) | RGB to UV | 1..1 | 1 | yes |  |
+| [ripple_block_begin](ripple_block_begin.md) | Ripple Block Begin | 0..8 | 1 | yes |  |
+| [ripple_block_end](ripple_block_end.md) | Ripple Block End | 0..2 | 18 | yes |  |
+| [rop_image](rop_image.md) | ROP Image Output | 0..1 | 76 | yes | yes |
+| [sample](sample.md) | UV Sample | 2..3 | 4 | yes |  |
+| [sdfadjust](sdfadjust.md) | SDF Adjust | 0..1 | 5 | yes |  |
+| [sdfblend](sdfblend.md) | SDF Blend | 0..2 | 6 | yes |  |
+| [sdfshape](sdfshape.md) | SDF Shape | 0..1 | 106 | yes |  |
+| [sdftomono](sdftomono.md) | SDF to Mono | 0..1 | 47 | yes |  |
+| [sdftorgb](sdftorgb.md) | SDF to RGB | 0..1 | 59 | yes |  |
+| [segmentbyconnectivity](segmentbyconnectivity.md) | Segment by Connectivity | 1..1 | 5 | yes |  |
+| [segmentbyvalue](segmentbyvalue.md) | Segment by Value | 1..1 | 9 | yes |  |
+| [sequence](sequence.md) | Sequence | 0..2048 | 4 | yes |  |
+| [sequenceblend](sequenceblend.md) | Sequence Blend | 0..2048 | 3 | yes |  |
+| [shapescatter](shapescatter.md) | Scatter Shapes | 0..12 | 117 | yes |  |
+| [sharpen](sharpen.md) | Sharpen | 1..3 | 11 | yes |  |
+| [slapcompimport](slapcompimport.md) | Slap Comp Import | 0..2048 | 5 | yes |  |
+| [slopedir](slopedir.md) | Slope Direction | 1..1 | 6 | yes |  |
+| [smoothfill](smoothfill.md) | Smooth Fill | 2..3 | 6 | yes |  |
+| [solvepoisson](solvepoisson.md) | Solve Poisson | 0..6 | 6 | yes |  |
+| [solvepoissonmultigrid](solvepoissonmultigrid.md) | Solve Poisson Multigrid | 0..1 | 10 | yes |  |
+| [sopimport](sopimport.md) | SOP Import | 0..0 | 2 | yes |  |
+| [sopinvoke](sopinvoke.md) | SOP Invoke | 0..2048 | 5 | yes |  |
+| [sopinvokegraph](sopinvokegraph.md) | SOP Invoke Graph | 0..2048 | 5 | yes |  |
+| [spacetransform](spacetransform.md) | Space Transform | 1..3 | 6 | yes |  |
+| [spheresample](spheresample.md) | Sphere Sample | 0..2 | 16 | yes |  |
+| [stamppoint](stamppoint.md) | Stamp Points | 0..2048 | 30 | yes |  |
+| [starglow](starglow.md) | Star Glow | 0..3 | 75 | yes |  |
+| [stash](stash.md) | Stash | 0..1 | 3 | yes |  |
+| [statistics](statistics.md) | Statistics | 1..2 | 1 | yes |  |
+| [statisticsbyid](statisticsbyid.md) | Statistics by ID | 1..2 | 0 | yes |  |
+| [streakblur](streakblur.md) | Streak Blur | 0..4 | 20 | yes | yes |
+| [subnet](subnet.md) | Subnetwork | 0..2048 | 7 | yes |  |
+| [surfacedither](surfacedither.md) | Surface Dither | 1..3 | 19 | yes |  |
+| [swirl](swirl.md) | Swirl | 0..11 | 45 | yes |  |
+| [switch](switch.md) | Switch | 0..2048 | 1 | yes |  |
+| [switchbytype](switchbytype.md) | Switch by Type | 0..2048 | 2 | yes |  |
+| [switchifwired](switchifwired.md) | Switch If Wired | 0..2048 | 1 | yes |  |
+| [testgeometry_capybara](testgeometry_capybara.md) | Test Geometry: Capybara | 0..0 | 17 | yes |  |
+| [testgeometry_otto](testgeometry_otto.md) | Test Geometry: Otto | 0..0 | 13 | yes |  |
+| [testgeometry_pighead](testgeometry_pighead.md) | Test Geometry: Pig Head | 0..0 | 10 | yes |  |
+| [testgeometry_rubbertoy](testgeometry_rubbertoy.md) | Test Geometry: Rubber Toy | 0..0 | 10 | yes |  |
+| [testgeometry_shaderball](testgeometry_shaderball.md) | Test Geometry: Shader Ball | 0..0 | 9 | yes |  |
+| [testgeometry_squab](testgeometry_squab.md) | Test Geometry: Squab | 0..0 | 10 | yes |  |
+| [testgeometry_tommy](testgeometry_tommy.md) | Test Geometry: Tommy | 0..0 | 12 | yes |  |
+| [tilepattern](tilepattern.md) | Tile Pattern | 0..3 | 308 | yes |  |
+| [timeblend](timeblend.md) | Time Blend | 0..1 | 5 | yes |  |
+| [timeloop](timeloop.md) | Time Loop | 0..1 | 5 | yes |  |
+| [timepack](timepack.md) | Time Pack | 0..2048 | 13 | yes |  |
+| [timeshift](timeshift.md) | Time Shift | 0..1 | 16 | yes |  |
+| [tonemap](tonemap.md) | Tone Map | 0..2 | 20 | yes |  |
+| [triplanar](triplanar.md) | Triplanar | 0..6 | 54 | yes |  |
+| [triplanarhextile](triplanarhextile.md) | Triplanar Hex Tile | 0..10 | 44 | yes |  |
+| [triplanaruv](triplanaruv.md) | Triplanar UV | 0..3 | 2 | yes |  |
+| [turingpatterns](turingpatterns.md) | Turing Patterns | 1..3 | 13 | yes |  |
+| [twowayswitchifwired](twowayswitchifwired.md) | Two Way Switch If Wired | 0..3 | 1 | yes |  |
+| [udimpack](udimpack.md) | UDIM Pack | 0..2048 | 3 | yes |  |
+| [usdmaterial](usdmaterial.md) | USD Material | 0..2048 | 96 | yes |  |
+| [uvinverse](uvinverse.md) | UV Inverse | 0..3 | 3 | yes |  |
+| [uvmap](uvmap.md) | UV Map | 0..1 | 7 | yes |  |
+| [uvmapbyid](uvmapbyid.md) | UV Map by ID | 1..1 | 10 | yes |  |
+| [uvshape](uvshape.md) | UV Shape | 0..1 | 57 | yes |  |
+| [uvtopolar](uvtopolar.md) | UV to Polar | 1..1 | 2 | yes |  |
+| [uvtorgb](uvtorgb.md) | UV to RGB | 1..2 | 1 | yes |  |
+| [uvtorgba](uvtorgba.md) | UV to RGBA | 1..2 | 1 | yes |  |
+| [uvxform](uvxform.md) | UV Transform | 1..3 | 27 | yes |  |
+| [vdbactivatefrompoints](vdbactivatefrompoints.md) | VDB Activate from Points | 0..2048 | 16 | yes |  |
+| [vdbfromlayer](vdbfromlayer.md) | VDB from Layer | 0..3 | 1 | yes |  |
+| [vdbleafpoints](vdbleafpoints.md) | VDB Leaf Points | 0..1 | 2 | yes |  |
+| [vdbposmap](vdbposmap.md) | VDB Position Map | 1..1 | 2 | yes |  |
+| [vdbreshape](vdbreshape.md) | VDB Reshape | 0..2 | 0 | yes |  |
+| [vdbvisualize](vdbvisualize.md) | VDB Visualize | 1..4 | 71 | yes |  |
+| [vdbvisualizeslice](vdbvisualizeslice.md) | VDB Visualize Slice | 1..1 | 11 | yes |  |
+| [vdbvisualizetree](vdbvisualizetree.md) | VDB Visualize Tree | 1..1 | 7 | yes |  |
+| [vdbvisualizevelocity](vdbvisualizevelocity.md) | VDB Visualize Velocity | 1..1 | 10 | yes |  |
+| [vectorxform](vectorxform.md) | Vector Transform | 0..2 | 24 | yes |  |
+| [vectorxform2d](vectorxform2d.md) | Vector Transform 2D | 0..2 | 12 | yes |  |
+| [vignette](vignette.md) | Vignette | 1..2 | 21 | yes |  |
+| [visualizevelocity](visualizevelocity.md) | Visualize Velocity | 0..1 | 80 | yes |  |
+| [weave](weave.md) | Weave | 0..2 | 27 | yes |  |
+| [wipe](wipe.md) | Wipe | 2..4 | 14 | yes |  |
+| [worleynoise](worleynoise.md) | Worley Noise | 0..2 | 32 | yes |  |
+| [worleynoise3d](worleynoise3d.md) | Worley Noise 3D | 0..2 | 32 | yes |  |
+| [wrangle](wrangle.md) | Wrangle | 0..2048 | 10 | yes |  |
+| [xform](xform.md) | Transform 3D | 0..1 | 28 | yes |  |
+| [xform2d](xform2d.md) | Transform 2D | 0..2 | 30 | yes |  |
+| [zcomp](zcomp.md) | Z Composite | 1..4 | 3 | yes |  |

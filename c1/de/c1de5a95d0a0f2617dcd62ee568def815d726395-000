@@ -1,0 +1,24 @@
+# input
+
+- Label: Input
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/input.html
+- Summary (EN): Fetches the data connected to a subnetwork's inputs and passes it into the subnetwork's internal graph. It is the entry point that lets nodes inside a Subnetwork COP use its external connections.
+- Résumé (FR) : Récupère les données branchées sur les entrées d'un sous-réseau et les transmet au graphe interne, à utiliser dans un Subnetwork COP ou un HDA.
+
+- Inputs meaning: ["No wired inputs; draws from the parent Subnetwork COP, and output i carries the data connected to the parent input i"]
+
+- Key parameters: [{"name": "Inputs (on the parent network)", "meaning": "controls the signature; inside HDAs it mirrors the containing operator. No other node-level parameters are described."}]
+
+- Caveats: ["Several Input COPs at the same level each produce the same data.", "The node is meant for use inside a subnetwork or HDA, not standalone."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

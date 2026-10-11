@@ -1,0 +1,71 @@
+# heighttocaustics
+
+- Label: Height to Caustics
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 47 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heighttocaustics.html
+- Summary (EN): Treats a height layer as a refractive surface and generates caustic light patterns on the ground by tracing light through the surface, bending rays with the surface normal and accumulating where they land.
+- Résumé (FR) : Transforme un champ de hauteur en surface réfractive et génère les motifs de caustiques projetés au sol par traçage de photons.
+
+- Inputs meaning: ["height: the refractive surface (required)", "ground: optional height layer for the ground; if unconnected a flat plane at Ground Offset is used"]
+
+- Key parameters: [{"name": "Signature", "meaning": "set to RGB to enable dispersion"}, {"name": "Directional, Light Azimuth, Light Altitude, Light Position", "meaning": "control the light source"}, {"name": "Index of Refraction", "meaning": "defaults to 1.33, approximating water"}, {"name": "Ground Offset / Ground Scale", "meaning": "flat ground height, or scale of the ground input"}, {"name": "Photon Iterations / Denoise Iterations", "meaning": "trade quality and noise against cook time"}, {"name": "Method", "meaning": "Perturbation is fast but approximate; Spectrum is more accurate but expensive"}]
+
+- Caveats: ["Dispersion parameters only apply when Signature is RGB.", "Photon Jitter Radius has no effect when Photon Iterations is 1."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["default"] |  |  |
+| `space` | Space | Menu | 0 |  | local, world |
+| `enabletile` | Enable Tile | Toggle | true |  |  |
+| `directional` | Directional | Toggle | true |  |  |
+| `lightazi` | Light Azimuth | Float | [0.0] | -180.0 .. 180.0 |  |
+| `lightalt` | Light Altitude | Float | [90.0] | -90.0 .. 90.0 |  |
+| `lightposx` | Light Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightposy` | Light Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightposz` | Light Position | Float | 2.0 | -1.0 .. 1.0 |  |
+| `exposure` | Exposure | Float | [0.2] | 0.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `indexofrefraction` | Index of Refraction | Float | [1.33] | 0.0 .. 2.0 |  |
+| `height_offset` | Height Offset | Float | [0.0] | -1.0 .. 1.0 |  |
+| `height_scale` | Height Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `height_outside` | Compute Derivative outside Image | Toggle | true |  |  |
+| `height_kernelsize` | Kernel Size | Int | [1] | 1 .. 64 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `ground_offset` | Ground Offset | Float | [0.0] | -1.0 .. 1.0 |  |
+| `ground_scale` | Ground Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `ground_iterations` | Ray Trace Iterations | Int | [6] | 1 .. 30 (strict) |  |
+| `ground_outside` | Compute Derivative outside Image | Toggle | true |  |  |
+| `ground_kernelsize` | Kernel Size | Int | [1] | 1 .. 64 (strict) |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `photonjitterradius` | Photon Jitter Radius | Float | [0.0005] | 0.0 .. 1.0 |  |
+| `photoniterations` | Photon Iterations | Int | [10] | 1 .. 20 |  |
+| `denoiseiterations` | Denoise Iterations | Int | [50] | 0 .. 100 (strict) |  |
+| `denoisemask` | Denoise Mask | Ramp | 4 |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `method` | Method | Menu | 0 |  | 0, 1 |
+| `material` | Material | Menu | 0 |  | 0, 1, 2 |
+| `backgroundcolorr` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `backgroundcolorg` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `backgroundcolorb` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `strength` | Strength | Float | [0.1] | 0.0 .. 0.5 |  |
+| `numberofcolors` | Number of Colors | Int | [10] | 1 .. 64 |  |
+| `denoisemask1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `denoisemask1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `denoisemask1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `denoisemask2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `denoisemask2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `denoisemask2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `denoisemask3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `denoisemask3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `denoisemask3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `denoisemask4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `denoisemask4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `denoisemask4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

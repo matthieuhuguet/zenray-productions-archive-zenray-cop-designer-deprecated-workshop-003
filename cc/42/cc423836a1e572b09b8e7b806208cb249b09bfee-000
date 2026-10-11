@@ -1,0 +1,29 @@
+# cablerename
+
+- Label: Cable Rename
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cablerename.html
+- Summary (EN): Renames the wires of a cable through a sequence of string-replacement filters, and can append a wire index to each name with an offset.
+- Résumé (FR) : Le nœud cablerename renomme les fils d'un câble par une suite de remplacements de chaînes, avec ajout optionnel d'un index décalé.
+
+- Inputs meaning: ["cable: the cable whose wires are renamed"]
+
+- Key parameters: [{"name": "Filters", "meaning": "Number of filters run in sequence"}, {"name": "Filter #", "meaning": "String replacement applied by that filter"}, {"name": "Use Regular Expressions", "meaning": "Switches to extended regular expressions instead of Houdini pattern syntax"}, {"name": "Replace Every Occurrence", "meaning": "Replaces all matches instead of only the first"}, {"name": "From", "meaning": "String pattern to find"}, {"name": "To", "meaning": "Replacement string"}, {"name": "Add Wire Index", "meaning": "Adds a wire index to the names"}, {"name": "Token Position", "meaning": "Places the index at the start or end of the wire name"}, {"name": "Index Offset", "meaning": "Offset applied to the wire index, which otherwise starts at 0"}]
+
+- Caveats: ["By default only the first occurrence of a pattern is replaced", "Filters run sequentially, so their order changes the result", "Default pattern syntax follows Attribute String Edit"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `filters` | Filters | Folder | 0 |  |  |
+| `indexfolder` |  | FolderSet |  |  |  |
+| `useindex` | Use Index | Toggle | false |  |  |
+| `tokenpos` | Token Position | Menu | 1 |  | start, end |
+| `indexoffset` | Index Offset | Int | [0] | 0 .. 10 |  |

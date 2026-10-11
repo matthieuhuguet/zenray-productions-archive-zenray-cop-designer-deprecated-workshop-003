@@ -1,0 +1,31 @@
+# invokeblock
+
+- Label: Invoke Block
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/invokeblock.html
+- Summary (EN): Runs a block of COP nodes defined elsewhere on the layers wired into it, so a block can be reused in several places without copying or referencing individual nodes.
+- Résumé (FR) : Exécute un bloc de nœuds COP défini ailleurs sur les couches branchées, avec itérations optionnelles, sans copier les nœuds.
+
+- Inputs meaning: ["input#: ports set by the selected block's Block Begin inputs; populate them with Set Inputs and Outputs from Selected Block"]
+
+- Key parameters: [{"name": "Block End Node", "meaning": "path to the Block End COP that ends the block to invoke"}, {"name": "Iterations", "meaning": "how many times to run the block, feeding outputs back as inputs"}, {"name": "Iterations Variable / Total Iterations Variable", "meaning": "context option names exposing the current and total iteration to expressions inside the block"}, {"name": "Inputs / Outputs", "meaning": "multiparameters defining the ports, matched by name to the block signature"}]
+
+- Caveats: ["The node cannot cook cable outputs.", "Repeated iterations occur only when outputs match inputs by index; otherwise it runs once and shows a warning.", "Compiled COP networks do not support simulation."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `blockpath` | Block End Node | String | [""] |  |  |
+| `iterations` | Iterations | Int | [1] | 0 .. 10 (strict) |  |
+| `iterationvar` | Iteration Variable | String | ["cop_iteration"] |  |  |
+| `totalitervar` | Total Iterations Variable | String | ["cop_itercount"] |  |  |
+| `setports` | Set Inputs and Outputs from Selected Block | Button |  |  |  |
+| `inputs` | Inputs | Folder | 0 |  |  |
+| `outputs` | Outputs | Folder | 0 |  |  |

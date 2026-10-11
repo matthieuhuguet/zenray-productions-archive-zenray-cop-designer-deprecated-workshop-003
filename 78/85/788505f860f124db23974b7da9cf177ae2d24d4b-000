@@ -1,0 +1,62 @@
+# dropshadow
+
+- Label: Drop Shadow
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 38 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/dropshadow.html
+- Summary (EN): Offsets a copy of the input layer, which can be expanded, streaked and blurred, then composites that shadow beneath the original. Listed as available since Houdini 22.0.
+- Résumé (FR) : Crée une ombre portée à partir d'une copie décalée de la couche, étirable et floutée, placée sous l'original.
+
+- Inputs meaning: ["source: original layer receiving the drop shadow", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: mix of new value with original; default 1", "Units: Image or Pixels for Offset, Distance, Expansion and Blur", "Output Drop Shadow Only: outputs only the shadow, for a separate AOV or later compositing", "Mode: Offset (X/Y vector) or Angle and Distance", "Color: shadow colour", "Multiply with Original: multiplies shadow colour with the original; when off the shadow colour replaces it", "Expansion and Maximum Radius: grow or shrink the shadow, with the maximum capping it", "Streak and Streak Weight: smear copies along the offset direction", "Blurring: Filter (Box or Gaussian, default Gaussian) and Scale Size per axis"]
+
+- Caveats: ["Large Expansion values slow performance; Maximum Radius limits the cost.", "With Output Drop Shadow Only on, a Blend COP is needed to put the shadow back over the original.", "For text shadows or one-directional blur shadows the page points to the Font and Streak Blur nodes."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap |
+| `units` | Units | Menu | 0 |  | image, pixels |
+| `outputdropshadowonly` | Output Drop Shadow Only | Toggle | false |  |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `mode` | Mode | Menu | 1 |  | offset, angle |
+| `offsetx` | Offset | Float | 0.02 | -1.0 .. 1.0 |  |
+| `offsety` | Offset | Float | -0.02 | -1.0 .. 1.0 |  |
+| `offset_pixelx` | Offset | Float | 10.0 | -1.0 .. 1.0 |  |
+| `offset_pixely` | Offset | Float | -10.0 | -1.0 .. 1.0 |  |
+| `angle` | Angle | Float | [-30.0] | -180.0 .. 180.0 |  |
+| `distance` | Distance | Float | [0.02] | -0.2 .. 0.2 |  |
+| `distance_pixel` | Distance | Float | [20.0] | -100.0 .. 100.0 |  |
+| `colorr` | Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `colorg` | Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `colorb` | Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `colora` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `multiplywithoriginal` | Multiply with Original | Toggle | false |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `expansion` | Expansion | Float | [0.0] | 0.0 .. 0.1 |  |
+| `expansion_pixel` | Expansion | Float | [0.0] | 0.0 .. 20.0 |  |
+| `maxradius` | Maximum Radius | Float | [100.0] | 0.0 .. 100.0 |  |
+| `streak` | Streak | Toggle | false |  |  |
+| `streakweight` | Streak Weight | Ramp | 2 |  |  |
+| `doblur` | Do Blur | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `filter` | Filter | Menu | 1 |  | box, gaussian |
+| `blur` | Blur | Float | [0.05] | 0.0 .. 0.1 |  |
+| `blur_pixel` | Size | Float | [3.0] | 0.0 .. 25.0 (strict) |  |
+| `scalesx` | Scale Size | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `scalesy` | Scale Size | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `streakweight1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `streakweight2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

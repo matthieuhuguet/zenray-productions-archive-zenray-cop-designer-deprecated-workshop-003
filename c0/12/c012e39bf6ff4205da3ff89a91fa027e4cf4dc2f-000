@@ -1,0 +1,33 @@
+# dilateerode
+
+- Label: Dilate Erode
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/dilateerode.html
+- Summary (EN): Expands or shrinks a layer, mostly to grow or trim masks. Positive radius dilates, negative radius erodes. Output is named dilate.
+- Résumé (FR) : Élargit ou réduit une couche, en pratique pour agrandir ou rogner un masque.
+
+- Inputs meaning: ["source: original layer to dilate or erode", "radius: optional per-pixel radius scaled by the Radius parameter", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: mix of new value with original; default 1 uses only the new value", "Units: Image, Pixels or Local space for the radius", "Radius: dilation amount; positive dilates, negative erodes; clamped by the maximum", "Soft Edge: gradient for softer edges", "Fill Holes / Remove Specks: dilates inward to patch holes", "Maximum Pixel Radius: caps Radius to limit cost"]
+
+- Caveats: ["Large radius values slow performance, which is why the clamp exists.", "The page is inconsistent on the clamp name: Maximum Pixel Radius in the parameter list, Maximum Radius in the Radius entry; check the label in your Houdini version."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `units` | Units | Menu | 1 |  | image, pixels, local |
+| `radius` | Radius | Float | [25.0] | -25.0 .. 25.0 |  |
+| `radius_image` | Radius | Float | [0.25] | -0.25 .. 0.25 |  |
+| `radius_local` | Radius | Float | [0.25] | -0.25 .. 0.25 |  |
+| `softedge` | Soft Edge | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `fill` | Fill Holes / Remove Specks | Toggle | false |  |  |
+| `maxradius` | Maximum Pixel Radius | Float | [100.0] | 0.0 .. 100.0 |  |

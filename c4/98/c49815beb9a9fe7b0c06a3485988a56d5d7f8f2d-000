@@ -1,0 +1,62 @@
+# cornerpin
+
+- Label: Corner Pin
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 38 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cornerpin.html
+- Summary (EN): The Corner Pin node sets the corner positions of a layer relative to a reference layer, so the texture is stretched to fit between those corners. The output is sized to the reference. Listed as available since 21.0.
+- Résumé (FR) : Le nœud Corner Pin étire une texture entre quatre coins définis par rapport à une couche de référence, avec une transformation en perspective si la caméra l'est.
+
+- Inputs meaning: ["size_ref: reference layer the texture is rasterised into", "texture: layer whose corners are pinned"]
+
+- Key parameters: ["Signature: layer type accepted by source", "Units: Image (-1 to 1 over display window), Texture (0 to 1 over data window), Pixels (absolute), World (projected through the layer's implicit camera)", "Bottom Left, Bottom Right, Top Left, Top Right: corner positions, interpreted according to Units"]
+
+- Caveats: ["If the reference layer has a perspective camera, use world-position corners to get a perspective transform; otherwise the result is an affine stretch"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `units` | Units | Menu | 0 |  | image, texture, pixels, world |
+| `blx` | Bottom Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `bly` | Bottom Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `brx` | Bottom Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bry` | Bottom Right | Float | -1.0 | -1.0 .. 1.0 |  |
+| `tlx` | Top Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `tly` | Top Left | Float | 1.0 | -1.0 .. 1.0 |  |
+| `trx` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `try` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bl_texturex` | Bottom Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `bl_texturey` | Bottom Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `br_texturex` | Bottom Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `br_texturey` | Bottom Right | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tl_texturex` | Top Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tl_texturey` | Top Left | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tr_texturex` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tr_texturey` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bl_pixelx` | Bottom Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `bl_pixely` | Bottom Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `br_pixelx` | Bottom Right | Float | 1024.0 | -1.0 .. 1.0 |  |
+| `br_pixely` | Bottom Right | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tl_pixelx` | Top Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tl_pixely` | Top Left | Float | 1024.0 | -1.0 .. 1.0 |  |
+| `tr_pixelx` | Top Right | Float | 1024.0 | -1.0 .. 1.0 |  |
+| `tr_pixely` | Top Right | Float | 1024.0 | -1.0 .. 1.0 |  |
+| `bl_worldx` | Bottom Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `bl_worldy` | Bottom Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `bl_worldz` | Bottom Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `br_worldx` | Bottom Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `br_worldy` | Bottom Right | Float | -1.0 | -1.0 .. 1.0 |  |
+| `br_worldz` | Bottom Right | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tl_worldx` | Top Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `tl_worldy` | Top Left | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tl_worldz` | Top Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tr_worldx` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tr_worldy` | Top Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tr_worldz` | Top Right | Float | 0.0 | -1.0 .. 1.0 |  |

@@ -1,0 +1,45 @@
+# camerafrompoints
+
+- Label: Camera from Points
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 21 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/camerafrompoints.html
+- Summary (EN): Solves a camera's aspect ratio, focal length, rotation and absolute position from known 3D world points and their matching 2D image projections, using a Perspective-n-Point algorithm with RANSAC to reject outliers. Output named camera. Listed as available since 22.0; the page states this node type is hidden and no longer supported.
+- Résumé (FR) : Le nœud camerafrompoints retrouve la caméra à partir de points 3D connus et de leurs projections 2D, mais la page le déclare masqué et non plus pris en charge.
+
+- Inputs meaning: ["matches: image-world point correspondences, identified by the World and Image Point Attribute parameters", "layer: the layer the solved camera parameters are applied to"]
+
+- Key parameters: [{"name": "World Point Attribute / Image Point Attribute", "meaning": "Attributes on matches holding world and image coordinates"}, {"name": "Edit Intrinsics / Focal Length", "meaning": "Enables known intrinsics so the solver does not estimate them"}, {"name": "Camera Center / Image Center / Use Estimator", "meaning": "Projective centre set manually or estimated with an orthocenter estimator; defaults to the image origin"}, {"name": "Parallel Lines / Line A# / Line B#", "meaning": "Axes used by the orthocenter estimator"}, {"name": "RANSAC Seed / Iterations / Tolerance", "meaning": "Random point selection, loop count, reprojection error threshold"}, {"name": "Subset Mode", "meaning": "Percentage or Count of correspondences per candidate; default fixed count of 7"}, {"name": "PnP Reprojection Error", "meaning": "Tolerance used when intrinsics are assumed and there are 3 to 6 correspondences"}, {"name": "Apply Estimated Intrinsics", "meaning": "Writes the solved aspect ratio, aperture and focal length to camera"}]
+
+- Caveats: ["The page states this node type is hidden and no longer supported", "Fewer than 7 correspondences requires known intrinsics; the minimum is 3", "The default centre assumption can give unreliable results where the projective centre is cropped or unknown", "The page title matches; the internal name is not printed on the page, so verify it in Houdini"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `worldattrib` | World Point Attribute | String | [""] |  |  |
+| `imageattrib` | Image Point Attribute | String | [""] |  |  |
+| `knownintrinsics` |  | FolderSet |  |  |  |
+| `enableknownintrinsics` | Edit Intrinsics | Toggle | false |  |  |
+| `dofocal` | Edit Focal | Toggle | false |  |  |
+| `focal` | Focal Length | Float | [50.0] | 0.0 .. 10.0 |  |
+| `docenter` | Edit Image Center | Toggle | false |  |  |
+| `cameracenter` | Camera Center | Menu | 0 |  | manual, estimation |
+| `manualcenterx` | Image Center | Float | 0.0 | 0.0 .. 10.0 |  |
+| `manualcentery` | Image Center | Float | 0.0 | 0.0 .. 10.0 |  |
+| `parallellines` | Parallel Lines | Folder | 0 |  |  |
+| `advancedsettings` |  | FolderSet |  |  |  |
+| `ransacseed` | RANSAC Seed | Int | [1] | 1 .. 100 |  |
+| `ransaciterations` | RANSAC Iterations | Int | [10] | 1 .. 1000 |  |
+| `ransactolerance` | RANSAC Tolerance | Float | [5.0] | 1.0 .. 100.0 |  |
+| `subsetmode` | Subset Mode | Menu | 1 |  | percent, count |
+| `subsetpercent` | Percentage | Float | [10.0] | 0.0 .. 100.0 (strict) |  |
+| `subsetcount` | Count | Int | [7] | 7 .. 100 (strict) |  |
+| `reprojectionerror` | PnP Reprojection Error | Float | [8.0] | 0.001 .. 10.0 |  |
+| `applyintrinsics` | Apply Estimated Intrinsics | Toggle | false |  |  |

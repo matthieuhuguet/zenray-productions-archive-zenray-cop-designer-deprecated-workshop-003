@@ -1,0 +1,67 @@
+# grunge_aurora
+
+- Label: Grunge Aurora
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 43 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_aurora.html
+- Summary (EN): Grunge Aurora generates a pattern of leaking lines resembling an aurora display. It works as a building block for more intricate textures, such as light patterns in a night sky or water-damaged walls.
+- Résumé (FR) : Grunge Aurora produit un motif de traits lumineux qui rappelle une aurore boréale, utile comme brique pour un ciel nocturne ou un mur abîmé par l'eau.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and metadata"]
+
+- Key parameters: ["Range: Amplitude scales values, Center offsets them, output spans C-A to C+A; Mask Contrast adds contrast before both", "Pattern: Element Size, Element Scale (with Per-Component Controls), Offset, Tile Size as repeat period", "Aurora: Distortion Strength (vertical distortion along X), Distortion Size (roughness of the distortion), Streak Weight (ramp weighting samples along each pixel trajectory)", "Aurora > Advanced: Maximum Steps caps distortion steps; raise it if stepping artifacts appear", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Output can be negative or above 1; use the Clamp options", "Complement behaves as expected only for values from 0 to 1", "Fold has no effect when all values are positive", "Tile Size should match the aspect ratio of non-square images", "Post-processing Contrast is distinct from Noise Contrast on some noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `diststrength` | Distortion Strength | Float | [1.0] | 0.0 .. 2.0 |  |
+| `distsize` | Distortion Size | Float | [0.15] | 0.0 .. 1.0 |  |
+| `streakweight` | Streak Weight | Ramp | 3 |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `maxsteps` | Maximum Steps | Int | [100] | 1 .. 1000 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `streakweight1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `streakweight2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `streakweight3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

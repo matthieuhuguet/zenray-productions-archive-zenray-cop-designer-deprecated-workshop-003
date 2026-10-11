@@ -1,0 +1,33 @@
+# chladni
+
+- Label: Chladni Cymatic Patterns
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 6
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/chladni.html
+- Summary (EN): Mixes two non-integer frequencies to create interference patterns resembling Chladni figures (sand on a vibrating plate). It outputs the amplitude of the a and b waves rather than the full vibrating wave, which suits symmetrical tile patterns. Available since version 20.5.
+- Résumé (FR) : Le nœud chladni produit des motifs d'interférence proches des figures de Chladni, à partir de deux fréquences non entières, en sortant l'amplitude des ondes a et b.
+
+- Inputs meaning: ["size_ref: sets output image size and metadata", "pos (optional): UV layer used instead of pixel image coordinates", "a (optional): layer scaling the a wave amplitude", "b (optional): layer scaling the b wave amplitude", "m (optional): layer scaling the primary frequency", "n (optional): layer scaling the secondary frequency"]
+
+- Key parameters: [{"name": "Output Mode", "meaning": "Nodal Lines (white-to-black line art), Absolute Value, or Signed Value"}, {"name": "Threshold", "meaning": "In Nodal Lines mode, the maximum amplitude output as white"}, {"name": "Smoothing Width", "meaning": "In Nodal Lines mode, blur on the white-to-black transition to reduce aliasing"}, {"name": "Amplitude", "meaning": "Amplitude of the primary a wave, scaling the output range"}, {"name": "Amplitude Ratio", "meaning": "Balance between a and b waves; higher favours b"}, {"name": "Frequency", "meaning": "Vertical frequency of a and horizontal frequency of b"}, {"name": "Frequency Anisotropy", "meaning": "Horizontal frequency of a and vertical frequency of b, applied logarithmically"}, {"name": "Tile Size", "meaning": "Size of the waves in image space, setting the distance over which Frequency is measured"}]
+
+- Caveats: ["The b wave is calculated as a scaled version of the a wave", "Signed Value output is not tileable because the sign changes between quadrants", "Smoothing Width's effect is not consistent because it depends on amplitude differences"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `output` | Output Mode | Menu | 0 |  | lines, abs, sdf |
+| `threshold` | Threshold | Float | [0.5] | 0.0 .. 1.0 |  |
+| `width` | Smoothing Width | Float | [0.1] | 0.0 .. 1.0 |  |
+| `amp` | Amplitude | Float | [2.0] | 0.0 .. 10.0 |  |
+| `ampratio` | Amplitude Ratio | Float | [1.0] | 1.0 .. 10.0 |  |
+| `freq` | Frequency | Float | [4.5] | 0.0 .. 10.0 |  |
+| `freqratio` | Frequency Anisotropy | Float | [-0.45] | -5.0 .. 5.0 |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |

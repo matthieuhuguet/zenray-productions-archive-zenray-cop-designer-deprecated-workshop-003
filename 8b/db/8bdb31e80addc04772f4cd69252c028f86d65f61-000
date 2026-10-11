@@ -1,0 +1,58 @@
+# grunge_sheets
+
+- Label: Grunge Sheets
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 34 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_sheets.html
+- Summary (EN): Grunge Sheets generates a layered-noise pattern that looks like sheets. It can serve as a mask or building block for detailed textures, such as misshapen sheet metal.
+- Résumé (FR) : Grunge Sheets produit un motif de feuilles superposées par bruits, utilisable en masque ou pour une tôle déformée.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata"]
+
+- Key parameters: ["Range: Amplitude scales values before Center; Center offsets them; Mask Contrast adjusts contrast", "Pattern: Element Size, Offset, Tile Size", "Primary Distortion: horizontal distortion along Y, roughening the edges", "Primary Roughness: sharper detail on the base layer", "Secondary Mask: visibility and spread of the highlights", "Secondary Amount: how many highlights appear", "Secondary Distortion: vertical distortion along X on the highlight layer", "Seed: randomizes the output while keeping the same look", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Layers can hold negative values and values above 1; use Clamp Minimum and Clamp Maximum", "Complement (1 - x) works as expected only for values from 0 to 1", "Fold has no visible effect when all values are positive", "Tile Size should match the aspect ratio of non-square images", "Post-processing Contrast differs from Noise Contrast on some noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.4] | 0.01 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `primarydistortion` | Primary Distortion | Float | [1.3] | -2.0 .. 2.0 |  |
+| `primaryroughness` | Primary Roughness | Float | [0.6] | 0.0 .. 1.0 |  |
+| `secondarymask` | Secondary Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `secondaryamount` | Secondary Amount | Int | [6] | 1 .. 24 (strict) |  |
+| `secondarydistortion` | Secondary Distortion | Float | [2.6] | -3.0 .. 3.0 |  |
+| `seed` | Seed | Int | [0] | 0 .. 100 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `folder0_1` |  | FolderSet |  |  |  |

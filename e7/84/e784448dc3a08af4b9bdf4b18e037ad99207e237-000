@@ -1,0 +1,58 @@
+# grunge_rust
+
+- Label: Grunge Rust
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 34 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_rust.html
+- Summary (EN): Grunge Rust procedurally generates a rust-like texture by stacking several noise layers. Its Rust controls set how much of the surface is fully rusted, bare, or partly rusted, so it can serve as a mask for rust damage.
+- Résumé (FR) : Grunge Rust génère une texture de rouille par empilement de bruits, avec des réglages de couverture, de douceur et de taille de paillettes.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata"]
+
+- Key parameters: ["Range: Amplitude scales values before Center; Center offsets them; Mask Contrast increases extremes", "Pattern: Element Size, Element Scale (with Per-Component Controls), Offset, Tile Size in image coordinates", "Coverage: balance of fully rusted (white) and unrusted (black) areas", "Softness: how much partial rust shows under the fully rusted areas", "Rust: how much partial rust shows under the unrusted areas", "Rust Size: flake size; higher values give larger flakes", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Output can be negative or above 1 because layers store such values; use Clamp Minimum and Clamp Maximum", "Complement assumes values from 0 to 1", "The Contrast post-processing option differs from Noise Contrast on some noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `coverage` | Coverage | Float | [0.7] | 0.0 .. 1.0 |  |
+| `softness` | Softness | Float | [0.15] | 0.0 .. 1.0 |  |
+| `rust` | Rust | Float | [0.7] | 0.0 .. 1.0 |  |
+| `rustsize` | Rust Size | Float | [0.2] | 0.0 .. 1.0 (strict) |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

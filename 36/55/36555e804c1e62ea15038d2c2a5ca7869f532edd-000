@@ -1,0 +1,33 @@
+# heightfield_clip
+
+- Label: HeightField Clip
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_clip.html
+- Summary (EN): HeightField Clip clamps a height layer between optional lower and upper limits. It also outputs masks that show which regions were clipped by each limit.
+- Résumé (FR) : HeightField Clip borne une couche de hauteur entre deux limites optionnelles et fournit des masques des zones écrêtées.
+
+- Inputs meaning: ["height: heightfield to clamp", "lower: optional per-pixel scaling of the lower limit", "upper: optional per-pixel scaling of the upper limit", "mask: optional per-pixel mask, scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much of the clipped height mixes back with the original height", "Compute Range: fills Lower Limit and Upper Limit with the minimum and maximum of the input height", "Lower Limit and Upper Limit: enable and set each limit; a dropper picks the value in the viewport", "Clamped Values: Replace with Limit Value, or Soft Clip", "Soft Clip Direction: smooth transition outside the range (extending the clip) or inside it (narrowing the clip)", "Soft Clip Range: width of the smoothing transition from the limit to the original values"]
+
+- Caveats: ["The page lists no explicit limitations, performance notes or edge cases", "Soft Clip changes values near the limits as well as the clamped values, so it is not a pure hard clamp", "The internal type name cop heightfield_clip is inferred from the page file name, not stated on the page"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `computerange` | Compute Range | Button |  |  |  |
+| `dolowerlimit` | Lower Limit | Toggle | true |  |  |
+| `lowerlimit` | Lower Limit | Float | [-100.0] | -100.0 .. 100.0 |  |
+| `doupperlimit` | Upper Limit | Toggle | true |  |  |
+| `upperlimit` | Upper Limit | Float | [100.0] | -100.0 .. 100.0 |  |
+| `method` | Clamped Values | Menu | 1 |  | clamp, soft |
+| `softclipdir` | Soft Clip Direction | Menu | 1 |  | inside, outside |
+| `softcliprange` | Soft Clip Range | Float | [1.0] | 0.0 .. 10.0 (strict) |  |

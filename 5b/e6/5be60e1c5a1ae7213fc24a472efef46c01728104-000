@@ -1,0 +1,113 @@
+# configurestamps
+
+- Label: Configure Stamps
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 10
+- Parameters: 89 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/configurestamps.html
+- Summary (EN): Configure Stamps takes geometry points and adds stamp/sprite attributes that the Stamp Points node can read. It also provides inputs and randomisation controls for each stamp's position, scale, rotation, colour, alpha and stamp choice.
+- Résumé (FR) : Le nœud Configure Stamps ajoute aux points les attributs de tampon que lit Stamp Points, avec des entrées et des aléas pour la position, l'échelle, la rotation, la couleur et le choix du tampon.
+
+- Inputs meaning: ["points: geometry receiving the attributes", "jitter (optional): layer offsetting stamp positions", "direction (optional): layer setting stamp angle direction", "angle (optional): rotates stamps, 0 to 1 maps to 0 to 360 degrees", "scale (optional): multiplies uniform scale", "stretch (optional): multiplies non-uniform scale", "color (optional): tints stamps", "alpha (optional): multiplies stamp alpha", "sort (optional): small Z offsets for depth sorting", "select (optional): chooses stamps in layer-based mode"]
+
+- Key parameters: ["Seed: changes the random pattern for all random values", "Jitter / Jitter Scale: random position offset, per-axis with per-component controls", "Scale / Scale Mode: stamp size in image space (uniform, percent variance, or min/max)", "Stretch X / Stretch Y / Stretch Mode: non-uniform scale per axis", "Angle / Angle Mode / Angle Variance: rotation in degrees", "Stamp Color / Color Seed: uniform tint, hue/saturation/value variation, or ramp", "Stamp Alpha / Alpha Variance: opacity, randomised or ramp", "Use Sort Layer: enables the sort input", "Stamp Count: number of stamps, so selection works", "Mode: Cycle, Random (with Select Seed), or Layer Select"]
+
+- Caveats: ["Stamp Count must match the number of stamps for select to work; the Stamp Sprites recipe sets it automatically", "Without a stamps input, Mode applies to a default star pattern", "Scale and Stretch multiply into the same spritescale attribute", "The page is inconsistent between Layer Select (parameter) and Layer Sort (inputs); check the menu in the build"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `seed` | Seed | Int | [0] | 0 .. 10 |  |
+| `folder11` |  | FolderSet |  |  |  |
+| `folderjitter` |  | FolderSet |  |  |  |
+| `jittermask` | Jitter Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `jitter` | Jitter | Float | [0.0] | 0.0 .. 5.0 (strict) |  |
+| `jittertype` | Jitter Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `jitterscalex` | Jitter Scale | Float | 1.0 | 0.0 .. 5.0 (strict) |  |
+| `jitterscaley` | Jitter Scale | Float | 1.0 | 0.0 .. 5.0 (strict) |  |
+| `folderscale` |  | FolderSet |  |  |  |
+| `scalemask` | Scale Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scale` | Scale | Float | [0.1] | 0.0 .. 1.0 |  |
+| `scalemode` | Scale Mode | Menu | 0 |  | uniform, variance, minmax |
+| `scalevariance` | Scale Variance | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `minscale` | Min Value | Float | [0.5] | 0.0 .. 10.0 |  |
+| `maxscale` | Max Value | Float | [1.5] | 0.0 .. 10.0 |  |
+| `folderstretch` |  | FolderSet |  |  |  |
+| `stretchmask` | Stretch Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchmode` | Stretch Mode | Menu | 0 |  | uniform, variance, minmax |
+| `stretchx` | Stretch X | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchy` | Stretch Y | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchvariancex` | Stretch Variance | Float | 0.5 | 0.0 .. 1.0 (strict) |  |
+| `stretchvariancey` | Stretch Variance | Float | 0.0 | 0.0 .. 1.0 (strict) |  |
+| `minstretchx` | Min Value | Float | 0.0 | 0.0 .. 10.0 |  |
+| `minstretchy` | Min Value | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maxstretchx` | Max Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `maxstretchy` | Max Value | Float | 0.0 | 0.0 .. 10.0 |  |
+| `folderrotation` |  | FolderSet |  |  |  |
+| `anglemask` | Angle Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `directionmask` | Direction Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `angle` | Angle | Float | [0.0] | 0.0 .. 360.0 |  |
+| `anglemode` | Angle Mode | Menu | 0 |  | uniform, variance, minmax |
+| `anglevariance` | Angle Variance | Float | [0.0] | -180.0 .. 180.0 |  |
+| `minangle` | Min Value | Float | [-180.0] | -180.0 .. 180.0 |  |
+| `maxangle` | Max Value | Float | [180.0] | -180.0 .. 180.0 |  |
+| `roundto` | Round To | Toggle | false |  |  |
+| `roundtomultiples` | Round to Multiples | Float | [45.0] | 1.0 .. 360.0 (strict) |  |
+| `usesortlayer` | Use Sort Layer | Toggle | true |  |  |
+| `foldercolor` |  | FolderSet |  |  |  |
+| `colorseed` | Color Seed | Int | [0] | 0 .. 100 |  |
+| `colormask` | Color Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `colorr` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `colorg` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `colorb` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `colormode` | Color Mode | Menu | 0 |  | uniform, variance, ramp |
+| `colorramp` | Color Ramp | Ramp | 5 |  |  |
+| `huevariance` | Hue | Float | [0.0] | -180.0 .. 180.0 |  |
+| `saturationvariance` | Saturation | Float | [0.0] | -1.0 .. 1.0 |  |
+| `valuevariance` | Value | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `alphamask` | Alpha Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `alpha` | Stamp Alpha | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `alphamode` | Alpha Mode | Menu | 0 |  | uniform, variance, ramp |
+| `alphavariance` | Alpha Variance | Float | [0.0] | -1.0 .. 1.0 |  |
+| `alpharamp` | Alpha Ramp | Ramp | 2 |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `stampcount` | Stamp Count | Int | [1] | 1 .. 8 |  |
+| `selectmode` | Mode | Menu | 1 |  | cycle, random, layer |
+| `selectseed` | Select Seed | Int | [0] | 0 .. 50 |  |
+| `colorramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

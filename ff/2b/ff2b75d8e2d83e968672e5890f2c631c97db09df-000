@@ -1,0 +1,56 @@
+# neural_layertodepth_moge2
+
+- Label: Neural Layer to Depth (MoGe-2)
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 32 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/neural_layertodepth_moge2.html
+- Summary (EN): Estimates metric-scale depth, normal and position maps from a 2D image using Microsoft's MoGe-2 model. It also produces a sky mask and a 3D point cloud. The page says this is one of four variants (depth, normal, points, position) that differ only in which output is displayed.
+- Résumé (FR) : Estime à partir d'une image des cartes de profondeur, de normales et de positions à l'échelle métrique, avec un masque du ciel et un nuage de points, grâce au modèle MoGe-2 de Microsoft.
+
+- Inputs meaning: ["source: the image to estimate; non-RGB inputs are converted to RGB"]
+
+- Key parameters: ["Model: MoGe-2 ViT-L Normal, or Custom to load your own ONNX file", "Download Models / Reload Model: downloads the ONNX model to the SHFS model location, or forces a reload", "Number of Tokens: inference resolution; higher values keep more detail but cost more runtime and memory", "Resample Size: resamples the input to a chosen size; when off, the input size is used", "Color Transform: OCIO transform from Original Space to To Space, or none", "Attempt Aspect Correct: estimates the field of view from the points and applies it to the point cloud", "Scale by Metric: expresses depth and position in real-world units", "Apply Sky Mask / Sky Depth Shift: masks sky regions and offsets their depth in metres", "Remove Edges / Max Depth Change: removes points near depth discontinuities; lower values remove more points", "Normal Type: Signed (-1 to 1) or Offset (0 to 1)", "Create GSplat Points / GSplat Scale: displays the point cloud as Gaussian splats and sets their size in metres", "Use Solved Camera, with RANSAC Seed, Iterations and Tolerance: matches outputs to a camera solved from point correspondences", "Execution Provider / Device ID: Automatic, CPU, CUDA, DirectML or CoreML, and the GPU"]
+
+- Caveats: ["Click Download Models after a fresh Houdini installation before using the node.", "On macOS, set Execution Provider to CPU. The page says this prevents initialisation errors.", "Number of Tokens changes the internal working resolution, not the final output image size.", "Device ID has no effect when using CPU inference."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `model` | Model | Menu | 0 |  | moge-2-vitl-normal, custom |
+| `downloadmodels` | Download Models | Button |  |  |  |
+| `modelfile` | Model File | String | ["shfs:/houdini/nodes/cop/neural_imagetodepth_moge2/onnx/moge-2-vitl-normal_v1.onnx"] |  |  |
+| `reload` | Reload Model | Button |  |  |  |
+| `numtokens` | Number of Tokens | Int | [1800] | 0 .. 1000 (strict) |  |
+| `preprocessing` |  | FolderSet |  |  |  |
+| `doresamplesize` | Enable Resample Size | Toggle | false |  |  |
+| `resamplesizex` | Resample Size | Int | 1024 | -1 .. 1 |  |
+| `resamplesizey` | Resample Size | Int | 1024 | -1 .. 1 |  |
+| `colortransform` | Color Transform | Menu | 0 |  | 0, 1 |
+| `sourcespace` | Original Space | String | ["scene_linear"] |  |  |
+| `tospace` | To Space | String | ["sRGB - Display"] |  |  |
+| `postprocessing` |  | FolderSet |  |  |  |
+| `aspectcorrect` | Attempt Aspect Correct | Toggle | true |  |  |
+| `metricscale` | Scale by Metric | Toggle | true |  |  |
+| `applyskymask` | Apply Sky Mask | Toggle | true |  |  |
+| `doskydepthshift` | Enable Sky Depth Shift | Toggle | false |  |  |
+| `skydepthshift` | Sky Depth Shift | Float | [100.0] | 0.0 .. 100.0 (strict) |  |
+| `removeedges` | Remove Edges | Toggle | false |  |  |
+| `maxdepthchange` | Max Depth Change | Float | [0.05] | 0.0 .. 1.0 (strict) |  |
+| `normaltype` | Normal Type | Menu | 1 |  | signed, offset |
+| `gsplat` |  | FolderSet |  |  |  |
+| `creategsplat` | Create GSplat Points | Toggle | true |  |  |
+| `gsplatscale` | GSplat Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `camera` |  | FolderSet |  |  |  |
+| `usecamera` | Use Solved Camera | Toggle | true |  |  |
+| `ransacseed` | RANSAC Seed | Int | [1] | 1 .. 100 |  |
+| `ransaciterations` | RANSAC Iterations | Int | [5] | 1 .. 1000 |  |
+| `ransactolerance` | RANSAC Tolerance | Float | [0.2] | 0.0 .. 1.0 (strict) |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `provider` | Execution Provider | Menu | 0 |  |  |
+| `deviceid` | Device ID | Int | [0] | 0 .. 10 |  |

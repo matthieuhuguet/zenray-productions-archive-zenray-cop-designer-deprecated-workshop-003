@@ -1,0 +1,26 @@
+# Documentation coverage (generated 2026-10-11T01:16:13)
+
+- Copernicus nodes in the installed Houdini: 372
+- Each one has an exact parameter table from Houdini: 372 of 372
+- Each one has a web summary with status ok: 372 of 372
+- Excluded from the node count (network containers and Paint internals): 12, see list below
+- Legacy COP2 nodes (category Cop2, not Copernicus): 169, parameter tables only
+
+## Nodes still without a web summary
+
+none
+
+## Excluded names and reasons
+
+- chopnet: CHOP network container
+- dopnet: DOP network container
+- lopnet: LOP network container
+- matnet: material network container
+- objnet: OBJ network container
+- paintinternalconvert: Paint internal helper, not in the COP index
+- paintinternals: Paint internal helper, not in the COP index
+- ropnet: ROP network container
+- shopnet: SHOP network container
+- sopnet: SOP network container
+- topnet: TOP network container
+- vopnet: VOP network container (also forbidden by the functions-only rule)

@@ -1,0 +1,22 @@
+# cryptomatteencode
+
+- Label: Cryptomatte Encode
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cryptomatteencode.html
+- Summary (EN): Packs object-ID and coverage data into the Cryptomatte format, storing them in 32-bit RGBA layers. The page is inconsistent on outputs: its purpose text says it outputs one Mono coverage layer and one ID layer, while its output section names a single RGBA layer called crypto.
+- Résumé (FR) : Encode des identifiants d'objets et leurs couvertures au format Cryptomatte, dans une couche RGBA 32 bits.
+
+- Inputs meaning: ["id_a: hash value of the first object", "cov_a: coverage of the first object", "id_b: hash value of the second object", "cov_b: coverage of the second object"]
+
+- Caveats: ["The page documents no parameters.", "The ID layer stores a hash of the object name; recovering names needs re-hashing or the EXR metadata.", "A Cryptomatte normally spans several RGBA layers read together; this node packs only one.", "Page is inconsistent on outputs (Mono coverage plus ID versus a single RGBA crypto layer)."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

@@ -1,0 +1,42 @@
+# contactsheet
+
+- Label: Contact Sheet
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 18 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/contactsheet.html
+- Summary (EN): The Contact Sheet node arranges its input layers into a grid, similar to a printed contact sheet, also called a mosaic. You control the grid layout, scaling and sampling.
+- Résumé (FR) : Le nœud Contact Sheet dispose les couches d'entrée en grille, comme une planche-contact, avec un contrôle de la disposition, de l'échelle et de l'échantillonnage.
+
+- Inputs meaning: ["image1: a series of layers to arrange into the contact sheet"]
+
+- Key parameters: ["Signature: layer type accepted by source", "Images per Line: layers per row before a new row starts", "Stack Vertically: Top to Bottom or Bottom to Top", "Stack Horizontally: Left to Right or Right to Left", "Stack Images in Rows: fills rows first when on, columns first when off", "Max Lines: caps the number of rows; extra layers go to additional outputs", "Keep Full Size: outputs maximum size for the given limits", "Background Color: fill for empty areas", "First Input Offset: shifts the first input position", "Scale Output Resolution: reduces output resolution for quick previews", "Scale Input Images and Scale Input Method: X Axis, Y Axis, or Stretch to Fit", "Clipped Sampling: returns background colour outside a data window", "Filter: sampling method, default Box"]
+
+- Caveats: ["May gain additional outputs if more source images are present", "Full-resolution output can become very large; use Scale Output Resolution"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `stride` | Images per Line | Int | [4] | 1 .. 10 (strict) |  |
+| `stackvertical` | Stack Vertically | Menu | 0 |  | toptobottom, bottomtotop |
+| `stackhorizontal` | Stack Horizontally | Menu | 0 |  | lefttoright, righttoleft |
+| `userows` | Stack Images in Rows | Toggle | true |  |  |
+| `limitlines` | Max Lines | Toggle | true |  |  |
+| `limitlinesnum` | Max Lines | Int | [4] | 1 .. 5 (strict) |  |
+| `keepfullsize` | Keep Full Size | Toggle | false |  |  |
+| `backgroundr` | Background Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `backgroundg` | Background Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `backgroundb` | Background Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `backgrounda` | Background Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `offset` | First Input Offset | Int | [0] | 0 .. 10 (strict) |  |
+| `scale` | Scale Output Resolution | Float | [1.0] | 0.0001 .. 1.0 (strict) |  |
+| `scaleinput` | Scale Input Images | Toggle | true |  |  |
+| `scaleinputmethod` | Scale Input Method | Menu | 0 |  | x, y, stretch |
+| `clippedsample` | Clipped Sampling | Toggle | true |  |  |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |

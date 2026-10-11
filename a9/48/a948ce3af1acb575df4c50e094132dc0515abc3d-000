@@ -1,0 +1,33 @@
+# bokeh
+
+- Label: Bokeh
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bokeh.html
+- Summary (EN): Simulates a lens's out-of-focus highlights by spreading each pixel's light across an aperture-shaped area. Unlike a blur, which averages surrounding pixels, it distributes each pixel's light outward according to that pixel's own scale.
+- Résumé (FR) : Étale la lumière de chaque pixel sur une forme d'ouverture pour imiter les reflets flous d'un objectif, au lieu de moyenner les voisins comme un flou.
+
+- Inputs meaning: ["source: image to apply the effect to", "aperture (optional): mono mask defining the spread shape; a circle is used when unwired", "radiusscale (optional): per-pixel scale for bokeh size, clamped to 1", "mask (optional): per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Bokeh Map Filter: filters the aperture map for higher-quality results", "Mask: how much of the new value mixes with the original (default 1, only the new value)", "Toggle RGB, Red, Green, Blue, Alpha: channels the effect applies to", "Radius: maximum bokeh radius in pixels", "Bokeh Gain: boosts or reduces the total luminance of the result", "Bokeh Resolution: resolution the aperture is resampled to, which speeds up filtering of large apertures", "Normalize Gathered Light: divides gathered light by the number of contributing pixels to reduce halos between large and small bokeh"]
+
+- Caveats: ["Large Radius values are computationally expensive because much scattering is required", "The aperture is normalized, so total brightness is preserved by default; Bokeh Gain is needed to change it", "Normalize Gathered Light reduces halos but does not preserve energy", "radiusscale is clamped to 1 and cannot scale bokeh above that"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `filterbokeh` | Bokeh Map Filter | Toggle | true |  |  |
+| `filter` | Bokeh Map Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergb` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `radius` | Radius | Float | [25.0] | 0.0 .. 100.0 |  |
+| `bokehgain` | Bokeh Gain | Float | [1.0] | 0.0 .. 2.0 |  |
+| `bokehres` | Bokeh Resolution | Int | [128] | 16 .. 128 |  |
+| `normalize` | Normalize Gathered Light | Toggle | true |  |  |

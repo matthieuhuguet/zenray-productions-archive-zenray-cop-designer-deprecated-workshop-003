@@ -1,0 +1,66 @@
+# crop
+
+- Label: Crop
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 42 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/crop.html
+- Summary (EN): The Crop node trims a layer down to a smaller region, or extends it to a larger size, filling new pixels using the border rules. Copernicus has several spaces, so crop can mean discarding pixels, reframing the view, or both.
+- Résumé (FR) : Le nœud Crop recadre une couche sur une région plus petite, ou l'étend en remplissant les nouveaux pixels selon les règles de bord.
+
+- Inputs meaning: ["source: the layer to crop", "size_ref: layer that sets output size and controls metadata", "bounds: reference geometry supplying the crop dimensions"]
+
+- Key parameters: ["Mode: discard cropped pixels in place, discard and reframe to fill, or leave unchanged while reframing to the crop", "Border: edge behaviour when uncropping (Constant, Clamp, Mirror, Wrap, Clip)", "Units: Image (-1 to 1), Texture (0 to 1), Pixels", "Geometry Units: Image, Texture, Pixels or World", "Method: lower-left and upper-right corners, or lower-left corner and size", "Aspect Ratio: adjusts the final crop to a ratio", "Extract Tile / Tile Counts / Tile Number: divides the region into equal tiles and keeps one", "Minimum and Maximum Resolution", "Reset Pixel Origin: realigns pixel coordinates with the display window", "Pixel Padding (Left/Right, Top/Bottom)"]
+
+- Caveats: ["Cropping always happens in pixels, so values may round when they do not match buffer elements", "Reframe to Crop mode appears to have no effect in the 2D viewport", "Reset Pixel Origin can make pixel coordinates look offset"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mode` | Mode | Menu | 0 |  | data, both, display |
+| `border` | Border | Menu | 0 |  | unchanged, constant, clamp, mirror, wrap |
+| `units` | Units | Menu | 0 |  | image, texture, pixels |
+| `geounits` | Geometry Units | Menu | 0 |  | image, texture, pixels, world |
+| `method` | Method | Menu | 0 |  | xyrt, xysize |
+| `xyx` | Lower Left | Float | -1.0 | 0.0 .. 10.0 |  |
+| `xyy` | Lower Left | Float | -1.0 | 0.0 .. 10.0 |  |
+| `rtx` | Upper Right | Float | 1.0 | 0.0 .. 10.0 |  |
+| `rty` | Upper Right | Float | 1.0 | 0.0 .. 10.0 |  |
+| `sizex` | Size | Float | 2.0 | 0.0 .. 10.0 |  |
+| `sizey` | Size | Float | 2.0 | 0.0 .. 10.0 |  |
+| `xy_texturex` | Lower Left | Float | 0.0 | 0.0 .. 10.0 |  |
+| `xy_texturey` | Lower Left | Float | 0.0 | 0.0 .. 10.0 |  |
+| `rt_texturex` | Upper Right | Float | 1.0 | 0.0 .. 10.0 |  |
+| `rt_texturey` | Upper Right | Float | 1.0 | 0.0 .. 10.0 |  |
+| `size_texturex` | Size | Float | 1.0 | 0.0 .. 10.0 |  |
+| `size_texturey` | Size | Float | 1.0 | 0.0 .. 10.0 |  |
+| `xy_pixelx` | Lower Left | Float | 0.0 | 0.0 .. 10.0 |  |
+| `xy_pixely` | Lower Left | Float | 0.0 | 0.0 .. 10.0 |  |
+| `rt_pixelx` | Upper Right | Float | 256.0 | 0.0 .. 10.0 |  |
+| `rt_pixely` | Upper Right | Float | 256.0 | 0.0 .. 10.0 |  |
+| `size_pixelx` | Size | Float | 256.0 | 0.0 .. 10.0 |  |
+| `size_pixely` | Size | Float | 256.0 | 0.0 .. 10.0 |  |
+| `setaspect` | Force Aspect | Toggle | false |  |  |
+| `aspect1` | Aspect Ratio | Float | 1.0 | 0.0 .. 10.0 |  |
+| `aspect2` | Aspect Ratio | Float | 1.0 | 0.0 .. 10.0 |  |
+| `aspectmenu` | Aspect Menu | Menu | 0 |  | none, 1:1, 3:2, 4:3, 16:9 |
+| `extracttile` | Extract Tile | Toggle | false |  |  |
+| `tilecountx` | Tile Counts | Int | 2 | 1 .. 10 (strict) |  |
+| `tilecounty` | Tile Counts | Int | 2 | 1 .. 10 (strict) |  |
+| `tilenum` | Tile Number | Int | [0] | 0 .. 10 |  |
+| `minresx` | Minimum Resolution | Int | 1 | 0 .. 10 |  |
+| `minresy` | Minimum Resolution | Int | 1 | 0 .. 10 |  |
+| `usemaxres` | Limit Resolution | Toggle | true |  |  |
+| `maxresx` | Maximum Resolution | Int | 8192 | 0 .. 10 |  |
+| `maxresy` | Maximum Resolution | Int | 8192 | 0 .. 10 |  |
+| `resetpixelorigin` | Reset Pixel Origin | Toggle | true |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `pixelpad_h1` | Left/Right | Int | 0 | 0 .. 10 |  |
+| `pixelpad_h2` | Left/Right | Int | 0 | 0 .. 10 |  |
+| `pixelpad_v1` | Top/Bottom | Int | 0 | 0 .. 10 |  |
+| `pixelpad_v2` | Top/Bottom | Int | 0 | 0 .. 10 |  |

@@ -1,0 +1,25 @@
+# geotoadjacency
+
+- Label: Geometry to Adjacency
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/geotoadjacency.html
+- Summary (EN): Geometry to Adjacency converts geometry into triangles and rasterizes it into an adjacency cable, which other adjacency COP nodes can process. For most workflows it is wired into Attribute Sample with Adjacency to rasterize geometry attributes.
+- Résumé (FR) : Le nœud Geometry to Adjacency rastérise une géométrie triangulée en câble d'adjacence, utilisable ensuite pour échantillonner ses attributs.
+
+- Inputs meaning: ["size_ref: sets the output image size and controls the metadata", "geometry: geometry to rasterize"]
+
+- Key parameters: ["UV Attribute: name of the vertex UV attribute to rasterize"]
+
+- Caveats: ["If the geometry contains n-gons and attributes are sampled from it, the workflow may show unwanted distortion"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `uvattrib` | UV Attribute | String | ["uv"] |  |  |

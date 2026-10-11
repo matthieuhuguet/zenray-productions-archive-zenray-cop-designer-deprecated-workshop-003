@@ -1,0 +1,27 @@
+# combinenormals
+
+- Label: Combine Normals
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 2 to 3
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/combinenormals.html
+- Summary (EN): Combine Normals merges two normal maps into one. The base map carries the larger-scale detail and the detail map adds fine surface detail. For layers that are not normal maps, the page points to the Blend COP instead.
+- Résumé (FR) : Le nœud Combine Normals fusionne deux cartes de normales, la base portant le détail large et la carte de détail ajoutant le relief fin, selon la méthode Whiteout, UDN ou Reoriented.
+
+- Inputs meaning: ["bg: base normal map (background layer)", "fg: detail normal map (foreground blend source)", "mask (optional): per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much of the new value is mixed in, default 1", "Normal Type: Signed (-1 to 1, e.g. geometry normals) or Offset (0 to 1, e.g. normal map textures); output matches", "Combine Method: Whiteout (adds x and y, multiplies z), UDN (adds x and y, keeps base z, faster), Reoriented (rotates detail onto base, more accurate, slower)"]
+
+- Caveats: ["Both inputs must be in the same space (e.g. tangent) and the same type (both signed or both offset)", "Use the Convert Normal COP first to convert mismatched inputs"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `normaltype` | Normal Type | Menu | 1 |  | 0, 1 |
+| `method` | Combine Method | Menu | 0 |  | 0, 1, 2 |

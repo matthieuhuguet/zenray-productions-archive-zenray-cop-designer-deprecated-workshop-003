@@ -1,0 +1,25 @@
+# layerfromvdb
+
+- Label: Layer from VDB
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerfromvdb.html
+- Summary (EN): The Layer from VDB node fills an existing layer with values sampled from a VDB at each pixel world position, and the VDB type sets the output layer type. It is the reverse of VDB from Layer.
+- Résumé (FR) : Remplit une couche existante avec les valeurs d'un VDB échantillonné à la position monde de chaque pixel.
+
+- Inputs meaning: ["size_ref: defines the size and position of the layer to sample", "vdb: float or vector VDB to sample from; its type determines the output layer type", "pos: optional layer whose values replace the pixel world position as the sampling coordinate"]
+
+- Key parameters: ["Signature: layer type the source accepts (the only parameter documented on the page)"]
+
+- Caveats: ["The page documents only the Signature parameter", "The node needs an existing layer as its source; it sets that layer values and does not create one from scratch", "Only float and vector VDBs are supported as sources", "Do not confuse with VDB from Layer, which does the reverse", "Documented as available since version 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |

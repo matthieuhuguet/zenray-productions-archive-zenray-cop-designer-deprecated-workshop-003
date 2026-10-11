@@ -1,0 +1,54 @@
+# light
+
+- Label: Light
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 2 to 8
+- Parameters: 30 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/light.html
+- Summary (EN): The Light node applies a simple lighting calculation to a layer from a light direction, a light colour and surface normals. Lighting is additive, so several Light nodes can be combined.
+- Résumé (FR) : Éclaire une couche à partir des normales de surface, avec une direction ou une position de lumière, un modèle de shading et une couleur, et s'additionne aux autres nœuds Light.
+
+- Inputs meaning: ["source: layer to be lit", "normal: RGB surface normal layer; its type must match the Normal Type setting", "pos: RGB position layer used in place of the world-space location of the source pixel", "metallic: scale multiplier for the Metallic value", "vieworigin: RGB ray direction per pixel, required for Phong and metallic shading", "points: optional geometry whose points act as light sources", "envmap: optional RGB environment map in polar coordinates", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Normal Type: signed normals (-1 to 1) or offset normals (0 to 1)", "Mask: amount of the lit result mixed into the original layer", "Directional: directional light rays or a point light at a location", "Light Direction / Light Position: direction or centre used when no point geometry is provided", "Light Radius: approximate sphere radius preventing infinite brightness at a point light centre", "Light Color / Intensity / Exposure: colour, linear brightness and exponential brightness (each step doubles)", "Diffuse / Specular / Metallic: diffuse tint, specular colour, and metallic amount", "Model: Lambertian, Wrapped Diffuse or Phong", "Terminator: shading boundary of Wrapped Diffuse; Exponent: highlight sharpness of Phong"]
+
+- Caveats: ["Lights are additive, so combine several Light nodes for a multi-light setup", "When point geometry is wired to points, Light Direction and Light Position are ignored", "Phong and metallic shading require the vieworigin input", "Light Radius is multiplied by the pscale attribute on points", "Terminator affects only Wrapped Diffuse, and Exponent affects only Phong", "Environment Map Offset rotates the environment map around the Y axis"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scopergb` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `normaltype` | Normal Type | Menu | 1 |  | signed, offset |
+| `folder0` |  | FolderSet |  |  |  |
+| `directional` | Directional | Toggle | true |  |  |
+| `lightdirx` | Light Direction | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightdiry` | Light Direction | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightdirz` | Light Direction | Float | 1.0 | -1.0 .. 1.0 |  |
+| `lightposx` | Light Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightposy` | Light Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lightposz` | Light Position | Float | 1.0 | -1.0 .. 1.0 |  |
+| `radius` | Light Radius | Float | [0.1] | 0.0 .. 1.0 |  |
+| `lightcolor_valr` | Light Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `lightcolor_valg` | Light Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `lightcolor_valb` | Light Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `intensity` | Intensity | Float | [1.0] | 0.0 .. 10.0 |  |
+| `exposure` | Exposure | Float | [0.0] | -10.0 .. 10.0 |  |
+| `envmapoffset` | Environment Map Offset | Float | [0.0] | -180.0 .. 180.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `diffuser` | Diffuse | Float | 1.0 | 0.0 .. 1.0 |  |
+| `diffuseg` | Diffuse | Float | 1.0 | 0.0 .. 1.0 |  |
+| `diffuseb` | Diffuse | Float | 1.0 | 0.0 .. 1.0 |  |
+| `specularr` | Specular | Float | 1.0 | 0.0 .. 1.0 |  |
+| `specularg` | Specular | Float | 1.0 | 0.0 .. 1.0 |  |
+| `specularb` | Specular | Float | 1.0 | 0.0 .. 1.0 |  |
+| `metallic` | Metallic | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `model` | Model | Menu | 0 |  | lambertian, wrap, phong |
+| `terminator` | Terminator | Float | [1.0] | -1.0 .. 1.0 (strict) |  |
+| `exponent` | Exponent | Float | [10.0] | 1.0 .. 50.0 |  |

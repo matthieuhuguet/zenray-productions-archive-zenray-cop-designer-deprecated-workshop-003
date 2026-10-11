@@ -1,0 +1,38 @@
+# channelswap
+
+- Label: Channel Swap
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 14 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/channelswap.html
+- Summary (EN): Rearranges the channels within one multichannel layer, VDB or attribute, for example RGB to BGR. It can also copy a channel from a second input, or set a channel to Zero, One or a constant Value.
+- Résumé (FR) : Le nœud channelswap réordonne ou remplace les canaux d'une même couche multicanale, par exemple du RGB vers du BGR.
+
+- Inputs meaning: ["channels: the layer, VDB or attribute whose channels are swapped", "alternate: the layer, VDB or attribute to take channels from", "mask (optional): per-pixel mask, scaled by the Mask parameter"]
+
+- Key parameters: [{"name": "Signature", "meaning": "Layer type the input accepts"}, {"name": "Mask", "meaning": "How much of the new value is mixed in; default 1 uses only the new value"}, {"name": "Source for Red / Green / Blue / Alpha", "meaning": "First Input or Second Input, then Red, Green, Blue, Alpha, Zero, One or Value; defaults map each channel to itself"}, {"name": "Value for Red / Green / Blue / Alpha", "meaning": "Constant used when that channel's source is Value"}]
+
+- Caveats: ["A channel that does not exist in the input follows the standard channel extension rules", "For complex workflows, the page suggests Channel Split and Channel Join; Channel Swap creates fewer intermediate buffers"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `srcred` | Source for Red | Menu | 0 |  | red, green, blue, alpha, zero, one, value |
+| `layerred` | Layer for Red | Menu | 0 |  | first, second |
+| `valuered` | Value for Red | Float | [0.5] | 0.0 .. 10.0 |  |
+| `srcgreen` | Source for Green | Menu | 1 |  | red, green, blue, alpha, zero, one, value |
+| `layergreen` | Layer for Green | Menu | 0 |  | first, second |
+| `valuegreen` | Value for Green | Float | [0.5] | 0.0 .. 10.0 |  |
+| `srcblue` | Source for Blue | Menu | 2 |  | red, green, blue, alpha, zero, one, value |
+| `layerblue` | Layer for Blue | Menu | 0 |  | first, second |
+| `valueblue` | Value for Blue | Float | [0.5] | 0.0 .. 10.0 |  |
+| `srcalpha` | Source for Alpha | Menu | 3 |  | red, green, blue, alpha, zero, one, value |
+| `layeralpha` | Layer for Alpha | Menu | 0 |  | first, second |
+| `valuealpha` | Value for Alpha | Float | [0.5] | 0.0 .. 10.0 |  |

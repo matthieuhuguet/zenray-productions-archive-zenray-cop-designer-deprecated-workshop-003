@@ -1,0 +1,30 @@
+# flow_block_begin
+
+- Label: Flow Block Begin
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 5
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/flow_block_begin.html
+- Summary (EN): This node marks the start of a Flow simulation block in Copernicus. Flow runs simple 2D simulations of incompressible flowing liquid.
+- Résumé (FR) : Le nœud Flow Block Begin ouvre un bloc de simulation de fluide incompressible dans Copernicus, en fournissant les données initiales.
+
+- Inputs meaning: ["color: RGBA layer of initial fluid colors; read on the first frame only", "v: UV layer of initial flow directions; read on the first frame only", "temperature (optional): Mono layer of initial fluid temperatures; read on the first frame only", "feedback: cable fed back to the next iteration; its structure must exactly match the Flow Block End input; read on the first frame only", "passthrough (optional): cable of layers computed outside the simulation and read every frame, useful for animated sources"]
+
+- Key parameters: ["Block Path: path to the matching Flow Block End node, which must be at the same network level", "Buoyancy: strength of the internal buoyancy force; the temperature field is scaled by this value and added to the velocity", "Buoyancy Direction: direction in which higher temperatures move", "Correct Initial Velocity: pressure-projects incoming velocities so they represent valid fluid motion", "Layers to Advect: wire names of the layers advected by the velocity layer; the v layer is always advected"]
+
+- Caveats: ["Flow requires DOP-level permissions; it is not available in Houdini Core, only in Houdini FX, Apprentice, Indie and Education", "Time Shift cannot be used inside Copernicus blocks when it needs block inputs at different times; the page suggests Time Pack before Block Begin, wired in as a cable", "Passthrough inputs cannot depend on the simulation results", "Operations that do not depend on previous frames should go before the block so they cook only once"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `blockpath` | Block Path | String | [""] |  |  |
+| `buoyancy` | Buoyancy | Float | [1.0] | 0.0 .. 10.0 |  |
+| `buoyancydirx` | Buoyancy Direction | Float | 0.0 | -1.0 .. 1.0 |  |
+| `buoyancydiry` | Buoyancy Direction | Float | 1.0 | -1.0 .. 1.0 |  |
+| `correctvel` | Correct Initial Velocity | Toggle | true |  |  |
+| `advectlist` | Layers to Advect | String | ["*"] |  |  |

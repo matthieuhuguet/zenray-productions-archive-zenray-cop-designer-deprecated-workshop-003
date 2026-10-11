@@ -1,0 +1,26 @@
+# monotoid
+
+- Label: Mono to ID
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/monotoid.html
+- Summary (EN): Converts a mono layer, VDB or attribute into an integer ID output. It is the reverse of the ID to Mono node, which turns ID data into a float.
+- Résumé (FR) : Convertit un calque mono en identifiant entier, à l'inverse de ID to Mono, par une conversion simple, une décompression Safe ou une réinterprétation bit à bit.
+
+- Inputs meaning: ["mono: the original mono layer, VDB or attribute to convert"]
+
+- Key parameters: ["Signature: sets the layer type the source accepts", "Conversion: Cast is a standard float to integer conversion; Safe Unpack reverses the packing applied by Safe Pack in ID to Mono and uses the unpack_intfromsafefloat VEX function; Bitwise reinterprets the float's bits as an integer"]
+
+- Caveats: ["Bitwise conversion is reversible, but the resulting integer does not reflect the float's numeric value.", "Safe Unpack is meant for round-tripping data packed by Safe Pack in ID to Mono. The page does not say what it does with other input.", "The page does not describe Cast behaviour for fractional or out-of-range values."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `conversion` | Conversion | Menu | 0 |  | cast, safe, bitwise |

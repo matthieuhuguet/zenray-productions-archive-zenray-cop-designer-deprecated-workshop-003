@@ -1,0 +1,30 @@
+# compareblend
+
+- Label: Compare and Blend
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 5
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/compareblend.html
+- Summary (EN): Compare and Blend works per pixel. It compares input A against input B and selects pixels from either the true or the false input, so the result blends between two sources. The page calls it a pixel switcher based on specific values. Available since Houdini 22.0.
+- Résumé (FR) : Le nœud Compare and Blend choisit pixel par pixel entre deux sources selon la comparaison de A et B, ce qui en fait un aiguillage entre deux couches.
+
+- Inputs meaning: ["true: source for pixels where the comparison passes", "false: source for pixels where it fails", "A: value being compared", "B: value compared against A", "tolerance (optional): mono per-pixel tolerance"]
+
+- Key parameters: ["Signature: layer, VDB or attribute", "True If: equal, not equal, A greater than B, A greater than or equal to B, A less than B, A less than or equal to B", "B Value: fallback constant for B when B is not wired", "Bias: shifts the result toward the true or false input (calculation not documented)", "Tolerance: band around the threshold, both sides for equality, one side for strict inequality", "Falloff: None, Linear, or Elendt (smooth S-curve)"]
+
+- Caveats: ["The inequality labels are easy to misread (page lists B greater than A as (<)); check the operator against the description when wiring", "The page does not say how the tolerance input interacts with the Tolerance parameter; test before relying on it", "Not the separate Compare VOP node"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `compare` | True If | Menu | 2 |  | equal, notequal, greater, greaterequal, less, lessequal |
+| `bval` | B Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `bias` | Bias | Float | [0.0] | -1.0 .. 1.0 |  |
+| `tol` | Tolerance | Float | [0.0] | 0.0 .. 2.0 |  |
+| `falloff` | Falloff | Menu | 1 |  | none, linear, elendt |

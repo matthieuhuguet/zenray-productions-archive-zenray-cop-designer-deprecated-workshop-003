@@ -1,0 +1,37 @@
+# logic
+
+- Label: Logic
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 13 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/logic.html
+- Summary (EN): The Logic node applies boolean, comparison, bit-shift and bit-twiddle operations to integer ID layers, attributes and VDBs. A mask input can blend the result into the original A value, so the operation applies only where the mask indicates.
+- Résumé (FR) : Applique des opérations booléennes, de comparaison et sur bits à des couches ID ou des VDB entiers, avec un masque qui limite l'effet à certaines zones.
+
+- Inputs meaning: ["A: ID layer, integer VDB or attribute used as the first operand", "B: ID layer, integer VDB or attribute used as the second operand", "mask: Mono layer, integer VDB or attribute controlling whether the result or the original A value is output"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Mask: for ID layers, uses the new value when the final mask exceeds 0.5, otherwise keeps the original", "Mix amount: how much of the new value blends into the original; 1 uses only the new value", "Function Class: Logic, Comparison, Bit Shift or Bit Twiddle", "Logic operations: A, B, And, Or, Exclusive Or; 0 is false, any other value is true", "Comparison operations: equality, inequality, greater-than and less-than between A and B", "Bit Shift operations: right arithmetic, right logical, left, rotate right and rotate left shifts of A by B", "Bit Twiddle operations: is bit set, set, clear, toggle, count set bits, leading zeros, and high bits of A times B", "Operate Bitwise: applies logic operations per bit instead of logically", "All Bits Set for True: true results become all 1s (usually -1) instead of 1", "Not A / Not B / Not Result: complement A, B or the result before or after the operation", "Default B Value: value used for B when B is unwired"]
+
+- Caveats: ["Available since Houdini 22.0", "Integer data only: ID layers, integer VDBs and attributes", "For ID layers the mask is a threshold at 0.5, while other mix values blend the new and original values", "In logical (non-bitwise) mode any nonzero value counts as true, so results can differ from bitwise mode", "The page does not show the exact label of the mix amount parameter", "Bit shift and bit twiddle operations appear only when the matching Function Class is selected"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `func` | Function Class | Menu | 0 |  | logic, compare, shift, twiddle |
+| `func_logic` | Logic | Menu | 0 |  | a, b, and, or, xor |
+| `func_compare` | True If | Menu | 0 |  | eq, ne, g, ge, l, le |
+| `func_shift` | Bit Shift | Menu | 0 |  | sar, shr, shl, ror, rol |
+| `func_twiddle` | Bit Twiddle | Menu | 0 |  | isset, set, clear, toggle, popcount, clz, mulhi |
+| `bitwise` | Operate Bitwise | Toggle | false |  |  |
+| `allbits` | All Bits Set for True | Toggle | false |  |  |
+| `nota` | Not A | Toggle | false |  |  |
+| `notb` | Not B | Toggle | false |  |  |
+| `notresult` | Not Result | Toggle | false |  |  |
+| `bval` | Default B Value | Int | [0] | -1 .. 31 |  |

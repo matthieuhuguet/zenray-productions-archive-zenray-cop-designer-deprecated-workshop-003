@@ -1,0 +1,104 @@
+# copyxform
+
+- Label: Copy and Transform
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 80 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/copyxform.html
+- Summary (EN): Copy and Transform (copyxform) makes copies of an input stamp and applies successive transformations to each copy. The original stamp stays untouched.
+- Résumé (FR) : Le nœud Copy and Transform copie un tampon et applique à chaque copie des transformations cumulées, sans modifier l'original.
+
+- Inputs meaning: ["size_ref: sets output image size and metadata", "shape: layer containing the stamp to copy and transform", "pointmask (optional): limits which copies are stamped, based on location"]
+
+- Key parameters: ["Total Number: total copies including the original", "Order: sequence in which Translate, Rotate and Scale are applied", "Translate / Rotate / Scale: move, rotate (degrees, Z axis) and stretch or compress; Uniform Scale multiplies X and Y", "Center Pivot on Shape, Pivot Translate, Pivot Rotate", "Blend Method: Over, Under, Add, Subtract, Multiply, Maximum, Minimum", "Filter: sampling method", "Wrap Mode / Tile Size: copies outside the main tile wrap back in, for seamless repeats", "Stamp Color, Change per Copy, Color Ramp", "Uniform Alpha, Alpha Ramp", "Background Color / Background Alpha"]
+
+- Caveats: ["Transformations are cumulative, each copy builds on the previous one", "Over and Under presort copies by creation order, which can be expensive", "Color Ramp disables Change per Copy; Alpha Ramp disables its per-copy counterpart", "With Wrap Mode set to Auto, wrapping depends on the Border type of size_ref"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `folder_copying` |  | FolderSet |  |  |  |
+| `ncy` | Total Number | Int | [2] | 0 .. 50 |  |
+| `xOrd` | Order | Menu | 0 |  | srt, str, rst, rts, tsr, trs |
+| `tx` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `ty` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `r` | Rotate | Float | [0.0] | -180.0 .. 180.0 |  |
+| `sx` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sy` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `scale` | Uniform Scale | Float | [1.0] | 0.1 .. 10.0 |  |
+| `folder_pivot` |  | FolderSet |  |  |  |
+| `centerpivot` | Center Pivot on Shape | Toggle | false |  |  |
+| `px` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `py` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pr` | Pivot Rotate | Float | [0.0] | -180.0 .. 180.0 |  |
+| `folder_options` |  | FolderSet |  |  |  |
+| `blend` | Blend Method | Menu | 0 |  | over, under, add, subtract, multiply, max, min |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `wrap` | Wrap Mode | Menu | 0 |  | auto, off, on |
+| `tilesizex` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `folder_stamping` |  | FolderSet |  |  |  |
+| `folder_color` |  | FolderSet |  |  |  |
+| `fgr` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `fgg` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `fgb` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorintensityr` | Change per Copy | Float | 0.0 | -1.0 .. 1.0 |  |
+| `colorintensityg` | Change per Copy | Float | 0.0 | -1.0 .. 1.0 |  |
+| `colorintensityb` | Change per Copy | Float | 0.0 | -1.0 .. 1.0 |  |
+| `folder_color_ramp` |  | FolderSet |  |  |  |
+| `docolorramp` | Color Ramp | Toggle | false |  |  |
+| `colorramp` | Ramp | Ramp | 5 |  |  |
+| `folder_alpha` |  | FolderSet |  |  |  |
+| `fgalpha` | Uniform Alpha | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `alphaintensity` | Change per Copy | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder_alpha_ramp` |  | FolderSet |  |  |  |
+| `doalpharamp` | Alpha Ramp | Toggle | false |  |  |
+| `alpharamp` | Ramp | Ramp | 4 |  |  |
+| `folder_background` |  | FolderSet |  |  |  |
+| `bgr` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgg` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgb` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgalpha` | Background Alpha | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

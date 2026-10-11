@@ -1,0 +1,26 @@
+# layertovdbleafpoints
+
+- Label: Layer to VDB Leaf Points
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layertovdbleafpoints.html
+- Summary (EN): The Layer to VDB Leaf Points node creates one point per VDB leaf that falls inside an envelope defined by three Mono layers in world space. Those points can then drive a VDB activation step so every voxel inside the envelope is activated.
+- Résumé (FR) : Crée un point par feuille de VDB située dans une enveloppe définie par trois couches mono, pour activer tous les voxels de cette enveloppe.
+
+- Inputs meaning: ["refvdb: reference VDB; only its voxel size is used", "thickness: Mono layer giving the envelope thickness at each pixel", "height: Mono layer giving the envelope centreline position, measured from the layer", "density: Mono layer giving the envelope alpha; zero areas generate no points"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Thickness: global scale applied to the thickness input, to convert a 0 to 1 layer into world units"]
+
+- Caveats: ["The page documents only two parameters", "The page does not explain the test used to decide whether a leaf touches the envelope", "The reference VDB contributes only its voxel size, not its topology or values", "The output is a point cloud; a separate step such as VDB Activate from Points is needed to activate voxels", "Introduced in Houdini 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | Float | [0.0] | 0.0 .. 10.0 |  |
+| `thickness` | Thickness | Float | [1.0] | 0.0 .. 1.0 |  |

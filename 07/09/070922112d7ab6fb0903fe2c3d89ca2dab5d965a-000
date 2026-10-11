@@ -1,0 +1,69 @@
+# bend
+
+- Label: Bend
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 45 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bend.html
+- Summary (EN): Warps an image by moving pivot handles or by applying a bend across a captured rectangular region. It offers free-form transformation, so a layer can be warped, stretched and twisted; the page describes it as simpler than the Lattice Deform COP.
+- Résumé (FR) : Déforme une image par des poignées de pivot ou par une courbure appliquée à une zone capturée, pour plier, étirer ou tordre une couche.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and metadata", "source: layer to bend"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mode: Corners (two tangent handles and one point handle at each corner), Sides (point handle at each corner and at each side midpoint), Angle (a captured region defines the area to bend)", "Filter: sampling method", "Corners and Corner Handles: image-space positions of the four corners and their U and V tangent handles (Corners mode)", "Side Handles: Bottom, Top, Left and Right midpoints (Sides mode)", "Capture: Bend Angle in degrees, Capture Origin, Capture Direction, Capture Length, Deform in Both Directions"]
+
+- Caveats: ["Capture Length must not be 0, otherwise nothing bends", "In Angle mode the captured region is a rectangle: Capture Direction sets its lower side and Capture Length sets the left and right sides", "Use Lattice Deform when more detailed control is needed", "The Handles tool allows transforming the image in the viewport"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mode` | Mode | Menu | 0 |  | corners, sides, angle |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `folder0` |  | FolderSet |  |  |  |
+| `bottomleftx` | Bottom Left | Float | -1.0 | 0.0 .. 1.0 |  |
+| `bottomlefty` | Bottom Left | Float | -1.0 | 0.0 .. 1.0 |  |
+| `bottomrightx` | Bottom Right | Float | 1.0 | 0.0 .. 1.0 |  |
+| `bottomrighty` | Bottom Right | Float | -1.0 | 0.0 .. 1.0 |  |
+| `topleftx` | Top Left | Float | -1.0 | 0.0 .. 1.0 |  |
+| `toplefty` | Top Left | Float | 1.0 | 0.0 .. 1.0 |  |
+| `toprightx` | Top Right | Float | 1.0 | 0.0 .. 1.0 |  |
+| `toprighty` | Top Right | Float | 1.0 | 0.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `bottomleft_ux` | Bottom Left U | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bottomleft_uy` | Bottom Left U | Float | 1.0 | 0.0 .. 1.0 |  |
+| `bottomleft_vx` | Bottom Left V | Float | 1.0 | 0.0 .. 1.0 |  |
+| `bottomleft_vy` | Bottom Left V | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bottomright_ux` | Bottom Right U | Float | -1.0 | 0.0 .. 1.0 |  |
+| `bottomright_uy` | Bottom Right U | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bottomright_vx` | Bottom Right V | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bottomright_vy` | Bottom Right V | Float | 1.0 | 0.0 .. 1.0 |  |
+| `topleft_ux` | Top Left U | Float | 1.0 | 0.0 .. 1.0 |  |
+| `topleft_uy` | Top Left U | Float | 0.0 | 0.0 .. 1.0 |  |
+| `topleft_vx` | Top Left V | Float | 0.0 | 0.0 .. 1.0 |  |
+| `topleft_vy` | Top Left V | Float | -1.0 | 0.0 .. 1.0 |  |
+| `topright_ux` | Top Right U | Float | 0.0 | 0.0 .. 1.0 |  |
+| `topright_uy` | Top Right U | Float | -1.0 | 0.0 .. 1.0 |  |
+| `topright_vx` | Top Right V | Float | -1.0 | 0.0 .. 1.0 |  |
+| `topright_vy` | Top Right V | Float | 0.0 | 0.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `bottomx` | Bottom | Float | 0.0 | -1.0 .. 1.0 |  |
+| `bottomy` | Bottom | Float | -1.0 | -1.0 .. 1.0 |  |
+| `topx` | Top | Float | 0.0 | -1.0 .. 1.0 |  |
+| `topy` | Top | Float | 1.0 | -1.0 .. 1.0 |  |
+| `leftx` | Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `lefty` | Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rightx` | Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `righty` | Right | Float | 0.0 | -1.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `bendangle` | Bend Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `captureoriginx` | Capture Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `captureoriginy` | Capture Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `capturedirection` | Capture Direction | Float | [90.0] | -180.0 .. 180.0 |  |
+| `capturelength` | Capture Length | Float | [0.5] | 0.0 .. 2.0 |  |
+| `deforminbothdirections` | Deform in Both Directions | Toggle | false |  |  |

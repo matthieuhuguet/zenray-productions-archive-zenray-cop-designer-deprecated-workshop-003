@@ -1,0 +1,116 @@
+# labs::uv_grid_texture::1.0
+
+- Label: Labs UV Grid Texture
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 94 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/labs uv_grid_texture-1.0.html
+- Summary (EN): The Labs UV Grid Texture 1.0 node procedurally generates UV grid textures for checking UV layouts, texture orientation, texel density and distortion. The image can be customised with tile colours, outlines, markers and labels, then written to disk.
+- Résumé (FR) : Génère une texture de grille UV procédurale pour contrôler la disposition, l'orientation et la densité de texels des UV, puis l'écrit sur disque.
+
+- Key parameters: ["Resolution: resolution of the generated texture", "Grid Divisions: number of subdivisions within each UV tile", "Background Color: background colour, shown only when Add Rounded Corners is enabled", "Coloring Mode: Uniform, Checker or Gradient tile colouring", "Uniform Color: single tile colour used in Uniform mode", "Checker Color 1 / Checker Color 2: the two alternating tile colours used in Checker mode", "Color Gradient: colour ramp used in Gradient mode", "Add Tile Outlines: toggles outlines around UV tiles; Outline Width and Outline Color control them", "Add Rounded Corners / Corner Radius: toggles and sets rounded tile corners", "Marker Type: Text, Cross or Arrow markers within each tile; Text Mode chooses Letters and Numbers or Coordinates", "Font / Marker Size: font and size of the markers", "Marker colouring parameters: same colouring modes as the tiles", "Output File: file path where the texture is written", "Render: generates the texture and saves it to the Output File"]
+
+- Caveats: ["Background Color only takes effect when Add Rounded Corners is enabled", "Text Mode only applies when Marker Type is Text", "Color Gradient is used only when the relevant Coloring Mode is Gradient", "The page documents no node inputs", "A newer Labs UV Grid Texture 1.1 exists in the node index, so this page may not reflect the latest version", "The node is also used internally by the Labs UV Visualize SOP, a related but separate workflow"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `fd_texture` |  | FolderSet |  |  |  |
+| `resolution` | Resolution | Menu | 5 |  | 256, 512, 1024, 2048, 4096, 8192 |
+| `griddivisions` | Grid Divisions | Int | [16] | 4 .. 16 (strict) |  |
+| `bgcolorr` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgcolorg` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgcolorb` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `fd_tiles` |  | FolderSet |  |  |  |
+| `tilecolormode` | Coloring Mode | Menu | 1 |  | 0, 1, 2 |
+| `tileunicolorr` | Uniform Color | Float | 0.025 | 0.0 .. 1.0 |  |
+| `tileunicolorg` | Uniform Color | Float | 0.025 | 0.0 .. 1.0 |  |
+| `tileunicolorb` | Uniform Color | Float | 0.025 | 0.0 .. 1.0 |  |
+| `tilechecker1colorr` | Checker Color 1 | Float | 0.38422 | 0.0 .. 1.0 |  |
+| `tilechecker1colorg` | Checker Color 1 | Float | 0.388818 | 0.0 .. 1.0 |  |
+| `tilechecker1colorb` | Checker Color 1 | Float | 0.413845 | 0.0 .. 1.0 |  |
+| `tilechecker2colorr` | Checker Color 2 | Float | 0.150959 | 0.0 .. 1.0 |  |
+| `tilechecker2colorg` | Checker Color 2 | Float | 0.145576 | 0.0 .. 1.0 |  |
+| `tilechecker2colorb` | Checker Color 2 | Float | 0.162685 | 0.0 .. 1.0 |  |
+| `tileramp` | Color Gradient | Ramp | 5 |  |  |
+| `addtileoutlines` | Add Tile Outlines | Toggle | false |  |  |
+| `outlinewidth` | Outline Width | Float | [0.025] | 0.0 .. 0.1 (strict) |  |
+| `outlinecolorr` | Outline Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `outlinecolorg` | Outline Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `outlinecolorb` | Outline Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `addroundedcorners` | Add Rounded Corners | Toggle | true |  |  |
+| `cornerradius` | Corner Radius | Float | [0.25] | 0.0 .. 1.0 (strict) |  |
+| `fd_markers` |  | FolderSet |  |  |  |
+| `markertype` | Marker Type | Menu | 0 |  | 0, 1, 2 |
+| `textmode` | Text Mode | Menu | 0 |  | 0, 1 |
+| `font` | Font | String | ["Arial Bold"] |  |  |
+| `markersize` | Marker Size | Float | [0.07] | 0.0 .. 0.1 (strict) |  |
+| `markercolormode` | Coloring Mode | Menu | 1 |  | 0, 1, 2 |
+| `markerunicolorr` | Uniform Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `markerunicolorg` | Uniform Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `markerunicolorb` | Uniform Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `markerchecker1colorr` | Checker Color 1 | Float | 0.150959 | 0.0 .. 1.0 |  |
+| `markerchecker1colorg` | Checker Color 1 | Float | 0.153614 | 0.0 .. 1.0 |  |
+| `markerchecker1colorb` | Checker Color 1 | Float | 0.169725 | 0.0 .. 1.0 |  |
+| `markerchecker2colorr` | Checker Color 2 | Float | 0.28469 | 0.0 .. 1.0 |  |
+| `markerchecker2colorg` | Checker Color 2 | Float | 0.288481 | 0.0 .. 1.0 |  |
+| `markerchecker2colorb` | Checker Color 2 | Float | 0.311728 | 0.0 .. 1.0 |  |
+| `markerramp` | Color Gradient | Ramp | 5 |  |  |
+| `fd_export` |  | FolderSet |  |  |  |
+| `outputfile` | Output File | String | ["$HIP/$HIPNAME.png"] |  |  |
+| `render` | Render | Button |  |  |  |
+| `tileramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `tileramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `tileramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `tileramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `tileramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `tileramp3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `tileramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `tileramp4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `tileramp5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `tileramp5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tileramp5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `markerramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `markerramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `markerramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `markerramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `markerramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `markerramp3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `markerramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `markerramp4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `markerramp5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `markerramp5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `markerramp5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

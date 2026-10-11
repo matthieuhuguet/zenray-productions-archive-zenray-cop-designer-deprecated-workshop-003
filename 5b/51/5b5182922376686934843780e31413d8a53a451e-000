@@ -1,0 +1,58 @@
+# defocus
+
+- Label: Defocus
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 2 to 4
+- Parameters: 34 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/defocus.html
+- Summary (EN): Blurs an input layer the way a real camera lens does, with optional colour correction of out-of-focus areas and a custom bokeh mask.
+- Résumé (FR) : Floute une image comme un objectif photographique à partir d'une carte de profondeur en mètres, avec une forme de bokeh personnalisable.
+
+- Inputs meaning: ["source: layer to defocus", "depth: depth map in meters giving each object's distance from the camera", "bokeh: optional mono mask shaping the blur; a circular bokeh is used if omitted", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Focus Distance: distance at which objects are sharp", "Focal Length: camera zoom to mimic", "F-Stop: strength of the defocus", "Focus Plane Blur: softens the transition between sharp and blurred areas", "Radius: maximum bokeh radius in pixels", "Gain: overall bokeh luminance", "Resample Input and Resolution: quality versus speed", "Color Correct group: brightness, saturation and gamma applied only to out-of-focus areas", "Depth Blend Min and Max: remap the depth range used to blend sharp and defocused layers"]
+
+- Caveats: ["Large Radius values are expensive because many samples are scattered.", "Depth must be in meters for correct results.", "Resampling speeds up computation at a small quality cost.", "Karma can output a depth AOV for use with this node."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `focus` |  | FolderSet |  |  |  |
+| `focallength` | Focal Length | Float | [50.0] | 10.0 .. 100.0 |  |
+| `focusdistance` | Focus Distance | Float | [1.2] | 0.0 .. 10.0 |  |
+| `fstop` | F-Stop | Float | [2.0] | 0.0 .. 10.0 |  |
+| `radius` | Focus Plane Blur | Float | [0.01] | 0.0 .. 1.0 |  |
+| `focusramp` | Focus Ramp | Ramp | 2 |  |  |
+| `bokeh` |  | FolderSet |  |  |  |
+| `bokehradius` | Radius | Float | [35.0] | 0.0 .. 100.0 |  |
+| `bokehgain` | Gain | Float | [1.0] | 0.0 .. 2.0 |  |
+| `bokehres` | Resolution | Int | [20] | 16 .. 128 |  |
+| `resample` | Resample Input | Float | [1.0] | 0.1 .. 1.0 (strict) |  |
+| `correct` |  | FolderSet |  |  |  |
+| `docolorcorrect` | Do Color Correct | Toggle | false |  |  |
+| `correctparms` |  | FolderSet |  |  |  |
+| `threshold` | Brightness threshold | Float | [0.1] | 0.0 .. 3.0 |  |
+| `brightradius` | Brightness Blur | Float | [0.05] | 0.0 .. 1.0 |  |
+| `bright` | Brightness | Float | [2.6] | 0.0 .. 10.0 |  |
+| `saturationparms` |  | FolderSet |  |  |  |
+| `satthreshold` | Saturation Threshold | Float | [0.65] | 0.0 .. 1.0 |  |
+| `saturationradius` | Saturation Blur | Float | [0.015] | 0.0 .. 1.0 |  |
+| `satscale` | Saturation Scale | Float | [0.7] | 0.0 .. 2.0 |  |
+| `gamma` | Gamma | Float | [0.95] | 0.1 .. 10.0 |  |
+| `depthblend` |  | FolderSet |  |  |  |
+| `dodepthblend` | Do Depth Blend | Toggle | false |  |  |
+| `remapmindepth` | Min | Float | [0.0] | 0.0 .. 1.0 |  |
+| `remapmaxdepth` | Max | Float | [1.0] | 0.0 .. 1.0 |  |
+| `focusramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `focusramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `focusramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `focusramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `focusramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `focusramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

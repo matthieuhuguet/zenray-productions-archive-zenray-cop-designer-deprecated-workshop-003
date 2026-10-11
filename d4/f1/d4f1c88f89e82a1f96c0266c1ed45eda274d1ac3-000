@@ -1,0 +1,22 @@
+# channelsplit
+
+- Label: Channel Split
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/channelsplit.html
+- Summary (EN): Divides a multichannel layer, VDB or attribute into four separate Mono outputs (red, green, blue, alpha) so each channel can be processed on its own; recombine them with Channel Join.
+- Résumé (FR) : Le nœud channelsplit sépare une couche multicanale en quatre couches Mono, rouge, verte, bleue et alpha, pour les traiter séparément.
+
+- Inputs meaning: ["rgba: the layer, VDB or attribute to split; missing channels follow the standard channel extension rules"]
+
+- Caveats: ["The page documents no parameters", "For swapping channels within one multichannel input, Channel Swap is more efficient", "If only one channel is needed, Channel Extract gives a cleaner network"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

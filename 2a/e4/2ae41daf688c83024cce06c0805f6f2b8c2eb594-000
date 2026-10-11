@@ -1,0 +1,38 @@
+# hsv
+
+- Label: HSV Adjust
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 5
+- Parameters: 14 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/hsv.html
+- Summary (EN): Converts images between RGB and HSV so HSV values can be edited and converted back; also applies global hue, saturation and value adjustments. The page is titled HSV Adjust.
+- Résumé (FR) : Convertit entre RGB et HSV pour modifier la teinte, la saturation et la luminosité, puis reconvertit le résultat en RGB.
+
+- Inputs meaning: ["source: the layer, VDB or attribute to process", "hueshift: optional per-pixel hue amount", "saturation: optional per-pixel saturation amount", "value: optional per-pixel brightness amount", "mask: optional per-pixel mask amount"]
+
+- Key parameters: [{"name": "Operation", "meaning": "Hue/Sat/Val Adjust, Convert RGB to HSV, or Convert HSV to RGB"}, {"name": "Hue Shift", "meaning": "rotates hues by a number of degrees; grays are unaffected"}, {"name": "Hue Shift Mode", "meaning": "Min/Max remaps the hueshift input to degrees; Width remaps it to a degree range"}, {"name": "Saturation Scale / Saturation Shift", "meaning": "multiply or add to saturation"}, {"name": "Value Scale / Value Shift", "meaning": "multiply or add to brightness"}, {"name": "Keep Luminance", "meaning": "preserves perceived brightness when hues change"}, {"name": "Mask", "meaning": "blends the new result with the original; default 1 uses only the new value"}]
+
+- Caveats: ["Saturation Shift is mainly for reducing saturation; increasing it can give grayscale areas random colors.", "Enable Treat RGBA as Premultiplied if alpha is premultiplied."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `op` | Operation | Menu | 0 |  | adjust, to_hsv, to_rgb |
+| `hueshift` | Hue Shift | Float | [0.0] | 0.0 .. 360.0 |  |
+| `hueshiftmode` | Hue Shift Mode | Menu | 0 |  | minmax, width |
+| `hueshiftmin` | Hue Shift Min | Float | [0.0] | -180.0 .. 180.0 |  |
+| `hueshiftmax` | Hue Shift Max | Float | [0.0] | -180.0 .. 180.0 |  |
+| `hueshiftwidth` | Hue Shift Width | Float | [0.0] | 0.0 .. 360.0 |  |
+| `keepluma` | Keep Luminance | Toggle | true |  |  |
+| `satscale` | Saturation Scale | Float | [1.0] | 0.0 .. 2.0 |  |
+| `satshift` | Saturation Shift | Float | [0.0] | -1.0 .. 1.0 |  |
+| `valscale` | Value Scale | Float | [1.0] | 0.0 .. 2.0 |  |
+| `valshift` | Value Shift | Float | [0.0] | -1.0 .. 1.0 |  |
+| `ispremult` | Treat RGBA as Premultiplied | Toggle | true |  |  |

@@ -1,0 +1,32 @@
+# kuwaharafilter
+
+- Label: Kuwahara Filter
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/kuwaharafilter.html
+- Summary (EN): The Kuwahara Filter node sets each pixel to the average of the smoothest of four diagonally offset regions around it. It preserves edges while flattening noise, which gives a painterly look.
+- Résumé (FR) : Filtre de Kuwahara qui remplace chaque pixel par la moyenne de la région la plus lisse parmi quatre voisines, pour lisser le bruit en gardant les contours.
+
+- Inputs meaning: ["source: the original layer to filter", "radius: optional per-pixel scale for the filter size, multiplied by the Radius parameter", "mask: optional per-pixel mask amount, multiplied by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Mask: how much of the filtered value is mixed with the original; 1 uses only the new value", "Method: Approximate (fast, one pass of means and deviations) or Exact (computes each pixel directly)", "Luminance: luminance measure used to pick the quadrant with the smallest standard deviation", "Radius: offset size in pixels of the four regions", "Blur Scale: size of each averaging region, which changes blur strength without changing quadrant selection", "Blend to Blur: 0 uses the smoothest region average; 1 averages the four region averages; values between weight by standard deviation", "Separation: scales the region offsets; 0 gives a box blur, values above 1 sample dislocated areas"]
+
+- Caveats: ["The filter reads k squared pixels per pixel (k is the kernel diameter), so large kernels can be expensive", "Approximate mode is faster but causes radius variations that affect neighbouring pixels", "Exact mode is often practical on GPUs even at large radii", "Blur Scale and Blend to Blur change the look without changing quadrant selection, except where Blend to Blur weights the regions", "The page does not specify the Mask input beyond scaling the Mask parameter per pixel"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `method` | Method | Int | [0] | 0 .. 10 (strict) | fast, exact |
+| `luma` | Luminance | Menu | 1 |  | lum, ntsclum, hdtvlum, average, max, min, magnitude, hue, saturation, value, red, green, blue, comp4 |
+| `radius` | Radius | Float | [2.0] | 1.0 .. 20.0 (strict) |  |
+| `blurscale` | Blur Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `blend` | Blend to Blur | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `separation` | Separation | Float | [1.0] | 0.0 .. 1.0 |  |

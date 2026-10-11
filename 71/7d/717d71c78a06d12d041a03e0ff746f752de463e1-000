@@ -1,0 +1,219 @@
+# curvescatter
+
+- Label: Scatter on Curves
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 12
+- Parameters: 195 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curvescatter.html
+- Summary (EN): Scatters one or more input stamps along an input curve, with randomisation of placement, scale, angle, stretch, colour and alpha. Titled Scatter on Curves in Houdini 22.0.
+- Résumé (FR) : Répartit des tampons le long d'une courbe, avec des variations de position, d'échelle, d'angle, d'étirement, de couleur et d'alpha.
+
+- Inputs meaning: ["size_ref: sets output image size and metadata", "curve: curve to scatter along (required)", "density: rejection-sampling layer used with Distribution set to Scatter", "direction: controls stamp angle direction", "angle: rotates stamps (0 = 0 degrees, 1 = 360 degrees)", "scale: multiplies uniform stamp scale", "stretch: multiplies non-uniform stamp scale", "color: multiplies stamp colour", "alpha: multiplies stamp alpha", "sort: depth-based sorting", "select: chooses stamps when Selection Mode is Layer Select", "stamps: up to 8 stamps; a default star is used if unwired"]
+
+- Key parameters: ["Distribution: Distance (equal spacing), Scatter (random via density or Max Count), By Count", "Max Count, Relaxation, Scatter Seed", "Treat Input Curve As: Straight, Subdivision or Interpolating", "Scale, Angle, Stretch: base values with variance or min/max randomisation and layer masks", "Mirror Stamps: mirrors across the curve tangent", "Blend Method: Depth-Sorted Over, Add, Multiply, Maximum and others", "Stamp Color / Stamp Alpha: Uniform, Variance, Random from Ramp, or Ramp along Curve", "Selection Mode: Cycle, Random, Layer Select, Limit Selection", "Wrap Mode, Tile Size"]
+
+- Caveats: ["The curve input must be wired or the node does not work.", "Density Scale has no effect when Max Count is on.", "Mirrored angles may not stay symmetric under Treat Independently randomisation.", "Depth-Sorted Over is expensive because it sorts."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["default"] |  |  |
+| `folder6_11` |  | FolderSet |  |  |  |
+| `distributionmode` | Distribution | Menu | 0 |  | distance, scatter, count |
+| `folder14` |  | FolderSet |  |  |  |
+| `maxcount` | Max Count | Int | [28] | 1 .. 100000 |  |
+| `folder13` |  | FolderSet |  |  |  |
+| `densitymask` | Density Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `forcetotal` | Force Total Count | Toggle | false |  |  |
+| `npts` | Max Count | Int | [28] | 1 .. 100000 |  |
+| `densityscale` | Density Scale | Float | [12.0] | 0.1 .. 10000.0 |  |
+| `folder12` |  | FolderSet |  |  |  |
+| `dolength` | Maximum Segment Length | Toggle | true |  |  |
+| `length` | Segment Length | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `dosegs` | Maximum Segments | Toggle | false |  |  |
+| `segs` | Maximum Segments | Int | [30] | 1 .. 50 (strict) |  |
+| `relaxpoints` | Relax Points | Toggle | true |  |  |
+| `relaxiterations` | Relaxation | Int | [100] | 0 .. 50 (strict) |  |
+| `treatpolysas` | Treat Input Curve As | Menu | 0 |  | straight, subd, interp |
+| `seed` | Scatter Seed | Int | [0] | 0 .. 100 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `scalemask` | Scale Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scale` | Scale | Float | [0.1] | 0.0 .. 2.0 |  |
+| `scalemode` | Scale Mode | Menu | 0 |  | uniform, variance, minmax |
+| `scalevariance` | Scale Variance | Float | [0.0] | 0.0 .. 5.0 |  |
+| `minscale` | Min Scale | Float | [-1.0] | -10.0 .. 10.0 |  |
+| `maxscale` | Max Scale | Float | [1.0] | -10.0 .. 10.0 |  |
+| `enablescalealongcurve` | Apply Scale along Curve | Toggle | false |  |  |
+| `scalealongcurve` | Scale along Curve | Ramp | 3 |  |  |
+| `folder7` |  | FolderSet |  |  |  |
+| `arclen` | Cut Curves by Relative Arc Length | Toggle | true |  |  |
+| `startpoint` | Start Point | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `endpoint` | End Point | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `curvesmoothing` | Smoothing | Float | [0.0] | 0.0 .. 50.0 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `mirror` | Mirror Stamps | Toggle | false |  |  |
+| `mirrormode` | Mirror Mode | Menu | 0 |  | none, pairprimary, pairsecondary |
+| `offset` | From Curve | Float | [0.0] | -1.0 .. 1.0 |  |
+| `mirroroffset` | Mirrored From Curve | Float | [-0.05] | -1.0 .. 1.0 |  |
+| `jitter` | Jitter | Float | [0.0] | 0.0 .. 1.0 |  |
+| `curveoffset` | Offset along Curve | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder_angle` |  | FolderSet |  |  |  |
+| `anglemask` | Angle Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `directionmask` | Direction Layer Mask | Float | [0.0] | 0.0 .. 1.0 |  |
+| `anglerelativetocurve` | Angles Relative to Curve Direction | Toggle | true |  |  |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `anglemode` | Angle Mode | Menu | 0 |  | uniform, variance, minmax |
+| `anglevariance` | Angle Variance | Float | [0.0] | -180.0 .. 180.0 |  |
+| `minangle` | Min Angle | Float | [-180.0] | -180.0 .. 180.0 |  |
+| `maxangle` | Max Angle | Float | [180.0] | -180.0 .. 180.0 |  |
+| `incrementalangle` | Increment per Stamp | Float | [0.0] | -180.0 .. 180.0 |  |
+| `roundto` | Round To | Toggle | false |  |  |
+| `roundtomultiples` | Round to Multiples | Float | [90.0] | 1.0 .. 360.0 (strict) |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `stretchmask` | Stretch Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `stretchmode` | Stretch Mode | Menu | 0 |  | uniform, variance, minmax |
+| `stretchx` | Stretch X | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchy` | Stretch Y | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchvariancex` | Stretch Variance | Float | 0.0 | -0.0 .. 2.0 |  |
+| `stretchvariancey` | Stretch Variance | Float | 0.0 | -0.0 .. 2.0 |  |
+| `minstretchx` | Min Stretch | Float | -1.0 | 0.0 .. 2.0 |  |
+| `minstretchy` | Min Stretch | Float | 0.0 | 0.0 .. 2.0 |  |
+| `maxstretchx` | Max Stretch | Float | 1.0 | 0.0 .. 2.0 |  |
+| `maxstretchy` | Max Stretch | Float | 1.0 | 0.0 .. 2.0 |  |
+| `enablestretchalongcurve` | Stretch along Curve | Toggle | false |  |  |
+| `folder10` |  | FolderSet |  |  |  |
+| `stretchalongcurvex` | Stretch X along Curve | Ramp | 2 |  |  |
+| `stretchalongcurvey` | Stretch Y along Curve | Ramp | 2 |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `blend` | Blend Method | Menu | 0 |  | sorted, unsorted, add, subtract, multiply, max, min |
+| `sortuselayer` | Use Sort Layer | Toggle | true |  |  |
+| `dosortramp` | Apply Sort along Curve | Toggle | false |  |  |
+| `sortramp` | Sort Ramp | Ramp | 2 |  |  |
+| `folder_color` |  | FolderSet |  |  |  |
+| `colorseed` | Color Seed | Int | [0] | 0 .. 50 |  |
+| `colormask` | Color Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `colorr` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorg` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorb` | Stamp Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colormode` | Color Mode | Menu | 0 |  | uniform, variance, randomramp, curveramp |
+| `colorramp_along` | Color Ramp along Curve | Ramp | 5 |  |  |
+| `colorramp_random` | Random Color from Ramp | Ramp | 5 |  |  |
+| `huevariance` | Hue | Float | [0.0] | -180.0 .. 180.0 |  |
+| `saturationvariance` | Saturation | Float | [0.0] | -1.0 .. 1.0 |  |
+| `valuevariance` | Value | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder_alpha` |  | FolderSet |  |  |  |
+| `alphamask` | Alpha Layer Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `alpha` | Stamp Alpha | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `alphamode` | Alpha Mode | Menu | 0 |  | uniform, variance, randomramp, curveramp |
+| `alphavariance` | Alpha Variance | Float | [0.0] | -1.0 .. 1.0 |  |
+| `alpharamp_random` | Random Alpha from Ramp | Ramp | 2 |  |  |
+| `alpharamp_along` | Alpha Ramp along Curve | Ramp | 2 |  |  |
+| `folder_background` |  | FolderSet |  |  |  |
+| `bgr` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgg` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgb` | Background Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bgalpha` | Background Alpha | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `selectmode` | Selection Mode | Menu | 1 |  | cycle, random, layer |
+| `limitstamps` | Limit Selection | Toggle | false |  |  |
+| `stampcount` | Limit Selection | Int | [1] | 1 .. 8 |  |
+| `selectseed` | Select Seed | Int | [0] | 0 .. 50 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `filter` | Filter | Menu | 1 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `wrap` | Wrap Mode | Menu | 0 |  | auto, off, on |
+| `tilesizex` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `scalealongcurve1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `scalealongcurve1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `scalealongcurve1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `scalealongcurve2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `scalealongcurve2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `scalealongcurve2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `scalealongcurve3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `scalealongcurve3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `scalealongcurve3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `stretchalongcurvex1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchalongcurvex1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `stretchalongcurvex1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `stretchalongcurvex2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchalongcurvex2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `stretchalongcurvex2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `stretchalongcurvey1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchalongcurvey1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `stretchalongcurvey1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `stretchalongcurvey2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchalongcurvey2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `stretchalongcurvey2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `sortramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sortramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sortramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `sortramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sortramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sortramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_along1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_along1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_along2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_along2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_along3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_along3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_along4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_along4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_along5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_along5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_along5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_random1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_random1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_random2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_random2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_random3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_random3cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random3cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random3cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_random4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_random4cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random4cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random4cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp_random5pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp_random5cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random5cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random5cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp_random5interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp_random1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp_random1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp_random1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp_random2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp_random2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp_random2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp_along1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp_along1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp_along1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `alpharamp_along2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `alpharamp_along2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `alpharamp_along2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

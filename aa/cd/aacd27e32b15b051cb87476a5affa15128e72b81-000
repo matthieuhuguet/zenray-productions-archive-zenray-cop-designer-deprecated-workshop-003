@@ -1,0 +1,32 @@
+# derivative
+
+- Label: Derivative
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/derivative.html
+- Summary (EN): Measures how pixel values change along the horizontal and vertical axes of a layer, useful for tasks such as edge detection. Outputs dCdx and dCdy.
+- Résumé (FR) : Calcule les dérivées horizontale et verticale d'une couche, utiles notamment pour détecter les contours.
+
+- Inputs meaning: ["source: the layer from which derivatives are computed"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Space: Image, Pixel or Local normalisation of the pixel size", "Angle: rotates the sampling positions; at 90 degrees the x derivative equals the y derivative at angle 0", "Scale: multiplies the output", "Offset: adds a value to the output", "Read Pixels outside Image: reads beyond the edge for Wrap textures, stays inside for Clamp edges", "Kernel Size: widens the distance between sampled pixels to smooth stepping", "Difference Mode: Central, Forward or Diagonal finite differences; Diagonal is described as smoothest"]
+
+- Caveats: ["Boundary handling is a trade-off between wrapped and clamped textures.", "With slowly varying values and limited bit depth the default kernel may give stepped derivatives; raise Kernel Size."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `space` | Space | Menu | 0 |  | image, pixel, local |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `offset` | Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |
+| `kernel` | Kernel Size | Int | [1] | 1 .. 64 (strict) |  |
+| `differencemode` | Difference Mode | Menu | 0 |  | central, forward, diagonal |

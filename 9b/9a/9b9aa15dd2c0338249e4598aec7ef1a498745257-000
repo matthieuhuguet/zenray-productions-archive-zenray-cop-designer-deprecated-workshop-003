@@ -1,0 +1,101 @@
+# camera
+
+- Label: Camera
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 77 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/camera.html
+- Summary (EN): Creates a default perspective camera offset back from the layer centre according to Focal Length and Aperture. Its settings override the default_camera context option set by the Default Canvas. Available since version 22.0.
+- Résumé (FR) : Le nœud camera crée une caméra perspective par défaut, reculée du centre de la couche selon la focale et l'ouverture, et ses réglages remplacent la caméra par défaut du Default Canvas.
+
+- Inputs meaning: ["camera_ref (optional): camera layer; Set Parameters from Input populates the parameters from it"]
+
+- Key parameters: [{"name": "Set Parameters from Input", "meaning": "Autofills the parameters from the connected camera_ref"}, {"name": "Transform", "meaning": "Translate, Rotate, Transform Order, Pivot Translate, Pivot Rotate"}, {"name": "Look At", "meaning": "Look At Position, Up Vector Method (Y Axis, X Axis, Custom), Twist"}, {"name": "View", "meaning": "Resolution, Projection, Focal Length, Aperture, Ortho Width, Near and Far Clipping, Screen Window, Crop, Imaging Distance, Guide Scale"}, {"name": "Sampling", "meaning": "Shutter Open and Close, Focus Distance, F-Stop"}, {"name": "Metadata", "meaning": "Key/value entries of the metadata dictionary"}]
+
+- Caveats: ["Only the ratio of Focal Length to Aperture sets the camera offset", "Imaging Distance is measured in Houdini units", "Guide Scale applies only when the layer is shown as metadata"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setparmsfrominput` | Set Parameters from Input | Button |  |  |  |
+| `transform` |  | FolderSet |  |  |  |
+| `dotransform` | Enable Transform | Toggle | true |  |  |
+| `xOrd` | Transform Order | Menu | 0 |  | srt, str, rst, rts, tsr, trs |
+| `rOrd` | Rotate Order | Menu | 0 |  | xyz, xzy, yxz, yzx, zxy, zyx |
+| `tx` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `ty` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `tz` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rx` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `ry` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `rz` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `parmgroup_pivotxform` |  | FolderSet |  |  |  |
+| `px` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `py` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pz` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `prx` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `pry` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `prz` | Pivot Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `lookat` |  | FolderSet |  |  |  |
+| `dolookat` | Enable Look At | Toggle | false |  |  |
+| `lookatpositionx` | Look At Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lookatpositiony` | Look At Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `lookatpositionz` | Look At Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `upvecmethod` | Up Vector Method | Menu | 0 |  | yaxis, xaxis, custom |
+| `upvecx` | Up Vector | Float | 0.0 | -1.0 .. 1.0 |  |
+| `upvecy` | Up Vector | Float | 1.0 | -1.0 .. 1.0 |  |
+| `upvecz` | Up Vector | Float | 0.0 | -1.0 .. 1.0 |  |
+| `twist` | Twist | Float | [0.0] | -180.0 .. 180.0 |  |
+| `view` |  | FolderSet |  |  |  |
+| `doview` | Enable View | Toggle | true |  |  |
+| `dores` | Edit Resolution | Toggle | true |  |  |
+| `resx` | Resolution | Int | 1280 | 0 .. 10 |  |
+| `resy` | Resolution | Int | 720 | 0 .. 10 |  |
+| `resmenu` | Resolution Menu | Menu | 0 |  |  |
+| `doprojection` | Edit Projection | Toggle | true |  |  |
+| `projection` | Projection | Menu | 0 |  | perspective, ortho |
+| `dofocal` | Edit Focal | Toggle | true |  |  |
+| `focal` | Focal Length | Float | [50.0] | 1.0 .. 100.0 |  |
+| `doaperture` | Edit Focal | Toggle | true |  |  |
+| `aperture` | Aperture | Float | [41.4214] | 1.0 .. 100.0 |  |
+| `doorthowidth` | Edit Ortho Width | Toggle | true |  |  |
+| `orthowidth` | Ortho Width | Float | [1.0] | 1.0 .. 5.0 |  |
+| `donearclip` | Edit Near Clipping | Toggle | true |  |  |
+| `nearclip` | Near Clipping | Float | [0.001] | 0.0 .. 10.0 |  |
+| `dofarclip` | Edit Far Clipping | Toggle | true |  |  |
+| `farclip` | Far Clipping | Float | [10000.0] | 1.0 .. 10000.0 |  |
+| `dowin` | Edit Screen Window | Toggle | true |  |  |
+| `winx` | Screen Window X/Y | Float | 0.0 | -1.0 .. 1.0 |  |
+| `winy` | Screen Window X/Y | Float | 0.0 | -1.0 .. 1.0 |  |
+| `dowinsize` | Edit Screen Window Size | Toggle | true |  |  |
+| `winsizex` | Screen Window Size | Float | 1.0 | 0.01 .. 10.0 |  |
+| `winsizey` | Screen Window Size | Float | 1.0 | 0.01 .. 10.0 |  |
+| `docropl` | Edit Left Crop | Toggle | true |  |  |
+| `cropl` | Left Crop | Float | [0.0] | 0.0 .. 1.0 |  |
+| `docropr` | Edit Right Crop | Toggle | true |  |  |
+| `cropr` | Right Crop | Float | [1.0] | 0.0 .. 1.0 |  |
+| `docropb` | Edit Bottom Crop | Toggle | true |  |  |
+| `cropb` | Bottom Crop | Float | [0.0] | 0.0 .. 1.0 |  |
+| `docropt` | Edit Top Crop | Toggle | true |  |  |
+| `cropt` | Top Crop | Float | [1.0] | 0.0 .. 1.0 |  |
+| `doimgdist` | Edit Imaging Distance | Toggle | true |  |  |
+| `imgdist` | Imaging Distance | Float | [1.0] | 0.0 .. 50.0 |  |
+| `doguidescale` | Edit Guide Scale | Toggle | true |  |  |
+| `guidescale` | Guide Scale | Float | [1.0] | 0.1 .. 10.0 |  |
+| `sampling` |  | FolderSet |  |  |  |
+| `dosampling` | Enable Sampling | Toggle | true |  |  |
+| `doshutteropen` | Edit Shutter Open | Toggle | true |  |  |
+| `shutteropen` | Shutter Open | Float | [-0.25] | -1.0 .. 1.0 |  |
+| `doshutterclose` | Edit Shutter Close | Toggle | true |  |  |
+| `shutterclose` | Shutter Close | Float | [0.25] | -1.0 .. 1.0 |  |
+| `dofocus` | Edit Focus Distance | Toggle | true |  |  |
+| `focus` | Focus Distance | Float | [5.0] | 0.001 .. 100.0 |  |
+| `dofstop` | Edit FStop | Toggle | true |  |  |
+| `fstop` | F-Stop | Float | [5.6] | 1.4 .. 22.0 |  |
+| `metadata` |  | FolderSet |  |  |  |
+| `dometadata` | Enable Metadata | Toggle | false |  |  |
+| `entries` | Entries | Folder | 0 |  |  |

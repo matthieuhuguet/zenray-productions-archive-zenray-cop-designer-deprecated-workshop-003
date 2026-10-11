@@ -1,0 +1,32 @@
+# geoattribfromlayer
+
+- Label: Geometry Attribute from Layer
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/geoattribfromlayer.html
+- Summary (EN): The Geometry Attribute from Layer node samples image layers at each point of a geometry's position attribute and writes the results back onto that geometry as new attributes. It is a quick way to turn layer data into geometry attributes, for example to stamp points with a Stamp Points COP.
+- Résumé (FR) : Le nœud Geometry Attribute from Layer échantillonne des couches image aux positions d'une géométrie et écrit les valeurs en attributs de cette géométrie.
+
+- Inputs meaning: ["geometry: supplies the position attribute and receives the new attributes", "attrib#: layers to sample; the number of these inputs follows the Attributes count"]
+
+- Key parameters: ["Class: geometry class of the Position Attribute and of the Attributes (Primitive, Point or Vertex)", "Space: Texture (0 to 1 across the input's data window), Image (-1 to 1 across the display window) or World (3D modeling-space location)", "Position Attribute: geometry attribute used for sampling, such as P; use a float3 for World space, and a float2 or float3 for Texture and Image space", "Attributes: number of attributes inserted onto the geometry", "Attribute Name and data type: Input (auto-detected), ID (int), Mono (float), UV (float2), RGB (float3), RGBA (float4)", "Do Nothing if Unwired: skips sampling and inserting an attribute when its attrib# input is null or unwired"]
+
+- Caveats: ["With a float3 position attribute in Texture or Image space, only the xy components are used", "The attribute type comes from the chosen data type, which should match the layer wired in", "The page does not describe behavior for points that fall outside the layer bounds"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `class` | Class | Menu | 1 |  | primitive, point, vertex |
+| `space` | Space | Menu | 2 |  | texture, image, world |
+| `posattrib` | Position Attribute | String | ["P"] |  |  |
+| `attribmenu` | Attribute Menu | String | ["0"] |  |  |
+| `numattribs` | Attributes | Folder | 1 |  |  |
+| `attrib1` | Attribute Name | String | [""] |  |  |
+| `type1` | Input Type | Menu | 0 |  | input, int, float, float2, float3, float4 |
+| `optional1` | Do Nothing If Unwired | Toggle | false |  |  |

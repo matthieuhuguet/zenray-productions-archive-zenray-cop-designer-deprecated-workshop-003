@@ -1,0 +1,59 @@
+# heightfield_erode
+
+- Label: HeightField Erode
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 6
+- Parameters: 35 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_erode.html
+- Summary (EN): HeightField Erode simulates water-driven and slope-driven erosion on a height layer, with the scale of the effects set by a feature-size control. Several instances at different scales can build landforms from broad valleys down to fine channels.
+- Résumé (FR) : HeightField Erode simule l'érosion par l'eau et par la pente sur une hauteur, à une échelle réglée par la taille des formes, et s'enchaîne à plusieurs échelles.
+
+- Inputs meaning: ["height: height layer to erode (required)", "debris: optional layer updated by the simulation", "sediment: optional layer updated by the simulation", "flow: optional layer updated by the simulation", "erodability: optional mask controlling how soft the terrain is", "rainfall: optional mask controlling the rainfall amount"]
+
+- Key parameters: ["Simulate: runs the simulation with the playbar; when off, runs a fixed number of Iterations", "Substeps: erosion iterations per frame; higher is stronger but slower", "Start Frame and Reset Simulation: where the simulation begins and clearing its cache", "Cache Simulation, Cached Frames, Checkpoint Rate: frame storage for faster scrubbing", "Feature Size: width of features in metres", "Spread Iterations: material-transport passes per frame", "Random Seed: changes the distribution of erosion features", "Erodability: how easily the terrain erodes", "Flow Force: hydro erosion strength; 0 disables it", "Rainfall Coverage: rain per frame as a share of the surface", "Slope Influence: how closely streams follow the slope", "Erosion Rate, Deposition Rate, Removal Rate, Evaporation Rate: pickup, deposition, sediment decay and capacity decay", "Bank Angle: steepness of channel walls", "Weathering Force: thermal erosion strength; 0 disables it", "Cut Angle: angle where thermal cutting stops", "Repose Angle: angle where debris stays put without sliding"]
+
+- Caveats: ["The smallest feature size is three times the input pixel size; smaller requests are clamped", "With caching off, every new frame recooks from the start frame, which slows playback", "No performance figures are given beyond the note that higher Substeps take longer", "Debris and sediment outputs are Mono layers; the flow output is a UV layer"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `simulate` | Simulate | Toggle | false |  |  |
+| `resimulate` | Reset Simulation | Button |  |  |  |
+| `timescale` | Time Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `startframe` | Start Frame | Int | [1] | 1 .. 1001 |  |
+| `iterations` | Iterations | Int | [5] | 0 .. 20 (strict) |  |
+| `substeps` | Substeps | Int | [1] | 0 .. 20 (strict) |  |
+| `cacheenabled` | Cache Simulation | Toggle | true |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `cachedframes` | Cached Frames | Int | [10] | 1 .. 1001 |  |
+| `checkpointframes` | Checkpoint Rate | Int | [24] | 0 .. 100 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `featuresize` | Feature Size | Float | [5.0] | 0.0 .. 50.0 (strict) |  |
+| `spreaditers` | Spread Iterations | Int | [40] | 0 .. 100 (strict) |  |
+| `seed` | Random Seed | Float | [0.0] | 0.0 .. 1.0 |  |
+| `erodability` | Erodability | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `flow` | Flow Force | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `bankangle` | Bank Angle | Float | [35.0] | 0.0 .. 90.0 (strict) |  |
+| `coverage` | Rainfall Coverage | Float | [0.2] | 0.0 .. 1.0 (strict) |  |
+| `slopeinfluence` | Slope Influence | Float | [0.8] | 0.0 .. 1.0 (strict) |  |
+| `erosion` | Erosion Rate | Float | [0.3] | 0.0 .. 1.0 (strict) |  |
+| `deposition` | Deposition Rate | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `removal` | Removal Rate | Float | [0.01] | 0.0 .. 1.0 (strict) |  |
+| `evaporation` | Evaporation Rate | Float | [0.001] | 0.0 .. 1.0 (strict) |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `weathering` | Weathering Force | Float | [0.3] | 0.0 .. 1.0 (strict) |  |
+| `cutangle` | Cut Angle | Float | [35.0] | 0.0 .. 90.0 (strict) |  |
+| `reposeangle` | Repose Angle | Float | [20.0] | 0.0 .. 90.0 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `folder6` |  | FolderSet |  |  |  |
+| `folder7` |  | FolderSet |  |  |  |
+| `folder8` |  | FolderSet |  |  |  |
+| `folder9` |  | FolderSet |  |  |  |
+| `spare_cableinput` | Input Override Port | String | [""] |  |  |

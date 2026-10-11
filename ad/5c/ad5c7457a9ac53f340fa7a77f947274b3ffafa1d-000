@@ -1,0 +1,28 @@
+# layerfromattrib
+
+- Label: Layer from Attribute
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerfromattrib.html
+- Summary (EN): The Layer from Attribute node fills the pixels of a layer with the values of a detached attribute, writing one element per pixel. It was introduced in Houdini 22.0 and is the reverse of the Attribute from Layer node.
+- Résumé (FR) : Remplit les pixels d'une couche avec les valeurs d'un attribut détaché, un élément par pixel, à l'inverse de Attribute from Layer.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and supplies its metadata", "attrib: detached attribute whose elements are written into the layer pixels", "index: optional ID layer telling each pixel which attribute element to read; if unwired, the Data Ordering rule applies"]
+
+- Key parameters: ["Signature: attribute type the source accepts", "Data Ordering: whether the first pixel is bottom-left (Copernicus default) or top-left, and the reading direction", "Resize Layer: when enabled, sizes the output from the attribute length instead of size_ref", "Resize Shape: Power of 2 Square, Square, Single Row or Single Column"]
+
+- Caveats: ["Resize Layer changes the output size from size_ref to the attribute length, so size_ref no longer fully controls the result", "Power of 2 Square rounds each side up to a power of two, so the output can be larger than needed", "Without the index input, pixels are filled in the order set by Data Ordering", "Available only from Houdini 22.0 onward"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `order` | Data Ordering | Menu | 0 |  | leftbottom, lefttop |
+| `resize` | Resize Layer | Toggle | false |  |  |
+| `resizetype` | Resize Shape | Menu | 0 |  | twosquare, square, row, col |

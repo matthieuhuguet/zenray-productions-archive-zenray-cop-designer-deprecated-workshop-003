@@ -1,0 +1,71 @@
+# neural_layertomask_sam2
+
+- Label: Neural Layer to Mask (SAM2)
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 47 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/neural_layertomask_sam2.html
+- Summary (EN): Creates an image segmentation mask from prompts using Meta's SAM 2 neural network. Positive and negative point prompts, or an optional bounding box, define the objects to segment.
+- Résumé (FR) : Produit un masque de segmentation d'image à partir de points positifs ou négatifs et d'une boîte optionnelle, grâce au réseau SAM 2 de Meta, avec un seuil binaire facultatif.
+
+- Inputs meaning: ["source: the image to segment; RGBA, UV and mono inputs are converted to RGB", "mask (optional): a per-pixel confidence mask, scaled by the Mask parameter", "embeddings (optional): a precomputed image encoding, reused to avoid recomputing the most expensive step", "points (optional): prompt points, interpreted by world-space location and a prompt string attribute"]
+
+- Key parameters: ["Model: SAM2 Large (most accurate, slower), SAM2 Tiny (faster, less accurate) or Custom (your own encoder and decoder ONNX files)", "Download Models: fetches the pre-trained model files", "Units: Image space, Texture space or Pixels for point and box coordinates", "Points / Point Coords / Negative: prompt points; negative points mark areas to exclude", "Bounding Box / BBox Lower Left / BBox Upper Right: box prompt", "Resample Behavior: Stretch to Fit or Fit Minimally, for images that do not match the model's 1024x1024 input", "Color Transform: optional OCIO conversion before processing", "Clean Up (TVD Iterations, TVD Speed): smooths the output mask", "Upsampling Filter: filter used to scale the mask back to the original resolution", "Mask Threshold: converts the soft mask to binary; when off, raw soft values are output", "Preview Color: overlay colour for the mask preview in the viewer", "Execution Provider and Device ID: Automatic, CPU, CUDA, DirectML or CoreML, and the GPU"]
+
+- Caveats: ["Click Download Models after a fresh Houdini installation before the node works.", "The page advises against a binary 0 or 1 mask input and recommends a soft mask.", "If a points input is wired, the node uses those points and then appends the Points parameter values. A bounding box set on the node replaces the one in the input.", "Reused embeddings only work with the same model size that created them.", "Points without a prompt attribute default to positive.", "CUDA requires separately installed CUDA and cuDNN. DirectML is Windows only, and CoreML is macOS only."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `modelpath` | Model Location | String | ["shfs:/houdini/nodes/cop/neural_imagetomask_sam2/onnx/v1/"] |  |  |
+| `model` | Model | String | ["tiny"] |  | large, tiny, custom |
+| `downloadmodels` | Download Models | Button |  |  |  |
+| `encoder` | Encoder ONNX File | String | ["shfs:/houdini/nodes/cop/neural_imagetomask_sam2/onnx/v1/sam2_hiera_tiny.encoder.onnx"] |  |  |
+| `decoder` | Decoder ONNX File | String | ["shfs:/houdini/nodes/cop/neural_imagetomask_sam2/onnx/v1/sam2_hiera_tiny.decoder.onnx"] |  |  |
+| `reload` | Reload Model | Button |  |  |  |
+| `units` | Units | Menu | 1 |  | image, texture, pixels |
+| `points` | Points | Folder | 1 |  |  |
+| `bbox` | Bounding Box | Toggle | false |  |  |
+| `bboxxyx` | BBox Lower Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `bboxxyy` | BBox Lower Left | Float | -1.0 | -1.0 .. 1.0 |  |
+| `bboxrtx` | BBox Upper Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bboxrty` | BBox Upper Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bboxxy_texturex` | BBox Lower Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `bboxxy_texturey` | BBox Lower Left | Float | 0.0 | -1.0 .. 1.0 |  |
+| `bboxrt_texturex` | BBox Upper Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bboxrt_texturey` | BBox Upper Right | Float | 1.0 | -1.0 .. 1.0 |  |
+| `bboxxy_pixelx` | BBox Lower Left | Int | 0 | -1 .. 1 |  |
+| `bboxxy_pixely` | BBox Lower Left | Int | 0 | -1 .. 1 |  |
+| `bboxrt_pixelx` | BBox Upper Right | Int | 256 | -1 .. 1 |  |
+| `bboxrt_pixely` | BBox Upper Right | Int | 256 | -1 .. 1 |  |
+| `preprocessing` |  | FolderSet |  |  |  |
+| `resamplebehavior` | Resample Behavior | Int | [0] | 0 .. 10 | 0, 1 |
+| `colortransform` | Color Transform | Int | [0] | 0 .. 10 (strict) | 0, 1 |
+| `sourcespace` | Original Space | String | ["scene_linear"] |  |  |
+| `tospace` | To Space | String | ["sRGB - Display"] |  |  |
+| `output2` |  | FolderSet |  |  |  |
+| `cleanup` | Clean Up | Toggle | false |  |  |
+| `iterations` | TVD Iterations | Int | [5] | 0 .. 100 (strict) |  |
+| `speed` | TVD Speed | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `filter` | Upsampling Filter | Menu | 1 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `usethreshold` | Use Threshold | Toggle | true |  |  |
+| `threshold` | Mask Threshold | Float | [0.5] | 0.0 .. 1.0 |  |
+| `visualization` |  | FolderSet |  |  |  |
+| `previewcolorr` | Preview Color | Float | 0.659 | 0.0 .. 1.0 |  |
+| `previewcolorg` | Preview Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `previewcolorb` | Preview Color | Float | 0.659 | 0.0 .. 1.0 |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `provider` | Execution Provider | Menu | 0 |  |  |
+| `deviceid` | Device ID | Int | [0] | 0 .. 10 |  |
+| `xy1x` | Point Coords 1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `xy1y` | Point Coords 1 | Float | 0.0 | -1.0 .. 1.0 |  |
+| `xy_texture1x` | Point Coords 1 | Float | 0.5 | -1.0 .. 1.0 |  |
+| `xy_texture1y` | Point Coords 1 | Float | 0.5 | -1.0 .. 1.0 |  |
+| `xy_pixel1x` | Point Coords 1 | Int | 128 | -1 .. 1 |  |
+| `xy_pixel1y` | Point Coords 1 | Int | 128 | -1 .. 1 |  |
+| `negative1` | Negative | Toggle | false |  |  |

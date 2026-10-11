@@ -1,0 +1,36 @@
+# bright
+
+- Label: Bright
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 12 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bright.html
+- Summary (EN): Makes a layer, VDB or attribute brighter or dimmer by multiplying its channels by a scale factor, then adding an offset. It works on RGBA channels and can be limited to specific ones.
+- Résumé (FR) : Éclaircit ou assombrit une couche en multipliant ses canaux par un facteur puis en ajoutant un décalage, avec une entrée optionnelle par pixel pour chacun.
+
+- Inputs meaning: ["source (required): layer, VDB or attribute to brighten", "bright (optional): per-pixel brightness factor scaled by the Brightness parameter", "shift (optional): per-pixel shift amount scaled by the Shift parameter", "mask (optional): per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: how much of the new value is mixed with the original (default 1, only the new value)", "Toggle RGB, Red, Green, Blue, Alpha: channels the effect applies to", "Brightness: scale factor (default 1); higher brightens, lower dims", "Tint Brightness: color tint applied to Brightness (default 1, 1, 1)", "Shift: amount added after scaling (default 0)", "Tint Shift: color tint applied to Shift (default 1, 1, 1)", "Scale by Timestep: makes brightness and shift take effect over one second"]
+
+- Caveats: ["The shift input has no effect unless the Shift parameter is set to 1", "With the default Mask of 1 the node uses only the new value and does not blend with the original", "Scale by Timestep is a more involved operation than a direct scale of the shift, designed so repeated application gives the same result", "The page does not say how out-of-range values are handled, such as clamping"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergba` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `bright` | Brightness | Float | [1.0] | 0.0 .. 10.0 |  |
+| `brighttintr` | Tint Brightness | Float | 1.0 | 0.0 .. 10.0 |  |
+| `brighttintg` | Tint Brightness | Float | 1.0 | 0.0 .. 10.0 |  |
+| `brighttintb` | Tint Brightness | Float | 1.0 | 0.0 .. 10.0 |  |
+| `shift` | Shift | Float | [0.0] | -1.0 .. 1.0 |  |
+| `shifttintr` | Tint Shift | Float | 1.0 | 0.0 .. 10.0 |  |
+| `shifttintg` | Tint Shift | Float | 1.0 | 0.0 .. 10.0 |  |
+| `shifttintb` | Tint Shift | Float | 1.0 | 0.0 .. 10.0 |  |
+| `scalebytimeinc` | Scale by Timestep | Toggle | false |  |  |

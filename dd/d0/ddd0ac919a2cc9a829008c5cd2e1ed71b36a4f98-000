@@ -1,0 +1,29 @@
+# cornerdetect
+
+- Label: Corner Detect
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cornerdetect.html
+- Summary (EN): Corner Detect analyses a single-channel (mono) layer to locate corner features. Its output is a grayscale layer in which detected corners appear as blobs, usable downstream for example with Points from Blobs. Available since 22.0.
+- Résumé (FR) : Le nœud Corner Detect repère les coins d'une couche mono et les restitue en taches lumineuses, exploitables ensuite par exemple avec Points from Blobs.
+
+- Inputs meaning: ["input: a mono layer"]
+
+- Key parameters: ["Type: selects the detection algorithm; one option is Harris Stephens (fast) 1988; other options are not listed on the page", "Neighbors: number of adjacent pixels considered", "Threshold: only values above this level are corner candidates", "K: Harris Stephens sensitivity, valid range 0.04 to 0.06; higher values make the detector less sensitive"]
+
+- Caveats: ["K applies only to Harris Stephens and its valid range is narrow", "The other Type options and tuning guidance for Neighbors and Threshold are not documented", "The input must be mono; the page does not say how other layer types are handled"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `type` | Type | Int | [3] | 0 .. 0 | 0, 1, 3, 4 |
+| `neighbors` | Neighbors | Int | [2] | 1 .. 10 |  |
+| `dothreshold` | Do Threshold | Toggle | true |  |  |
+| `threshold` | Threshold | Float | [1.0] | 0.0 .. 10.0 |  |
+| `k` | K | Float | [0.139] | 0.04 .. 0.06 |  |

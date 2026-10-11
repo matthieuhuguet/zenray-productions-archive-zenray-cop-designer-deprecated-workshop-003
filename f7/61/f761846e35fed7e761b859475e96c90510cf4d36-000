@@ -1,0 +1,50 @@
+# chromakey
+
+- Label: Chroma Key
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 26 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/chromakey.html
+- Summary (EN): The Chroma Key node removes parts of an image whose hue, saturation and luminance fall within defined ranges by setting their alpha to zero. It isolates a foreground subject from a green screen.
+- Résumé (FR) : Le nœud Chroma Key retire les zones d'une image dont la teinte, la saturation et la luminance tombent dans des plages choisies, pour isoler un sujet sur fond vert.
+
+- Inputs meaning: ["source: the original layer to key"]
+
+- Key parameters: ["Method: legacy Chromakey or Channel Separation key", "Invert: inverts the resulting matte", "Hue / Saturation: hue and saturation ranges to key, sampled with an eyedropper", "Luminance Range: luminance range to key", "Screen Color: colour to key out (Channel Separation only)", "Threshold and Width: matte threshold and range on both sides (Channel Separation only)", "Rolloff (Hue, Saturation, Luminance): soft falloff extending each range, with Interpolation curve (linear, ease in, ease out, smooth, Gaussian)", "Preview and Preview Color: tints the keyed result without removing pixels", "Premultiply: multiplies the input by the generated matte"]
+
+- Caveats: ["Screen Color, Threshold and Width apply only when Method is Channel Separation", "Preview does not key out pixels, it only colours the result", "Premultiply permanently discards keyed-out pixels; use the matte output to process the matte first"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `method` | Method | Menu | 0 |  | chroma, channel |
+| `invert` | Invert | Toggle | false |  |  |
+| `key` |  | FolderSet |  |  |  |
+| `huecircle1` | Hue/Saturation | Float | 75.0 | 0.0 .. 1.0 |  |
+| `huecircle2` | Hue/Saturation | Float | 150.0 | 0.0 .. 1.0 |  |
+| `huecircle3` | Hue/Saturation | Float | 0.2 | 0.0 .. 1.0 |  |
+| `huecircle4` | Hue/Saturation | Float | 1.0 | 0.0 .. 1.0 |  |
+| `lumrangex` | Luminance Range | Float | 0.0 | 0.0 .. 1.0 |  |
+| `lumrangey` | Luminance Range | Float | 1.0 | 0.0 .. 1.0 |  |
+| `rolloff` |  | FolderSet |  |  |  |
+| `huerolloff` | Hue | Float | [0.0] | 0.0 .. 180.0 (strict) |  |
+| `satrolloff` | Saturation | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `lumrolloff` | Luminance | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `interpolation` | Interpolation | Menu | 0 |  | 0, 1, 2, 3, 4 |
+| `screencolorr` | Screen Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `screencolorg` | Screen Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `screencolorb` | Screen Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `threshold` | Threshold | Float | [0.95] | 0.0 .. 1.0 |  |
+| `width` | Width | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `viz` |  | FolderSet |  |  |  |
+| `preview` | Preview | Toggle | false |  |  |
+| `previewcolorr` | Preview Color | Float | 0.659 | 0.0 .. 1.0 |  |
+| `previewcolorg` | Preview Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `previewcolorb` | Preview Color | Float | 0.689 | 0.0 .. 1.0 |  |
+| `premult` | Premultiply | Toggle | true |  |  |

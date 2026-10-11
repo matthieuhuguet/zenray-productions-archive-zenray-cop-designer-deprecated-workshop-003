@@ -1,0 +1,113 @@
+# heightfield_maskbyfeature
+
+- Label: HeightField Mask by Feature
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 89 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_maskbyfeature.html
+- Summary (EN): HeightField Mask By Feature builds a mask from a heightfield by measuring slope, height, curvature, direction and ambient occlusion. When several features are enabled, it combines them into a single mask layer using the Blend Mode.
+- Résumé (FR) : HeightField Mask By Feature fabrique un masque à partir de la pente, de la hauteur, de la courbure, de la direction et de l'occlusion, puis combine ces critères par un mode de fusion.
+
+- Inputs meaning: ["height: heightfield to generate the mask from"]
+
+- Key parameters: ["Smooth Radius: blur radius in local space applied before features are measured", "Blend Mode: Add, Multiply, Average, Minimum or Maximum for combining feature masks", "Invert Mask: inverts the final mask values", "Slope: Min and Max Slope Angle, Slope Ramp", "Height: Min and Max Height, Height Ramp, Compute Range", "Peaks and Valleys: Max Curvature, Curvature Ramp", "Direction: Goal Angle (0 degrees points along increasing pixels across the width), Angle Spread, Direction Ramp", "Occlusion: Minimum and Maximum Occlusion, Height Scale, Occlusion Ramp", "Occlusion Quality: View Radius, Step Scale, Sample Count, Sample from Hemisphere; accuracy against calculation time"]
+
+- Caveats: ["The node has one input, and its only output is the mask layer", "A larger Step Scale calculates faster but may miss thin features", "A higher View Radius and Sample Count improve occlusion accuracy but increase calculation time", "The page gives no performance figures and does not describe the exact ramp curve shapes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `smoothradius` | Smooth Radius | Float | [1.0] | 0.0 .. 100.0 (strict) |  |
+| `blend` | Blend Mode | Menu | 1 |  | 0, 1, 2, 3, 4 |
+| `invertmask` | Invert Mask | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `maskbyslope` | Mask by Slope | Toggle | true |  |  |
+| `minangle` | Min Slope Angle | Float | [20.0] | 0.0 .. 90.0 |  |
+| `maxangle` | Max Slope Angle | Float | [70.0] | 0.0 .. 90.0 |  |
+| `sloperamp` | Slope Ramp | Ramp | 4 |  |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `maskbyheight` | Mask by Height | Toggle | false |  |  |
+| `computerange` | Compute Range | Button |  |  |  |
+| `minheight` | Min Height | Float | [0.0] | -100.0 .. 100.0 |  |
+| `maxheight` | Max Height | Float | [1.0] | -100.0 .. 100.0 |  |
+| `heightramp` | Height Ramp | Ramp | 4 |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `maskbycurvature` | Mask by Curvature | Toggle | false |  |  |
+| `maxcurvature` | Max Curvature | Float | [0.05] | 0.0 .. 1.0 |  |
+| `curvatureramp` | Curvature Ramp | Ramp | 4 |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `maskbydirection` | Mask by Direction | Toggle | false |  |  |
+| `goalangle` | Goal Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `anglespread` | Angle Spread | Float | [30.0] | 0.0 .. 180.0 |  |
+| `directionramp` | Direction Ramp | Ramp | 4 |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `maskbyocclusion` | Mask by Occlusion | Toggle | false |  |  |
+| `computeocclusionrange` | Compute Range | Button |  |  |  |
+| `minocclusion` | Minimum Occlusion | Float | [0.0] | 0.0 .. 1.0 |  |
+| `maxocclusion` | Maximum Occlusion | Float | [1.0] | 0.0 .. 1.0 |  |
+| `heightscale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `occlusionramp` | Occlusion Ramp | Ramp | 2 |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `viewradius` | View Radius | Float | [20.0] | 0.001 .. 100.0 (strict) |  |
+| `stepscale` | Step Scale | Float | [1.0] | 0.5 .. 10.0 (strict) |  |
+| `axiscount` | Sample Count | Int | [16] | 1 .. 50 (strict) |  |
+| `dohemisphere` | Sample from Hemisphere | Toggle | true |  |  |
+| `sloperamp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sloperamp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sloperamp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `sloperamp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sloperamp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sloperamp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `sloperamp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sloperamp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sloperamp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `sloperamp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `sloperamp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `sloperamp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `heightramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `heightramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `heightramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `heightramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `heightramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `heightramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `heightramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `heightramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `heightramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `heightramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `heightramp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `heightramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `curvatureramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `curvatureramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `curvatureramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `curvatureramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `curvatureramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `curvatureramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `curvatureramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `curvatureramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `curvatureramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `curvatureramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `curvatureramp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `curvatureramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `directionramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `directionramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `directionramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `directionramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `directionramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `directionramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `directionramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `directionramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `directionramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `directionramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `directionramp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `directionramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `occlusionramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `occlusionramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `occlusionramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `occlusionramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `occlusionramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `occlusionramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

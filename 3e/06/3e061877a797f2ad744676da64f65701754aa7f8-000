@@ -1,0 +1,30 @@
+# heightfieldtomono
+
+- Label: HeightField to Mono
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfieldtomono.html
+- Summary (EN): Converts a heightfield into a grayscale mono layer: resets the layer type to None and linearly remaps heights from the input range to the output range.
+- Résumé (FR) : Convertit un champ de hauteur en couche mono en grisés, en remappant linéairement la plage de hauteurs vers la plage de sortie.
+
+- Inputs meaning: ["height: the original height layer"]
+
+- Key parameters: [{"name": "Compute Range", "meaning": "fills Input Min and Input Max from the layer minimum and maximum heights"}, {"name": "Input Min / Input Max", "meaning": "heights at or below Input Min map to Output Min; at or above Input Max map to Output Max"}, {"name": "Output Min / Output Max", "meaning": "lower and upper ends of the output range"}, {"name": "Clamp to Output Range", "meaning": "limits output values to the output range when enabled"}]
+
+- Caveats: ["By default values outside the input range can extend beyond the output range; enable Clamp to Output Range to prevent this."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `computerange` | Compute Range | Button |  |  |  |
+| `inputmin` | Input Min | Float | [0.0] | 0.0 .. 1.0 |  |
+| `inputmax` | Input Max | Float | [1.0] | 0.0 .. 1.0 |  |
+| `outputmin` | Output Min | Float | [0.0] | 0.0 .. 1.0 |  |
+| `outputmax` | Output Max | Float | [1.0] | 0.0 .. 1.0 |  |
+| `doclamp` | Clamp to Output Range | Toggle | false |  |  |

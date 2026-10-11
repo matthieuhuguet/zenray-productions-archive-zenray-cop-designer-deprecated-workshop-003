@@ -1,0 +1,25 @@
+# cablemerge
+
+- Label: Cable Merge
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 2 to 2
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cablemerge.html
+- Summary (EN): Combines two cables into a single output cable named merge; the Operation parameter sets how the wires of the two inputs are merged. Available since version 21.0.
+- Résumé (FR) : Le nœud cablemerge fusionne deux câbles en un seul selon le mode choisi (union, intersection, différence, copie, union complète ou renommage).
+
+- Inputs meaning: ["input_cable: the first cable", "reference: the second cable"]
+
+- Key parameters: [{"name": "Operation", "meaning": "Union (first cable then new wires of second), Intersection (wires in both, data from first), Difference (wires of first absent from second), Copy (second structure, first data preferred, second as fallback), Full Union (all wires of both, duplicates kept), Rename (first data named after second wires)"}]
+
+- Caveats: ["With Rename, the output is truncated to the wire count of the second cable if it has fewer wires", "Full Union keeps duplicate wires, unlike Union"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `operation` | Operation | Menu | 3 |  | union, intersection, difference, copy, fullunion, rename |

@@ -1,0 +1,27 @@
+# block_begin
+
+- Label: Block Begin
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/block_begin.html
+- Summary (EN): Marks the start of a block and defines the inputs that feed it. The block can run inline when inputs are wired into this node, or externally through an Invoke Block COP.
+- Résumé (FR) : Ouvre un bloc réutilisable et déclare ses entrées, qui le font tourner en ligne ou par un Invoke Block COP.
+
+- Inputs meaning: ["Block inputs: a list whose length is set by Block Inputs, each with a name and a type; the page does not document a fixed port order"]
+
+- Key parameters: ["Block Path: path to the Block End COP that closes the block; it must be at the same network level", "Rename Wires Using Output Labels: output wire names come from port labels when on, otherwise they pass through from the inputs", "Block Inputs: number of inputs to the block", "Input Name: identifies each input when invoking the block or binding inputs for slap comp", "Input Type: kind of data each input accepts and can connect to"]
+
+- Caveats: ["Time Shift nodes cannot be used inside a block when they require block inputs at different times", "Workaround: place a Time Pack before Block Begin and wire the result in as a cable", "Enabling output-label renaming discards incoming wire names"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `blockpath` | Block Path | String | [""] |  |  |
+| `cablerenamebylabel` | Rename Wires Using Output Labels | Toggle | false |  |  |
+| `ports` | Block Inputs | Folder | 0 |  |  |

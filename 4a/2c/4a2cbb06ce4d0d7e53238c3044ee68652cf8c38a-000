@@ -1,0 +1,29 @@
+# curl
+
+- Label: Curl
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curl.html
+- Summary (EN): Computes the curl of an input vector field, which measures its circulation and therefore local rotation. Available since Houdini 22.0.
+- Résumé (FR) : Calcule le rotationnel d'un champ vectoriel pour repérer les rotations locales.
+
+- Inputs meaning: ["v: a UV layer or a Vector VDB containing the vector field (only input)"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Space: Image, Pixel or Local coordinate space for the computation", "Scale: constant multiplier applied to the curl", "Kernel Size: maximum neighbour distance, in buffer elements, used for derivatives", "Read Pixels outside Image: reads beyond the image edge for Wrap borders, off for Clamp borders"]
+
+- Caveats: ["A UV input gives a mono 2D scalar curl; a Vector VDB input gives a Vector VDB 3D curl.", "Results depend on Space and border settings, so magnitudes are not directly comparable across configurations."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `space` | Space | Menu | 0 |  | image, pixel, local |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `kernelsize` | Kernel Size | Int | [0] | 1 .. 64 (strict) |  |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |

@@ -1,0 +1,50 @@
+# heatdistortbylayer
+
+- Label: Heat Distort by Layer
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 2 to 5
+- Parameters: 26 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heatdistortbylayer.html
+- Summary (EN): Heat Distort By Layer warps a source layer using a separate control layer to create heat-haze and mirage effects. It is a lower-level building block than Heat Distort, so complex haze is usually built by chaining several of these nodes.
+- Résumé (FR) : Heat Distort By Layer déforme un calque à partir d'un calque de contrôle séparé, brique de bas niveau à chaîner pour construire un mirage.
+
+- Inputs meaning: ["source: original layer to distort", "noise: layer that controls the distortion", "effect: optional per-pixel scaling of the distortion strength", "dir: optional per-pixel distortion direction", "mask: optional per-pixel mask, scaled by the Mask parameter"]
+
+- Key parameters: ["Mask: how much of the distorted result mixes into the original (default 1)", "Scale: overall distortion strength", "Angle: distortion direction, where 0 points along positive X", "Accurate Distortion: traces curved paths; a pixels-per-step setting controls quality", "Streak Blur: smears the image along the distortion direction", "Scale by Timestep: scales strength by the timestep, usually 1/FPS", "Blur Source (with Blur Size and Scale): blurs the source in proportion to distortion", "Blur Noise (with Blur Size and Scale): blurs the noise input before it builds the direction map", "Chromatic Aberration (Scale, Red, Green, Blue): per-channel offsets for colour fringing"]
+
+- Caveats: ["Without a dir input, the direction is derived from the noise input", "With Accurate Distortion off, results can be inaccurate when directions or scales vary strongly", "Needs more manual configuration than Heat Distort, which has built-in noises"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `scale` | Scale | Float | [0.035] | 0.0 .. 1.0 (strict) |  |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `usecfl` | Accurate Distortion | Toggle | false |  |  |
+| `streakblur` | Streak Blur | Toggle | false |  |  |
+| `scalebytimeinc` | Scale by Timestep | Toggle | false |  |  |
+| `dosourceblur` | Enable Blur | Toggle | true |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `sourceblursize` | Blur Size | Float | [0.035] | 0.0 .. 1.0 (strict) |  |
+| `sourceblursizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `sourceblurscalex` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `sourceblurscaley` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `donoiseblur` | Noise Blur | Toggle | false |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `noiseblursize` | Blur Size | Float | [0.005] | 0.0 .. 1.0 (strict) |  |
+| `noiseblursizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `noiseblurscalex` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `noiseblurscaley` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `doca` | Chromatic Aberration | Toggle | false |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `cascale` | Scale | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `carshift` | Red | Float | [-0.05] | -0.1 .. 0.1 |  |
+| `cagshift` | Green | Float | [0.0] | -0.1 .. 0.1 |  |
+| `cabshift` | Blue | Float | [0.05] | -0.1 .. 0.1 |  |

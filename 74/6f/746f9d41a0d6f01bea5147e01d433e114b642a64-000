@@ -1,0 +1,28 @@
+# denoisetvd
+
+- Label: Denoise TVD
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/denoisetvd.html
+- Summary (EN): Removes white noise by reducing curvature in the image heightfield representation, eliminating high-frequency specks while preserving sharp edges better than a blur. Distinct from Denoise AI.
+- Résumé (FR) : Supprime le bruit blanc par diffusion de courbure, en gardant les bords nets mais en effaçant les détails fins.
+
+- Inputs meaning: ["source: layer to denoise", "speed: optional mono layer varying denoising speed per pixel; multiplies Speed and should stay below one", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: mix of new and original value; default 1 uses only the new value and sets the affected RGBA channels", "Iterations: number of denoising rounds; more removes more noise and more detail, with runtime scaling", "Speed: diffusion per round; total diffusion equals Speed multiplied by Iterations"]
+
+- Caveats: ["Texture detail is treated as noise and suppressed.", "A high Speed can make the process unstable and prevent convergence."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `iterations` | Iterations | Int | [10] | 0 .. 100 (strict) |  |
+| `speed` | Speed | Float | [0.5] | 0.0 .. 1.0 (strict) |  |

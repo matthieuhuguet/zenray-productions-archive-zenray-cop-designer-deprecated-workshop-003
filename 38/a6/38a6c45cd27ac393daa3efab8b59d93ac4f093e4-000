@@ -1,0 +1,48 @@
+# bakepreprocess
+
+- Label: Bake Pre-Process
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 2
+- Parameters: 24 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bakepreprocess.html
+- Summary (EN): Prepares a low-resolution mesh for texture baking by generating a cage, ray directions and ray lengths, and provides an interactive viewport state to preview the rays and cage positions. The page states that this COP is a direct copy of the Bake Pre-Process SOP, and that a Bake Setup recipe creates it automatically. Available since Houdini 22.0.
+- Résumé (FR) : Prépare un maillage basse résolution au bake en générant la cage, les directions et les longueurs de rayons, avec un aperçu interactif.
+
+- Inputs meaning: ["low: low-resolution geometry used to build the cage", "high: high-resolution geometry, passed through unchanged for comparison with the cage"]
+
+- Key parameters: ["Normal Mode: keep geometric normals, smooth them into point normals, or override them", "Missing Normals: from messages and warnings to errors, or silent creation", "Ray Start Offset and Ray Start Mode: cage extent, uniform or scaled by an attribute", "Ray Direction: toward the matching low-res polygons, or from a float3 vertex attribute", "Ray End Offset and Ray End Mode: sets ray length; No End writes -1 for endless rays", "Soften Cage and Soften Mode: split by faces, UV seams or an edge group", "Cage outputs: Ray Start (point), Ray Direction (vertex), Ray Length (point)"]
+
+- Caveats: ["Baking works best when the low-res mesh has normals; without them the node may warn or error", "From Low Vertex Attribute requires a float3 vertex attribute on the low-res mesh", "By UV Seams requires a UV attribute", "Ray length is the difference between the end and start offsets", "The page states the COP and the SOP can produce the same result"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder2` |  | FolderSet |  |  |  |
+| `normalmode` | Normal Mode | Menu | 0 |  | geoN, smooth |
+| `overridenormals` | Override | Toggle | false |  |  |
+| `normals` | Missing Normals | Menu | 0 |  | message, error, warning, create |
+| `folder0` |  | FolderSet |  |  |  |
+| `cuspangle` | Cusp Angle | Float | [60.0] | 0.0 .. 180.0 (strict) |  |
+| `method` | Weighting Method | Int | [1] | 0 .. 2 (strict) | uniform, angle, area |
+| `softencagegroup` | Soften Cage Group | String | [""] |  |  |
+| `softencage` | Soften Cage | Toggle | false |  |  |
+| `softenmode` | Soften Mode | Menu | 1 |  | byfaces, byuvseams, byedges |
+| `softencageedgegroup` | Edge Group | String | [""] |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `raystartoffset` | Ray Start Offset | Float | [0.1] | 0.0 .. 5.0 |  |
+| `raystartmode` | Ray Start Mode | Menu | 0 |  | uniform, attrib |
+| `startattrib` | Attribute | String | [""] |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `rayendoffset` | Ray End Offset | Float | [0.0] | 0.0 .. 5.0 |  |
+| `rayendmode` | Ray End Mode | Menu | 2 |  | uniform, attrib, endless |
+| `endattrib` | Attribute | String | [""] |  |  |
+| `output_folder3` |  | FolderSet |  |  |  |
+| `raystartattrib` | Ray Start (Point) | String | ["P"] |  |  |
+| `raydirattrib` | Ray Direction (Vertex) | String | ["N"] |  |  |
+| `raylengthattrib` | Ray Length (Point) | String | ["raylength"] |  |  |

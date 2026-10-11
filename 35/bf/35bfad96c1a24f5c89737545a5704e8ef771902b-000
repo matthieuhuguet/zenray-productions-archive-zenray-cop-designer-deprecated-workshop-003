@@ -1,0 +1,70 @@
+# bubblenoise
+
+- Label: Bubble Noise
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 46 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/bubblenoise.html
+- Summary (EN): Generates a bubbly noise pattern that resembles Fractal Noise with the Torus noise type, but each fractal level is distorted so it compresses and expands. Typical uses are billowy clouds and sharp caustics. Introduced in version 21.0.
+- Résumé (FR) : Le nœud bubblenoise génère un bruit en bulles, proche du Fractal Noise en type Torus mais avec chaque niveau déformé, pour des nuages gonflés ou des caustiques nettes.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and metadata", "pos (optional): UV layer whose values replace the pixel image coordinates for the noise"]
+
+- Key parameters: [{"name": "Amplitude", "meaning": "Multiplies the noise before the Center adjustment"}, {"name": "Center", "meaning": "Offsets the output noise range"}, {"name": "Element Size", "meaning": "Size of the basic noise element; Per-Component Controls enables per-axis Element Scale"}, {"name": "Phase", "meaning": "Moves the noise through 4D space to pick different seeds"}, {"name": "Offset", "meaning": "Shifts the whole noise function in image coordinates"}, {"name": "Tile Size", "meaning": "Size of the repeating noise tile"}, {"name": "Noise Type (Fractal)", "meaning": "Simplex (Perlin on simplex grid) or Curl (divergence-free curl on Perlin)"}, {"name": "Max Octaves", "meaning": "Number of noise layers added together"}, {"name": "Lacunarity", "meaning": "Scale factor per octave, rounded to an integer for periodic noise"}, {"name": "Roughness", "meaning": "Amplitude scale for each successive octave"}, {"name": "Distortion", "meaning": "Warps the noise toward decreasing or increasing values"}, {"name": "Stretch", "meaning": "Stretches the noise per direction; recommended over Element Size"}, {"name": "Droop / Droop Direction", "meaning": "Bends the pattern toward a chosen direction"}, {"name": "Fold each Octave", "meaning": "Remaps values during evaluation so valleys become peaks"}, {"name": "Post Processing", "meaning": "Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum, applied in that order"}]
+
+- Caveats: ["Periodic because it is based on torus noise", "Values can go below 0 or above 1; use the Clamp options for bounded output", "Complement works properly only for values from 0 to 1", "Fold each Octave differs from applying an absolute function afterward", "Post Processing Contrast is not the same as the Noise Contrast of other noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder2` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [1.0] | 0.1 .. 10.0 |  |
+| `elementsizetype` | Element Size | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `phasex` | Phase | Float | 0.0 | -1.0 .. 1.0 |  |
+| `phasey` | Phase | Float | 0.0 | -1.0 .. 1.0 |  |
+| `phasez` | Phase | Float | 0.0 | -1.0 .. 1.0 |  |
+| `phasew` | Phase | Float | 0.0 | -1.0 .. 1.0 |  |
+| `offsetx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offsety` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `tilesizex` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | -1.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `noisetype` | Noise Type | Menu | 0 |  | simplex, curl |
+| `max_octaves` | Max Octaves | Int | [6] | 2 .. 10 (strict) |  |
+| `lac` | Lacunarity | Float | [2.01234] | 0.0 .. 4.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `distort` | Distortion | Float | [1.0] | -1.0 .. 1.0 |  |
+| `stretchx` | Stretch | Float | 1.0 | 0.0 .. 1.0 |  |
+| `stretchy` | Stretch | Float | 1.0 | 0.0 .. 1.0 |  |
+| `dodroop` | Droop | Toggle | false |  |  |
+| `droop` | Droop | Float | [1.0] | 0.0 .. 10.0 |  |
+| `droopdirx` | Droop Direction | Float | 0.0 | 0.0 .. 10.0 |  |
+| `droopdiry` | Droop Direction | Float | -1.0 | 0.0 .. 10.0 |  |
+| `dofold` | Fold each Octave | Toggle | false |  |  |
+| `folder20` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | true |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 5.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minmum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maximum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

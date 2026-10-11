@@ -1,0 +1,77 @@
+# crystalnoise
+
+- Label: Crystal Noise
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 53 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/crystalnoise.html
+- Summary (EN): Generates sharp, angular Worley-type noise in image coordinates by combining two randomly offset Worley noises. Suited to rock patterns, chipping and similar hard-edged detail.
+- Résumé (FR) : Génère un bruit de Worley anguleux en coordonnées image, adapté aux roches et aux éclats.
+
+- Inputs meaning: ["size_ref: representative layer that sets output size and metadata", "pos: optional UV layer replacing pixel image coordinates as the noise source", "time: optional layer giving a per-pixel time value"]
+
+- Key parameters: ["Primary Metric: Euclidean, Manhattan or Chebyshev distance", "Jitter and Element Size: grid point randomness and base feature size in image coordinates; Element Scale per axis with Per-Component Controls", "Secondary, Secondary Metric, Secondary Jitter and Element Size: configure the second Worley noise", "Amplitude, Center, Noise Contrast: scale, offset and contrast of the raw noise", "Tile Size: repeat period for seamless tiling", "Flatten Faces: keeps faces flat instead of bulging", "3D Noise group (Animate, Pulse Length, Time Scale, Time Offset, Loop Length): time as a third dimension", "Post Processing (Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum): applied in that order"]
+
+- Caveats: ["Values can fall below 0 or above 1; add a Clamp COP to enforce range.", "Jitter above 1 can cause artifacts.", "Complement assumes values between 0 and 1.", "Noise Contrast (inside the noise) differs from the post-processing Contrast.", "With Tile Size on, Element Size and similar values are rounded or clamped to stay tileable.", "For pure 3D noise use Crystal Noise 3D or Fractal Noise 3D."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["default"] |  |  |
+| `settypeinfo` | Set Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Noise Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `metric` | Primary Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `jitter` | Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `enablesecondary` | Secondary | Toggle | false |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `metric2` | Secondary Metric | Menu | 1 |  | euclidean, manhattan, chebyshev |
+| `sec_jitter` | Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `togglesecondaryelementsize` | Toggle Secondary Element Size | Toggle | true |  |  |
+| `sec_elementsize` | Element Size | Float | [0.125] | 0.001 .. 1.0 |  |
+| `sec_elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `sec_elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sec_elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Do Tiling | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `flattenfaces` | Flatten Faces | Toggle | true |  |  |
+| `use3d` | 3D Noise | Toggle | false |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `animate` | Animate | Toggle | false |  |  |
+| `pulselength` | Pulse Length | Float | [1.0] | 0.0 .. 1.0 |  |
+| `timeoffset` | Time Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `timescale` | Time Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `doloop` | Loop | Toggle | false |  |  |
+| `looplen` | Loop Length (sec) | Float | [10.0] | 0.0 .. 10.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

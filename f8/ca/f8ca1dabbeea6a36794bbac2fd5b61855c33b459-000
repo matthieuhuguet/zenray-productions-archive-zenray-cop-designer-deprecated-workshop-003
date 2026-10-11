@@ -1,0 +1,27 @@
+# layerattribdelete
+
+- Label: Layer Property Delete
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layerattribdelete.html
+- Summary (EN): The Layer Property Delete node removes user-defined properties from a layer, such as metadata carried in imported EXR files. Delete Property removes matching properties, and Keep Property removes those that do not match.
+- Résumé (FR) : Supprime des propriétés personnalisées d'une couche, soit celles qui correspondent à un motif, soit toutes sauf celles qui correspondent.
+
+- Inputs meaning: ["source: the original layer from which properties are deleted"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Delete Property: property pattern; matching properties are removed", "Keep Property: property pattern; properties that do not match it are removed"]
+
+- Caveats: ["The current page is titled Layer Property Delete; the Houdini 21 docs titled the same URL Layer Attribute Delete. Same node, renamed in the docs", "The page does not define the pattern syntax of Delete Property and Keep Property", "The page does not say how the two pattern parameters interact when both are set", "The page describes a single output: the layer with the properties removed", "Documented as available since version 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `delete` | Delete Property | String | [""] |  |  |
+| `keep` | Keep Property | String | ["*"] |  |  |

@@ -1,0 +1,47 @@
+# distort
+
+- Label: Distort
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 23 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/distort.html
+- Summary (EN): Warps an incoming layer either by shifting pixels in a fixed direction with adjustable strength, or by tracing pixels through the vectors of an input UV layer. Optional streak modes smear samples along the path.
+- Résumé (FR) : Déforme une couche selon une direction fixe ou les vecteurs d'une couche UV, avec des effets de traînée optionnels.
+
+- Inputs meaning: ["source: original layer to distort", "dir: optional per-pixel direction", "scale: optional per-pixel multiplier on Scale", "mask: optional per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Signature, Border, Filter: layer type, sampling outside bounds, sampling filter", "Mask: mix of distorted and original value", "Direction Type, Direction, Normalize Direction, Angle: fixed distortion direction", "Scale: overall strength; negative values trace backward", "Scale by Timestep: scales strength by timestep, usually 1 over FPS", "Streak (Off, Blur, Min, Max): combines values along the path", "Use Streak Weight Ramp, Streak Weight: fades samples along the trajectory", "Pixels per Step, Maximum Steps: curved-path tracing accuracy and step cap"]
+
+- Caveats: ["Direction Type and related parameters are ignored when a dir input is connected.", "With only a UV source wired, Scale just shifts UVs left and right.", "With Pixels per Step off, one step per pixel: fast but inaccurate when directions or scales vary; raise Maximum Steps if the distortion does not follow the directions."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap |
+| `filter` | Filter | Menu | 1 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `dirtype` | Direction Type | Menu | 0 |  | angle, coord |
+| `dirx` | Direction | Float | 1.0 | 0.0 .. 1.0 |  |
+| `diry` | Direction | Float | 0.0 | 0.0 .. 1.0 |  |
+| `normalizedir` | Normalize Direction | Toggle | false |  |  |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `scale` | Scale | Float | [0.005] | -0.05 .. 0.05 |  |
+| `scalebytimeinc` | Scale by Timestep | Toggle | false |  |  |
+| `streak` | Streak | Menu | 0 |  | off, on, min, max |
+| `usestreakweight` | Use Streak Weight Ramp | Toggle | false |  |  |
+| `streakweight` | Streak Weight | Ramp | 2 |  |  |
+| `usecfl` | Pixels per Step | Toggle | true |  |  |
+| `cfl` | Pixels per Step | Float | [1.0] | 0.1 .. 1000.0 (strict) |  |
+| `maxsteps` | Maximum Steps | Int | [100] | 1 .. 1000 |  |
+| `streakweight1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `streakweight2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `streakweight2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `streakweight2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

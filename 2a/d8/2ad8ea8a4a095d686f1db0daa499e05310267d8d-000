@@ -1,0 +1,57 @@
+# heighttoshadow
+
+- Label: Height to Shadow
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 33 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heighttoshadow.html
+- Summary (EN): Creates approximate shadows from a height field by placing a virtual light source and testing how much each pixel's neighbors block it. Intended for shading and texture synthesis.
+- Résumé (FR) : Crée des ombres approximatives à partir d'un champ de hauteur, avec une lumière virtuelle de type disque, sphère ou directionnelle.
+
+- Inputs meaning: ["height: the original height layer used to calculate shadows"]
+
+- Key parameters: [{"name": "Space", "meaning": "Local or World space for interpreting light position, direction and normal"}, {"name": "Height Map Scale", "meaning": "scales height values before occlusion is computed"}, {"name": "Step Scale", "meaning": "spacing of steps along each ray; larger cooks faster but may miss thin features"}, {"name": "Type", "meaning": "light profile: Disk, Sphere or Directional"}, {"name": "Radius / Angular Size", "meaning": "radius for Disk and Sphere; angular size in degrees for Directional"}, {"name": "Use / Light Normal", "meaning": "how Disk and Sphere positions are defined, and the Disk normal direction"}, {"name": "Single Sided", "meaning": "for Disk lights, ignores light from the back side"}]
+
+- Caveats: ["The shadows are approximate, and thin features can be missed at higher Step Scale values."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `space` | Space | Menu | 0 |  | local, world |
+| `folder2` |  | FolderSet |  |  |  |
+| `type` | Type | Menu | 0 |  | disk, sphere, directional |
+| `singlesided` | Single Sided | Toggle | false |  |  |
+| `radius` | Radius | Float | [1.0] | 0.0 .. 1.0 |  |
+| `angularsize` | Angular Size | Float | [0.0] | 0.0 .. 10.0 |  |
+| `heightmapscale` | Height Map Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `transform` |  | FolderSet |  |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `use` | Use | Menu | 0 |  | spherical, cartesian |
+| `spherical` |  | FolderSet |  |  |  |
+| `azimuth` | Azimuth | Float | [0.0] | -180.0 .. 180.0 |  |
+| `altitude` | Altitude | Float | [90.0] | -90.0 .. 90.0 |  |
+| `distance` | Distance | Float | [2.0] | 0.0 .. 10.0 |  |
+| `cartesian` |  | FolderSet |  |  |  |
+| `positionx` | Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `positiony` | Position | Float | 0.0 | -1.0 .. 1.0 |  |
+| `positionz` | Position | Float | 2.0 | -1.0 .. 1.0 |  |
+| `lightnormalx` | Light Normal | Float | 0.0 | 0.0 .. 1.0 |  |
+| `lightnormaly` | Light Normal | Float | 0.0 | 0.0 .. 1.0 |  |
+| `lightnormalz` | Light Normal | Float | 1.0 | 0.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `directional_use` | Use | Menu | 0 |  | spherical, cartesian |
+| `directional_spherical` |  | FolderSet |  |  |  |
+| `directional_azimuth` | Azimuth | Float | [0.0] | 0.0 .. 360.0 |  |
+| `directional_altitude` | Altitude | Float | [90.0] | 0.0 .. 90.0 |  |
+| `directional_cartesian` |  | FolderSet |  |  |  |
+| `directional_directionx` | Direction | Float | 0.0 | -1.0 .. 1.0 |  |
+| `directional_directiony` | Direction | Float | 0.0 | -1.0 .. 1.0 |  |
+| `directional_directionz` | Direction | Float | 2.0 | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `viewradius` | View Radius | Float | [0.2] | 0.005 .. 1.0 |  |
+| `stepscale` | Step Scale | Float | [0.5] | 0.5 .. 10.0 |  |

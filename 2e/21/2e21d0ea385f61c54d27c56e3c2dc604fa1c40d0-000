@@ -1,0 +1,26 @@
+# channelextract
+
+- Label: Channel Extract
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/channelextract.html
+- Summary (EN): Pulls one channel out of a layer, VDB or attribute and outputs it as a single Mono result named channel. It is a simpler alternative to Channel Split with one output.
+- Résumé (FR) : Le nœud channelextract extrait un seul canal d'une couche multicanale et le sort sous forme de couche Mono.
+
+- Inputs meaning: ["channels: multichannel layer, VDB or attribute to extract from"]
+
+- Key parameters: [{"name": "Signature", "meaning": "Layer type the input accepts; see the Signatures section of the glossary"}, {"name": "Channel to Extract", "meaning": "Channel index; default 0 is Red (x), 1 is green"}]
+
+- Caveats: ["If the requested channel is missing, the standard channel extension rules apply; the page does not describe them"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `channel` | Channel to Extract | Int | [0] | 0 .. 3 (strict) | 0, 1, 2, 3 |

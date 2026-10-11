@@ -1,0 +1,73 @@
+# cellularnoise3d
+
+- Label: Cellular Noise 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 49 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cellularnoise3d.html
+- Summary (EN): Generates Worley-style cellular noise sampled from 3D world locations rather than image coordinates, with controllable cell spacing and beveled edges.
+- Résumé (FR) : Le nœud cellularnoise3d produit un bruit cellulaire à partir des coordonnées monde 3D du pixel, et non de ses coordonnées image.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata", "pos (optional): RGB layer whose values replace the pixel world coordinates as the noise source"]
+
+- Key parameters: [{"name": "Range", "meaning": "Amplitude (contrast strength) and Shift (overall brightness)"}, {"name": "Pattern", "meaning": "Element Size, Jitter, Metric (Euclidean circular, Manhattan diamond, Chebyshev square), Offset"}, {"name": "Shape", "meaning": "Mode (absolute image-space or normalized 0 to 1), Gap, Bevel, Bevel Ramp"}, {"name": "Post Processing", "meaning": "Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum, in listed order"}, {"name": "Per-Component Controls", "meaning": "Toggle enabling per-axis Element Scale and Jitter Scale"}, {"name": "Smooth Edge", "meaning": "Cell roundness; applies only when Metric is Euclidean"}]
+
+- Caveats: ["Jitter above 1 can cause artifacts because points jitter past the search radius", "Fold has no visible effect when all values are positive", "Complement assumes values in the 0 to 1 range", "Contrast differs from the Noise Contrast parameter of other noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `settypeinfo` | Set Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder3` |  | FolderSet |  |  |  |
+| `amplitude` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `shift` | Shift | Float | [0.0] | 0.0 .. 1.0 |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.2] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscalez` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `jitter` | Jitter | Float | [0.5] | 0.0 .. 1.0 |  |
+| `jittertype` | Jitter Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `jitterscalex` | Jitter Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `jitterscaley` | Jitter Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `jitterscalez` | Jitter Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `metric` | Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `smoothedge` | Smooth Edge | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offz` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `mode` | Mode | Menu | 1 |  | absolute, relative |
+| `gap` | Gap | Float | [0.02] | 0.0 .. 1.0 (strict) |  |
+| `gap_relative` | Gap | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `bevel` | Bevel | Float | [0.02] | 0.0 .. 1.0 (strict) |  |
+| `bevel_relative` | Bevel | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp` | Bevel Ramp | Ramp | 2 |  |  |
+| `folder8` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `bevelramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `bevelramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `bevelramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `bevelramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

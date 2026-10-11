@@ -1,0 +1,70 @@
+# chromaticaberration
+
+- Label: Chromatic Aberration
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 46 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/chromaticaberration.html
+- Summary (EN): Adds colour fringing that mimics lens behaviour, mainly near the frame edges, by separating and offsetting the red, green and blue channels. A Spectrum mode samples several wavelengths between the channel offsets for smoother fringing.
+- Résumé (FR) : Le nœud Chromatic Aberration ajoute des franges de couleur près des bords de l'image en décalant séparément les canaux rouge, vert et bleu, avec un mode spectral plus doux en option.
+
+- Inputs meaning: ["source: the original layer", "effect (optional): per-pixel amount controlling the aberration strength", "mask (optional): per-pixel mask scaled by the Mask parameter"]
+
+- Key parameters: ["Mode: RGB (offsets channels directly) or Spectrum (simulates wavelengths, converts back to RGB)", "Number of Colors: wavelength samples in Spectrum mode", "Pivot: centre for scale and rotation, default image centre", "Red / Green / Blue (distortion): per-channel scale offsets, defaults -0.15, 0, 0.15", "Global Distortion Scale: zoom-like scale for all channels, default 0.15, shaped by Distortion Scale Mask", "Red / Green / Blue (rotation) and Rotation Scale: rotation in degrees", "Red / Green / Blue (translation), Translation Scale and Translation Scale Mask", "Mask: blends the result with the original, 1 uses only the new result", "Filter: sampling method, default Box"]
+
+- Caveats: ["Spectrum mode and higher Number of Colors cost more to compute", "The page notes that a lens shader at render time is more physically accurate but renders slower"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `mode` | Mode | Menu | 0 |  | rgb, spectrum |
+| `pivotx` | Pivot | Float | 0.0 | -0.05 .. 0.05 |  |
+| `pivoty` | Pivot | Float | 0.0 | -0.05 .. 0.05 |  |
+| `numcolors` | Number of Colors | Int | [10] | 1 .. 64 (strict) |  |
+| `main` |  | FolderSet |  |  |  |
+| `rscale` | Red | Float | [-0.15] | -1.0 .. 1.0 |  |
+| `gscale` | Green | Float | [0.0] | -1.0 .. 1.0 |  |
+| `bscale` | Blue | Float | [0.15] | -1.0 .. 1.0 |  |
+| `overallscale` | Global Distortion Scale | Float | [0.15] | 0.0 .. 0.8 |  |
+| `scalemask` | Distortion Scale Mask | Ramp | 2 |  |  |
+| `rotate` |  | FolderSet |  |  |  |
+| `rangle` | Red | Float | [0.0] | -5.0 .. 5.0 |  |
+| `gangle` | Green | Float | [0.0] | -5.0 .. 5.0 |  |
+| `bangle` | Blue | Float | [0.0] | -5.0 .. 5.0 |  |
+| `rotationscale` | Rotation Scale | Float | [1.0] | 0.0 .. 5.0 |  |
+| `rotatemask` | Rotate Scale Mask | Ramp | 2 |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `rtranslx` | Red | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rtransly` | Red | Float | 0.0 | -1.0 .. 1.0 |  |
+| `gtranslx` | Green | Float | 0.0 | -1.0 .. 1.0 |  |
+| `gtransly` | Green | Float | 0.0 | -1.0 .. 1.0 |  |
+| `btranslx` | Blue | Float | 0.0 | -1.0 .. 1.0 |  |
+| `btransly` | Blue | Float | 0.0 | -1.0 .. 1.0 |  |
+| `translationscale` | Translation Scale | Float | [1.0] | 0.0 .. 5.0 |  |
+| `translationmask` | Translation Scale Mask | Ramp | 2 |  |  |
+| `scalemask1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `scalemask1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `scalemask1interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `scalemask2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `scalemask2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `scalemask2interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `rotatemask1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `rotatemask1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `rotatemask1interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `rotatemask2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `rotatemask2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `rotatemask2interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `translationmask1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `translationmask1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `translationmask1interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `translationmask2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `translationmask2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `translationmask2interp` | Interpolation | Menu | 3 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

@@ -1,0 +1,88 @@
+# dopnet
+
+- Label: DOP Network
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 72 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary
+
+NOT DOCUMENTED FROM THE WEB YET (status: missing). The parameter table below is still exact.
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `isplayer` | Dopnet is Player | Toggle | false |  |  |
+| `playfilesname` | Playback Simulation | String | ["$HIP/sim/$HIPNAME.$OS.$SF.sim"] |  |  |
+| `stdswitcher1` |  | FolderSet |  |  |  |
+| `resimulate` | Reset Simulation | Button |  |  |  |
+| `tdisplay` | Display | Toggle | false |  |  |
+| `display` | Display | Int | [1] | 0 .. 1 (strict) |  |
+| `initialstate` | Initial State | String | [""] |  |  |
+| `timestep` | Timestep | Float | [0.0] | 9.999999747378752e-06 .. 1.0 (strict) |  |
+| `substep` | Substeps | Int | [1] | 1 .. 10 (strict) |  |
+| `timeoffset` | Offset Time | Float | [0.0] | -5.0 .. 5.0 |  |
+| `startframe` | Start Frame | Int | [1] | 1 .. 240 |  |
+| `timescale` | Scale Time | Float | [1.0] | 0.0010000000474974513 .. 10.0 (strict) |  |
+| `maxfeedback` | Max Feedback Loops | Int | [2] | 1 .. 50 (strict) |  |
+| `autoresim` | Enable Automatic Resimulation | Toggle | true |  |  |
+| `datahints` | Provide Data Hints | Toggle | true |  |  |
+| `interpolate` | Interpolate Display Data | Toggle | true |  |  |
+| `cacheenabled` | Cache Simulation | Toggle | true |  |  |
+| `compresssims` | Compress .sim Files | Menu | 1 |  | off, blosc, on |
+| `cachemaxsize` | Cache Memory (MB) | Int | [5000] | 0 .. 1000 (strict) |  |
+| `cachetodisk` | Allow Caching To Disk | Toggle | false |  |  |
+| `cachetodisknoninteractive` | Cache to Disk in Non-Interactive Sessions | Toggle | false |  |  |
+| `cachesubsteps` | Cache Substep Data | Toggle | false |  |  |
+| `timeless` | Timeless (No History) | Toggle | false |  |  |
+| `continuouscook` | Live Simulation | Toggle | false |  |  |
+| `continuouscook_tick` | Live Tick | Int | [0] | 0 .. 10 |  |
+| `explicitcache` | Save Checkpoints | Toggle | false |  |  |
+| `explicitcachename` | Checkpoint File | String | ["$HIP/checkpoint/cache.$HIPNAME.$OS.$SF.sim"] |  |  |
+| `explicitcachensteps` | Checkpoint Trail Length | Int | [0] | 0 .. 10 (strict) |  |
+| `explicitcachecheckpointspacing` | Checkpoint Interval | Int | [1] | 1 .. 100 (strict) |  |
+| `xOrd` | Transform Order | Menu | 0 |  | srt, str, rst, rts, tsr, trs |
+| `rOrd` | Rotate Order | Menu | 0 |  | xyz, xzy, yxz, yzx, zxy, zyx |
+| `tx` | Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ty` | Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tz` | Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `rx` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `ry` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `rz` | Rotate | Float | 0.0 | 0.0 .. 360.0 |  |
+| `sx` | Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `sy` | Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `sz` | Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `px` | Pivot Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `py` | Pivot Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `pz` | Pivot Translate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `prx` | Pivot Rotate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `pry` | Pivot Rotate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `prz` | Pivot Rotate | Float | 0.0 | 0.0 .. 10.0 |  |
+| `scale` | Uniform Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `pre_xform` | Modify Pre-Transform | Button |  |  | clean, cleantrans, cleanrot, cleanscales, extract, reset |
+| `keeppos` | Keep Position When Parenting | Toggle | false |  |  |
+| `childcomp` | Child Compensation | Toggle | false |  |  |
+| `constraints_on` | Enable Constraints | Toggle | false |  |  |
+| `constraints_path` | Constraints | String | [""] |  |  |
+| `lookatpath` | Look At | String | [""] |  |  |
+| `lookupobjpath` | Look Up Object | String | [""] |  |  |
+| `lookup` | Look At Up Vector | String | ["on"] |  | off, on, quat, pos, obj |
+| `pathobjpath` | Path Object | String | [""] |  |  |
+| `roll` | Roll | Float | [0.0] | -360.0 .. 360.0 |  |
+| `pos` | Position | Float | [0.0] | 0.0 .. 10.0 (strict) |  |
+| `uparmtype` | Parameterization | Menu | 1 |  | uniform, arc |
+| `pathorient` | Orient Along Path | Int | [1] | 0 .. 1 |  |
+| `upx` | Orient Up Vector | Float | 0.0 | 0.0 .. 10.0 |  |
+| `upy` | Orient Up Vector | Float | 1.0 | 0.0 .. 10.0 |  |
+| `upz` | Orient Up Vector | Float | 0.0 | 0.0 .. 10.0 |  |
+| `bank` | Auto-Bank factor | Float | [0.0] | -1.0 .. 1.0 |  |
+| `displayfilter` | Display Data Mask | String | ["*"] |  |  |
+| `use_dcolor` | Set Wireframe Color | Toggle | false |  |  |
+| `dcolorr` | Wireframe Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `dcolorg` | Wireframe Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `dcolorb` | Wireframe Color | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `picking` | Viewport Selecting Enabled | Toggle | true |  |  |
+| `pickscript` | Select Script | String | [""] |  |  |
+| `caching` | Cache Object Transform | Toggle | true |  |  |

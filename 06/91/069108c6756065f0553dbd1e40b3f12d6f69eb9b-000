@@ -1,0 +1,27 @@
+# eikonal
+
+- Label: Eikonal
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/eikonal.html
+- Summary (EN): The Eikonal node computes distances by solving the Eikonal equation, producing a layer that behaves as a distance field when the reference speed is 1. Black pixels act as sources, and white pixels are replaced with the distance to the nearest black pixel, with the speed field controlling how easily values propagate across each pixel.
+- Résumé (FR) : Le nœud Eikonal calcule des distances en résolvant l'équation eikonale, à partir des pixels noirs et selon un champ de vitesse.
+
+- Inputs meaning: ["initial_dist: layer of starting distances; values can only decrease, so sources are typically black and the rest is filled with large values such as 60000", "speed: per-pixel speed layer; zero-valued areas block propagation and can form boundaries or mazes"]
+
+- Key parameters: ["Speed: global rate of change", "Iterations: one pass is enough for a uniform speed field; complex speed fields may need more passes", "Tile Size: block size balancing serial and parallel processing; should not change results once converged"]
+
+- Caveats: ["The output sdf is not a signed distance field; another step is needed to determine which pixels are inside or outside", "Complex speed fields may need additional iterations for distances to fully propagate"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `speed` | Speed | Float | [1.0] | 0.0 .. 2.0 |  |
+| `niter` | Iterations | Int | [1] | 1 .. 10 |  |
+| `tilesize` | Tile Size | Int | [4] | 1 .. 1000 (strict) |  |

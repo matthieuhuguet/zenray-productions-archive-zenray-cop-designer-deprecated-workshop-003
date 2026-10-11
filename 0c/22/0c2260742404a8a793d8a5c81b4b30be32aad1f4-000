@@ -1,0 +1,29 @@
+# fft
+
+- Label: Fast Fourier Transform
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fft.html
+- Summary (EN): The FFT node is a low-level utility that converts an image between the spatial domain and the frequency domain, in either direction. It lets you manipulate an image's frequency content, for example to blur or sharpen it.
+- Résumé (FR) : Le nœud FFT convertit une image entre le domaine spatial et le domaine fréquentiel, dans les deux sens, pour agir sur ses fréquences.
+
+- Inputs meaning: ["real: real component of the signal; the only required input for a forward transform, so a normal image goes here", "imaginary: imaginary component of the signal; needed to obtain a purely real result from an inverse transform"]
+
+- Key parameters: ["FFT Direction: forward transform (image to frequencies) or inverse transform (frequencies back to image)", "Center DC: when on, low frequencies are moved to the center; when off, low frequencies sit in the corners", "Normalize on Forward Pass: applies normalization during the forward pass instead of the inverse pass, making the spectrum easier to visualize", "Target Sum: when enabled, rescales the spectrum so the sum of pixel values after the inverse pass equals the set value"]
+
+- Caveats: ["The Normalize on Forward Pass setting must match on the forward and inverse FFT nodes, or the image will not reconstruct faithfully", "The node works with complex numbers, so the inverse transform needs both the real and imaginary inputs"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `direction` | FFT Direction | Menu | 0 |  | forward, inverse |
+| `centerdc` | Center DC | Toggle | false |  |  |
+| `normalize` | Normalize on Forward Pass | Toggle | false |  |  |
+| `rescale` | Rescaling Enable | Toggle | false |  |  |
+| `targetsum` | Target Sum | Float | [1.0] | 0.0 .. 10.0 |  |

@@ -1,0 +1,50 @@
+# cameraproperties
+
+- Label: Camera Properties
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 26 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cameraproperties.html
+- Summary (EN): Edits the camera settings attached to a COP layer (projection, imaging distance and point, clipping, focal length, aperture, shutter, focus, f-stop, guide scale), so the layer can receive an image through Rasterize or project one through Project on Layer. Output named camera_ref.
+- Résumé (FR) : Le nœud cameraproperties modifie les réglages caméra attachés à une couche COP, pour qu'elle reçoive une image par Rasterize ou la projette par Project on Layer.
+
+- Inputs meaning: ["source: the layer whose camera properties are edited"]
+
+- Key parameters: [{"name": "Projection", "meaning": "Perspective (rays converge on the camera) or Orthographic (parallel rays)"}, {"name": "Imaging Distance", "meaning": "Distance from the camera eye to the layer; explicit, relative or automatic"}, {"name": "Imaging Point", "meaning": "World-space point the imaging plane passes through"}, {"name": "Near / Far", "meaning": "Clipping planes measured from the camera origin"}, {"name": "Focal Length", "meaning": "Distance the camera origin sits behind the layer origin"}, {"name": "Aperture (mm)", "meaning": "Camera aperture width, seen as the layer width"}, {"name": "Aperture Offset", "meaning": "Horizontal shift of the aperture"}, {"name": "Shutter Open / Close", "meaning": "Metadata for when the camera receives light, relative to frame rate"}, {"name": "Focus Distance", "meaning": "In-focus distance relative to the layer origin"}, {"name": "F-Stop", "meaning": "Metadata for the f-stop"}, {"name": "Guide Scale", "meaning": "Metadata controlling the displayed camera scale"}]
+
+- Caveats: ["A connected source layer disables Shutter Open / Close, Focus Distance and F-Stop", "Only the ratio of focal length to aperture sets the offset, so units only need to be consistent", "The default camera is orthographic, one unit back from the layer centre, with a Z imaging volume from -1 to 1 and parallel rays", "The page title matches; the internal name is not printed on the page, so verify it in Houdini"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setprojection` | Projection | Toggle | true |  |  |
+| `projection` | Projection | Menu | 0 |  | perspective, orthographic |
+| `imaging` | Imaging Distance | Float | [1.0] | 0.0 .. 10.0 |  |
+| `setimaging` | Set Imaging Distance | Menu | 0 |  | off, on, add, point |
+| `imagingpointx` | Imaging Point | Float | 0.0 | 0.0 .. 10.0 |  |
+| `imagingpointy` | Imaging Point | Float | 0.0 | 0.0 .. 10.0 |  |
+| `imagingpointz` | Imaging Point | Float | 0.0 | 0.0 .. 10.0 |  |
+| `setclipping` | Near/Far | Toggle | false |  |  |
+| `clippingx` | Near/Far | Float | 0.01 | 0.0 .. 10000000000.0 |  |
+| `clippingy` | Near/Far | Float | 10000.0 | 0.0 .. 10000000000.0 |  |
+| `setfocal` | Focal Length | Toggle | false |  |  |
+| `focal` | Focal Length | Float | [50.0] | 1.0 .. 1000.0 |  |
+| `setaperture` | Aperture (mm) | Toggle | false |  |  |
+| `aperture` | Aperture (mm) | Float | [20.955] | 1.0 .. 100.0 |  |
+| `setoffset` | Aspect Offset | Toggle | false |  |  |
+| `offsetx` | Aperture Offset | Float | 0.0 | -1.0 .. 1.0 |  |
+| `offsety` | Aperture Offset | Float | 0.0 | -1.0 .. 1.0 |  |
+| `setshutter` | Shutter Open/Close | Toggle | false |  |  |
+| `shutterx` | Shutter Open/Close | Float | -0.25 | -1.0 .. 1.0 |  |
+| `shuttery` | Shutter Open/Close | Float | 0.25 | -1.0 .. 1.0 |  |
+| `setfocus` | Focus Distance | Toggle | false |  |  |
+| `focus` | Focus Distance | Float | [0.0] | 0.0 .. 10000.0 |  |
+| `setfstop` | F-Stop | Toggle | false |  |  |
+| `fstop` | F-Stop | Float | [0.0] | 0.0 .. 10.0 |  |
+| `setguidescale` | Guide Scale | Toggle | false |  |  |
+| `guidescale` | Guide Scale | Float | [1.0] | 0.1 .. 10.0 |  |

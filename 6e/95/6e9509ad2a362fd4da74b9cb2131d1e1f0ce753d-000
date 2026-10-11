@@ -1,0 +1,29 @@
+# laplacian
+
+- Label: Laplacian
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/laplacian.html
+- Summary (EN): The Laplacian node computes the sum of the second derivatives along the width and height of an input layer, which highlights edges. Its Space and Scale parameters control the magnitude of the result.
+- Résumé (FR) : Calcule le laplacien d'une couche, somme des dérivées secondes en largeur et en hauteur, utile pour faire ressortir les contours.
+
+- Inputs meaning: ["source: the layer from which the Laplacian is computed"]
+
+- Key parameters: ["Signature: layer type the source accepts", "Space: Image, Pixel or Local space used for the computation, which affects the magnitude", "Scale: multiplies the source values before the Laplacian is computed", "Read Pixels outside Image: lets boundary derivatives read beyond the image edge, useful for seamless Wrap textures", "Kernel Size: maximum distance in buffer elements used for derivatives, which reduces stepping on slowly varying values"]
+
+- Caveats: ["Changing Space changes the magnitude of the output, not just its appearance", "Read Pixels outside Image is best on for Wrap borders; for Clamp, leaving it off avoids artificial flattening", "Increasing Kernel Size smooths stepping artifacts when bit depth is limited", "For multi-channel inputs the Laplacian is computed separately per channel", "Introduced in Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `space` | Space | Menu | 0 |  | image, pixel, local |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |
+| `kernelsize` | Kernel Size | Int | [1] | 1 .. 64 (strict) |  |

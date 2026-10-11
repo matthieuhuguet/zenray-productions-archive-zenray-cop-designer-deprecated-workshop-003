@@ -1,0 +1,31 @@
+# edgedetect
+
+- Label: Edge Detect
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/edgedetect.html
+- Summary (EN): Finds edges in an image with several selectable algorithms. Does not cover the Edge Detect by Contour, Normal or Depth nodes.
+- Résumé (FR) : Détecte les contours d'une image selon plusieurs méthodes : Sobel, Prewitt, Laplacien, simple ou Sobel seuillé.
+
+- Inputs meaning: ["source: initial image to process (only input)"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mode: edges from Luminance, or Per Channel for RGB and RGBA inputs", "Method: Sobel, Prewitt, Laplacian, Simple or Thresholded Sobel", "Normalize: keeps output in 0 to 1", "Blur Before: blurs the image before detection", "High Threshold: strong-pixel cutoff, used only by Thresholded Sobel"]
+
+- Caveats: ["High Threshold has no effect unless Method is Thresholded Sobel.", "Per Channel mode is meant for RGB and RGBA inputs.", "The page gives no default values or guidance on choosing a method."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mode` | Mode | Int | [0] | 0 .. 10 | 0, 1 |
+| `method` | Method | Int | [0] | 0 .. 10 | 0, 1, 2, 3, 4 |
+| `normalize` | Normalize | Toggle | true |  |  |
+| `preblur` | Blur Before | Float | [0.0] | 0.0 .. 1024.0 |  |
+| `lowthr` | Low Threshold | Float | [0.001] | 0.0 .. 1.0 |  |
+| `highthr` | High Threshold | Float | [0.1] | 0.0 .. 1.0 |  |

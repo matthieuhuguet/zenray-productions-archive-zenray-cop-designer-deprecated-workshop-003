@@ -1,0 +1,74 @@
+# grunge_layerednoise
+
+- Label: Grunge Layered Noise
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 50 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/grunge_layerednoise.html
+- Summary (EN): Grunge Layered Noise layers several simple noise patterns, built from Fractal Noise COPs, into a default pattern that looks like a stormy sky reflected in water. It works as a building block for intricate textures, such as smoky skies.
+- Résumé (FR) : Grunge Layered Noise superpose quatre couches de bruit pour imiter un ciel d'orage reflété dans l'eau, brique utile pour des fumées.
+
+- Inputs meaning: ["size_ref: sets only the output image size and metadata, not the pattern"]
+
+- Key parameters: ["Range: Amplitude and Center set the output from C-A to C+A; Mask Contrast increases extremes before them", "Pattern: Element Size, Element Scale (with Per-Component Controls), Offset, Tile Size", "Base Noise: web-shaped starting pattern, with Amplitude and Element Size", "Base Cells: carves cellular boundaries into the base noise, with Amplitude, Element Size and Complement", "Secondary Noise: fine detail in darker areas, with Amplitude, Center, Element Size and Complement", "Secondary Cells: final cellular layer, most visible in the brightest and darkest areas, with Amplitude, Center, Element Size and Complement", "Post Processing, applied in order: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum"]
+
+- Caveats: ["Layers can hold negative values and values above 1; use the Clamp options", "Complement and Bias-style operations assume values from 0 to 1", "Fold has no visible effect when all values are positive", "Post-processing Contrast differs from Noise Contrast on some noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Make Tiled | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `noisegenerator` |  | FolderSet |  |  |  |
+| `noisea` |  | FolderSet |  |  |  |
+| `basenoise_amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `basenoise_elementsize` | Element Size | Float | [0.9] | 0.001 .. 1.0 |  |
+| `noiseb` |  | FolderSet |  |  |  |
+| `basecells_enable` | Use Base Cells | Toggle | true |  |  |
+| `basecells_amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `basecells_elementsize` | Element Size | Float | [0.4] | 0.001 .. 1.0 |  |
+| `basecells_complement` | Complement | Toggle | false |  |  |
+| `noisec` |  | FolderSet |  |  |  |
+| `secnoise_enable` | Use Secondary Noise | Toggle | true |  |  |
+| `secnoise_amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `secnoise_center` | Center | Float | [0.1] | 0.0 .. 1.0 |  |
+| `secnoise_elementsize` | Element Size | Float | [0.015] | 0.001 .. 1.0 |  |
+| `secnoise_complement` | Complement | Toggle | false |  |  |
+| `noised` |  | FolderSet |  |  |  |
+| `seccells_enable` | Use Secondary Cells | Toggle | true |  |  |
+| `seccells_amp` | Amplitude | Float | [0.3] | 0.0 .. 1.0 |  |
+| `seccells_center` | Center | Float | [0.2] | 0.0 .. 1.0 |  |
+| `seccells_elementsize` | Element Size | Float | [0.3] | 0.001 .. 1.0 |  |
+| `seccells_complement` | Complement | Toggle | false |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

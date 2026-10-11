@@ -1,0 +1,69 @@
+# cloudnoise3d
+
+- Label: Cloud Noise 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 45 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cloudnoise3d.html
+- Summary (EN): Cloud Noise 3D generates puffy, billowy noise in 3D space, useful for cumulus-style cloud patterns. Unlike Bubble Noise, its output is non-periodic.
+- Résumé (FR) : Le nœud Cloud Noise 3D produit un bruit gonflé et non périodique, adapté aux nuages de type cumulus.
+
+- Inputs meaning: ["size_ref: representative layer that sets output image size and metadata", "pos (optional): layer or VDB supplying the position at each pixel where noise is evaluated"]
+
+- Key parameters: ["Amplitude: multiplies the noise before the Center offset", "Center: offsets the output value range", "Element Size: world-space size of the base noise element, with per-component scale", "Offset: shifts the noise function in world coordinates", "Noise Type: Simplex or Curl (divergence-free)", "Max Octaves, Lacunarity, Roughness: fractal layering controls", "Distortion: warps the noise toward decreasing or increasing values", "Stretch: stretches noise along each world axis, recommended over Element Size", "Droop / Droop Direction: bends the pattern toward a direction", "Fold Each Octave: remaps each layer so negative valleys become positive peaks", "Post Processing (in order): Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum and Maximum"]
+
+- Caveats: ["Output can exceed the usual range (negative values and values above 1); use the Post Processing clamps", "Complement is only reliable for values between 0 and 1"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder2` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [1.0] | 0.1 .. 10.0 |  |
+| `elementsizetype` | Element Size | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `elementscalez` | Element Scale | Float | 1.0 | 0.0 .. 10.0 |  |
+| `offsetx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offsety` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offsetz` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `noisetype` | Noise Type | Menu | 0 |  | simplex, curl |
+| `max_octaves` | Max Octaves | Int | [6] | 2 .. 10 (strict) |  |
+| `lac` | Lacunarity | Float | [2.01234] | 0.0 .. 4.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `distort` | Distortion | Float | [1.0] | -1.0 .. 1.0 |  |
+| `stretchx` | Stretch | Float | 1.0 | 0.0 .. 1.0 |  |
+| `stretchy` | Stretch | Float | 1.0 | 0.0 .. 1.0 |  |
+| `stretchz` | Stretch | Float | 1.0 | 0.0 .. 1.0 |  |
+| `dodroop` | Droop | Toggle | false |  |  |
+| `droop` | Droop | Float | [1.0] | 0.0 .. 10.0 |  |
+| `droopdirx` | Droop Direction | Float | 0.0 | 0.0 .. 10.0 |  |
+| `droopdiry` | Droop Direction | Float | -1.0 | 0.0 .. 10.0 |  |
+| `droopdirz` | Droop Direction | Float | 0.0 | 0.0 .. 10.0 |  |
+| `dofold` | Fold Each Octave | Toggle | false |  |  |
+| `folder20` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | true |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 5.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minmum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maximum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

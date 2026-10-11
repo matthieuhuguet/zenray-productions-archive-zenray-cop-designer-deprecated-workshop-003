@@ -1,0 +1,93 @@
+# cellpattern
+
+- Label: Cell Pattern
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 6
+- Parameters: 69 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cellpattern.html
+- Summary (EN): Higher-level noise generator built on Cellular and Worley noise, creating cells with controlled spacing and beveling, optionally tilted, distorted and culled by randomness. Outputs noise, border (SDF distance to the cell border), center (UV of the closest grid point) and id (hash of the closest grid point). Added in version 22.0.
+- Résumé (FR) : Le nœud cellpattern produit des motifs cellulaires plus élaborés que le bruit cellulaire simple, avec écartement, biseau, inclinaison et dispersion réglables.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata", "pos (optional): UV layer used in place of pixel image coordinates", "direction (optional): UV layer setting each cell's tilt direction; magnitude sets steepness", "density (optional): Mono layer scaling the Density used to cull cells", "height (optional): Mono layer scaling the Random Height", "rotation (optional): Mono layer scaling the Random Rotation"]
+
+- Key parameters: [{"name": "Range", "meaning": "Amplitude (contrast strength) and Shift (brightness offset)"}, {"name": "Pattern", "meaning": "Element Size, Jitter, Density, Density Seed, Lattice Type (Grid or Hexagonal), Metric (Euclidean, Manhattan, Chebyshev), Smooth Edge, Offset, Tile Size"}, {"name": "Shape", "meaning": "Mode (Absolute or Relative), Gap, Random Height, Bevel, Bevel Ramp"}, {"name": "Orient", "meaning": "Steepness, Rotate, Random Rotation, Tilt Seed"}, {"name": "Distort", "meaning": "Amplitude, Element Size, Scale of the distortion"}, {"name": "Advanced", "meaning": "Global Seed"}, {"name": "Post Processing", "meaning": "Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum, in that order"}, {"name": "Per-Component Controls", "meaning": "Exposes per-axis Element Scale and Jitter Scale"}]
+
+- Caveats: ["Jitter above 1 may create artifacts because points jitter past the search radius", "With Tile Size set, Element Size and similar parameters are rounded or clamped to stay tileable", "Complement assumes values in the 0 to 1 range", "Fold has no effect when all values are positive", "Post-processing Contrast is not the same as Noise Contrast in other noise nodes"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `settypeinfo` | Set Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder3` |  | FolderSet |  |  |  |
+| `amplitude` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `shift` | Shift | Float | [0.0] | 0.0 .. 1.0 |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.2] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `jitter` | Jitter | Float | [0.5] | 0.0 .. 1.0 |  |
+| `jittertype` | Jitter Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `jitterscalex` | Jitter Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `jitterscaley` | Jitter Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `density` | Density | Float | [1.0] | 0.0 .. 1.0 |  |
+| `densityseed` | Density Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |
+| `lattice` | Lattice Type | Menu | 0 |  | grid, hex |
+| `metric` | Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `smoothedge` | Smooth Edge | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `dotiled` | Do Tiling | Toggle | true |  |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `edgemode` | Edge Mode | Menu | 0 |  | round, straight |
+| `mode` | Mode | Menu | 1 |  | absolute, relative |
+| `gap` | Gap | Float | [0.02] | 0.0 .. 1.0 (strict) |  |
+| `gap_relative` | Gap | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `randomheight` | Random Height | Float | [0.5] | 0.0 .. 1.0 |  |
+| `heightseed` | Height Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |
+| `bevel` | Bevel | Float | [0.02] | 0.0 .. 1.0 (strict) |  |
+| `bevel_relative` | Bevel | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp` | Bevel Ramp | Ramp | 2 |  |  |
+| `doorient` | Orient | Toggle | false |  |  |
+| `folder6` |  | FolderSet |  |  |  |
+| `rot` | Rotate | Float | [0.0] | -180.0 .. 180.0 |  |
+| `usemagnitude` | Scale by Magnitude | Toggle | false |  |  |
+| `steepness` | Steepness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `randomrot` | Random Rotation | Float | [90.0] | 0.0 .. 180.0 |  |
+| `tiltseed` | Tilt Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |
+| `dodistort` | Distort | Toggle | false |  |  |
+| `folder7` |  | FolderSet |  |  |  |
+| `distortamplitude` | Amplitude | Float | [1.0] | 0.0 .. 10.0 |  |
+| `distortelementsize` | Element Size | Float | [1.0] | 0.001 .. 10.0 |  |
+| `distortscale` | Scale | Float | [0.005] | -0.05 .. 0.05 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `globalseed` | Global Seed | Float | [0.0] | 0.0 .. 100.0 (strict) |  |
+| `folder8` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `bevelramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `bevelramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `bevelramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `bevelramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `bevelramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

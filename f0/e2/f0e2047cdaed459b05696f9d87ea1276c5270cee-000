@@ -1,0 +1,33 @@
+# blur
+
+- Label: Blur
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 9 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/blur.html
+- Summary (EN): Softens a layer by averaging each pixel with the pixels around it. The size and shape of that neighborhood control how strong the blur looks.
+- Résumé (FR) : Adoucit une couche en moyennant chaque pixel avec ses voisins, par un filtre Box ou Gaussian dont le rayon dépend de l'unité choisie.
+
+- Inputs meaning: ["source: layer or VDB to blur", "size: mono or float input that scales the blur amount"]
+
+- Key parameters: ["Filter: Box (even average) or Gaussian (default, weights nearby pixels by a Gaussian distribution)", "Read Pixels outside Image: includes pixels beyond the image edges in the average; the border type sets what those pixels contain", "Units: Image (default), Pixels or Local; sets how the radius is measured", "Size: blur radius in the chosen units", "Scale Size: scales the radius along a specific axis", "Scale by Timestep: adjusts strength using the current timestep, usually 1/$FPS; uses the step size in sub-stepped simulations"]
+
+- Caveats: ["Edge behavior depends on Read Pixels outside Image and the border type; without it, edge pixels average only inside the image", "The meaning of Size depends entirely on Units, so the same number can give very different results", "Timestep scaling matters for time-based or simulated data; its effect on static images is not specified", "The page gives no numeric limits for Size and no performance costs"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `filter` | Filter | Menu | 1 |  | box, gaussian |
+| `readoutside` | Read Pixels outside Image | Toggle | true |  |  |
+| `units` | Units | Menu | 0 |  | image, pixels, local |
+| `size` | Size | Float | [0.005] | 0.0 .. 0.05 (strict) |  |
+| `size_pixel` | Size | Float | [3.0] | 0.0 .. 25.0 (strict) |  |
+| `size_local` | Size | Float | [0.005] | 0.0 .. 0.05 (strict) |  |
+| `scalesx` | Scale Size | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `scalesy` | Scale Size | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `scalebytimeinc` | Scale by Timestep | Toggle | false |  |  |

@@ -1,0 +1,25 @@
+# idtorgb
+
+- Label: ID to RGB
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/idtorgb.html
+- Summary (EN): Converts an ID layer, VDB or attribute into an RGB layer, VDB or attribute by using the ID value as a seed for a random number generator, giving each ID its own color.
+- Résumé (FR) : Attribue une couleur à chaque identifiant en utilisant sa valeur comme graine d'un générateur aléatoire.
+
+- Inputs meaning: ["id: the ID layer, VDB or attribute to convert"]
+
+- Key parameters: [{"name": "Seed", "meaning": "seed for the random number generator; changing it produces new random colors"}]
+
+- Caveats: ["The page does not say how colors are distributed, or whether the same ID always yields the same color across seeds."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `seed` | Seed | Int | [0] | 0 .. 10 |  |

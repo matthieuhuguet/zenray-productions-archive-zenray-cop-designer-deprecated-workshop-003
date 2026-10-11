@@ -1,0 +1,37 @@
+# constant
+
+- Label: Constant
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 13 (exact, read from Houdini by hython)
+- Used by the height graph: yes
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/constant.html
+- Summary (EN): The Constant node fills every pixel of a layer or VDB with a fixed value, limited to areas allowed by an optional mask. It is useful to produce a single colour or number to multiply other data by.
+- Résumé (FR) : Le nœud Constant remplit chaque pixel d'une couche ou d'un VDB avec une valeur ou une couleur fixe, limitée par un masque optionnel.
+
+- Inputs meaning: ["source: the layer or VDB to set to the constant value", "mask (optional): per-pixel amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by source; decides whether Value or Color applies", "Mask: how much of the new value is mixed in, default 1", "Toggle RGB, Red, Green, Blue, Alpha: channels affected", "Value: replacement number for Mono layers, or a pair of values for UV layers", "Color: replacement colour for RGB layers, or colour plus alpha for RGBA layers"]
+
+- Caveats: ["Pixels not covered by the mask keep their original values", "Set Signature correctly, otherwise the constant does not take effect as expected"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergba` | Channel Scope | Int | [15] | 0 .. 10 |  |
+| `f1` | Value | Float | [1.0] | 0.0 .. 10.0 |  |
+| `f21` | Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f22` | Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3r` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3g` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3b` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4r` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4g` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4b` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4a` | Color | Float | 1.0 | 0.0 .. 10.0 |  |

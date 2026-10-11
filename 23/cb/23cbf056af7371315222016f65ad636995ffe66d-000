@@ -1,0 +1,30 @@
+# gamma
+
+- Label: Gamma
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/gamma.html
+- Summary (EN): The Gamma node reshapes the tonal values of a layer, VDB, or attribute by applying an exponential gamma curve. It is commonly used for tone mapping, such as sRGB-style encoding with a value near 2.2, or for artistic adjustments.
+- Résumé (FR) : Le nœud Gamma corrige la courbe tonale d'une couche par une puissance exponentielle, pour l'encodage ou le décodage des couleurs.
+
+- Inputs meaning: ["source: layer, VDB or attribute to correct", "gamma (optional): per-pixel gamma value multiplied with the Gamma parameter, then inverted if Invert is on", "mask (optional): per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: how much of the new value mixes with the original; default 1 uses only the new value", "Toggle RGB, Red, Green, Blue, Alpha: channels the effect applies to", "Gamma: correction factor; the default behavior is an encoding gamma that raises values to the inverse of the exponent", "Invert: switches between encoding and decoding gamma by inverting the exponent", "Treat RGBA as Premultiplied: un-premultiplies RGBA before correction and re-premultiplies afterward"]
+
+- Caveats: ["With premultiplied RGBA layers, enable Treat RGBA as Premultiplied; leaving it off makes low-coverage areas look unexpectedly dark", "The page lists the output as gamma, which may be confusing when wiring downstream"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scopergba` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `invert` | Invert | Toggle | false |  |  |
+| `ispremult` | Treat RGBA as Premultiplied | Toggle | true |  |  |

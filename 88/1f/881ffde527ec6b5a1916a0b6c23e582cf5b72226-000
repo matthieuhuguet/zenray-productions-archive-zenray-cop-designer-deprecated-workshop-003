@@ -1,0 +1,29 @@
+# edgedetectdepth
+
+- Label: Edge Detect by Depth
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/edgedetectdepth.html
+- Summary (EN): Finds silhouette lines where one surface blocks another and varies their width, by comparing depth values with neighbours using ray differentials.
+- Résumé (FR) : Trace les lignes de silhouette où une surface en masque une autre, à partir d'une carte de profondeur.
+
+- Inputs meaning: ["depth: Z-depth values used to find self-occluding lines", "thickness: optional input varying line width"]
+
+- Key parameters: ["Thickness Scale: kernel radius in pixels; a multiplier when thickness is connected", "Edge Spread: multiplies the Gaussian weight spread", "Blur: blurs the input before detection", "Depth Tolerance: minimum Z-depth difference from neighbours for a pixel to count as part of the line", "Min Probe Radius: smallest search radius for probe pixels"]
+
+- Caveats: ["Detects only self-occluding silhouettes, not contour or crease lines.", "The page gives no default values or value ranges."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `thickscale` | Thickness Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `weightspread` | Edge Spread | Float | [1.5] | 0.0 .. 2.0 |  |
+| `blur` | Blur | Float | [1.0] | 0.0 .. 10.0 |  |
+| `depthtolerance` | Depth Tolerance | Float | [0.08] | 0.0 .. 0.5 |  |
+| `minproberad` | Min Probe Radius | Int | [1] | 0 .. 3 |  |

@@ -1,0 +1,42 @@
+# contrast
+
+- Label: Contrast
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 18 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/contrast.html
+- Summary (EN): The Contrast node changes the tonal spread of a layer, VDB or attribute around a chosen midpoint. Raising Contrast spreads values outward from the midpoint, lowering it pulls them back toward it.
+- Résumé (FR) : Le nœud Contrast étire ou resserre les valeurs d'une couche autour d'un centre choisi, avec un réglage par canal et des bornes optionnelles.
+
+- Inputs meaning: ["source: the layer, VDB or attribute to modify", "contrast (optional): per-pixel control scaling the Contrast amount", "mask (optional): per-pixel control scaling the Mask amount"]
+
+- Key parameters: ["Signature: layer type accepted by source", "Mask: blend of new value with original, default 1", "Toggle RGB, Red, Green, Blue, Alpha: channels affected", "Contrast: 1 leaves the image unchanged, 0 sets all values to the centre", "Contrast Center: pivot point of the adjustment", "Per-channel Contrast and offset pairs for Red, Green, Blue, Alpha (offset not explained in detail on the page)", "Clamp Below Zero: stops values going negative", "Clamp Above One: limits values to 1, useful for masks; HDR images may need values above 1", "Treat RGBA as Premultiplied: un-premultiplies, applies contrast, re-premultiplies"]
+
+- Caveats: ["Black values can be pushed below zero unless Clamp Below Zero is enabled", "Without Treat RGBA as Premultiplied, a fixed pivot can make low-coverage premultiplied pixels too dark"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scopergba` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `contrast` | Contrast | Float | [1.0] | 0.0 .. 2.0 |  |
+| `center` | Contrast Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `labelparm1` | Label | Label |  |  |  |
+| `labelparm2` | Label | Label |  |  |  |
+| `contrastred1` | Red | Float | 1.0 | 0.0 .. 10.0 |  |
+| `contrastred2` | Red | Float | 0.5 | 0.0 .. 10.0 |  |
+| `contrastgreen1` | Green | Float | 1.0 | 0.0 .. 10.0 |  |
+| `contrastgreen2` | Green | Float | 0.5 | 0.0 .. 10.0 |  |
+| `contrastblue1` | Blue | Float | 1.0 | 0.0 .. 10.0 |  |
+| `contrastblue2` | Blue | Float | 0.5 | 0.0 .. 10.0 |  |
+| `contrastalpha1` | Alpha | Float | 1.0 | 0.0 .. 10.0 |  |
+| `contrastalpha2` | Alpha | Float | 0.5 | 0.0 .. 10.0 |  |
+| `clampzero` | Clamp Below Zero | Toggle | true |  |  |
+| `clampone` | Clamp Above One | Toggle | false |  |  |
+| `ispremult` | Treat RGBA as Premultiplied | Toggle | true |  |  |

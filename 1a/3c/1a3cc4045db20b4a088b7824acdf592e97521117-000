@@ -1,0 +1,44 @@
+# curlnoise3d
+
+- Label: Curl Noise 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 20 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curlnoise3d.html
+- Summary (EN): Generates a 3D divergence-free noise field built as a fractal curl of Perlin noise. Outputs a vector field as an RGB layer or a Vector VDB, sampled at world coordinates.
+- Résumé (FR) : Produit un champ vectoriel 3D sans divergence en coordonnées monde, construit comme rotationnel fractal de bruit de Perlin.
+
+- Inputs meaning: ["size_ref (required): representative layer setting output size and metadata", "pos (optional): layer or VDB giving the position at each pixel", "octaves (optional): multiplier applied to Max Octaves", "roughness (optional): multiplier applied to Roughness"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Amplitude: scales the noise before Center", "Center: offsets the output range", "Element Size: world-space size of the basic element; Element Scale per axis with Per-Component Controls", "Offset: shifts the noise function in world coordinates", "Max Octaves: number of stacked noise layers", "Lacunarity: scale change per octave", "Roughness: amplitude change per octave", "Octave Offset: positional offset per octave"]
+
+- Caveats: ["Amplitude and Center can push values outside the expected range; add a Clamp COP to enforce it.", "Unlike Curl Noise, samples at world coordinates rather than image coordinates."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `amplitude` | Amplitude | Float | [1.0] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `elementsize` | Element Size | Float | [0.5] | 0.01 .. 2.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscalez` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offsetx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offsety` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offsetz` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `maxoctaves` | Max Octaves | Int | [8] | 1 .. 8 |  |
+| `lacunarity` | Lacunarity | Float | [2.0] | 0.0 .. 3.0 |  |
+| `roughness` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `octaveoffsetx` | Octave Offset | Float | -1.0 | 0.0 .. 1.0 |  |
+| `octaveoffsety` | Octave Offset | Float | -1.0 | 0.0 .. 1.0 |  |
+| `octaveoffsetz` | Octave Offset | Float | -1.0 | 0.0 .. 1.0 |  |

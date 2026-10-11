@@ -1,0 +1,102 @@
+# knit
+
+- Label: Knit
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 9
+- Parameters: 78 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/knit.html
+- Summary (EN): The Knit node procedurally generates a grid of knitted fabric stitches, arranged in rows and columns, each shaped as a knit or purl stitch. It outputs a height map along with colour, per-stitch id and UV layers for lighting and texturing.
+- Résumé (FR) : Génère une grille de mailles de tricot (endroit ou envers) et sort une hauteur accompagnée de la couleur, de l'identifiant par maille et des UV.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata", "jitter: optional layer driving per-stitch positional jitter", "direction: optional layer orienting each stitch", "angle: optional layer rotating each stitch", "scale: optional layer resizing each stitch", "stretch: optional layer stretching each stitch", "color: optional RGB layer tinting each stitch", "alpha: optional mask layer controlling per-stitch opacity", "flip: optional layer switching stitches between knit and purl"]
+
+- Key parameters: ["Preset: loads predefined knit style settings and overwrites other parameters", "Seed: controls all randomization", "Rows / Columns: size of the stitch grid", "Knit Shape Type: Purl (bumpy) or Knit (V-shaped interlocking) stitch style", "Scale / Scale Mode: base stitch size and how it is chosen (Uniform, Variance, Min/Max)", "Jitter: random positional offset per stitch", "Angle: base rotation of every stitch in degrees", "Stretch X / Stretch Y: horizontal and vertical stretch per stitch", "Layer Mask parameters: strength with which each optional input affects the result"]
+
+- Caveats: ["Leave transform controls at defaults for the Knit shape: moving individual stitches breaks interlocking fibers and creates discontinuities", "Layer Mask parameters have no effect unless the matching optional input is connected", "Purl-specific and Knit-specific controls apply only to their own shape type", "Round to Multiples is a post-process applied to the final stitch angle", "Page is labelled as available since Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `preset` | Preset | Menu | 0 |  |  |
+| `seed` | Seed | Int | [0] | 0 .. 10 |  |
+| `folder11` |  | FolderSet |  |  |  |
+| `folder_points` |  | FolderSet |  |  |  |
+| `rows` | Rows | Int | [8] | 1 .. 20 (strict) |  |
+| `cols` | Columns | Int | [4] | 1 .. 20 (strict) |  |
+| `rowoff` | Row Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `coloff` | Column Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `folderjitter` |  | FolderSet |  |  |  |
+| `jittermask` | Jitter Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `jitter` | Jitter | Float | [0.0] | 0.0 .. 0.02 (strict) |  |
+| `jittertype` | Jitter Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `jitterscalex` | Jitter Scale | Float | 1.0 | 0.0 .. 5.0 (strict) |  |
+| `jitterscaley` | Jitter Scale | Float | 1.0 | 0.0 .. 5.0 (strict) |  |
+| `folderscale` |  | FolderSet |  |  |  |
+| `scalemask` | Scale Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scale` | Scale | Float | [0.25] | 0.0 .. 1.0 |  |
+| `scalemode` | Scale Mode | Menu | 0 |  | uniform, variance, minmax |
+| `scalevariance` | Scale Variance | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `minscale` | Min Value | Float | [0.5] | 0.0 .. 10.0 |  |
+| `maxscale` | Max Value | Float | [1.5] | 0.0 .. 10.0 |  |
+| `folderstretch` |  | FolderSet |  |  |  |
+| `stretchmask` | Stretch Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `stretchmode` | Stretch Mode | Menu | 0 |  | uniform, variance, minmax |
+| `stretchx` | Stretch X | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchy` | Stretch Y | Float | [1.0] | 0.0 .. 2.0 |  |
+| `stretchvariancex` | Stretch Variance | Float | 0.1 | 0.0 .. 1.0 (strict) |  |
+| `stretchvariancey` | Stretch Variance | Float | 0.1 | 0.0 .. 1.0 (strict) |  |
+| `minstretchx` | Min Value | Float | 0.4 | 0.0 .. 10.0 |  |
+| `minstretchy` | Min Value | Float | 0.4 | 0.0 .. 10.0 |  |
+| `maxstretchx` | Max Value | Float | 0.8 | 0.0 .. 10.0 |  |
+| `maxstretchy` | Max Value | Float | 0.8 | 0.0 .. 10.0 |  |
+| `folderrotation` |  | FolderSet |  |  |  |
+| `anglemask` | Angle Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `directionmask` | Direction Layer Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `angle` | Angle | Float | [0.0] | 0.0 .. 360.0 |  |
+| `anglemode` | Angle Mode | Menu | 0 |  | uniform, variance, minmax |
+| `anglevariance` | Angle Variance | Float | [0.0] | -180.0 .. 180.0 |  |
+| `minangle` | Min Value | Float | [-180.0] | -180.0 .. 180.0 |  |
+| `maxangle` | Max Value | Float | [180.0] | -180.0 .. 180.0 |  |
+| `roundto` | Round | Toggle | false |  |  |
+| `roundtomultiples` | Round to Multiples | Float | [45.0] | 1.0 .. 360.0 (strict) |  |
+| `knitshape` | Knit Shape Type | Menu | 1 |  | purl, knit |
+| `purl_width` | Width | Float | [0.15] | 0.0 .. 1.0 |  |
+| `purl_bulge` | Bulge Scale | Float | [0.25] | 0.0 .. 0.5 |  |
+| `purl_softness` | Softness | Float | [0.05] | 0.0 .. 0.1 (strict) |  |
+| `purl_wrinkles` | Wrinkles | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `purl_wrinklesize` | Wrinkle Size | Float | [0.15] | 0.001 .. 1.0 |  |
+| `purl_distortionscale` | Edge Bend | Float | [0.5] | -1.0 .. 1.0 |  |
+| `purl_edgebendbias` | Edge Bend Bias | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_bulgeramp` | Bulge Ramp | Ramp | 2 |  |  |
+| `purl_heightramp` | Height Ramp | Ramp | 4 |  |  |
+| `knit_doubleknit` | Double Knit | Toggle | true |  |  |
+| `knit_invertknit` | Invert Knit | Toggle | false |  |  |
+| `knit_width` | Weave Width | Float | [0.4] | 0.0 .. 1.0 |  |
+| `knit_height` | Weave Height | Float | [0.8] | 0.0 .. 1.0 |  |
+| `knit_radius` | Weave Radius | Float | [0.3] | 0.0 .. 0.5 (strict) |  |
+| `knit_fibers` | Fiber Strength | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `knit_fibercycles` | Fiber Cycles | Int | [4] | 0 .. 10 |  |
+| `knit_fibertwist` | Fiber Twist | Float | [0.5] | -1.0 .. 1.0 |  |
+| `purl_bulgeramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_bulgeramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_bulgeramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `purl_bulgeramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_bulgeramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_bulgeramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `purl_heightramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_heightramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_heightramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `purl_heightramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_heightramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_heightramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `purl_heightramp3pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_heightramp3value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_heightramp3interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `purl_heightramp4pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `purl_heightramp4value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `purl_heightramp4interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

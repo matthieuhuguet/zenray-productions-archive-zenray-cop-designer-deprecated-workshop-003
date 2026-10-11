@@ -1,0 +1,28 @@
+# invokegeo
+
+- Label: Invoke Geometry
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/invokegeo.html
+- Summary (EN): Runs a program saved in geometry on the layers wired into the node. The program is typically created by wiring a Block to Geometry COP into the program input.
+- Résumé (FR) : Exécute sur les couches d'entrée un programme COP sauvegardé en géométrie, avec itérations, à partir d'un bloc Block to Geometry.
+
+- Inputs meaning: ["program_geometry: compiled program geometry from Block to Geometry", "input#: source layers; their count and details come from the Inputs settings"]
+
+- Key parameters: [{"name": "Iterations", "meaning": "how many times the program runs, each run's outputs feeding the next run's inputs"}, {"name": "Set Inputs and Outputs from Incoming Program", "meaning": "populates the Inputs and Outputs multiparameters from the program signature"}, {"name": "Input Label / Input Type", "meaning": "name and data type of each input; the label must match an Input Name on the Block Begin COP"}, {"name": "Output Label / Output Type", "meaning": "name and data type of each output; the label must match an Output Name on the Block End COP"}]
+
+- Caveats: ["Repeated iterations work only when outputs convert to matching inputs by index; otherwise a single iteration runs with a warning."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `iterations` | Iterations | Int | [1] | 0 .. 10 (strict) |  |
+| `setports` | Set Inputs and Outputs from Incoming Program | Button |  |  |  |
+| `inputs` | Inputs | Folder | 0 |  |  |
+| `outputs` | Outputs | Folder | 0 |  |  |

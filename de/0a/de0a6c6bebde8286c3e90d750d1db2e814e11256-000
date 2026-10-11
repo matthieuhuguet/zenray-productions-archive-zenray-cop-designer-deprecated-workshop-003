@@ -1,0 +1,27 @@
+# invert
+
+- Label: Invert
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/invert.html
+- Summary (EN): Inverts the values of an incoming layer, VDB or attribute. By default it complements the values (1 - x), swapping black and white.
+- Résumé (FR) : Inverse les valeurs d'une couche par complément, négation ou inverse, sur les canaux choisis, avec masque optionnel.
+
+- Inputs meaning: ["source: the layer, VDB or attribute to invert", "mask: optional per-pixel mask amount, scaled by the Mask parameter"]
+
+- Key parameters: [{"name": "Mask", "meaning": "how much of the inverted value is mixed into the original; default 1 uses only the new value"}, {"name": "Toggle RGB, Red, Green, Blue, Alpha", "meaning": "choose which channels the effect applies to"}, {"name": "Invert By", "meaning": "Complement sets x to 1 - x (default); Negate sets x to -x; Reciprocal sets x to 1 / x"}]
+
+- Caveats: ["Complement works as expected only for values in the 0 to 1 range; other values give negative or out-of-range results, so a Clamp COP may be needed afterward."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scopergba` | Channel Scope | Int | [15] | 0 .. 10 |  |
+| `method` | Invert By | Menu | 0 |  | complement, negate, reciprocal |

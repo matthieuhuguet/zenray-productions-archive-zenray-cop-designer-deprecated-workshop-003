@@ -1,0 +1,31 @@
+# julia
+
+- Label: Julia Fractal
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/julia.html
+- Summary (EN): Computes the Julia set to produce fractal, chaotic imagery for use in composites. The output is a mono layer.
+- Résumé (FR) : Calcule l'ensemble de Julia pour produire une image fractale en niveaux de gris, à coloriser ensuite avec Mono to RGB.
+
+- Inputs meaning: ["size_ref: reference layer that sets the output image size and metadata"]
+
+- Key parameters: [{"name": "Signature", "meaning": "Float mono gives normalized time-to-escape; Integer ID gives the exact escape iteration count"}, {"name": "Scale", "meaning": "scales the incoming x and y image coordinates"}, {"name": "Real Coefficient / Imaginary Coefficient", "meaning": "the complex constant defining the Julia set"}, {"name": "Escape Radius", "meaning": "threshold at which a point counts as escaped"}, {"name": "Maximum Iterations", "meaning": "iteration limit after which a point is treated as not escaped"}]
+
+- Caveats: ["The output is a mono layer, not a colored image; pass it through Mono to RGB to add color.", "If the coefficients are connected, they act as a point in the Mandelbrot set."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["f1"] |  |  |
+| `scalex` | Scale | Float | 0.626 | 0.0 .. 1.0 (strict) |  |
+| `scaley` | Scale | Float | 0.626 | 0.0 .. 1.0 (strict) |  |
+| `real` | Real Coefficient | Float | [0.25] | -1.0 .. 1.0 |  |
+| `imag` | Imaginary Coefficient | Float | [-0.55] | -1.0 .. 1.0 |  |
+| `escaperad` | Escape Radius | Float | [2.0] | 0.0 .. 10.0 (strict) |  |
+| `maxiter` | Maximum Iterations | Int | [50] | 1 .. 100 (strict) |  |

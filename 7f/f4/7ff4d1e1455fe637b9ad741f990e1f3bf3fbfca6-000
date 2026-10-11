@@ -1,0 +1,28 @@
+# matchudim
+
+- Label: Match UDIM
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/matchudim.html
+- Summary (EN): Reframes the pixels of an input layer so they line up with a chosen UDIM tile. It virtually moves the image from its starting tile, assumed to be 1001, to the destination tile in camera space. It is useful for isolating one tile during rasterization.
+- Résumé (FR) : Recale les pixels d'un calque sur une tuile UDIM choisie, en déplaçant virtuellement l'image depuis la tuile 1001, pour isoler une tuile pendant la rastérisation.
+
+- Inputs meaning: ["source: the input image to reframe"]
+
+- Key parameters: ["UDIM: the destination tile, assuming the image starts at tile 1001", "Invert Transformation: reverses the move, returning the image from the UDIM tile to tile 1001", "Method: Move Camera repositions the camera to look at the target tile; Adjust Data Window leaves the camera alone and changes the data window so pixels fall outside the display window"]
+
+- Caveats: ["The output is a single tile. Change tiles with the UDIM parameter or a context option, and bake each tile in turn.", "The page describes a rasterization pipeline (Layer COP feeding a Rasterize Geometry COP camera_ref input). It does not say how the node behaves outside that setup."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setudim` | UDIM | Toggle | false |  |  |
+| `udim` | UDIM | Int | [1001] | 1001 .. 1051 |  |
+| `invertxform` | Invert Transformation | Toggle | false |  |  |
+| `method` | Method | Menu | 0 |  | eye, data |

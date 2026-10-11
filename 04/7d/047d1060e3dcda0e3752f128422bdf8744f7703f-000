@@ -1,0 +1,53 @@
+# maskcombine
+
+- Label: Mask Combine
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 29 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/maskcombine.html
+- Summary (EN): The Mask Combine node builds a single mask by blending several mono or colour layers from an input cable onto a running result, in order. A final post-processing stage can then remap the combined mask.
+- Résumé (FR) : Combine plusieurs couches mono ou couleur en un masque unique, par modes de fusion successifs, puis le remappe en post-traitement.
+
+- Inputs meaning: ["layers: the cable carrying the layers to combine; the Mask Layers list picks named wires from it"]
+
+- Key parameters: ["Starting Value: initial mask value that the first layer blends onto", "Mask Layers: ordered list of wires to combine, processed top to bottom", "Wire Name: name of the cable wire used; it must be Mono, UV, RGB or RGBA", "Blend Mode: how a layer combines with the running result (Blend, Add, Multiply, Screen, Overlay, and others)", "Mask: amount of a layer mixed into the running result; 1 applies the blend fully", "Conversion: reduces multi-channel wires to mono (Channel Extract, Channel Mix or Light Direction)", "Blur: softens a layer edges before blending", "Layer Remap: remaps a layer values through a ramp before blending", "Combined Mask Remap: remaps the final combined mask through a ramp", "Amplitude, Center, Mask Contrast: range adjustments applied to the combined mask in post processing", "Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum: post-processing operations applied in the listed order"]
+
+- Caveats: ["Layers are processed top to bottom, so their order changes the result", "Disabled layers are skipped and do not contribute", "Post-processing operations run in the order listed", "Fold has no visible effect when all values are positive", "Complement is designed for 0 to 1 values; out-of-range inputs can give negative or out-of-range results", "Normalize Weights, when on, divides the channel mix by the sum of the weights to keep the range", "Mask Contrast differs from Noise Contrast in noise nodes, though the page does not fully explain how", "Available since Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `folder0` |  | FolderSet |  |  |  |
+| `initialvalue` | Starting Value | Float | [0.0] | 0.0 .. 1.0 |  |
+| `ops` | Mask Layers | Folder | 0 |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_ramp` | Combined Mask Remap | Ramp | 2 |  |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `post_amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_maskcontrast` | Mask Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |
+| `post_ramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `post_ramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `post_ramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `post_ramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `post_ramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `post_ramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

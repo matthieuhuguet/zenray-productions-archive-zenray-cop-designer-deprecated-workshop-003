@@ -1,0 +1,22 @@
+# cablefilter
+
+- Label: Cable Filter
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cablefilter.html
+- Summary (EN): Removes the empty wires from an input cable and outputs the same cable holding only wires that contain data, named filter. Available since version 21.0. The page documents no parameters.
+- Résumé (FR) : Le nœud cablefilter retire les fils vides d'un câble pour ne garder que les fils qui portent des données.
+
+- Inputs meaning: ["cable: the input cable"]
+
+- Caveats: ["The page lists no parameters", "Add a Cable Merge downstream if the original cable structure must be restored"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

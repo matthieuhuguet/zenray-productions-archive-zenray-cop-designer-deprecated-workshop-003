@@ -1,0 +1,67 @@
+# fractalnoise3d
+
+- Label: Fractal Noise 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 4
+- Parameters: 43 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fractalnoise3d.html
+- Summary (EN): Fractal Noise 3D generates fractal noise by sampling the same underlying noise at increasing frequencies and blending the results. Unlike the 2D Fractal Noise COP, it uses each pixel's world coordinates instead of its image coordinates.
+- Résumé (FR) : Le nœud Fractal Noise 3D génère un bruit fractal à partir des coordonnées monde de chaque pixel, et non de ses coordonnées image.
+
+- Inputs meaning: ["size_ref: sets the output size and metadata", "pos (optional): layer or VDB giving the position at which each pixel is evaluated", "octaves (optional): amount multiplied by Max Octaves", "roughness (optional): amount multiplied by Roughness"]
+
+- Key parameters: ["Range: Amplitude scales the noise, Center offsets it, and Noise Contrast adjusts contrast before Amplitude and Center are applied", "Pattern, Noise Type: Simplex, Perlin, Worley F1 or F2-F1, White, Alligator or Sparse Convolution", "Pattern, Element Size and Offset: scale and position in world space", "Pattern, Metric and Worley Jitter: apply to the Worley types", "Fractal Type: None, Sharp, Dampened, Terrain or Hybrid Terrain", "Max Octaves: number of layers; Lacunarity: frequency scale per layer; Roughness: amplitude falloff per layer", "Post Processing: Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum, applied in the order listed"]
+
+- Caveats: ["Layers can store negative values and values above 1, so the output can go out of range; a Clamp COP can enforce the range afterward", "Complement assumes values between 0 and 1, so other ranges give unexpected results", "Worley Jitter values above 1 can produce artifacts", "Noise Contrast inside the noise function is separate from the Contrast post-processing parameter"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `folder1` |  | FolderSet |  |  |  |
+| `amp` | Amplitude | Float | [0.5] | 0.0 .. 1.0 |  |
+| `center` | Center | Float | [0.5] | 0.0 .. 1.0 |  |
+| `contrast` | Noise Contrast | Float | [0.0] | -1.0 .. 1.0 (strict) |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `noisetype` | Noise Type | Menu | 0 |  | simplex, perlin, worleyA, worleyB, white, alligator, sparse |
+| `percomp` | Per Component | Toggle | true |  |  |
+| `metric` | Metric | Menu | 0 |  | euclidean, manhattan, chebyshev |
+| `jitter` | Worley Jitter | Float | [1.0] | 0.0 .. 1.0 |  |
+| `elementsize` | Element Size | Float | [0.1] | 0.001 .. 1.0 |  |
+| `elementsizetype` | Element Size Type | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscalez` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `offx` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offy` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `offz` | Offset | Float | 0.0 | 0.0 .. 1.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `fractaltype` | Fractal Type | Menu | 1 |  | none, sharp, dampened, terrain, hybrid |
+| `oct` | Max Octaves | Float | [8.0] | 0.0 .. 8.0 |  |
+| `lac` | Lacunarity | Float | [2.01234] | 1.0 .. 3.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `octaveoffsetx` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `octaveoffsety` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `octaveoffsetz` | Octave Offset | Float | -1.0 | -1.0 .. 1.0 |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maximum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

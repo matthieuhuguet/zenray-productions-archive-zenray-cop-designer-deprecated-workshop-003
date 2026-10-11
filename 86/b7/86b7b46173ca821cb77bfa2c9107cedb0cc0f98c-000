@@ -1,0 +1,45 @@
+# font
+
+- Label: Font
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 21 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/font.html
+- Summary (EN): The Font node adds text to a layer by drawing Type 1, TrueType, or OpenType fonts into it. It supports any Unicode glyph and can output the result as a mask or a signed distance field.
+- Résumé (FR) : Le nœud Font dessine du texte Unicode dans une couche, sous forme de masque ou de champ de distance signée.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output image size and controls the metadata"]
+
+- Key parameters: ["Space: Image (layer image space, 0,0 at the display window center) or World (text placed in the X/Y plane with the 3D transform applied)", "Font: typeface; system fonts are listed automatically and other font files can be browsed", "Text: string to generate", "Output Type: Mask (rasterized mask) or SDF (signed distance field)", "Smoothing with Units and Width: softens jagged edges, in image-space units or pixels", "Horizontal Alignment and Vertical Alignment: position relative to the origin (Left, Center, Right, Top, Middle, Bottom and similar); Include Descender in Vertical Alignment moves the baseline to the descender", "Font Size: base size; Scale is applied on top of it", "Translate and Rotate Z: position and rotation around the world Z axis", "Tracking and Leading: horizontal and vertical character spacing; Leading only has an effect with multiple lines", "Oblique Angle: slant in degrees", "Level of Detail: number of points used in polygonal fonts"]
+
+- Caveats: ["The text stays in world space even when size_ref is in a different space", "Leading has no effect on single-line text", "The available fonts depend on what is installed on the system"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `file` | Font | String | ["Lato"] |  |  |
+| `text` | Text | String | ["Frame: $F"] |  |  |
+| `output` | Output Type | Menu | 0 |  | mask, sdf |
+| `dosmooth` | Smooth | Toggle | false |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `smoothunits` | Units | Menu | 1 |  | image, pixels |
+| `smooth` | Width | Float | [0.01] | 0.0 .. 1.0 (strict) |  |
+| `smooth_pixel` | Width | Float | [1.5] | 0.0 .. 25.0 (strict) |  |
+| `halign` | Horizontal Alignment | Menu | 1 |  | left, center, right |
+| `valign` | Vertical Alignment | Menu | 2 |  | first, top, middle, bottom |
+| `use_descender` | Include Descender in Vertical Alignment | Toggle | false |  |  |
+| `fontsize` | Font Size | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `tx` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `ty` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rz` | Rotate Z | Float | [0.0] | -180.0 .. 180.0 |  |
+| `sx` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `sy` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `tracking` | Tracking | Float | [0.0] | -1.0 .. 1.0 |  |
+| `leading` | Leading | Float | [0.0] | -1.0 .. 1.0 |  |
+| `oblique` | Oblique Angle | Float | [0.0] | -89.0 .. 89.0 (strict) |  |
+| `lod` | Level of Detail | Float | [1.0] | 0.001 .. 5.0 (strict) |  |

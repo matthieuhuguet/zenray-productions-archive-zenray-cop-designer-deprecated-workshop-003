@@ -1,0 +1,29 @@
+# cache
+
+- Label: Cache
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cache.html
+- Summary (EN): Builds an in-memory cache for each input so expensive operations play back faster, storing frames so inputs need not be recooked. Works for layers, geometry and VDBs. Available since version 21.0.
+- Résumé (FR) : Le nœud cache conserve en mémoire les images de ses entrées pour accélérer une opération coûteuse, au prix de la RAM et de la VRAM.
+
+- Inputs meaning: ["input#: the source layer to cache (layers, geometry or VDBs)"]
+
+- Key parameters: [{"name": "Clear Cache", "meaning": "Erases all cached data and forces new results to cook"}, {"name": "Reload Playbar Range", "meaning": "Caches all frames of the current playbar range"}, {"name": "Max Frames", "meaning": "Maximum number of stored frames; lower saves memory but may slow playback away from key frames"}, {"name": "Clear Cache when Change Upstream", "meaning": "On by default; clears the cache when upstream changes, time-based changes excepted"}, {"name": "Output #", "meaning": "Names the output; non-blank names are kept as placeholders when wires are removed"}]
+
+- Caveats: ["Increases RAM and VRAM usage", "Recomputing can sometimes be faster than caching", "Does not store upstream parameter settings", "The page recommends Stash COP to save inputs without cooking them"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `clearcache` | Clear Cache | Button |  |  |  |
+| `reloadplaybar` | Reload Playbar Range | Button |  |  |  |
+| `maxframes` | Max Frames | Int | [2000] | 0 .. 10000 (strict) |  |
+| `clearonchange` | Clear Cache when Change Upstream | Toggle | true |  |  |
+| `outputs` | Outputs | Folder | 0 |  |  |

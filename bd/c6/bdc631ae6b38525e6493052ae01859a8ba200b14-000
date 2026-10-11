@@ -1,0 +1,45 @@
+# geotolayer::2.0
+
+- Label: Geometry to Layer
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 21 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/geotolayer-2.0.html
+- Summary (EN): Geometry to Layer 2.0 converts volume, VDB, or camera primitives inside a geometry input into layers or VDBs. It also imports those primitives' attributes, except the name attribute, as properties.
+- Résumé (FR) : Ce nœud convertit les volumes, VDB et caméras d'une géométrie en calques ou en VDB, et importe leurs attributs comme propriétés.
+
+- Inputs meaning: ["geometry: geometry containing the volumes, VDBs or camera primitives to convert", "size_ref: representative layer that sets output size and metadata, used only for Optional layers", "vdb_ref: VDB topology used for optional VDBs missing from the source; values reset to zero if the type differs"]
+
+- Key parameters: ["Precision: 8, 16 or 32 bits per channel; 8 is valid only for integer volumes and ID layers", "Border: sampling behaviour outside layer boundaries, defaults to the incoming border", "Slice: XY, YZ or ZX plane used to slice a 3D volume", "Densify VDBs: converts collapsed VDB tiles to leaves so random writes are possible", "Set Imports from Geometry: fills outputs from the volumes, VDBs or cameras in the input geometry", "Outputs: one output per converted primitive", "Primitive Name: name or index; a wildcard such as vel.* with the RGB data type collates volume triples into one RGB layer", "Optional: falls back to size_ref (layers) or vdb_ref (VDBs) when the primitive is missing", "Default Value: fallback value for Optional ID, Mono, UV, RGB or RGBA layers"]
+
+- Caveats: ["The base page geotolayer.html documents Geometry to Layer 1.0, not 2.0; the 2.0 description was read at geotolayer-2.0.html", "Precision 8 is valid only for integer volumes and ID layers", "Densify VDBs moves the VDB to the CPU and may need a large amount of memory", "The vdb_ref fallback is not densified; densify it beforehand if needed", "size_ref is used only for Optional layers", "If Primitive Name is blank, the node matches the primitive number of the multiparm index"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setprecision` | Precision | Toggle | false |  |  |
+| `precision` | Precision | Menu | 1 |  | b8, b16, b32 |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap |
+| `slice` | Slice | Menu | 0 |  | xy, yz, zx |
+| `densifyvdb` | Densify VDBs | Toggle | false |  |  |
+| `addprims` | Set Imports from Geometry | Button |  |  |  |
+| `numprims` | Outputs | Folder | 1 |  |  |
+| `primitive1` | Primitive Name | String | [""] |  |  |
+| `outtype1` | outputtype | Menu | 1 |  | int, float, vector2, vector3, vector4, intvdb, floatvdb, vectorvdb, metadata |
+| `optional1` | Optional | Toggle | false |  |  |
+| `f1_def1` | Default Value | Float | [1.0] | 0.0 .. 10.0 |  |
+| `f2_def11` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f2_def12` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1r` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1g` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3_def1b` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1r` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1g` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1b` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4_def1a` | Default Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `i_def1` | Default Value | Int | [0] | 0 .. 10 |  |

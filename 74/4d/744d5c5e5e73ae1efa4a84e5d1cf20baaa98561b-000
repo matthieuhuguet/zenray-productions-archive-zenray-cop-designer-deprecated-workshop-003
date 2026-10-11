@@ -1,0 +1,35 @@
+# filterfrequencies
+
+- Label: Filter Frequencies
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 11 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/filterfrequencies.html
+- Summary (EN): Filter Frequencies strengthens, weakens, or removes fine or broad detail in an image at a chosen spatial scale. It works by converting the image into frequency space, applying a mask, and converting it back.
+- Résumé (FR) : Le nœud Filter Frequencies renforce, atténue ou supprime les détails fins ou larges d'une image à une échelle spatiale choisie.
+
+- Inputs meaning: ["source: image to filter", "filter (optional): image used directly as the frequency-domain mask; when connected, the Frequency and Anisotropy controls are disabled"]
+
+- Key parameters: ["Scale: multiplies the filtered result; above 1 boosts the kept band, below 1 attenuates it", "Frequency: center of the kept band, from 0 (lowest, broad content) to 1 (finest detail)", "Width (under Frequency): full width of the kept band around Frequency", "Smooth (under Frequency): softens the band edges instead of using a hard cutoff", "Angle (under Anisotropy): center direction of an angular wedge, from 0 to 360 degrees", "Width (under Anisotropy): angular extent of the wedge; default 360 keeps all directions", "Smooth (under Anisotropy): softens the angular edges of the wedge", "Reflect: mirrors the wedge to the opposite direction (Angle plus 180)"]
+
+- Caveats: ["A hard cutoff in frequency space can cause ringing artifacts; smoothing the band usually gives a cleaner image", "The Frequency and Anisotropy controls are disabled whenever the filter input is wired", "The page describes the node as available since Houdini 22.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 2.0 |  |
+| `freq` |  | FolderSet |  |  |  |
+| `frequency` | Frequency | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `width` | Width | Float | [0.1] | 0.0 .. 2.0 (strict) |  |
+| `smooth` | Smooth | Toggle | false |  |  |
+| `anisotropy` |  | FolderSet |  |  |  |
+| `angle` | Angle | Float | [0.0] | 0.0 .. 360.0 |  |
+| `anglewidth` | Width | Float | [360.0] | 0.0 .. 360.0 (strict) |  |
+| `anglesmooth` | Smooth | Toggle | false |  |  |
+| `reflect` | Reflect | Toggle | false |  |  |

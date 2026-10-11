@@ -1,0 +1,26 @@
+# cableunpack
+
+- Label: Cable Unpack
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cableunpack.html
+- Summary (EN): Splits a cable into its individual wires, which are then processed separately; usually placed after Cable Pack. The wires named in Fields are output on output#. Available since version 21.0.
+- Résumé (FR) : Le nœud cableunpack extrait les fils individuels d'un câble, à l'inverse de cablepack.
+
+- Inputs meaning: ["cable: the input cable to extract wires from"]
+
+- Key parameters: [{"name": "Set Fields from Input", "meaning": "Fills the Fields parameters with the wires of the input cable"}, {"name": "Fields", "meaning": "Number of wires to extract"}, {"name": "Name", "meaning": "Name of the wire to extract, chosen from the input cable's wires"}, {"name": "Index", "meaning": "Distinguishes wires sharing a name; first instance is 0"}, {"name": "Type", "meaning": "Data type of the wire; affects the node signature"}]
+
+- Caveats: ["Wires are identified by name; Index tells apart wires that share a name"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `setfields` | Set Fields from Input | Button |  |  |  |
+| `fields` | Fields | Folder | 0 |  |  |

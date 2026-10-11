@@ -1,0 +1,42 @@
+# flow_block_end
+
+- Label: Flow Block End
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 3 to 7
+- Parameters: 18 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/flow_block_end.html
+- Summary (EN): The Flow Block End node closes a Flow simulation block in Copernicus. It pairs with a Flow Block Begin COP and outputs the updated color, velocity, temperature, and feedback data.
+- Résumé (FR) : Le nœud Flow Block End referme le bloc de simulation de fluide et renvoie la couleur, la vitesse, la température et la rétroaction mises à jour.
+
+- Inputs meaning: ["color: RGBA layer of current fluid colors, fed back", "v: UV layer of flow velocities, fed back", "temperature: Mono layer of fluid temperatures, fed back", "feedback: cable of feedback data; its structure must match the one defined on Flow Block Begin", "divergence (optional): Mono layer giving a goal divergence so the fluid can expand or contract", "collision (optional): Mono layer masking the collider, where 1 acts as a collider", "collisionv (optional): UV layer of collider velocities"]
+
+- Key parameters: ["Simulate: feeds back over time, or runs a fixed number of steps per frame", "Time Scale: size of the simulation timestep", "Iterations: solver steps per evaluation when simulation is off", "Substeps: number of substeps each frame is divided into when simulation is on", "Reset Simulation: clears the entire simulation cache", "Start Frame: playbar frame where the simulation starts", "Live Simulation: interactive, non-deterministic simulation independent of the playbar", "Cache Simulation and Cached Frames: whether frames are cached and how many frames behind the current frame are kept", "Checkpoint Rate: caches a frame at a regular interval (for example 24) so scrubbing re-cooks less; 0 disables it", "Collision Iterations: collision avoidance quality, at a cost in speed", "Multigrid Iterations: how closely the divergence matches its goal, at a cost in speed", "X Border and Y Border: each edge set to Open, Closed or Periodic"]
+
+- Caveats: ["Flow requires DOP-level permissions; it is not available in Houdini Core, only in Houdini FX, Apprentice, Indie and Education", "Compiled COP networks do not support simulation", "Live Simulation does not save results, so use a Stash COP to keep them"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `simulate` | Simulate | Toggle | true |  |  |
+| `timescale` | Time Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `iterations` | Iterations | Int | [1] | 0 .. 10 (strict) |  |
+| `substeps` | Substeps | Int | [1] | 1 .. 10 |  |
+| `resimulate` | Reset Simulation | Button |  |  |  |
+| `startframe` | Start Frame | Int | [1] | 1 .. 1001 |  |
+| `continuouscook` | Live Simulation | Toggle | false |  |  |
+| `continuouscook_toggle` | Toggle Live Simulation | Button |  |  |  |
+| `continuouscook_tick` | Live Tick | Int | [0] | 0 .. 10 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `cacheenabled` | Cache Simulation | Toggle | true |  |  |
+| `cachedframes` | Cached Frames | Int | [10] | 1 .. 1001 |  |
+| `checkpointframes` | Checkpoint Rate | Int | [24] | 0 .. 100 |  |
+| `folder0_1` |  | FolderSet |  |  |  |
+| `collision_iterations` | Collision Iterations | Int | [2] | 1 .. 10 |  |
+| `pressure_iterations` | Multigrid Iterations | Int | [1] | 1 .. 10 (strict) |  |
+| `borderx` | X Border | Menu | 2 |  | open, closed, periodic |
+| `bordery` | Y Border | Menu | 2 |  | open, closed, periodic |

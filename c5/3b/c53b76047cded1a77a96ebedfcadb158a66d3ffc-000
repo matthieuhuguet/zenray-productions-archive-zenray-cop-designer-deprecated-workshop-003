@@ -1,0 +1,50 @@
+# idtomask
+
+- Label: ID to Mask
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 2
+- Parameters: 26 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/idtomask.html
+- Summary (EN): Creates a mask from an ID layer by selecting which IDs are included, to isolate regions for post-processing.
+- Résumé (FR) : Crée un masque à partir d'une couche d'identifiants, en retenant les IDs par motif, plage, probabilité ou masque.
+
+- Inputs meaning: ["id: the original ID layer to convert", "mask: optional per-pixel mask amount, scaled by the Mask parameter"]
+
+- Key parameters: [{"name": "ID Pattern", "meaning": "group pattern selecting IDs; blank means all IDs"}, {"name": "Invert Mask", "meaning": "inverts the generated mask"}, {"name": "Keep by Range", "meaning": "selects IDs by Start and End, or Start and Length, with optional Range Offset; a Range Filter picks an alternating subset"}, {"name": "Keep by Chance", "meaning": "keeps IDs randomly by Probability (default 0.5); Seed (default 30) changes the pattern"}, {"name": "Keep within Mask", "meaning": "uses the mask input; Threshold (default 0.5) sets the minimum mask value considered"}]
+
+- Caveats: ["Start ID and End ID apply only when their toggles are on.", "Keep within Mask needs a connected mask input to have any effect.", "The page does not document what the Mask parameter is."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `group` | ID Pattern | String | [""] |  |  |
+| `invertmask` | Invert Mask | Toggle | false |  |  |
+| `keepbyrange` |  | FolderSet |  |  |  |
+| `enablerange` | Enable | Toggle | false |  |  |
+| `fdrange` |  | FolderSet |  |  |  |
+| `rangemode` | Range Type | Menu | 0 |  | 0, 1 |
+| `typestartend` |  | FolderSet |  |  |  |
+| `enablestart` | Enablestart | Toggle | false |  |  |
+| `start` | Start ID | Int | [0] | 0 .. 100 |  |
+| `enableend` | Enableend | Toggle | false |  |  |
+| `end` | End ID | Int | [100] | 0 .. 100 |  |
+| `globalrangeoffset` | Range Offset | Int | [0] | 0 .. 10 |  |
+| `type2startlength` |  | FolderSet |  |  |  |
+| `startl` | Start ID | Int | [0] | 0 .. 10 |  |
+| `length` | Length | Int | [5] | 0 .. 100 |  |
+| `rangefilter` |  | FolderSet |  |  |  |
+| `select` | Select | Int | [1] | 0 .. 10 |  |
+| `of` | of | Int | [2] | 1 .. 10 |  |
+| `offset` | Offset | Int | [0] | 0 .. 10 |  |
+| `keepbyrandomchance` |  | FolderSet |  |  |  |
+| `enablerandom` | Enable | Toggle | false |  |  |
+| `probability` | Probability | Float | [0.5] | 0.0 .. 1.0 |  |
+| `seed` | Seed | Int | [30] | 0 .. 100 |  |
+| `keepbywithinmask` |  | FolderSet |  |  |  |
+| `enableimagemask` | Enable | Toggle | false |  |  |
+| `threshold` | Threshold | Float | [0.5] | 0.0 .. 1.0 |  |

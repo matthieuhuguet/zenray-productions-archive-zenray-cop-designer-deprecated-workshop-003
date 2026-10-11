@@ -1,0 +1,30 @@
+# edgedetectcontour
+
+- Label: Edge Detect by Contour
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/edgedetectcontour.html
+- Summary (EN): Finds silhouette outlines and draws them with varying widths by comparing each pixel's input value, such as a primitive ID, with its neighbours using ray differentials.
+- Résumé (FR) : Trace des contours de silhouette d'épaisseur variable en comparant chaque pixel à ses voisins.
+
+- Inputs meaning: ["source: signal to run silhouette detection on", "thickness: optional input varying line thickness"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Thickness Scale: kernel radius in pixels; a multiplier when thickness is connected", "Edge Spread: spread of the Gaussian weight, controlling edge falloff", "Blur: blurs the image before detection", "Contour Tolerance: minimum difference from neighbours for a pixel to count as part of the line", "Min Probe Radius: minimum search radius for probe pixels"]
+
+- Caveats: ["The page gives no default values, numeric ranges or interaction guidance; tuning needs experiments.", "Covers silhouettes only; crease lines are for Edge Detect by Normal and self-occluding depth edges for Edge Detect by Depth."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `thickscale` | Thickness Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `weightspread` | Edge Spread | Float | [1.5] | 0.0 .. 2.0 |  |
+| `blur` | Blur | Float | [1.0] | 0.0 .. 10.0 |  |
+| `conttolerance` | Contour Tolerance | Float | [0.001] | 0.0 .. 0.5 |  |
+| `minproberad` | Min Probe Radius | Int | [1] | 0 .. 3 |  |

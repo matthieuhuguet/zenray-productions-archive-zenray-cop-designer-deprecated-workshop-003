@@ -1,0 +1,58 @@
+# layer
+
+- Label: Layer
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 34 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layer.html
+- Summary (EN): The Layer node generates a 2D pixel layer that can hold mono, UV, RGB, RGBA or ID values. It is usually unnecessary to add explicitly, since project defaults apply, but it sets specific resolution, precision and other options.
+- Résumé (FR) : Crée une couche 2D de pixels (mono, UV, RGB, RGBA ou ID) pour fixer la résolution, la précision et les options de stockage.
+
+- Inputs meaning: ["size_ref: optional representative layer that sets the output image size and controls its metadata"]
+
+- Key parameters: ["Signature: layer type to generate (mono, UV, RGB, RGBA or ID)", "Value / Color: initial values for each layer type", "Resolution: number of pixels in the layer", "Pixel Aspect Ratio: overrides the square pixel default, which can create anisotropic pixels", "Pixel Padding (Left/Right, Top/Bottom): expands or erodes the data window for overscan or cropping", "Precision: storage precision of 8, 16 or 32 bits", "Use Fixed Point Storage: stores 8-bit unsigned and 16-bit signed values as fixed point", "Border: behaviour for reads outside the data window (Constant, Clamp, Mirror or Wrap)", "Type Info: how the layer is visualised in the 3D viewport", "Pixel Scale: number of pixels per buffer element, enabling faster proxy cooking", "Identity Transform: resets the layer to canonical space and orthographic camera settings"]
+
+- Caveats: ["The page states 8-bit precision is supported only for ID layers", "16-bit floats offer limited precision for derivatives, so 32-bit is often preferred for height workflows", "Fixed point storage clamps 8-bit values to 0 to 1 and 16-bit values to -1 to 1, and does not apply to ID layers", "Pixel Scale changes the buffer element count, so the stored size can differ from the specified resolution", "Storage types propagate through the network, so downstream nodes usually match their inputs"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["f1"] |  | m, f1, f2, f3, f4, i |
+| `f1` | Value | Float | [1.0] | 0.0 .. 10.0 |  |
+| `f21` | Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f22` | Value | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3r` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3g` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f3b` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4r` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4g` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4b` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `f4a` | Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `i` | Value | Int | [0] | 0 .. 10 |  |
+| `setres` | Resolution | Toggle | false |  |  |
+| `resx` | Resolution | Float | 1920.0 | 0.0 .. 10.0 |  |
+| `resy` | Resolution | Float | 1080.0 | 0.0 .. 10.0 |  |
+| `resmenu` | Resolution Menu | Menu | 0 |  |  |
+| `setpixelaspectratio` | Pixel Aspect Ratio | Toggle | false |  |  |
+| `pixelaspectratio` | Pixel Aspect Ratio | Float | [1.0] | 0.1 .. 2.0 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `setpixelpad` | Pixel Padding | Toggle | false |  |  |
+| `pixelpad_h1` | Left/Right | Int | 0 | 0 .. 10 |  |
+| `pixelpad_h2` | Left/Right | Int | 0 | 0 .. 10 |  |
+| `pixelpad_v1` | Top/Bottom | Int | 0 | 0 .. 10 |  |
+| `pixelpad_v2` | Top/Bottom | Int | 0 | 0 .. 10 |  |
+| `setprecision` | Precision | Toggle | false |  |  |
+| `precision` | Precision | Menu | 2 |  | b8, b16, b32 |
+| `usefixedpoint` | Use Fixed Point Storage | Toggle | false |  |  |
+| `setborder` | Border | Toggle | false |  |  |
+| `border` | Border | Menu | 3 |  | constant, clamp, mirror, wrap |
+| `settypeinfo` | Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `setpixelscale` | Pixel Scale | Toggle | false |  |  |
+| `pixelscale` | Pixel Scale | Float | [1.0] | 1.0 .. 16.0 |  |
+| `identityxform` | Identity Transform | Toggle | false |  |  |

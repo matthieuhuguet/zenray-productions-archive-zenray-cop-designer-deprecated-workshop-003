@@ -1,0 +1,26 @@
+# idtomono
+
+- Label: ID to Mono
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/idtomono.html
+- Summary (EN): Converts an ID layer, VDB or attribute into a float value. It is the reverse of Mono to ID, which turns floats back into integers.
+- Résumé (FR) : Convertit une couche d'identifiants entiers en valeur flottante, avec trois modes dont Safe Pack, réversible.
+
+- Inputs meaning: ["id: the original ID layer, VDB or attribute to convert"]
+
+- Key parameters: [{"name": "Signature", "meaning": "sets the layer type the source accepts"}, {"name": "Conversion", "meaning": "Cast converts the integer directly to a float; Safe Pack reversibly packs it into a finite, non-denormal float (pack_inttosafefloat VEX); Bitwise reinterprets the integer bits as a float"}]
+
+- Caveats: ["Cast loses accuracy for integers too large for a float to represent.", "Bitwise is reversible, but the float value does not reflect the integer, so it is not useful for direct value comparisons.", "Safe Pack gives the most predictable reversible result for most inputs."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `conversion` | Conversion | Menu | 0 |  | cast, safe, bitwise |

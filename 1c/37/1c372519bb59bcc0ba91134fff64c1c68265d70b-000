@@ -1,0 +1,36 @@
+# neural_cellularautomatadecode
+
+- Label: Neural Cellular Automata Decode
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 12 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/neural_cellularautomatadecode.html
+- Summary (EN): Converts the latent cell state from a Neural Cellular Automata Core node into a visible RGB pattern using a decoder neural network. It can also upscale the decoded result by a chosen factor.
+- Résumé (FR) : Convertit l'état latent de cellules du nœud NCA Core en motif RGB visible à l'aide d'un réseau décodeur, avec un agrandissement optionnel de 2x, 4x ou 8x.
+
+- Inputs meaning: ["cells: the cell state from a Neural Cellular Automata Core node"]
+
+- Key parameters: ["Model: From Metadata (default) loads the decoder referenced by the input's layer metadata; Custom lets you specify a decoder ONNX file", "Decoder Model File: path to a custom decoder ONNX file", "Reload Model: forces the ONNX model to reload", "Upres Factor: scales the output from 1x (decode only) up to 2x, 4x or 8x", "Filter: interpolation used for upsampling, such as Point, Bilinear, Box, Catmull-Rom, Mitchell or B-spline", "Color Transform: OCIO converts to the Output Space; None (Raw) applies no transform. The default NCA output colour space is Linear rec709", "Max Tile Size: trades memory use against decoding speed", "Execution Provider: Automatic, CPU, CUDA, DirectML (Windows only) or CoreML (macOS only)", "Device ID: selects a GPU when several are available; no effect on CPU inference"]
+
+- Caveats: ["In From Metadata mode the node relies on the decodemodel layer property. If that property is removed, the node cannot find the decoder and the model file path must be set manually.", "Larger tiles decode faster but need more GPU or CPU memory.", "CUDA requires NVIDIA's CUDA and cuDNN packages to be installed.", "The page suggests two decode nodes: one at 1x for fast colour iteration, and one at the final scale for the costly high-resolution output."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `modelsource` | Model | Int | [0] | 0 .. 10 | 0, 1 |
+| `modelfile` | Decoder Model File | String | ["shfs:/houdini/nodes/cop/neural_cellularautomatacore/onnx/denim/v1/denim.decode.onnx"] |  |  |
+| `reload` | Reload Model | Button |  |  |  |
+| `factor` | Upres Factor | Int | [8] | 0 .. 10 | 1, 2, 4, 8 |
+| `filter` | Filter | Menu | 1 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `postprocessing` |  | FolderSet |  |  |  |
+| `colortransform` | Color Transform | Int | [0] | 0 .. 10 (strict) | 0, 1 |
+| `tospace` | Output Space | String | ["scene_linear"] |  |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `maxtilesize` | Max Tile Size | Int | [1024] | 64 .. 4096 (strict) | 256, 512, 1024, 2048, 4096 |
+| `provider` | Execution Provider | Menu | -1 |  |  |
+| `deviceid` | Device ID | Int | [0] | 0 .. 10 |  |

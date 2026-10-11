@@ -1,0 +1,58 @@
+# heightfield_visualize
+
+- Label: HeightField Visualize
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 4
+- Parameters: 34 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heightfield_visualize.html
+- Summary (EN): Turns COP layers into geometry and produces a colored heightfield visualization that works like terrain; also converts heightfield layers into geometry usable with SOP heightfield tools.
+- Résumé (FR) : Convertit les couches COP en géométrie et produit une visualisation colorée de champ de hauteur, utilisable avec les outils heightfield de SOP.
+
+- Inputs meaning: ["height: the layer used as the heightfield", "color: optional layer tinting the surface", "mask: optional layer tinting the surface", "layers: optional cable of extra layers to convert"]
+
+- Key parameters: [{"name": "Height Scale", "meaning": "scales height values into world space, which visualization requires"}, {"name": "Height Offset", "meaning": "shifts the height values"}, {"name": "Split Channels", "meaning": "splits vector volumes into separate float volumes"}, {"name": "Tint by", "meaning": "chooses which layer (Height, Color or Mask) tints the surface"}, {"name": "Input Range / Compute Range", "meaning": "values mapped to the ramp start and end"}, {"name": "Mode", "meaning": "No Ramp, Clamped Ramp or Periodic Ramp, controlling value transform before the ramp"}, {"name": "Diffuse Ramp", "meaning": "color ramp used for the tint"}]
+
+- Caveats: ["Visualization needs world space, so set Height Scale correctly.", "To convert a Mono layer into a heightfield use the Mono to HeightField COP instead."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `heightscale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `heightoffset` | Height Offset | Float | [0.0] | -1.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `splitchannels` | Split Channels | Toggle | false |  |  |
+| `usetint` | Use Tint | Toggle | true |  |  |
+| `tint` | Tint | Menu | 0 |  | color, mask |
+| `colorrangex` | Input Range | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorrangey` | Input Range | Float | 1.0 | 0.0 .. 10.0 |  |
+| `colorrampmode` | Mode | Menu | 0 |  | none, clamp, periodic |
+| `colorramp` | Diffuse Ramp | Ramp | 2 |  |  |
+| `maskrangex` | Input Range | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskrangey` | Input Range | Float | 1.0 | 0.0 .. 10.0 |  |
+| `maskrampmode` | Mode | Menu | 1 |  | none, clamp, periodic |
+| `maskramp` | Diffuse Ramp | Ramp | 2 |  |  |
+| `colorramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `colorramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `colorramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `colorramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `maskramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `maskramp1cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp1cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp1cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `maskramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `maskramp2cr` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp2cg` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp2cb` | Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `maskramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

@@ -1,0 +1,27 @@
+# idtosdf
+
+- Label: ID to SDF
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/idtosdf.html
+- Summary (EN): Computes a signed distance field from the boundaries where ID values change. Each ID gets its own distance field, so wiring a Tile Pattern id output in creates per-tile SDFs.
+- Résumé (FR) : Calcule un champ de distance signé à partir des frontières entre identifiants, avec un champ distinct par identifiant.
+
+- Inputs meaning: ["id: the ID layer whose value changes define the distance"]
+
+- Key parameters: [{"name": "Invert", "meaning": "flips the sign of the distance; ID fields have no inside or outside, so defaults are positive"}, {"name": "Iterations", "meaning": "how many times the distance is recomputed; 1 is enough for a uniform speed field"}, {"name": "Tile Size", "meaning": "block size used to split work between serial and parallel parts; should not change the converged result"}]
+
+- Caveats: ["The output sdf is a raw distance field; pass it through a downstream node such as SDF to Mono to get a usable image."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `invert` | Invert | Toggle | true |  |  |
+| `niter` | Iterations | Int | [1] | 1 .. 10 |  |
+| `tilesize` | Tile Size | Int | [4] | 1 .. 1000 (strict) |  |

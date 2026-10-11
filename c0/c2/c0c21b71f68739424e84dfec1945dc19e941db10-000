@@ -1,0 +1,24 @@
+# cryptomattedecode
+
+- Label: Cryptomatte Decode
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cryptomattedecode.html
+- Summary (EN): The Cryptomatte Decode node takes one RGBA Cryptomatte layer and separates it into coverage and object-ID data.
+- Résumé (FR) : Le nœud Cryptomatte Decode sépare une couche Cryptomatte RGBA en identifiants d'objets hachés et couvertures, sans paramètre documenté sur la page.
+
+- Inputs meaning: ["crypto: an RGBA Cryptomatte layer"]
+
+- Key parameters: ["The page lists no parameters"]
+
+- Caveats: ["The ID values are hashes of the original object names, not readable names; re-hash names with the standard hash or check the hash values stored in the EXR metadata", "Cryptomattes usually span several RGBA layers and this node decodes only one, so full coverage requires reading all layers together"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

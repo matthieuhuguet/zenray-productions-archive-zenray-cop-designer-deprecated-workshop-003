@@ -1,0 +1,29 @@
+# edgedetectnormal
+
+- Label: Edge Detect by Normal
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/edgedetectnormal.html
+- Summary (EN): Detects crease lines of varying width by comparing the input vector, typically a surface normal, at each pixel with its neighbours using ray differentials.
+- Résumé (FR) : Trace les lignes de pli d'épaisseur variable en comparant les normales de chaque pixel à celles de ses voisins.
+
+- Inputs meaning: ["normal: normal input processed for crease-line detection", "thickness: optional input that multiplies Thickness Scale rather than replacing it"]
+
+- Key parameters: ["Thickness Scale: kernel radius in pixels; a multiplier when thickness is connected", "Edge Spread: multiplies the Gaussian weight spread", "Blur: blurs the input before detection", "Normal Tolerance: minimum dot product between a pixel normal and its neighbours' normals for them to count as part of the line", "Min Probe Radius: minimum search radius for probe pixels"]
+
+- Caveats: ["The page gives no default values, performance notes or examples.", "The page does not explain how Normal Tolerance interacts with the other parameters; tuning may need experiments."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `thickscale` | Thickness Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `weightspread` | Edge Spread | Float | [1.0] | 0.0 .. 2.0 |  |
+| `blur` | Blur | Float | [1.0] | 0.0 .. 10.0 |  |
+| `normtolerance` | Normal Tolerance | Float | [0.06] | 0.0 .. 1.0 |  |
+| `minproberad` | Min Probe Radius | Int | [1] | 0 .. 3 |  |

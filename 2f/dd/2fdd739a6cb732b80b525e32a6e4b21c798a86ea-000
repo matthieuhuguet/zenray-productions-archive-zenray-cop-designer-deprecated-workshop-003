@@ -1,0 +1,69 @@
+# curveanimate3d
+
+- Label: Curve Animate 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 45 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curveanimate3d.html
+- Summary (EN): Interactive viewport state for drawing and animating curves with tools similar to 2D illustration software. Mainly targets cubic Bezier curves, also supports polylines and NURBS, with optional animation and orientation or radius attributes. Distinct from the SOP Curve Animate node.
+- Résumé (FR) : Fournit un état de vue interactif pour dessiner et animer des courbes, avec sortie de primitives de courbes et animation optionnelle.
+
+- Inputs meaning: ["none documented on the page; the output is curve primitives plus an optional Animation packed primitive"]
+
+- Key parameters: ["Stashed Geometry: stores the current curve geometry and animation", "Reset All Changes: clears all curve edits and animation", "Apply Keys: applies geometry channels to the output", "Live Update Mode: continuous update during drags or only on mouse-up", "Synchronize Keys per Curve", "Edit Plane: Axis Aligned or View Plane", "Show Handle: transform handle for moving selected points in 3D", "Primitive Type, New Anchor Type, Order: for new curves in Draw mode", "Output Channel Primitives: includes animation data in the output", "Output Quaternion, Output X/Y/Z Axis, Enable Output Radius", "Tangent Type"]
+
+- Caveats: ["In a perspective viewport drawing snaps to the view-facing plane; orthographic is easier for flat drawing.", "Shaded display may not fill Bezier curves; wireframe is recommended for closed curves.", "Esc switches to the View tool; select the node, hover the viewer and press Enter to return."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `stashedgeo` | Stashed Geometry | Data |  |  |  |
+| `reset` | Reset All Changes | Button |  |  |  |
+| `applykeys` | Apply Keys | Toggle | true |  |  |
+| `output2` |  | FolderSet |  |  |  |
+| `outputanim` | Output Animation | Toggle | true |  |  |
+| `animprimname` | Animation Primitive Name | String | ["animation"] |  |  |
+| `channelnameattrib` | Channel Name Attribute | String | ["channel_name"] |  |  |
+| `outputgroups` | Groups | Label |  |  |  |
+| `enableoutputcornersgroup` | Output Corner Group | Toggle | false |  |  |
+| `outputcornersgroup` | Corners Group | String | ["corners"] |  |  |
+| `enableoutputsmoothgroup` | Output Smooth Group | Toggle | false |  |  |
+| `outputsmoothgroup` | Smooth Group | String | ["smooth"] |  |  |
+| `enableoutputautogroup` | Output Auto Group | Toggle | false |  |  |
+| `outputautogroup` | Auto Group | String | ["auto"] |  |  |
+| `enableoutputscalegroup` | Output Scale Group | Toggle | false |  |  |
+| `outputscalegroup` | Scale Group | String | ["scalegroup"] |  |  |
+| `enableoutputorientgroup` | Output Orient Group | Toggle | false |  |  |
+| `outputorientgroup` | Orient Group | String | ["orientgroup"] |  |  |
+| `outputattribs` | Attributes | Label |  |  |  |
+| `tangenttype` | Tangent Type | Menu | 0 |  | avgdir, diff, prev, next, none |
+| `outputxaxis` | Output X Axis | Toggle | false |  |  |
+| `xaxisname` | X Axis | String | ["out"] |  |  |
+| `outputyaxis` | Output Y Axis | Toggle | false |  |  |
+| `yaxisname` | Y Axis | String | ["up"] |  |  |
+| `outputzaxis` | Output Z Axis | Toggle | false |  |  |
+| `zaxisname` | Tangent (Z Axis) | String | ["N"] |  |  |
+| `outputquaternion` | Output Quaternion | Toggle | false |  |  |
+| `quaternionname` | Quaternion | String | ["orient"] |  |  |
+| `enableoutputradius` | Enable Output Radius | Toggle | false |  |  |
+| `outputradiusattrib` | Radius Attribute | String | ["pscale"] |  |  |
+| `statesettings` |  | FolderSet |  |  |  |
+| `editplane` | Edit Plane | Menu | 0 |  | axisaligned, viewplane |
+| `primtype` | Primitive Type | Menu | 2 |  | polygon, nurbs, bezier |
+| `newpointtype` | New Anchor Type | Menu | 2 |  | corner, smooth, balanced, auto |
+| `order` | Order | Int | [4] | 2 .. 11 (strict) |  |
+| `showhandle` | Show Handle | Toggle | false |  |  |
+| `synchronizekeys` | Synchronize Keys per Curve | Toggle | true |  |  |
+| `approxshapeondelete` | Approximate Bezier Shape after Delete | Toggle | false |  |  |
+| `matchpoly` | Match Polygon Shape when Converting | Toggle | true |  |  |
+| `resampledivs` | Resample Divs | Int | [2] | 0 .. 10 (strict) |  |
+| `softtransform` | Enable Soft Transform | Toggle | false |  |  |
+| `softtransformrad` | Soft Transform Radius | Float | [0.5] | 0.0 .. 10.0 (strict) |  |
+| `showorientguide` | Show Orient Guide | Menu | 2 |  | never, always, orientscale |
+| `orientguidecomps` | Orient Guide Components | Menu | 7 |  | x, y, z |
+| `orientguidescale` | Orient Guide Scale | Float | [0.5] | 0.0 .. 10.0 (strict) |  |

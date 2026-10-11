@@ -1,0 +1,28 @@
+# monotosdf
+
+- Label: Mono to SDF
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/monotosdf.html
+- Summary (EN): Builds a signed distance field from an iso-level of a mono layer. It stores the distance to where the layer crosses a chosen value, so a mono image can be turned back into an SDF.
+- Résumé (FR) : Construit un champ de distance signée à partir d'un niveau d'isocontour d'un calque mono, pour repasser d'une image mono à un SDF, avec un seuil et un nombre d'itérations.
+
+- Inputs meaning: ["mono: the original mono layer; an isocontour of it is used to compute the distances"]
+
+- Key parameters: ["Invert: flips the sign convention, so values above the iso level are normally treated as inside (negative distance)", "Iso: the threshold defining the boundary of the signed distance", "Iterations: number of passes for distances to propagate; one pass suffices for a uniform speed field, complex speed variation may need more", "Tile Size: size of the blocks the layer is split into, balancing serial and parallel work; once converged it should not change the output, and the defaults should be sufficient"]
+
+- Caveats: ["The page has no dedicated warning section.", "A single iteration may not be enough when the speed varies in complicated ways.", "The page mentions a speed field but does not list a speed input or say where that field comes from."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `invert` | Invert | Toggle | true |  |  |
+| `iso` | Iso | Float | [0.5] | 0.0 .. 1.0 |  |
+| `niter` | Iterations | Int | [1] | 1 .. 10 |  |
+| `tilesize` | Tile Size | Int | [4] | 1 .. 1000 (strict) |  |

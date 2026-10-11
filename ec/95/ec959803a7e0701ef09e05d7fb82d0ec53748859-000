@@ -1,0 +1,84 @@
+# colorcorrect
+
+- Label: Color Correct
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 60 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/colorcorrect.html
+- Summary (EN): The Color Correct node adjusts image colours with separate Shadow, Midtone and Highlight regions. A Master set of adjustments then applies to the combined result.
+- Résumé (FR) : Le nœud Color Correct règle séparément les ombres, les médiotons et les hautes lumières, puis applique un réglage maître à l'ensemble.
+
+- Inputs meaning: ["source: the original layer", "mask (optional): per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by source", "Mask: blends the new values with the original, default 1; also sets the affected RGBA channels", "Toggle RGB, Red, Green, Blue, Alpha", "Treat RGBA as Premultiplied: multiplies RGB by alpha", "Shadow, Midtone, Highlight: each has a toggle and Add (offset), Mult (scale), Gamma (power curve), Contrast controls", "Master: a toggle plus the same Add, Mult, Gamma, Contrast controls, applied to the combined result"]
+
+- Caveats: ["Shadow, Midtone and Highlight are applied first and combined, then Master is applied", "If the Master or a range toggle is off, its values are removed from the final output"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 |  |
+| `scopergba` | Channel Scope | Int | [7] | 0 .. 10 |  |
+| `ispremult` | Treat RGBA as Premultiplied | Toggle | true |  |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `do_master` | Master | Toggle | true |  |  |
+| `master_addr` | Master Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `master_addg` | Master Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `master_addb` | Master Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `master_multr` | Master Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `master_multg` | Master Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `master_multb` | Master Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `master_gammar` | Master Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `master_gammag` | Master Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `master_gammab` | Master Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `master_contrastr` | Master Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `master_contrastg` | Master Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `master_contrastb` | Master Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `do_shadow` | Shadow | Toggle | true |  |  |
+| `shadow_addr` | Shadow Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `shadow_addg` | Shadow Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `shadow_addb` | Shadow Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `shadow_multr` | Shadow Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `shadow_multg` | Shadow Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `shadow_multb` | Shadow Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `shadow_gammar` | Shadow Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `shadow_gammag` | Shadow Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `shadow_gammab` | Shadow Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `shadow_contrastr` | Shadow Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `shadow_contrastg` | Shadow Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `shadow_contrastb` | Shadow Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `do_mid` | Midtones | Toggle | true |  |  |
+| `mid_addr` | Mid Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `mid_addg` | Mid Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `mid_addb` | Mid Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `mid_multr` | Mid Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `mid_multg` | Mid Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `mid_multb` | Mid Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `mid_gammar` | Mid Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `mid_gammag` | Mid Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `mid_gammab` | Mid Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `mid_contrastr` | Mid Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `mid_contrastg` | Mid Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `mid_contrastb` | Mid Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `do_highlight` | Highlight | Toggle | true |  |  |
+| `highlight_addr` | Highlight Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `highlight_addg` | Highlight Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `highlight_addb` | Highlight Add | Float | 0.0 | 0.0 .. 1.0 |  |
+| `highlight_multr` | Highlight Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `highlight_multg` | Highlight Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `highlight_multb` | Highlight Mult | Float | 1.0 | 0.0 .. 1.0 |  |
+| `highlight_gammar` | Highlight Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `highlight_gammag` | Highlight Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `highlight_gammab` | Highlight Gamma | Float | 1.0 | 0.001 .. 1.0 (strict) |  |
+| `highlight_contrastr` | Highlight Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `highlight_contrastg` | Highlight Contrast | Float | 1.0 | 0.0 .. 1.0 |  |
+| `highlight_contrastb` | Highlight Contrast | Float | 1.0 | 0.0 .. 1.0 |  |

@@ -1,0 +1,25 @@
+# null
+
+- Label: Null
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/null.html
+- Summary (EN): Forwards each input to its matching output without altering the data. It works as a labelled collection point, so a named set of targets can be wired together.
+- Résumé (FR) : Transmet chaque entrée numérotée vers la sortie correspondante sans la modifier, comme point de regroupement nommé pour un ensemble de cibles.
+
+- Inputs meaning: ["input1, input2, and so on: numbered inputs, each passed to the output at the same position"]
+
+- Key parameters: ["Set Fields from Inputs: fills the Output # parameters with the names of the connected inputs", "Output #: the name of each output; naming a wire changes the output name but not the internal input name"]
+
+- Caveats: ["If an input is a cable, the first wire's name is used for the output name.", "A filled-in Output # name stays in place after its wires are removed, acting as a placeholder for future wiring.", "The page does not specify default output names or the maximum number of inputs."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `outputs` | Outputs | Folder | 0 |  |  |

@@ -1,0 +1,25 @@
+# cableswitch
+
+- Label: Cable Switch
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cableswitch.html
+- Summary (EN): Chooses one of two incoming cables and forwards it as the single output named switch, based on Select Input. Available since version 21.0.
+- Résumé (FR) : Le nœud cableswitch transmet l'un des deux câbles en entrée selon la valeur de Select Input, 0 pour le premier et 1 pour le second.
+
+- Inputs meaning: ["first: cable used when Select Input is 0", "second: cable used when Select Input is 1"]
+
+- Key parameters: [{"name": "Select Input", "meaning": "0 outputs the first input cable, 1 outputs the second"}]
+
+- Caveats: ["The page does not say what happens with values other than 0 or 1", "General usage is on a separate Cables page not included here"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `input` | Select Input | Int | [0] | 0 .. 1 (strict) |  |

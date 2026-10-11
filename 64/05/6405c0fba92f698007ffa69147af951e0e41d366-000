@@ -1,0 +1,25 @@
+# matchcamera
+
+- Label: Match Camera
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/matchcamera.html
+- Summary (EN): Moves a layer into the space of a reference camera. It copies the location, orientation and camera information from the reference onto the source layer without changing the layer's data. Identity Transform resets the layer to canonical space.
+- Résumé (FR) : Déplace un calque dans l'espace d'une caméra de référence en recopiant sa position, son orientation et ses informations de caméra, sans modifier ses données.
+
+- Inputs meaning: ["source: the layer to transform into the new camera space (geometry is also accepted)", "camera_ref: the layer that serves as the reference camera"]
+
+- Key parameters: ["Identity Transform: resets the layer to canonical space, at the origin, aligned with the XY plane, with the canonical orthographic camera. No other parameters are described on the page."]
+
+- Caveats: ["If no camera is specified, the layer returns to the Default Canvas of the enclosing COP Network node or COP Network SOP.", "The page does not explain how geometry sources are processed beyond saying they are accepted."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `identityxform` | Identity Transform | Toggle | false |  |  |

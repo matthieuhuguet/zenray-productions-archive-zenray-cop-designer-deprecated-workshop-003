@@ -1,0 +1,41 @@
+# heighttoambientocclusion
+
+- Label: Height to Ambient Occlusion
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 17 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heighttoambientocclusion.html
+- Summary (EN): Estimates ambient occlusion from a height layer: each pixel is tested with imaginary spheres against the heights of its neighbors. Output is an AO map or an occlusion mask (for example to add dirt where occlusion is high).
+- Résumé (FR) : Estime l'occlusion ambiante d'un champ de hauteur par lancers de rayons, pour obtenir une carte AO ou un masque.
+
+- Inputs meaning: ["layer: the original height layer"]
+
+- Key parameters: [{"name": "Height Scale", "meaning": "scales heights before the calculation; higher values exaggerate occlusion"}, {"name": "Space", "meaning": "space used to interpret the steepness of the height"}, {"name": "View Radius", "meaning": "how far rays are sent; larger is more accurate but slower"}, {"name": "Step Scale", "meaning": "spacing of steps along each ray; larger cooks faster but may miss thin features"}, {"name": "Sample Count", "meaning": "number of rays per pixel; more is more accurate but slower"}, {"name": "Sample from Hemisphere", "meaning": "divides the angle by 90 instead of 180 degrees"}, {"name": "Remap Ramp", "meaning": "remaps the output occlusion values"}]
+
+- Caveats: ["Accuracy and speed trade off against each other.", "The page notes the node is based on the HeightField Mask by Occlusion SOP."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `height` |  | FolderSet |  |  |  |
+| `heightscale` | Height Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `quality` |  | FolderSet |  |  |  |
+| `space` | Space | Menu | 0 |  | image, pixel, local |
+| `viewradius` | View Radius | Float | [0.2] | 0.001 .. 1.0 (strict) |  |
+| `viewradius_pixel` | View Radius | Float | [20.0] | 0.001 .. 50.0 (strict) |  |
+| `viewradius_local` | View Radius | Float | [0.2] | 0.001 .. 10.0 (strict) |  |
+| `stepscale` | Step Scale | Float | [0.5] | 0.5 .. 10.0 (strict) |  |
+| `axiscount` | Sample Count | Int | [20] | 1 .. 50 (strict) |  |
+| `dohemisphere` | Sample from Hemisphere | Toggle | true |  |  |
+| `remap` | Remap Ramp | Ramp | 2 |  |  |
+| `remap1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `remap1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `remap1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `remap2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `remap2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `remap2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

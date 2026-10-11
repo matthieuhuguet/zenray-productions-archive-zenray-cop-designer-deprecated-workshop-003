@@ -1,0 +1,43 @@
+# cablesplit
+
+- Label: Cable Split
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 19 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cablesplit.html
+- Summary (EN): Divides one cable into two outputs, matching and non_matching, using filters on name pattern, wire type, wire index range or random chance. Available since version 21.0.
+- Résumé (FR) : Le nœud cablesplit sépare un câble en deux sorties, matching et non_matching, selon le motif de nom, le type, une plage d'index ou un tirage aléatoire.
+
+- Inputs meaning: ["cable: the cable to split"]
+
+- Key parameters: [{"name": "Split by Pattern / Name Pattern", "meaning": "Filters wires by name using Houdini pattern matching"}, {"name": "Split by Type / Type", "meaning": "Filters wires by data type; wires must match to reach matching"}, {"name": "Split by Range / Select", "meaning": "Picks every Nth wire (every other by default)"}, {"name": "Split by Range / Start, End", "meaning": "First and last wire indices of the range"}, {"name": "Split by Range / Offset", "meaning": "Subtracted from the wire index before the range check"}, {"name": "Split by Chance / Probability", "meaning": "Chance a wire goes to matching, given as a percentage"}, {"name": "Split by Chance / Seed", "meaning": "Changes the random result"}]
+
+- Caveats: ["The page says the filters run sequentially and are unioned, yet also says that enabling both Pattern and Type requires a wire to satisfy both; verify in Houdini", "Probability is a percentage, but the page says a value of 1 selects all wires, which looks inconsistent; verify in Houdini", "Iteration idiom from the page: Select 1, of 1, Start 0, End 0, Offset C@cop_iteration"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `splitbypattern` |  | FolderSet |  |  |  |
+| `usepattern` | usepattern | Toggle | true |  |  |
+| `pattern` | Name Pattern | String | [""] |  |  |
+| `splitbytype` |  | FolderSet |  |  |  |
+| `usetype` | usetype | Toggle | false |  |  |
+| `type` | Type | Menu | 4 |  | int, float, vector2, vector, vector4, geo, metadata, ivdb, fvdb, vvdb, f1, f2, f3, f4, i |
+| `splitbyrange` |  | FolderSet |  |  |  |
+| `userange` | userange | Toggle | false |  |  |
+| `select` | Select | Int | [1] | 0 .. 10 (strict) |  |
+| `of` | of | Int | [2] | 1 .. 10 (strict) |  |
+| `enablestart` | Enable Start | Toggle | false |  |  |
+| `start` | Start | Int | [0] | 0 .. 10 |  |
+| `enableend` | Enable End | Toggle | false |  |  |
+| `end` | End | Int | [10] | 0 .. 10 |  |
+| `offset` | Offset | Int | [0] | 0 .. 10 |  |
+| `splitbychance` |  | FolderSet |  |  |  |
+| `usechance` | usechance | Toggle | false |  |  |
+| `probability` | Probability | Float | [0.5] | 0.0 .. 1.0 (strict) |  |
+| `seed` | Seed | Int | [68] | 0 .. 1000 (strict) |  |

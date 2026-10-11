@@ -1,0 +1,71 @@
+# heatdistort
+
+- Label: Heat Distort
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 3
+- Parameters: 47 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/heatdistort.html
+- Summary (EN): Heat Distort warps an input layer to imitate the shimmering haze seen around fire and mirage effects. It combines large-scale and fine-scale noise distortions to reproduce most common types of heat distortion.
+- Résumé (FR) : Heat Distort déforme un calque pour imiter le miroitement de l'air chaud autour d'un feu ou d'un mirage, en combinant deux niveaux de bruit.
+
+- Inputs meaning: ["source: original layer to distort", "effect: optional per-pixel scale for the distortion amount", "mask: optional per-pixel mask, scaled by the Mask parameter"]
+
+- Key parameters: ["Distortion: overall strength, scaling both base and detail noise", "Element Size: pattern size in image coordinates; Per-Component Controls adds per-axis Element Scale", "Angle: direction of the distortion, where 0 points along positive X", "Accurate Distortion: traces curved paths for a more precise result, with a quality value", "Streak Blur: averages samples along the distortion direction", "Scale by Timestep: scales strength by the timestep, usually 1/FPS", "Base Distortion: large-scale waviness, with Distortion Scale and Element Size Scale", "Detail Distortion: finer distortion, with Cutoff and Roughness", "Blur Source: blurs the source in proportion to distortion strength, using Blur Scale", "Chromatic Aberration: per-channel offsets for colour fringing, with an overall Scale", "Animation: Time Offset, Pulse Length, Direction and Speed for drifting haze", "Mask: how much of the new value mixes with the original"]
+
+- Caveats: ["With Accurate Distortion off, one step per pixel finds the source: fast but inaccurate when directions or scales vary", "With Accurate Distortion on, larger steps run faster but may miss intermediate variations", "Detail noise shows mainly where base distortion is strong; lower Cutoff to show it in weaker regions", "The page recommends Heat Distort By Layer for finer control of direction", "The noise algorithm and performance limits are not described"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `globaldistortscale` | Distortion | Float | [0.1] | 0.0 .. 1.0 (strict) |  |
+| `globalelementsize` | Element Size | Float | [1.0] | 0.0 .. 5.0 (strict) |  |
+| `globalelementsizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `globalelementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `globalelementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `usecfl` | Accurate Distortion | Toggle | false |  |  |
+| `streakblur` | Streak Blur | Toggle | false |  |  |
+| `scalebytimeinc` | Scale by Timestep | Toggle | false |  |  |
+| `dodistort` | Distortion | Toggle | true |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `scale` | Distortion Scale | Float | [1.0] | 0.0 .. 2.0 (strict) |  |
+| `elementsize` | Element Size Scale | Float | [1.0] | 0.1 .. 10.0 |  |
+| `elementsizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `elementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `elementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `dodetaildistort` | Detail Distortion | Toggle | true |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `detailscale` | Distortion Scale | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `detailelementsize` | Element Size Scale | Float | [1.0] | 0.1 .. 10.0 |  |
+| `detailelementsizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `detailelementscalex` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `detailelementscaley` | Element Scale | Float | 1.0 | 0.0 .. 1.0 |  |
+| `cutoff` | Cutoff | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `dosourceblur` | Enable Blur | Toggle | true |  |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `sourceblursize` | Blur Scale | Float | [0.035] | 0.0 .. 0.1 (strict) |  |
+| `sourceblursizetype` | Component Scope | Menu | 0 |  | BUTTONS_decompose_transforms |
+| `sourceblurscalex` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `sourceblurscaley` | Scale | Float | 1.0 | 0.0 .. 1.0 (strict) |  |
+| `doca` | Chromatic Aberration | Toggle | false |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `cascale` | Scale | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `carshift` | Red | Float | [-0.05] | -0.1 .. 0.1 |  |
+| `cagshift` | Green | Float | [0.0] | -0.1 .. 0.1 |  |
+| `cabshift` | Blue | Float | [0.05] | -0.1 .. 0.1 |  |
+| `folder0` |  | FolderSet |  |  |  |
+| `timeoffset` | Time Offset | Float | [0.0] | 0.0 .. 1.0 |  |
+| `dopulselength` | Pulse Length | Toggle | true |  |  |
+| `pulselength` | Pulse Length | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `dodiranim` | Direction | Toggle | true |  |  |
+| `diranimangle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `diranimspeed` | Speed | Float | [1.0] | 0.0 .. 10.0 (strict) |  |

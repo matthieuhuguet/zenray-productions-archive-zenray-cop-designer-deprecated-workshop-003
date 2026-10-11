@@ -1,0 +1,27 @@
+# convertdepth
+
+- Label: Convert Depth
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/convertdepth.html
+- Summary (EN): The Convert Depth node converts depth layers between Depth, Distance and Height representations, so a depth layer can be used in another workflow or visualised as a heightfield. Listed as available since version 21.0.
+- Résumé (FR) : Le nœud Convert Depth convertit une couche de profondeur entre Depth, Distance et Height, et fixe la valeur attribuée aux rayons manqués.
+
+- Inputs meaning: ["depth: the layer holding the incoming depth"]
+
+- Key parameters: ["Source Space: Depth, Distance or Height, the incoming type", "Dest Space: Depth, Distance or Height; Height sets the output type info to height", "Zero Depth Value: value assigned to zero depths (missed rays), required when converting to Height"]
+
+- Caveats: ["Zero values are treated as missed rays at infinite distance and need a Zero Depth Value when converting to Height", "Depth is perpendicular distance to the eye; Distance is Euclidean, so corners are farther than the centre in a Distance map", "The page does not give the exact conversion formulas"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `source` | Source Space | Menu | 0 |  | depth, dist, height |
+| `dest` | Dest Space | Menu | 2 |  | depth, dist, height |
+| `zerodepth` | Zero Depth Value | Float | [10.0] | 0.0 .. 10.0 |  |

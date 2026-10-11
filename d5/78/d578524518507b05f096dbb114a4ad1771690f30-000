@@ -1,0 +1,27 @@
+# median
+
+- Label: Median
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 3 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/median.html
+- Summary (EN): Replaces each pixel with the median of its neighbourhood, which removes isolated bad pixels such as shot noise or pixel dropout. The filtered result is blended into the original according to the Mask parameter.
+- Résumé (FR) : Remplace chaque pixel par la médiane de son voisinage pour supprimer les pixels isolés défectueux, comme le bruit de grenaille ou les pixels manquants.
+
+- Inputs meaning: ["source: the original layer to filter", "mask: optional per-pixel mask that scales the effect of the Mask parameter"]
+
+- Key parameters: ["Signature: sets the layer type the source accepts", "Mask: how much of the filtered result blends into the original; the default of 1 uses only the filtered result, lower values keep more of the original", "Filter Size: neighbourhood used for the median, 3x3 or 5x5"]
+
+- Caveats: ["The page includes no explicit warning or limitation.", "Performance and edge handling are not described.", "Inferred, not stated on the page: the filter is likely less suited to larger features."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `fsize` | Filter Size | Menu | 0 |  | three, five |

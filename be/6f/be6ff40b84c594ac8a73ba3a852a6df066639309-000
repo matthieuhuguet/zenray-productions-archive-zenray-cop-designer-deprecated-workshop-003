@@ -1,0 +1,36 @@
+# function
+
+- Label: Function
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 12 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/function.html
+- Summary (EN): The Function node applies a mathematical operation to an incoming layer. It exposes arithmetic, power and logarithm, and trigonometry operations, then blends the result with the original using the Mask parameter.
+- Résumé (FR) : Le nœud Function applique à une couche une opération arithmétique, puissance ou trigonométrique, mélangée à l'original par un masque.
+
+- Inputs meaning: ["source: layer or VDB to process", "mask (optional): per-pixel mask that scales the Mask blend amount"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: how much of the new value mixes into the original; default 1 uses only the new value", "Scale: multiplies the incoming layer", "Shift: added to the layer after Scale is applied", "Function Class: Arithmetic, Powers or Trigonometry, which reveals the matching operation menu", "Arithmetic operations: Absolute, Sign, Normalize, Negate, Reciprocal, Floor, Round, Ceil, Modulus", "Power functions: Square Root, pow(x, E), pow(b, x), exp(x), Base-Log, Natural Log", "Trigonometric functions: Sin, Cos, Tan, their inverses and hyperbolic variants", "Base and Exponent: shown only for Modulus, pow(b, x), Base-Log and pow(x, E)", "Angle Units: Radians, Degrees or Circles (2 pi), used only for trigonometry"]
+
+- Caveats: ["The page provides no direct atan2() operation; it suggests the UV to Polar COP node for that purpose"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `scale` | Scale | Float | [1.0] | 0.0 .. 10.0 (strict) |  |
+| `shift` | Shift | Float | [0.0] | 0.0 .. 10.0 |  |
+| `func` | Function Class | Menu | 0 |  | math, pow, trig |
+| `func_math` | Arithmetic | Menu | 0 |  | abs, sign, normalize, negate, invert, floor, round, ceil, modulus |
+| `func_pow` | Power | Menu | 0 |  | sqrt, powx, powb, ex, log, ln |
+| `func_trig` | Trigonometry | Menu | 0 |  | sin, cos, tan, asin, acos, atan, sinh, cosh, tanh |
+| `angleunit` | Angle Units | Menu | 2 |  | rad, deg, tau |
+| `base` | Base | Float | [2.0] | 1.0 .. 10.0 |  |
+| `exponent` | Exponent | Float | [2.0] | 1.0 .. 10.0 |  |
+| `modbase` | Base | Float | [1.0] | 0.0 .. 10.0 |  |

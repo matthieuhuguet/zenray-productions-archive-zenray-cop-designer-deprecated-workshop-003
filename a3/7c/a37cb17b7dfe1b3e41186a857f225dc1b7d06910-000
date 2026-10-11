@@ -1,0 +1,26 @@
+# monotorgba
+
+- Label: Mono to RGBA
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 2 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/monotorgba.html
+- Summary (EN): Converts a mono layer into an RGBA layer, making the channel extension explicit (GGGG or GGG1) and optionally supplying a specific alpha layer. The node does not apply premultiplication.
+- Résumé (FR) : Convertit un calque mono en RGBA en dupliquant son canal, avec un alpha optionnel fourni par un second calque, sans prémultiplication.
+
+- Inputs meaning: ["mono: the original mono layer to convert", "alpha (optional): a mono layer used as the alpha channel of the result"]
+
+- Key parameters: ["Fill Alpha: how alpha is created when no alpha layer is given. Use Mono as Alpha uses the input mono layer as alpha; Constant Value sets a fixed alpha", "Alpha Value: the alpha applied when Fill Alpha is Constant Value"]
+
+- Caveats: ["No premultiplication is applied.", "By default the mono layer is replicated to RGB and alpha, which gives a white image with varying alpha for premultiplied layers. This can be unexpected.", "The alpha input is mixed without premultiplication, so the Premultiply COP may be needed."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `alphaextend` | Fill Alpha | Menu | 1 |  | extend, value |
+| `alphaval` | Alpha Value | Float | [1.0] | 0.0 .. 1.0 |  |

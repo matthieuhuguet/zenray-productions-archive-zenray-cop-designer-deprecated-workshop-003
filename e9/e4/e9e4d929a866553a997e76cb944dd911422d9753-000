@@ -1,0 +1,27 @@
+# cameraimport
+
+- Label: Camera Import
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/cameraimport.html
+- Summary (EN): Creates a zero layer positioned to match a chosen camera's view, so other nodes can use it as a reference; typically used with Match Camera COP or Rasterize Geometry COP. Output named camera_ref. Listed as available since 22.0.
+- Résumé (FR) : Le nœud cameraimport crée une couche placée dans l'espace d'une caméra existante, pour servir de référence à d'autres nœuds.
+
+- Key parameters: [{"name": "Signature", "meaning": "Layer type accepted by the source; see the Signatures section of the glossary"}, {"name": "Camera", "meaning": "Object camera whose view the layer matches, using the camera path syntax"}, {"name": "Near", "meaning": "Near clipping plane, used only when enabled"}, {"name": "Far", "meaning": "Far clipping plane, used only when enabled"}]
+
+- Caveats: ["The page documents no input connections", "Cameras use their own clipping range by default; Near and Far override it only when turned on", "The page does not explain what the zero layer contains beyond the output description, nor the Signature options"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["m"] |  | m, f1, f2, f3, f4, i |
+| `camera` | Camera | String | [""] |  |  |
+| `setclipping` | Set Clipping | Toggle | false |  |  |
+| `near` | Near | Float | [0.01] | 0.001 .. 1000.0 |  |
+| `far` | Far | Float | [10000.0] | 0.001 .. 1000.0 |  |

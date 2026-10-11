@@ -1,0 +1,25 @@
+# camerablend
+
+- Label: Camera Blend
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2
+- Parameters: 1 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/camerablend.html
+- Summary (EN): Combines two cameras into one by blending focal length, aperture, transform, clipping range, shutter, focus distance and f-stop. Output named blend. Listed as Houdini 22.0.
+- Résumé (FR) : Le nœud camerablend fusionne deux caméras en une seule, le paramètre Blend réglant le poids entre la caméra fg et la caméra bg.
+
+- Inputs meaning: ["bg: background camera to blend", "fg: source camera to blend"]
+
+- Key parameters: [{"name": "Blend", "meaning": "Blend weight between fg and bg: 0 shows only fg, 1 shows only bg"}]
+
+- Caveats: ["Blending an orthographic camera with a perspective camera blends only the transform", "In that mixed case, Blend 1 copies the other parameters from the second input, and Blend below 1 copies them from the first input"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `blend` | Blend | Float | [0.0] | 0.0 .. 1.0 (strict) |  |

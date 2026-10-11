@@ -1,0 +1,22 @@
+# layertogeo::2.0
+
+- Label: Layer to Geometry
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 2048
+- Parameters: 0 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layertogeo-2.0.html
+- Summary (EN): The Layer to Geometry 2.0 node turns an unlimited number of wires (layers or VDBs) into 2D volumes, VDBs or camera primitives inside geometry that SOPs can process. Geometry to Layer converts the result back into a layer.
+- Résumé (FR) : Convertit des couches ou des VDB en volumes 2D, VDB ou caméras dans une géométrie exploitable en SOP, sans paramètre documenté sur la page.
+
+- Inputs meaning: ["layer: source layer or VDB to be converted"]
+
+- Caveats: ["The page documents no parameters, so key_parameters is empty", "Only one input and one geometry output are listed; the conversion settings are not described", "Accepted types are described only in the Signatures glossary"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|

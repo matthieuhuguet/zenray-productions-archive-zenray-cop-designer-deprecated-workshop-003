@@ -1,0 +1,47 @@
+# integratevolume
+
+- Label: Integrate Volume
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 6
+- Parameters: 23 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/integratevolume.html
+- Summary (EN): Integrates a VDB along each camera view ray, computing the line integral, transmittance, minimum or maximum per pixel. It shows how much of a volume lies under each pixel, for example heat distortion driven by a temperature VDB.
+- Résumé (FR) : Intègre un VDB le long des rayons de la caméra pour obtenir l'intégrale, la transmittance, le minimum ou le maximum par pixel.
+
+- Inputs meaning: ["camera_ref: optional camera defining view rays and the imaging plane", "density: the Float or Vector VDB to integrate", "vieworigin: per-pixel ray origins, used instead of camera_ref", "viewdir: per-pixel ray directions, used instead of camera_ref", "mindepth: raymarch minimum boundary", "maxdepth: raymarch maximum boundary"]
+
+- Key parameters: [{"name": "Operation", "meaning": "Integral, Transmittance, Minimum or Maximum"}, {"name": "Depth Conversion", "meaning": "Distance, Depth or Height; sets how mindepth and maxdepth are read"}, {"name": "Density Min/Max, Ramp Mode, Density Ramp, Density Scale", "meaning": "remap and shape density before integration"}, {"name": "Integration Step Size", "meaning": "length of each ray slice"}, {"name": "Jitter Scales", "meaning": "reduce banding in sample and slice placement"}, {"name": "Max Step Count", "meaning": "safety limit, default 4096"}, {"name": "Transmittance Cutoff", "meaning": "early termination; -1 disables it"}]
+
+- Caveats: ["Transmittance Cutoff can cause false zero transmittance in very dense volumes through rounding error; use -1 for fields that are not optical densities.", "Minimum and Maximum return infinity or -infinity when no ray hits."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `resetorig` | Move to Origin | Toggle | false |  |  |
+| `convertdepth` | Depth Conversion | Menu | 1 |  | dist, depth, height |
+| `operation` | Operation | Menu | 0 |  | integral, transmittance, min, max |
+| `folder0` |  | FolderSet |  |  |  |
+| `densityscale` | Density Scale | Float | [1.0] | 0.0 .. 10.0 |  |
+| `rangemin` | Min | Float | [0.0] | 0.0 .. 10.0 |  |
+| `rangemax` | Max | Float | [1.0] | 0.0 .. 10.0 |  |
+| `densityrampmode` | Ramp Mode | Menu | 0 |  | none, clamp, periodic |
+| `densityramp` | Density Ramp | Ramp | 2 |  |  |
+| `advanced` |  | FolderSet |  |  |  |
+| `timeseed` | Seed Jitter with Time | Toggle | false |  |  |
+| `jitter` | Sample Jitter Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `stratjitter` | Stratification Jitter Scale | Float | [1.0] | 0.0 .. 1.0 |  |
+| `stepsize` | Integration Step Size | Float | [0.5] | 0.01 .. 2.0 |  |
+| `maxstepcount` | Max Step Count | Int | [4096] | 0 .. 16384 |  |
+| `transmitcutoff` | Transmittance Cutoff | Float | [0.001] | 1e-06 .. 1.0 |  |
+| `densityramp1pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `densityramp1value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `densityramp1interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |
+| `densityramp2pos` | Position | Float | [0.0] | 0.0 .. 1.0 (strict) |  |
+| `densityramp2value` | Value | Float | [0.0] | 0.0 .. 10.0 |  |
+| `densityramp2interp` | Interpolation | Menu | 1 |  | constant, linear, catmull-rom, monotonecubic, bezier, bspline, hermite |

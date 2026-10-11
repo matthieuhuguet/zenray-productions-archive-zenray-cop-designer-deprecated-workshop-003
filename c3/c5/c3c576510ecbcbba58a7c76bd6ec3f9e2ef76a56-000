@@ -1,0 +1,30 @@
+# layertopoints
+
+- Label: Layer to Points
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/layertopoints.html
+- Summary (EN): The Layer to Points node creates points from the pixels of an input layer, useful for stamp points, VDB activation or scattering points across a layer. Because it can create many points quickly, Scatter SOP or VDB Leaf Points may suit some workflows better.
+- Résumé (FR) : Crée des points à partir des pixels d'une couche, pour poser des points de tampon, activer des VDB ou disperser des points.
+
+- Inputs meaning: ["layer: the layer that supplies point locations and controls how many points are generated"]
+
+- Key parameters: ["Method: how points are generated (one per pixel, one per non-zero pixel, a count stored per pixel, one per unique value, or a count read from the first or last pixel)", "Layer Attrib: integer attribute storing the value of the pixel that produced each point", "Index Attrib: integer attribute storing the raw buffer offset of each point source pixel", "Set Positions: fills the position attribute with each pixel location; when off, positions are zero", "Ignore Minus One: excludes the value -1 when computing unique values", "Point Attributes: defines extra point attributes (name, class, type, tuple size)"]
+
+- Caveats: ["The node can easily create more points than intended, so check the layer and Method before use", "Zero-valued attributes use no memory, so turning off Set Positions saves memory when positions are not needed", "Only the Detail and Point classes apply, since the node creates points only", "Documented as available since version 21.0"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `method` | Method | Menu | 1 |  | all, nonzero, pixel, unique, first, last |
+| `layerattrib` | Layer Attrib | String | ["value"] |  |  |
+| `indexattrib` | Index Attrib | String | ["index"] |  |  |
+| `setpos` | Set Positions | Toggle | true |  |  |
+| `ignoreminusone` | Ignore Minus One | Toggle | false |  |  |
+| `attribs` | Point Attributes | Folder | 0 |  |  |

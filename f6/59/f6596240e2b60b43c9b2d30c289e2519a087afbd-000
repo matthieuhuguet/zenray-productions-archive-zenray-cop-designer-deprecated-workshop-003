@@ -1,0 +1,28 @@
+# error
+
+- Label: Error
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 4 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/error.html
+- Summary (EN): The Error node passes its input through unchanged while generating a message, warning, or error for the network. It is useful for flagging parameter values that would produce unusable results.
+- Résumé (FR) : Le nœud Error transmet son entrée sans modification et signale un message, un avertissement ou une erreur selon une condition.
+
+- Inputs meaning: ["input#: layer passed through unchanged; the page lists only this input, and output# is the same layer"]
+
+- Key parameters: ["Number of Errors: how many messages, warnings or errors to generate", "Error Message: text shown when the notice is active; if empty, the notice is not reported", "Severity: Message (node info window only), Warning (badge and text, cooking continues), Error (prominent badge, downstream nodes do not cook)", "Report This Error: expression that triggers the notice when non-zero, for example a threshold check on another node's parameter"]
+
+- Caveats: ["Use the Error severity only for problems the network cannot recover from, because it stops downstream cooking", "Inside a digital asset, notices do not reach the user unless the Error node is added to the asset's Message Nodes list in Operator Type Properties"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `numerror` | Number of Errors | Folder | 1 |  |  |
+| `errormsg1` | Error Message | String | [""] |  |  |
+| `severity1` | Severity | Menu | 0 |  | message, warning, error |
+| `enable1` | Report This Error | Int | [0] | 0 .. 1 |  |

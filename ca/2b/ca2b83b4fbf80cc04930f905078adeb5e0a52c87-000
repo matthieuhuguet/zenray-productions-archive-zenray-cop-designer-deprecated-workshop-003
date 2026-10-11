@@ -1,0 +1,137 @@
+# curve3d
+
+- Label: Curve 3D
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 113 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/curve3d.html
+- Summary (EN): Lets you hand-draw cubic Bezier curves in the viewport, like 2D illustration software, and also creates polylines and NURBS curves. Used for tracing images, drawing logos and making profile curves for extrusions or revolves.
+- Résumé (FR) : Dessine à la main des courbes de Bezier cubiques dans la vue, ainsi que des polylignes et des NURBS, pour tracer contours et profils.
+
+- Inputs meaning: ["none listed on the page; the only documented output is curves", "curve nodes can be chained, with group parameters picking up point groups from previous nodes"]
+
+- Key parameters: ["Primitive Type: Polygon, NURBS Curve or Bezier Curve", "Order: curve order, default 4 (cubic)", "Mode: Select/Edit, Draw, Auto-Bezier Draw or Orient", "Reinterpret Curves as Current Type and Order: converts existing curves when on", "Corner, Smooth and Auto Points Group: group names storing each point type", "Name: name attribute on created geometry, default $OS", "Orient, X/Y/Z Axis: attribute names for orientations", "View Rounded Corners and Round Corner Radius", "Soft Transform Radius: falloff radius for soft transforms", "Approximate Shape on Delete and Approximate End Tangents"]
+
+- Caveats: ["In shaded mode closed Bezier curves may not fill; use wireframe (W).", "Arcs are not perfectly round because weighted Bezier curves are not created.", "In a perspective view drawing snaps to the view-facing or construction plane; an orthographic view is easier for flat shapes.", "Esc switches to the View tool; reselect the node and press Enter to return to the Handles tool."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `group` | Group | String | [""] |  |  |
+| `outputtype` | Primitive Type | Menu | 0 |  | polygon, nurbs, bezier |
+| `order` | Order | Int | [4] | 2 .. 8 (strict) |  |
+| `convertcurves` | Reinterpret Curves as Current Type and Order | Toggle | false |  |  |
+| `mode` | Mode | Menu | 1 |  | BUTTONS_curve_mode_select, BUTTONS_curve_mode_draw, BUTTONS_curve_mode_auto, SOP_twist |
+| `interpmethod` | Auto-Point Interpolation Method | Menu | 0 |  | smoothcurvature |
+| `enablebezierops` | Enable Bezier Operations | Toggle | true |  |  |
+| `operations` | Operations | Label |  |  |  |
+| `delete` | Delete Selected Points | Button |  |  |  |
+| `fuse` | Join Selected Points | Button |  |  |  |
+| `cut` | Cut Curves at Selected Points | Button |  |  |  |
+| `join` | Add Segment Between Selected Endpoints | Button |  |  |  |
+| `deleteseg` | Delete Segments Between Selected Points | Button |  |  |  |
+| `fusebranch` | Fuse Branch | Button |  |  |  |
+| `splitbranch` | Split Branch | Button |  |  |  |
+| `makecorner` | Make Selected Points Corner | Button |  |  |  |
+| `makesmooth` | Make Selected Points Smooth | Button |  |  |  |
+| `makebalanced` | Make Selected Points Balanced | Button |  |  |  |
+| `contract` | Retract Tangents at Selected Points | Button |  |  |  |
+| `expand` | Expand Tangents at Selected Points | Button |  |  |  |
+| `straightenseg` | Make Segments Between Selected Points Straight | Button |  |  |  |
+| `close` | Close Selected Curves | Button |  |  |  |
+| `createroundedcorners` | Create Rounded Corners | Button |  |  |  |
+| `removeroundedcorners` | Remove Rounded Corners | Button |  |  |  |
+| `makeauto` | Make Selected Points Auto | Button |  |  |  |
+| `makemanual` | Make Selected Points Manual | Button |  |  |  |
+| `reverse` | Reverse | Button |  |  |  |
+| `reset` | Reset Operations | Button |  |  |  |
+| `snaponclose` | Snap Tangents when Fusing Ends in Draw Mode | Toggle | true |  |  |
+| `maintainpoint` | Approximate Shape on Delete | Toggle | false |  |  |
+| `approxendtangents` | Approximate End Tangents | Toggle | false |  |  |
+| `folder1` |  | FolderSet |  |  |  |
+| `stashgeo` | Stashed Geometry | Data |  |  |  |
+| `savedstashgeo` | Saved Stashed Geometry | Data |  |  |  |
+| `parmpoints` | Parm Points | Data |  |  |  |
+| `stashid` | Stash Id | String | [""] |  |  |
+| `ninputprimscached` | Num Input Prims Cached | Int | [0] | 0 .. 10 |  |
+| `softtransform` | Soft Transform Radius | Toggle | false |  |  |
+| `softtransformrad` | Soft Transform Radius | Float | [0.5] | 0.0 .. 10.0 (strict) |  |
+| `folder2` |  | FolderSet |  |  |  |
+| `outputcornerpts` | Corner Points Group | Toggle | false |  |  |
+| `cornerptsgroup` | Corner Points Group | String | ["corner_points"] |  |  |
+| `outputsmoothpts` | Smooth Points Group | Toggle | false |  |  |
+| `smoothptsgroup` | Smooth Points Group | String | ["smooth_points"] |  |  |
+| `outputautopts` | Auto Points Group | Toggle | false |  |  |
+| `autoptsgroup` | Auto Points Group | String | ["auto_points"] |  |  |
+| `outputname` | Name | Toggle | false |  |  |
+| `name` | Name | String | ["$OS"] |  |  |
+| `nameattrib` | Name Attrib | String | ["name"] |  |  |
+| `outputxaxis` | X Axis | Toggle | false |  |  |
+| `xaxisname` | X Axis | String | ["out"] |  |  |
+| `outputyaxis` | Y Axis | Toggle | false |  |  |
+| `yaxisname` | Y Axis | String | ["up"] |  |  |
+| `outputzaxis` | Z Axis | Toggle | false |  |  |
+| `zaxisname` | Z Axis | String | ["tangent"] |  |  |
+| `outputorient` | Orient | Toggle | false |  |  |
+| `orientname` | Orient | String | ["orient"] |  |  |
+| `tangenttype` | Tangent Type | Menu | 0 |  | avgdir, diff, prev, next, none |
+| `aligntangent` | Align with Curve Tangent | Toggle | true |  |  |
+| `targetorients` | Target Orientations | Folder | 0 |  |  |
+| `folder3` |  | FolderSet |  |  |  |
+| `optype` | Operation | Menu | 1 |  | appendpoint, balance, close, contract, corner, cut, delete, expand, fuse, insert, join, prependpoint, pull, segmentcontract, segmentdelete, smooth, transform, reverse, bezierhandlemove, bakeroundcorners, roundcornersradius, roundcornerssplit, roundcornersfuse, evenlyspace, straightenselection, spaceoncircle, flatten, relaxselection, nop, auto, manual, convert, paste, cutbranch, fusebranch, convertthroughhulls |
+| `activepoints` | Active Points | String | [""] |  |  |
+| `translatex` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `translatey` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `translatez` | Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rotatex` | Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rotatey` | Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `rotatez` | Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `scalex` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `scaley` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `scalez` | Scale | Float | 1.0 | -1.0 .. 1.0 |  |
+| `addpts` | Operation Data | String | [""] |  |  |
+| `activeprim` | Active Prim | Int | [0] | 0 .. 10 |  |
+| `cornerpts` | Corner Points | String | [""] |  |  |
+| `smoothpts` | Smooth Points | String | ["*"] |  |  |
+| `autopts` | Auto Points | String | [""] |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `pivottranslatex` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivottranslatey` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivottranslatez` | Pivot Translate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivotrotatex` | Pivot Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivotrotatey` | Pivot Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivotrotatez` | Pivot Rotate | Float | 0.0 | -1.0 .. 1.0 |  |
+| `pivotfixed` | Fixed Pivot | Toggle | false |  |  |
+| `folder5` |  | FolderSet |  |  |  |
+| `viewroundcorners` | View Rounded Corners | Toggle | true |  |  |
+| `roundcornerpts` | Round Corner Points | String | [""] |  |  |
+| `roundcornerradius` | Round Corner Radius | Float | [0.0] | 0.0 .. 10.0 (strict) |  |
+| `bakeroundcorners` | Bake Selected Rounded Corners | Button |  |  |  |
+| `showroundcornerwidget` | Show Rounded Corner Widget | Toggle | true |  |  |
+| `showroundcornerlabels` | Show Rounded Corner Labels | Toggle | true |  |  |
+| `folder6` |  | FolderSet |  |  |  |
+| `planeorigx` | Plane Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `planeorigy` | Plane Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `planeorigz` | Plane Origin | Float | 0.0 | -1.0 .. 1.0 |  |
+| `planenmlx` | Plane Normal | Float | 0.0 | -1.0 .. 1.0 |  |
+| `planenmly` | Plane Normal | Float | 1.0 | -1.0 .. 1.0 |  |
+| `planenmlz` | Plane Normal | Float | 0.0 | -1.0 .. 1.0 |  |
+| `constrainstraighten` | Constrain Straighten to Plane | Toggle | false |  |  |
+| `folder7` |  | FolderSet |  |  |  |
+| `handleptsx` | pts | Int | -1 | -1 .. 1 |  |
+| `handleptsy` | pts | Int | -1 | -1 .. 1 |  |
+| `handleptsz` | pts | Int | -1 | -1 .. 1 |  |
+| `handlep0posx` | P0 Pos | Float | -1.0 | -1.0 .. 1.0 |  |
+| `handlep0posy` | P0 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep0posz` | P0 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep1posx` | P1 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep1posy` | P1 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep1posz` | P1 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep2posx` | P2 Pos | Float | 1.0 | -1.0 .. 1.0 |  |
+| `handlep2posy` | P2 Pos | Float | 0.0 | -1.0 .. 1.0 |  |
+| `handlep2posz` | P2 Pos | Float | 0.0 | -1.0 .. 1.0 |  |

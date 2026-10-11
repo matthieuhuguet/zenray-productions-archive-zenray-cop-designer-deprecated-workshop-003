@@ -1,0 +1,41 @@
+# checkerboard
+
+- Label: Checkerboard
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 1
+- Parameters: 17 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/checkerboard.html
+- Summary (EN): Generates a pattern of alternating even and odd coloured squares formed by crossing horizontal and vertical divisions, for example a checkered floor tile. Its size_ref input only sets output size and metadata.
+- Résumé (FR) : Le nœud checkerboard génère un damier de carrés pairs et impairs, dont les lignes, les colonnes et la taille de tuile sont réglables.
+
+- Inputs meaning: ["size_ref: representative layer that sets the output size and metadata; does not control square placement"]
+
+- Key parameters: [{"name": "Signature", "meaning": "Sets the output layer type"}, {"name": "Rows / Columns", "meaning": "Number of vertical and horizontal divisions; both default to 8"}, {"name": "Even Color", "meaning": "Colour of the even squares; default 1, 1, 1, 1"}, {"name": "Odd Color", "meaning": "Colour of the odd squares; default 0, 0, 0, 0"}, {"name": "Offset", "meaning": "Position of the pattern centre in image space; default 0, 0"}, {"name": "Bias", "meaning": "Shift of the pattern as a fraction of one square's size; default 0, 0"}, {"name": "Tile Size", "meaning": "Size of each square in image space, repeated as a tile; default 2, 2"}]
+
+- Caveats: ["size_ref does not affect square placement; use Offset and Bias for that", "The page does not explain how Rows / Columns interact with Tile Size, so the combined square size is not specified"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["f3"] |  | f1, f2, f3, f4 |
+| `rows` | Rows | Int | [8] | 0 .. 50 (strict) |  |
+| `cols` | Columns | Int | [8] | 0 .. 50 (strict) |  |
+| `evenr` | Even Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `eveng` | Even Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `evenb` | Even Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `evena` | Even Color | Float | 1.0 | 0.0 .. 10.0 |  |
+| `oddr` | Odd Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `oddg` | Odd Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `oddb` | Odd Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `odda` | Odd Color | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tx` | Offset | Float | 0.0 | 0.0 .. 10.0 |  |
+| `ty` | Offset | Float | 0.0 | 0.0 .. 10.0 |  |
+| `biasx` | Bias | Float | 0.0 | 0.0 .. 10.0 |  |
+| `biasy` | Bias | Float | 0.0 | 0.0 .. 10.0 |  |
+| `tilesizex` | Tile Size | Float | 2.0 | 0.0 .. 10.0 |  |
+| `tilesizey` | Tile Size | Float | 2.0 | 0.0 .. 10.0 |  |

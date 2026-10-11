@@ -1,0 +1,31 @@
+# despill
+
+- Label: Despill
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 7 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/despill.html
+- Summary (EN): Removes an unwanted colour cast, usually green or blue, typically left after chroma keying. Most useful when compositing green or blue screen footage onto a new background.
+- Résumé (FR) : Retire la dominante de couleur verte ou bleue laissée après un détourage sur fond uni.
+
+- Inputs meaning: ["source: layer to despill", "bias: optional per-pixel map scaling the Bias parameter", "mask: optional per-pixel map scaling the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: mix of new result with the original; default 1 uses only the new result", "Spill Color: screen colour to remove; an eyedropper can sample it", "Bias: channel the result shifts toward (for green spill, blue or red)", "Luminance: brightens the despilled area to offset lost green"]
+
+- Caveats: ["The node does not apply alpha, so premultiplied and straight images behave the same.", "For workflows without chroma keying, the page recommends the Color Correct COP."]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `colr` | Spill Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `colg` | Spill Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colb` | Spill Color | Float | 0.0 | 0.0 .. 1.0 |  |
+| `bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `bright` | Luminance | Float | [1.0] | 0.0 .. 2.0 |  |

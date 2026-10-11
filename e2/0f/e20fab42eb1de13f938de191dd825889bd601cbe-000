@@ -1,0 +1,29 @@
+# boundrect
+
+- Label: Bounding Rectangle
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 5 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/boundrect.html
+- Summary (EN): Finds the smallest rectangle enclosing all pixels of a monochrome layer that pass a threshold test. It outputs a mask of that rectangle plus geometry describing its four corners.
+- Résumé (FR) : Calcule le plus petit rectangle englobant les pixels d'un masque monochrome qui passent un seuil, avec ses quatre coins exposés en géométrie.
+
+- Inputs meaning: ["region: monochrome layer to analyze"]
+
+- Key parameters: ["Inside Is: which values the rectangle is meant to contain", "Below Threshold / Above Threshold: whether pixels below or above the threshold expand the rectangle", "Threshold: comparison value, which can be picked from the layer with the dropper", "Inside Value / Outside Value: mask values written inside and outside the rectangle", "Geometry Units: image, texture or pixel coordinates for the output points; match the units of a Crop COP if one is used"]
+
+- Caveats: ["The input must be monochrome; for an RGB layer, first create a monochrome mask of the region of interest", "If no rectangle is found, all four boundrect points are zero", "Geometry units must match the Crop COP units when the two are used together"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `side` | Inside Is | Menu | 1 |  | less, greater |
+| `threshold` | Threshold | Float | [0.5] | 0.0 .. 1.0 |  |
+| `fg` | Inside Value | Float | [1.0] | 0.0 .. 1.0 |  |
+| `bg` | Outside Value | Float | [0.0] | 0.0 .. 1.0 |  |
+| `geounits` | Geometry Units | Menu | 0 |  | image, texture, pixel |

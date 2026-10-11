@@ -1,0 +1,59 @@
+# fractalsample
+
+- Label: Fractal Sample
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 5
+- Parameters: 35 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fractalsample.html
+- Summary (EN): Fractal Sample builds a fractal from a source layer by sampling that input at rising frequencies and blending the results into a continuous pattern of shrinking copies. Its randomization options add organic or inorganic variation, suiting effects such as algae, frost, or kaleidoscopic patterns.
+- Résumé (FR) : Le nœud Fractal Sample construit une fractale à partir d'une couche source, en superposant des copies de plus en plus petites de celle-ci.
+
+- Inputs meaning: ["size_ref: sets the output size and controls metadata", "source: original layer to which the fractal effect is applied", "octaves (optional): multiplies Max Octaves", "lacunarity (optional): multiplies Lacunarity", "roughness (optional): multiplies Roughness"]
+
+- Key parameters: ["Max Octaves: number of octaves combined", "Lacunarity: scale factor applied to each octave", "Roughness: amplitude scale applied to each successive octave", "Blend Mode: Add, Subtract, Maximum or Over", "Maintain Tileable: clamps or rounds certain values (for example Lacunarity to integers) to help preserve tiling", "Seed: random values for Jitter, Angle and Flip", "Jitter: random position offset applied to each octave", "Angle: rotation per octave, applied incrementally (Per Octave) or randomly within a range (Random)", "Random Flip X and Random Flip Y: randomly flip each octave on an axis", "Post-processing (Fold, Complement, Bias, Gain, Gamma, Contrast, Clamp Minimum, Clamp Maximum): adjusts output values, run in the order listed"]
+
+- Caveats: ["Maintain Tileable does not create tileability; it only preserves tiling if the source input already tiles", "The Over blend mode is valid only when the input is RGBA", "Complement assumes values in the 0 to 1 range, so other ranges can produce negative or out-of-range values", "Fold has no effect when all values are positive"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `settypeinfo` | Set Type Info | Toggle | false |  |  |
+| `typeinfo` | Type Info | Menu | 0 |  | none, color, position, vector, normal, offsetnormal, texturecoord, id, mask, sdf, height |
+| `maintaintile` | Maintain Tileable | Toggle | true |  |  |
+| `oct` | Max Octaves | Float | [8.0] | 0.0 .. 8.0 |  |
+| `lac` | Lacunarity | Float | [2.01234] | 1.0 .. 3.0 |  |
+| `rough` | Roughness | Float | [0.5] | 0.0 .. 1.0 |  |
+| `bias` | Bias | Float | [0.5] | -1.0 .. 1.0 |  |
+| `usebias` | Offset with Bias | Toggle | false |  |  |
+| `blend` | Blend Mode | Menu | 0 |  | add, subtract, max, over |
+| `border` | Border | Menu | 0 |  | auto, constant, clamp, mirror, wrap |
+| `filter` | Filter | Menu | 2 |  | point, bilinear, box, triangle, cubic, mitchell, bspline |
+| `folder0` |  | FolderSet |  |  |  |
+| `seed` | Seed | Int | [1] | 1 .. 50 |  |
+| `jitterx` | Jitter | Float | 0.0 | -1.0 .. 1.0 |  |
+| `jittery` | Jitter | Float | 0.0 | -1.0 .. 1.0 |  |
+| `angle` | Angle | Float | [0.0] | -180.0 .. 180.0 |  |
+| `anglemode` | Angle Mode | Menu | 0 |  | peroct, random |
+| `flipx` | Random Flip X | Toggle | false |  |  |
+| `flipy` | Random Flip Y | Toggle | false |  |  |
+| `folder4` |  | FolderSet |  |  |  |
+| `post_dofold` | Fold | Toggle | false |  |  |
+| `post_docomplement` | Complement | Toggle | false |  |  |
+| `post_dobias` | Bias | Toggle | false |  |  |
+| `post_bias` | Bias | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogain` | Gain | Toggle | false |  |  |
+| `post_gain` | Gain | Float | [0.5] | 0.0 .. 1.0 |  |
+| `post_dogamma` | Gamma | Toggle | false |  |  |
+| `post_gamma` | Gamma | Float | [2.2] | 0.0 .. 3.0 |  |
+| `post_docontrast` | Contrast | Toggle | false |  |  |
+| `post_contrast` | Contrast | Float | [0.0] | -1.0 .. 1.0 |  |
+| `post_doclampmin` | Clamp Minimum | Toggle | false |  |  |
+| `post_minimum` | Clamp Minimum | Float | [0.0] | 0.0 .. 1.0 |  |
+| `post_doclampmax` | Clamp Maxmimum | Toggle | false |  |  |
+| `post_maximum` | Clamp Maximum | Float | [1.0] | 0.0 .. 1.0 |  |

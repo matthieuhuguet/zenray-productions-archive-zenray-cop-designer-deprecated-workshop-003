@@ -1,0 +1,28 @@
+# livevideo
+
+- Label: Live Video
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 0 to 0
+- Parameters: 6 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/livevideo.html
+- Summary (EN): The Live Video node captures images from a live video source such as a webcam or screen recorder and outputs them into a COP network. It runs as a non-deterministic live stream independent of the playbar and keyframes, which makes it useful as a sandbox.
+- Résumé (FR) : Capture une source vidéo en direct (webcam, enregistrement d'écran) dans un réseau COP, de façon non déterministe et indépendante de la timeline.
+
+- Key parameters: ["Source: video source to connect to; the options depend on the machine", "Configuration: format string (format, x resolution, y resolution, framerate) the source must support; set Source first", "Connect to Source: toggles the connection to the video source; this setting is not saved in the hip file", "Live Stream: when connected, enables interactive streaming independent of the playbar", "Toggle Live Stream: pauses and resumes the stream while Live Stream is on; the cooking controls button does the same", "Live Tick: shows the current tick within the live stream"]
+
+- Caveats: ["The page documents no input connectors", "Sources and configurations are specific to the machine and may not work elsewhere", "Connect to Source must be re-enabled each time the hip file is opened", "Live Stream does not save results like other streaming types; use a Stash COP to store output", "Live Stream requires Connect to Source to be on", "The output is non-deterministic and not tied to keyframes or caching"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `source` | Source | String | [""] |  |  |
+| `config` | Configuration | String | [""] |  |  |
+| `enabled` | Connect to Source | Toggle | false |  |  |
+| `continuouscook` | Live Stream | Toggle | true |  |  |
+| `continuouscook_toggle` | Toggle Live Stream | Button |  |  |  |
+| `continuouscook_tick` | Live Tick | Int | [0] | 0 .. 10 |  |

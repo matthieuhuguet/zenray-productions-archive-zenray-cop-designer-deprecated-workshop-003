@@ -1,0 +1,34 @@
+# fill
+
+- Label: Fill
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 3
+- Parameters: 10 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/fill.html
+- Summary (EN): The Fill node overwrites a layer with one constant color or ID, with a Mask setting controlling how strongly that value replaces the original. It is similar to the Constant COP, but it can take its fill color from another wired layer.
+- Résumé (FR) : Le nœud Fill remplace le contenu d'une couche par une couleur ou un identifiant constant, ou par une couleur prise dans une autre couche.
+
+- Inputs meaning: ["source: layer to fill", "fillvalue: optional layer supplying the fill color; if nothing is wired, the source is used", "mask: optional per-pixel mask amount scaled by the Mask parameter"]
+
+- Key parameters: ["Signature: layer type accepted by the source", "Mask: how much of the new value is mixed in; default 1 uses only the new value", "Source: fill color origin, Value, First Pixel (bottom-left valid pixel), Last Pixel (top-right valid pixel) or Image Location", "Color: fill color for Mono, UV, RGB and RGBA layers, used when Source is Value", "ID: integer fill value for ID layers, used when Source is Value", "Image Location: point sampled for the color; set with the sample icon then a click on the image"]
+
+- Caveats: ["At the default Mask of 1 the layer is replaced entirely by the new value, not blended with the original", "Image Location samples the source input, and samples the fillvalue input only when one is wired"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `signature` | Signature | String | ["auto"] |  |  |
+| `mask` | Mask | Float | [1.0] | 0.0 .. 1.0 (strict) |  |
+| `source` | Source | Menu | 0 |  | value, sample, first, last |
+| `colorr` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorg` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colorb` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `colora` | Color | Float | 1.0 | 0.0 .. 1.0 |  |
+| `id` | ID | Int | [0] | 0 .. 10 |  |
+| `locationx` | Image Location | Float | 0.0 | -1.0 .. 1.0 |  |
+| `locationy` | Image Location | Float | 0.0 | -1.0 .. 1.0 |  |

@@ -1,0 +1,32 @@
+# convertnormal
+
+- Label: Convert Normal
+- Category: Copernicus (`Cop`), Houdini 22.0.368
+- Inputs: 1 to 1
+- Parameters: 8 (exact, read from Houdini by hython)
+- Used by the height graph: no
+
+## Feature summary (web, SideFX reference)
+
+- Source: https://www.sidefx.com/docs/houdini/nodes/cop/convertnormal.html
+- Summary (EN): The Convert Normal node changes normal layers between signed values (-1 to 1) and offset values (0 to 1). It also updates the layer type information so downstream nodes know which format the normals use.
+- Résumé (FR) : Le nœud Convert Normal convertit une couche de normales entre valeurs signées (-1 à 1) et valeurs décalées (0 à 1), en mettant à jour son information de type.
+
+- Inputs meaning: ["normal: an RGB layer of normals to convert"]
+
+- Key parameters: ["Conversion: Offset to Signed (-1 to 1) or Signed to Offset (0 to 1)", "Normalize: makes input normals unit length before conversion", "Offset: offset used in the conversion", "Scale: scale used in the conversion"]
+
+- Caveats: ["If the final output is 0 to 255, the standard conversion may not land exactly on 0.5, so an offset slightly different from 0.5 may be needed", "The Signed to Offset description on the page says signed normals for texture maps; this looks like a typo for offset normals"]
+
+## Parameters (exact, from the installed Houdini)
+
+| parameter | label | type | default | range | menu tokens |
+|---|---|---|---|---|---|
+| `conversion` | Conversion | Menu | 0 |  | tosigned, tooffset |
+| `normalize` | Normalize | Toggle | false |  |  |
+| `offsetx` | Offset | Float | 0.5 | -1.0 .. 1.0 |  |
+| `offsety` | Offset | Float | 0.5 | -1.0 .. 1.0 |  |
+| `offsetz` | Offset | Float | 0.5 | -1.0 .. 1.0 |  |
+| `scalex` | Scale | Float | 0.5 | 0.0 .. 1.0 |  |
+| `scaley` | Scale | Float | 0.5 | 0.0 .. 1.0 |  |
+| `scalez` | Scale | Float | 0.5 | 0.0 .. 1.0 |  |
